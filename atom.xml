@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Yofer Zhang</title>
+  <subtitle>数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoferzhang.github.io/"/>
+  <updated>2016-03-22T14:16:46.506Z</updated>
+  <id>http://yoferzhang.github.io/</id>
+  
+  <author>
+    <name>Yofer</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【读书笔记】把你的英语用起来</title>
+    <link href="http://yoferzhang.github.io/post/20160322readNotes001/"/>
+    <id>http://yoferzhang.github.io/post/20160322readNotes001/</id>
+    <published>2016-03-22T14:07:41.000Z</published>
+    <updated>2016-03-22T14:16:46.506Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;&quot; style=&quot;display:block;margin:auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f26018ehi5j224g1bq7wh.jpg&quot; alt=&quot;把你的英语用起来&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      用xmind制作的读书笔记
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://yoferzhang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="笔记，英语，学习" scheme="http://yoferzhang.github.io/tags/%E7%AC%94%E8%AE%B0%EF%BC%8C%E8%8B%B1%E8%AF%AD%EF%BC%8C%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【随笔】记录一下，新博客的第一篇博文</title>
+    <link href="http://yoferzhang.github.io/post/hexo-post/"/>
+    <id>http://yoferzhang.github.io/post/hexo-post/</id>
+    <published>2016-03-22T12:21:48.000Z</published>
+    <updated>2016-03-22T12:25:54.343Z</updated>
+    
+    <content type="html">&lt;p&gt;　　自己对前端方面不熟悉，花了一天才把博客建立好，也换了jacman模板，接下来就是多多分享自己的读书笔记以及技术思想了。给自己加油~~&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　自己对前端方面不熟悉，花了一天才把博客建立好，也换了jacman模板，接下来就是多多分享自己的读书笔记以及技术思想了。给自己加油~~&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://yoferzhang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔，测试" scheme="http://yoferzhang.github.io/tags/%E9%9A%8F%E7%AC%94%EF%BC%8C%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+</feed>
