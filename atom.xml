@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoferzhang.github.io/"/>
-  <updated>2016-03-22T23:51:04.447Z</updated>
+  <updated>2016-03-23T01:27:59.825Z</updated>
   <id>http://yoferzhang.github.io/</id>
   
   <author>
@@ -20,9 +20,12 @@
     <link href="http://yoferzhang.github.io/post/20160322essay002/"/>
     <id>http://yoferzhang.github.io/post/20160322essay002/</id>
     <published>2016-03-22T15:03:33.000Z</published>
-    <updated>2016-03-22T23:51:04.447Z</updated>
+    <updated>2016-03-23T01:27:59.825Z</updated>
     
-    <content type="html">&lt;p&gt;　　2015年9月20号下午，接到腾讯总部的电话，确定了offer相关信息，算是正式get了鹅场的offer，坐等下个周一周二的签约会。&lt;/p&gt;
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;本文原写于2015年9月，是原博客中比较重要的一篇文章，故转至新地址&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　2015年9月20号下午，接到腾讯总部的电话，确定了offer相关信息，算是正式get了鹅场的offer，坐等下个周一周二的签约会。&lt;/p&gt;
 &lt;h2 id=&quot;心路篇&quot;&gt;&lt;a href=&quot;#心路篇&quot; class=&quot;headerlink&quot; title=&quot;心路篇&quot;&gt;&lt;/a&gt;心路篇&lt;/h2&gt;&lt;p&gt;　　2015年2月：已经2月份了，自己在大学的时光已经来到了比较关键的阶段性，大学的很多经历让自己已经放弃了上研的打算，当然这其中也有很多自己的喜好问题。也就是从这时候自己开始进入了找工作的状态，然而，并没有自己想象中的那么顺利。。。&lt;/p&gt;
 &lt;p&gt;　　2015年4月：回到学校有一段时间了，很多公司的实习生招聘都开始了，可是自己这段时间只顾着看书，没少注意到这方面信息，知道后也没有很好的做面试准备；腾讯实习生招聘的笔试轻松过了，但是第一次面试就是腾讯，自己对于面试问题也没有太多的概念，一面就被给予了沉重的打击，之后也是总结发现了自己各方面的缺陷真的比较多，痛定思痛继续强化自己。。。&lt;/p&gt;
 &lt;p&gt;　　2015年5月：学iOS开发学了也有一段时间了，但是总感觉自己不上道，思考了自己的发展路线，决定先不做这样偏向于应用层项目工程的学习，还是继续深造底层的知识架构。这段时间也做了学校的ACM，虽然成绩还凑合，但是很明显的感觉到自己对于数据结构和算法的实现能力比较欠缺，于是6月份一个月疯狂的刷题，在Uva上刷了几百道题目，这样自己的算法编程能力也是稍微有了点底气，这也奠定了之后校招时各公司的笔试编程大题都轻松AC的基础。&lt;/p&gt;
@@ -76,7 +79,10 @@
     
     <summary type="html">
     
-      本文原写于2015年9月，是原博客中比较重要的一篇文章，故转至新地址
+      &lt;blockquote&gt;
+&lt;p&gt;本文原写于2015年9月，是原博客中比较重要的一篇文章，故转至新地址&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　2015年9月20号下午，接到腾讯总部的电话，确定了offer相关信息，算是正式get了鹅场的offer，坐等下个周一周二的签约会。
     
     </summary>
     
