@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg">
-<meta property="og:updated_time" content="2016-03-24T11:10:44.765Z">
+<meta property="og:updated_time" content="2016-03-24T11:23:33.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【建立博客】使用Github和Hexo搭建属于自己的博客">
 <meta name="twitter:description" content="前言 | Preface
@@ -146,8 +146,7 @@
 <p>　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以<a href="https://www.google.com/" target="_blank" rel="external">Google</a>。我的系统是win8.1。</p>
 <h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>　　Node.js下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a>。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”</p>
 <p>　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：</p>
-<p><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""></center></p>
-<center>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""><br></center>
 
 <blockquote>
 <p>现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。</p>
@@ -176,8 +175,7 @@
 <blockquote>
 <p>效果如下图：</p>
 </blockquote>
-<p><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""></center></p>
-<center>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""><br></center>
 
 <p>　　然后在浏览器地址栏中输入：<code>localhost:4000</code>，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。</p>
 <h3 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h3><blockquote>
@@ -187,25 +185,22 @@
 <blockquote>
 <p>接下来创建仓库(repository)。</p>
 </blockquote>
-<p><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""></center></p>
-<center>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""><br></center>
 
 <p>　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：</p>
-<p><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""></center></p>
-<center>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""><br></center>
 
 <blockquote>
 <p>注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加<code>.github.io</code>，比如我的就是<code>yoferzhang.github.io</code>，名字千万别错。</p>
 </blockquote>
 <p>　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择<code>Clone</code>，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(<code>E:\</code>)。这时候E盘下就会生成一个文件夹，我的是<code>yoferzhang.github.io</code>。</p>
-<p><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""></center></p>
-<center>
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""><br></center>
 
 <blockquote>
 <p>把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。</p>
 </blockquote>
 <p>　　我的是<code>E:\blog\public</code>文件夹下的所有文件，拷贝到<code>E:\yoferzhang.github.io</code>。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的<code>Sync</code>，第一次<code>Sync</code>可能是<code>Publish</code>。这时候就可以在浏览器中输入<code>yoferzhang.github.io</code>(注意把用户名换成你的)，查看自己的主页。</p>
-</center></center></center></center></center>  
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">

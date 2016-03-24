@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoferzhang.github.io/"/>
-  <updated>2016-03-24T11:10:44.765Z</updated>
+  <updated>2016-03-24T11:23:33.636Z</updated>
   <id>http://yoferzhang.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoferzhang.github.io/post/20160323buildBlog01/"/>
     <id>http://yoferzhang.github.io/post/20160323buildBlog01/</id>
     <published>2016-03-23T08:40:10.000Z</published>
-    <updated>2016-03-24T11:10:44.765Z</updated>
+    <updated>2016-03-24T11:23:33.636Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言-Preface&quot;&gt;&lt;a href=&quot;#前言-Preface&quot; class=&quot;headerlink&quot; title=&quot;前言 | Preface&quot;&gt;&lt;/a&gt;前言 | Preface&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;建立博客也花了些心思，记录下这点滴&lt;/p&gt;
@@ -43,8 +43,7 @@
 &lt;p&gt;　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以&lt;a href=&quot;https://www.google.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google&lt;/a&gt;。我的系统是win8.1。&lt;/p&gt;
 &lt;h3 id=&quot;安装Node-js&quot;&gt;&lt;a href=&quot;#安装Node-js&quot; class=&quot;headerlink&quot; title=&quot;安装Node.js&quot;&gt;&lt;/a&gt;安装Node.js&lt;/h3&gt;&lt;p&gt;　　Node.js下载地址：&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org/en/&lt;/a&gt;。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”&lt;/p&gt;
 &lt;p&gt;　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;
+&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。&lt;/p&gt;
@@ -73,8 +72,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;效果如下图：&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;
+&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
 
 &lt;p&gt;　　然后在浏览器地址栏中输入：&lt;code&gt;localhost:4000&lt;/code&gt;，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。&lt;/p&gt;
 &lt;h3 id=&quot;部署到Github上&quot;&gt;&lt;a href=&quot;#部署到Github上&quot; class=&quot;headerlink&quot; title=&quot;部署到Github上&quot;&gt;&lt;/a&gt;部署到Github上&lt;/h3&gt;&lt;blockquote&gt;
@@ -84,25 +82,22 @@
 &lt;blockquote&gt;
 &lt;p&gt;接下来创建仓库(repository)。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;
+&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
 
 &lt;p&gt;　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;
+&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加&lt;code&gt;.github.io&lt;/code&gt;，比如我的就是&lt;code&gt;yoferzhang.github.io&lt;/code&gt;，名字千万别错。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择&lt;code&gt;Clone&lt;/code&gt;，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(&lt;code&gt;E:\&lt;/code&gt;)。这时候E盘下就会生成一个文件夹，我的是&lt;code&gt;yoferzhang.github.io&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;
+&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;　　我的是&lt;code&gt;E:\blog\public&lt;/code&gt;文件夹下的所有文件，拷贝到&lt;code&gt;E:\yoferzhang.github.io&lt;/code&gt;。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的&lt;code&gt;Sync&lt;/code&gt;，第一次&lt;code&gt;Sync&lt;/code&gt;可能是&lt;code&gt;Publish&lt;/code&gt;。这时候就可以在浏览器中输入&lt;code&gt;yoferzhang.github.io&lt;/code&gt;(注意把用户名换成你的)，查看自己的主页。&lt;/p&gt;
-&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;</content>
+</content>
     
     <summary type="html">
     
