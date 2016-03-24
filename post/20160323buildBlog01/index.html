@@ -1,0 +1,613 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【建立博客】使用Github和Hexo搭建属于自己的博客 | Yofer Zhang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer">
+    
+
+    
+    <meta name="description" content="前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。
+
+我其实刚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【建立博客】使用Github和Hexo搭建属于自己的博客">
+<meta property="og:url" content="http://yoferzhang.github.io/post/20160323buildBlog01/index.html">
+<meta property="og:site_name" content="Yofer Zhang">
+<meta property="og:description" content="前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。
+
+我其实刚">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg">
+<meta property="og:updated_time" content="2016-03-24T11:10:44.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【建立博客】使用Github和Hexo搭建属于自己的博客">
+<meta name="twitter:description" content="前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。
+
+我其实刚">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Yofer Zhang" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Yofer Zhang" title="Yofer Zhang"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Yofer Zhang">Yofer Zhang</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160323buildBlog01/" title="【建立博客】使用Github和Hexo搭建属于自己的博客" itemprop="url">【建立博客】使用Github和Hexo搭建属于自己的博客</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer" target="_blank" itemprop="author">Yofer</a>
+		
+  <p class="article-time">
+    <time datetime="2016-03-23T08:40:10.000Z" itemprop="datePublished"> 发表于 2016-03-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言-Preface"><span class="toc-number">1.</span> <span class="toc-text">前言 | Preface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#购买域名"><span class="toc-number">2.</span> <span class="toc-text">购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS"><span class="toc-number">3.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Hexo，Node-js和Github"><span class="toc-number">4.</span> <span class="toc-text">安装Hexo，Node.js和Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Node-js"><span class="toc-number">4.1.</span> <span class="toc-text">安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Github"><span class="toc-number">4.2.</span> <span class="toc-text">安装Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Hexo"><span class="toc-number">4.3.</span> <span class="toc-text">安装Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-number">5.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Hexo文件夹"><span class="toc-number">5.1.</span> <span class="toc-text">创建Hexo文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地查看"><span class="toc-number">5.2.</span> <span class="toc-text">本地查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署到Github上"><span class="toc-number">5.3.</span> <span class="toc-text">部署到Github上</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="前言-Preface"><a href="#前言-Preface" class="headerlink" title="前言 | Preface"></a>前言 | Preface</h2><blockquote>
+<p>建立博客也花了些心思，记录下这点滴</p>
+</blockquote>
+<p>　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是<a href="http://hexo.io/docs/" target="_blank" rel="external">Hexo</a>加上<a href="https://github.com/" target="_blank" rel="external">Github</a>。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。</p>
+<blockquote>
+<p>我其实刚开始搭建就是对前端了解太少，后来遇到些小白的问题</p>
+</blockquote>
+<h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><blockquote>
+<p>域名我是在GoDaddy上买的，整个购买过程很简单，后面的配置问题再详细说明；我买的是.com域名，毕竟这个识别度高些吧。</p>
+</blockquote>
+<p><a href="http://www.godaddy.com/" target="_blank" rel="external">http://www.godaddy.com/</a></p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><blockquote>
+<p>我用DNSPOD，用QQ就可以登录管理，这个不需要买，但这个需要配置，这里先不用管。它和腾讯云现在有合作(笑，给我司强行插播广告)</p>
+</blockquote>
+<p><a href="https://www.dnspod.cn/" target="_blank" rel="external">https://www.dnspod.cn/</a></p>
+<h2 id="安装Hexo，Node-js和Github"><a href="#安装Hexo，Node-js和Github" class="headerlink" title="安装Hexo，Node.js和Github"></a>安装Hexo，Node.js和Github</h2><blockquote>
+<p>关于什么是Hexo，推荐看：<a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-1/</a></p>
+</blockquote>
+<p>　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以<a href="https://www.google.com/" target="_blank" rel="external">Google</a>。我的系统是win8.1。</p>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>　　Node.js下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a>。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”</p>
+<p>　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：</p>
+<p><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""></center></p>
+<center>
+
+<blockquote>
+<p>现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。</p>
+</blockquote>
+<h3 id="安装Github"><a href="#安装Github" class="headerlink" title="安装Github"></a>安装Github</h3><p>　　小白推荐使用Github for windows，下载地址<a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a>。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>　　前一步安装Github for windows之后，桌面上会有一个GIt Shell，双击打开。<br>在里面输入npm命令安装Hexo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这一步可能会比较慢，如果时间太长，推荐全局科学上网。</p>
+</blockquote>
+<p>　　到这需要安装的东西就完成了，下面开始进行配置。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="创建Hexo文件夹"><a href="#创建Hexo文件夹" class="headerlink" title="创建Hexo文件夹"></a>创建Hexo文件夹</h3><p>　　自行建立一个空文件夹，比如我的是：<code>E:\blog</code>。进入Git Shell切换到该路径下(<code>cd e:\blog</code>)，然后执行以下指令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>等待Hexo初始化完成，文件夹中会自动新建所需要的文件夹。<br>然后执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>　　现在文件已经部署到自己的电脑上了，可以在本地进行查看。</p>
+<h3 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h3><p>　　1. 生成完整的网页静态文件，命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此时目录中会生成一个文件夹，比如在我的目录(<code>E:\blog</code>)下生成了一个<code>public</code>文件夹，这里面放的就是我们后面要传到GIthub上面的文件。</p>
+</blockquote>
+<p>　　2. 本地生成服务器，命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>效果如下图：</p>
+</blockquote>
+<p><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""></center></p>
+<center>
+
+<p>　　然后在浏览器地址栏中输入：<code>localhost:4000</code>，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。</p>
+<h3 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h3><blockquote>
+<p>首先注册帐号</p>
+</blockquote>
+<p>　　Github帐号注册地址：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a>。</p>
+<blockquote>
+<p>接下来创建仓库(repository)。</p>
+</blockquote>
+<p><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""></center></p>
+<center>
+
+<p>　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：</p>
+<p><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""></center></p>
+<center>
+
+<blockquote>
+<p>注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加<code>.github.io</code>，比如我的就是<code>yoferzhang.github.io</code>，名字千万别错。</p>
+</blockquote>
+<p>　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择<code>Clone</code>，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(<code>E:\</code>)。这时候E盘下就会生成一个文件夹，我的是<code>yoferzhang.github.io</code>。</p>
+<p><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""></center></p>
+<center>
+
+<blockquote>
+<p>把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。</p>
+</blockquote>
+<p>　　我的是<code>E:\blog\public</code>文件夹下的所有文件，拷贝到<code>E:\yoferzhang.github.io</code>。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的<code>Sync</code>，第一次<code>Sync</code>可能是<code>Publish</code>。这时候就可以在浏览器中输入<code>yoferzhang.github.io</code>(注意把用户名换成你的)，查看自己的主页。</p>
+</center></center></center></center></center>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/建立博客/">建立博客</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.github.io/post/20160323buildBlog01/" data-title="【建立博客】使用Github和Hexo搭建属于自己的博客 | Yofer Zhang" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/post/20160322essay002/"  title="【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结">
+ <strong>下一篇：</strong><br/> 
+ <span>【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160323buildBlog01/" data-title="【建立博客】使用Github和Hexo搭建属于自己的博客" data-url="http://yoferzhang.github.io/post/20160323buildBlog01/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言-Preface"><span class="toc-number">1.</span> <span class="toc-text">前言 | Preface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#购买域名"><span class="toc-number">2.</span> <span class="toc-text">购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS"><span class="toc-number">3.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Hexo，Node-js和Github"><span class="toc-number">4.</span> <span class="toc-text">安装Hexo，Node.js和Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Node-js"><span class="toc-number">4.1.</span> <span class="toc-text">安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Github"><span class="toc-number">4.2.</span> <span class="toc-text">安装Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Hexo"><span class="toc-number">4.3.</span> <span class="toc-text">安装Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-number">5.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Hexo文件夹"><span class="toc-number">5.1.</span> <span class="toc-text">创建Hexo文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地查看"><span class="toc-number">5.2.</span> <span class="toc-text">本地查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署到Github上"><span class="toc-number">5.3.</span> <span class="toc-text">部署到Github上</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/建立博客/" title="建立博客">建立博客<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/zyq522376829/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2848249334&verifier=39526af2&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yofer">Yofer</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoferzhang.github.io/post/20160323buildBlog01/</loc>
+    
+    <lastmod>2016-03-24T11:10:44.765Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoferzhang.github.io/post/20160322essay002/</loc>
     
-    <lastmod>2016-03-23T01:27:59.825Z</lastmod>
+    <lastmod>2016-03-24T07:40:30.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.github.io/post/20160322readNotes001/</loc>
+    
+    <lastmod>2016-03-24T07:40:19.128Z</lastmod>
     
   </url>
   
@@ -19,13 +33,6 @@
     <loc>http://yoferzhang.github.io/about/index.html</loc>
     
     <lastmod>2016-03-23T00:50:10.344Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.github.io/post/20160322readNotes001/</loc>
-    
-    <lastmod>2016-03-22T14:22:39.530Z</lastmod>
     
   </url>
   

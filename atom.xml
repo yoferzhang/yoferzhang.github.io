@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoferzhang.github.io/"/>
-  <updated>2016-03-23T01:27:59.825Z</updated>
+  <updated>2016-03-24T11:10:44.765Z</updated>
   <id>http://yoferzhang.github.io/</id>
   
   <author>
@@ -16,11 +16,114 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【建立博客】使用Github和Hexo搭建属于自己的博客</title>
+    <link href="http://yoferzhang.github.io/post/20160323buildBlog01/"/>
+    <id>http://yoferzhang.github.io/post/20160323buildBlog01/</id>
+    <published>2016-03-23T08:40:10.000Z</published>
+    <updated>2016-03-24T11:10:44.765Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;前言-Preface&quot;&gt;&lt;a href=&quot;#前言-Preface&quot; class=&quot;headerlink&quot; title=&quot;前言 | Preface&quot;&gt;&lt;/a&gt;前言 | Preface&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;建立博客也花了些心思，记录下这点滴&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是&lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;加上&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我其实刚开始搭建就是对前端了解太少，后来遇到些小白的问题&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;购买域名&quot;&gt;&lt;a href=&quot;#购买域名&quot; class=&quot;headerlink&quot; title=&quot;购买域名&quot;&gt;&lt;/a&gt;购买域名&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;域名我是在GoDaddy上买的，整个购买过程很简单，后面的配置问题再详细说明；我买的是.com域名，毕竟这个识别度高些吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.godaddy.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.godaddy.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;DNS&quot;&gt;&lt;a href=&quot;#DNS&quot; class=&quot;headerlink&quot; title=&quot;DNS&quot;&gt;&lt;/a&gt;DNS&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;我用DNSPOD，用QQ就可以登录管理，这个不需要买，但这个需要配置，这里先不用管。它和腾讯云现在有合作(笑，给我司强行插播广告)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.dnspod.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.dnspod.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;安装Hexo，Node-js和Github&quot;&gt;&lt;a href=&quot;#安装Hexo，Node-js和Github&quot; class=&quot;headerlink&quot; title=&quot;安装Hexo，Node.js和Github&quot;&gt;&lt;/a&gt;安装Hexo，Node.js和Github&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;关于什么是Hexo，推荐看：&lt;a href=&quot;http://zipperary.com/2013/05/28/hexo-guide-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://zipperary.com/2013/05/28/hexo-guide-1/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以&lt;a href=&quot;https://www.google.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google&lt;/a&gt;。我的系统是win8.1。&lt;/p&gt;
+&lt;h3 id=&quot;安装Node-js&quot;&gt;&lt;a href=&quot;#安装Node-js&quot; class=&quot;headerlink&quot; title=&quot;安装Node.js&quot;&gt;&lt;/a&gt;安装Node.js&lt;/h3&gt;&lt;p&gt;　　Node.js下载地址：&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org/en/&lt;/a&gt;。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”&lt;/p&gt;
+&lt;p&gt;　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装Github&quot;&gt;&lt;a href=&quot;#安装Github&quot; class=&quot;headerlink&quot; title=&quot;安装Github&quot;&gt;&lt;/a&gt;安装Github&lt;/h3&gt;&lt;p&gt;　　小白推荐使用Github for windows，下载地址&lt;a href=&quot;https://desktop.github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://desktop.github.com/&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;安装Hexo&quot;&gt;&lt;a href=&quot;#安装Hexo&quot; class=&quot;headerlink&quot; title=&quot;安装Hexo&quot;&gt;&lt;/a&gt;安装Hexo&lt;/h3&gt;&lt;p&gt;　　前一步安装Github for windows之后，桌面上会有一个GIt Shell，双击打开。&lt;br&gt;在里面输入npm命令安装Hexo。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-cli -g&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这一步可能会比较慢，如果时间太长，推荐全局科学上网。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　到这需要安装的东西就完成了，下面开始进行配置。&lt;/p&gt;
+&lt;h2 id=&quot;配置文件&quot;&gt;&lt;a href=&quot;#配置文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h2&gt;&lt;h3 id=&quot;创建Hexo文件夹&quot;&gt;&lt;a href=&quot;#创建Hexo文件夹&quot; class=&quot;headerlink&quot; title=&quot;创建Hexo文件夹&quot;&gt;&lt;/a&gt;创建Hexo文件夹&lt;/h3&gt;&lt;p&gt;　　自行建立一个空文件夹，比如我的是：&lt;code&gt;E:\blog&lt;/code&gt;。进入Git Shell切换到该路径下(&lt;code&gt;cd e:\blog&lt;/code&gt;)，然后执行以下指令。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo init&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;等待Hexo初始化完成，文件夹中会自动新建所需要的文件夹。&lt;br&gt;然后执行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;　　现在文件已经部署到自己的电脑上了，可以在本地进行查看。&lt;/p&gt;
+&lt;h3 id=&quot;本地查看&quot;&gt;&lt;a href=&quot;#本地查看&quot; class=&quot;headerlink&quot; title=&quot;本地查看&quot;&gt;&lt;/a&gt;本地查看&lt;/h3&gt;&lt;p&gt;　　1. 生成完整的网页静态文件，命令为：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo g&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此时目录中会生成一个文件夹，比如在我的目录(&lt;code&gt;E:\blog&lt;/code&gt;)下生成了一个&lt;code&gt;public&lt;/code&gt;文件夹，这里面放的就是我们后面要传到GIthub上面的文件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　2. 本地生成服务器，命令为：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo s&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;效果如下图：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;
+
+&lt;p&gt;　　然后在浏览器地址栏中输入：&lt;code&gt;localhost:4000&lt;/code&gt;，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。&lt;/p&gt;
+&lt;h3 id=&quot;部署到Github上&quot;&gt;&lt;a href=&quot;#部署到Github上&quot; class=&quot;headerlink&quot; title=&quot;部署到Github上&quot;&gt;&lt;/a&gt;部署到Github上&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;首先注册帐号&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　Github帐号注册地址：&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;接下来创建仓库(repository)。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;
+
+&lt;p&gt;　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加&lt;code&gt;.github.io&lt;/code&gt;，比如我的就是&lt;code&gt;yoferzhang.github.io&lt;/code&gt;，名字千万别错。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择&lt;code&gt;Clone&lt;/code&gt;，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(&lt;code&gt;E:\&lt;/code&gt;)。这时候E盘下就会生成一个文件夹，我的是&lt;code&gt;yoferzhang.github.io&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　我的是&lt;code&gt;E:\blog\public&lt;/code&gt;文件夹下的所有文件，拷贝到&lt;code&gt;E:\yoferzhang.github.io&lt;/code&gt;。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的&lt;code&gt;Sync&lt;/code&gt;，第一次&lt;code&gt;Sync&lt;/code&gt;可能是&lt;code&gt;Publish&lt;/code&gt;。这时候就可以在浏览器中输入&lt;code&gt;yoferzhang.github.io&lt;/code&gt;(注意把用户名换成你的)，查看自己的主页。&lt;/p&gt;
+&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;&lt;/center&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言-Preface&quot;&gt;&lt;a href=&quot;#前言-Preface&quot; class=&quot;headerlink&quot; title=&quot;前言 | Preface&quot;&gt;&lt;/a&gt;前言 | Preface&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;建立博客也花了些心思，记录下这点滴&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="建立博客" scheme="http://yoferzhang.github.io/categories/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="博客,hexo,jacman" scheme="http://yoferzhang.github.io/tags/%E5%8D%9A%E5%AE%A2-hexo-jacman/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</title>
     <link href="http://yoferzhang.github.io/post/20160322essay002/"/>
     <id>http://yoferzhang.github.io/post/20160322essay002/</id>
     <published>2016-03-22T15:03:33.000Z</published>
-    <updated>2016-03-23T01:27:59.825Z</updated>
+    <updated>2016-03-24T07:40:30.352Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;本文原写于2015年9月，是原博客中比较重要的一篇文章，故转至新地址&lt;/p&gt;
@@ -89,7 +192,7 @@
       <category term="随笔" scheme="http://yoferzhang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔，腾讯，心得" scheme="http://yoferzhang.github.io/tags/%E9%9A%8F%E7%AC%94%EF%BC%8C%E8%85%BE%E8%AE%AF%EF%BC%8C%E5%BF%83%E5%BE%97/"/>
+      <category term="随笔,腾讯,心得" scheme="http://yoferzhang.github.io/tags/%E9%9A%8F%E7%AC%94-%E8%85%BE%E8%AE%AF-%E5%BF%83%E5%BE%97/"/>
     
   </entry>
   
@@ -98,7 +201,7 @@
     <link href="http://yoferzhang.github.io/post/20160322readNotes001/"/>
     <id>http://yoferzhang.github.io/post/20160322readNotes001/</id>
     <published>2016-03-22T14:07:41.000Z</published>
-    <updated>2016-03-22T14:22:39.530Z</updated>
+    <updated>2016-03-24T07:40:19.128Z</updated>
     
     <content type="html">&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f26018ehi5j224g1bq7wh.jpg&quot; alt=&quot;把你的英语用起来&quot;&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;center&gt;&lt;/center&gt;</content>
@@ -112,7 +215,7 @@
       <category term="读书笔记" scheme="http://yoferzhang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="笔记，英语，学习" scheme="http://yoferzhang.github.io/tags/%E7%AC%94%E8%AE%B0%EF%BC%8C%E8%8B%B1%E8%AF%AD%EF%BC%8C%E5%AD%A6%E4%B9%A0/"/>
+      <category term="笔记,英语,学习" scheme="http://yoferzhang.github.io/tags/%E7%AC%94%E8%AE%B0-%E8%8B%B1%E8%AF%AD-%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
