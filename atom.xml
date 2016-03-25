@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoferzhang.com/"/>
-  <updated>2016-03-25T03:18:45.140Z</updated>
+  <updated>2016-03-25T13:13:09.817Z</updated>
   <id>http://yoferzhang.com/</id>
   
   <author>
@@ -14,6 +14,127 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【读书笔记】最近读书的目录</title>
+    <link href="http://yoferzhang.com/post/20160325ReadIndex/"/>
+    <id>http://yoferzhang.com/post/20160325ReadIndex/</id>
+    <published>2016-03-25T12:33:13.000Z</published>
+    <updated>2016-03-25T13:13:09.817Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;生活功能型&quot;&gt;&lt;a href=&quot;#生活功能型&quot; class=&quot;headerlink&quot; title=&quot;生活功能型&quot;&gt;&lt;/a&gt;生活功能型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;如何阅读一本书&lt;/li&gt;
+&lt;li&gt;哈弗记忆课：过目不忘训练法&lt;/li&gt;
+&lt;li&gt;程序员跳槽全攻略&lt;/li&gt;
+&lt;li&gt;自控力 - Kelly McGonigal&lt;/li&gt;
+&lt;li&gt;我最想要的记忆魔法书 - 多米尼克奥布莱恩&lt;/li&gt;
+&lt;li&gt;最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏&lt;/li&gt;
+&lt;li&gt;番茄工作法图解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;工作技能型&quot;&gt;&lt;a href=&quot;#工作技能型&quot; class=&quot;headerlink&quot; title=&quot;工作技能型&quot;&gt;&lt;/a&gt;工作技能型&lt;/h2&gt;&lt;h3 id=&quot;iOS&quot;&gt;&lt;a href=&quot;#iOS&quot; class=&quot;headerlink&quot; title=&quot;iOS&quot;&gt;&lt;/a&gt;iOS&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;iOS编程&lt;/li&gt;
+&lt;li&gt;iOS Programming：The Big Nerd Ranch Guide&lt;/li&gt;
+&lt;li&gt;Objective-C Programming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;C-C&quot;&gt;&lt;a href=&quot;#C-C&quot; class=&quot;headerlink&quot; title=&quot;C\C++&quot;&gt;&lt;/a&gt;C\C++&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;C++标准库&lt;/li&gt;
+&lt;li&gt;STL源码剖析 - 侯捷&lt;/li&gt;
+&lt;li&gt;深度探索C++对象模型&lt;/li&gt;
+&lt;li&gt;Effective C++ - Scott Meyers&lt;/li&gt;
+&lt;li&gt;More Effective C++ - Scott Meyers&lt;/li&gt;
+&lt;li&gt;Effective STL - Scott Meyers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Python&quot;&gt;&lt;a href=&quot;#Python&quot; class=&quot;headerlink&quot; title=&quot;Python&quot;&gt;&lt;/a&gt;Python&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Python教程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;底层&quot;&gt;&lt;a href=&quot;#底层&quot; class=&quot;headerlink&quot; title=&quot;底层&quot;&gt;&lt;/a&gt;底层&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;深入理解计算机系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;网络&quot;&gt;&lt;a href=&quot;#网络&quot; class=&quot;headerlink&quot; title=&quot;网络&quot;&gt;&lt;/a&gt;网络&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;计算机网络&lt;/li&gt;
+&lt;li&gt;UNIX网络编程 两卷&lt;/li&gt;
+&lt;li&gt;UNIX环境高级编程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;算法&quot;&gt;&lt;a href=&quot;#算法&quot; class=&quot;headerlink&quot; title=&quot;算法&quot;&gt;&lt;/a&gt;算法&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;算法竞赛入门经典&lt;/li&gt;
+&lt;li&gt;算法竞赛入门经典 训练指南&lt;/li&gt;
+&lt;li&gt;算法导论&lt;/li&gt;
+&lt;li&gt;编程之美&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;数学&quot;&gt;&lt;a href=&quot;#数学&quot; class=&quot;headerlink&quot; title=&quot;数学&quot;&gt;&lt;/a&gt;数学&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;重温微积分&lt;/li&gt;
+&lt;li&gt;具体数学&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;MATLAB&quot;&gt;&lt;a href=&quot;#MATLAB&quot; class=&quot;headerlink&quot; title=&quot;MATLAB&quot;&gt;&lt;/a&gt;MATLAB&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;精通MATLAB&lt;/li&gt;
+&lt;li&gt;MATLAB GUI设计学习手记&lt;/li&gt;
+&lt;li&gt;MATLAB 神经网络30个案例分析&lt;/li&gt;
+&lt;li&gt;MATLAB统计分析与应用：40个案例分析&lt;/li&gt;
+&lt;li&gt;MATLAB在数学建模中的应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;代码大全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;常识&quot;&gt;&lt;a href=&quot;#常识&quot; class=&quot;headerlink&quot; title=&quot;常识&quot;&gt;&lt;/a&gt;常识&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;知乎日报 - &lt;a href=&quot;http://daily.zhihu.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://daily.zhihu.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;语言学习&quot;&gt;&lt;a href=&quot;#语言学习&quot; class=&quot;headerlink&quot; title=&quot;语言学习&quot;&gt;&lt;/a&gt;语言学习&lt;/h2&gt;&lt;h3 id=&quot;英语&quot;&gt;&lt;a href=&quot;#英语&quot; class=&quot;headerlink&quot; title=&quot;英语&quot;&gt;&lt;/a&gt;英语&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;文法俱乐部 - 旋天佑&lt;/li&gt;
+&lt;li&gt;把你的英语用起来 - 奶爸&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;生活动力型&quot;&gt;&lt;a href=&quot;#生活动力型&quot; class=&quot;headerlink&quot; title=&quot;生活动力型&quot;&gt;&lt;/a&gt;生活动力型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;你只是看起来很努力 - 李尚龙&lt;/li&gt;
+&lt;li&gt;千万次摇摆，才能长大成人&lt;/li&gt;
+&lt;li&gt;因为痛，所以叫青春&lt;/li&gt;
+&lt;li&gt;不要让未来的你讨厌现在的自己&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;小说&quot;&gt;&lt;a href=&quot;#小说&quot; class=&quot;headerlink&quot; title=&quot;小说&quot;&gt;&lt;/a&gt;小说&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;The Kite Runner - Khaled Hosseini&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;生活功能型&quot;&gt;&lt;a href=&quot;#生活功能型&quot; class=&quot;headerlink&quot; title=&quot;生活功能型&quot;&gt;&lt;/a&gt;生活功能型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;如何阅读一本书&lt;/li&gt;
+&lt;li&gt;哈弗记忆课：过目不忘训练法&lt;/li&gt;
+&lt;li&gt;程序员跳槽全攻略&lt;/li
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【读书笔记】番茄工作法图解</title>
+    <link href="http://yoferzhang.com/post/20160325ReadNotePomodoro/"/>
+    <id>http://yoferzhang.com/post/20160325ReadNotePomodoro/</id>
+    <published>2016-03-25T12:27:53.000Z</published>
+    <updated>2016-03-25T13:19:19.784Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;我现在是用的软件是番茄土豆&lt;a href=&quot;https://pomotodo.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://pomotodo.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/a9c4d5f6jw1f29dokbq8rj20ru0rt42c.jpg&quot; alt=&quot;番茄工作法&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;我现在是用的软件是番茄土豆&lt;a href=&quot;https://pomotodo.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://pomotodo.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="番茄,读书" scheme="http://yoferzhang.com/tags/%E7%95%AA%E8%8C%84-%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>【建立博客】使用Github和Hexo搭建属于自己的博客</title>
@@ -216,10 +337,14 @@
     <link href="http://yoferzhang.com/post/20160322readNotes001/"/>
     <id>http://yoferzhang.com/post/20160322readNotes001/</id>
     <published>2016-03-22T14:07:41.000Z</published>
-    <updated>2016-03-24T07:40:19.128Z</updated>
+    <updated>2016-03-25T06:12:41.799Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f26018ehi5j224g1bq7wh.jpg&quot; alt=&quot;把你的英语用起来&quot;&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;center&gt;&lt;/center&gt;</content>
+    <content type="html">&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/a9c4d5f6jw1f26018ehi5j224g1bq7wh.jpg&quot; alt=&quot;把你的英语用起来&quot;&gt;&lt;br&gt;&lt;/center&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;源文件位置：&lt;a href=&quot;https://github.com/yoferzhang/ReadingNotes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/yoferzhang/ReadingNotes&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
     
     <summary type="html">
     
