@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoferzhang.com/about/index.html</loc>
+    
+    <lastmod>2016-03-28T01:41:49.028Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
+    
+    <lastmod>2016-03-28T01:15:28.967Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoferzhang.com/index/index.html</loc>
     
     <lastmod>2016-03-27T07:53:43.475Z</lastmod>
@@ -33,20 +47,6 @@
     <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
     
     <lastmod>2016-03-25T06:12:41.799Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/about/index.html</loc>
-    
-    <lastmod>2016-03-25T01:08:54.622Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
-    
-    <lastmod>2016-03-24T07:40:30.352Z</lastmod>
     
   </url>
   
