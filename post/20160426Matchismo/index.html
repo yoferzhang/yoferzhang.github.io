@@ -33,7 +33,7 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 更新时间：2016.04.22
 
 简单牌面翻转修改Main.storyboard：设置背景色">
-<meta property="og:updated_time" content="2016-04-26T11:09:07.000Z">
+<meta property="og:updated_time" content="2016-05-06T07:40:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】Stanford iOS7 Assignment - Matchismo">
 <meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
@@ -177,6 +177,9 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 <p>然后在<code>touchCardButton:</code>方法中修改代码，每次翻到正面时都随机抽出一张牌，然后将牌面<code>contents</code>给<code>Title</code>。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)touchCardButton:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="keyword">if</span> ([sender.currentTitle length]) &#123;</span><br><span class="line">        [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardBack"</span>]</span><br><span class="line">                          forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        [sender setTitle:<span class="string">@""</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Card *randomcard = [<span class="keyword">self</span>.deck drawRandomCard]; <span class="comment">// draw a card</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Protect against an empty deck.</span></span><br><span class="line">        <span class="keyword">if</span> (randomcard) &#123;</span><br><span class="line">            [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardFront"</span>]</span><br><span class="line">                              forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">            [sender setTitle:randomcard.contents</span><br><span class="line">                    forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// update flipCount in there</span></span><br><span class="line">    <span class="comment">// because every time touch the button, this method will be call</span></span><br><span class="line">    <span class="keyword">self</span>.flipCount++;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="comment">// touchCardButton:</span></span><br></pre></td></tr></table></figure>
 <p><code>storyboard</code>中将牌<code>Button</code>的<code>Title</code>删掉，然后将<code>Background</code>设为<code>CardBack</code>，这样初始牌面为背面，并且牌面没有内容，点击之后就会进入<code>touchCardButton:</code>的else部分。实现了随机的效果。</p>
+<blockquote>
+<p>更新时间：2016.05.06</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -264,10 +267,6 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 		
 		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/English/" title="English">English<sup>2</sup></a></li>
 		  
 		
 		  
