@@ -25,7 +25,7 @@ About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks
 About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f651hbl7ohj20l80dg0ts.jpg">
-<meta property="og:updated_time" content="2016-07-24T07:46:28.000Z">
+<meta property="og:updated_time" content="2016-07-24T07:57:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】AVFoundation Programming Guide 官方文档中文翻译">
 <meta name="twitter:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
@@ -112,7 +112,7 @@ About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#At-a-Glance-摘要"><span class="toc-number">1.1.</span> <span class="toc-text">At a Glance - 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Representing-and-Using-Media-with-AVFoundation-用AVFoundation-表示和使用媒体"><span class="toc-number">1.2.</span> <span class="toc-text">Representing and Using Media with AVFoundation - 用AVFoundation 表示和使用媒体</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -142,6 +142,23 @@ About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks
 </li>
 </ul>
 <p>但是请注意，某些在AV Foundation中使用的原始数据结构，包括时间相关的数据结构和不透明数据对象的传递和描述媒体数据是在Core Media framework声明的。</p>
+<h2 id="At-a-Glance-摘要"><a href="#At-a-Glance-摘要" class="headerlink" title="At a Glance - 摘要"></a>At a Glance - 摘要</h2><p>There are two facets to the AVFoundation framework—APIs related to video and APIs related just to audio. The older audio-related classes provide easy ways to deal with audio. They are described in the <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/MultimediaPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009767" target="_blank" rel="external">Multimedia Programming Guide</a>, not in this document.</p>
+<ul>
+<li><p>To play sound files, you can use <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioPlayerClassReference/index.html#//apple_ref/occ/cl/AVAudioPlayer" target="_blank" rel="external">AVAudioPlayer</a>.</p>
+</li>
+<li><p>To record audio, you can use <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioRecorder_ClassReference/index.html#//apple_ref/occ/cl/AVAudioRecorder" target="_blank" rel="external">AVAudioRecorder</a>.</p>
+</li>
+</ul>
+<p>You can also configure the audio behavior of your application using <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioSession_ClassReference/index.html#//apple_ref/occ/cl/AVAudioSession" target="_blank" rel="external">AVAudioSession</a>; this is described in <a href="https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007875" target="_blank" rel="external">Audio Session Programming Guide</a>.</p>
+<p>AVFoundation框架包含视频相关的APIs和音频相关的APIs。旧的音频相关类提供了简便的方法来处理音频。他们在<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/MultimediaPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009767" target="_blank" rel="external">Multimedia Programming Guide</a>,中介绍，不在这个文档中。</p>
+<ul>
+<li><p>要播放声音文件，您可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioPlayerClassReference/index.html#//apple_ref/occ/cl/AVAudioPlayer" target="_blank" rel="external">AVAudioPlayer</a>。</p>
+</li>
+<li><p>要录制音频，您可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioRecorder_ClassReference/index.html#//apple_ref/occ/cl/AVAudioRecorder" target="_blank" rel="external">AVAudioRecorder</a>。</p>
+</li>
+</ul>
+<p>您还可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioSession_ClassReference/index.html#//apple_ref/occ/cl/AVAudioSession" target="_blank" rel="external">AVAudioSession</a> 来配置应用程序的音频行为;这是在 <a href="https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007875" target="_blank" rel="external">Audio Session Programming Guide</a> 文档中介绍的。</p>
+<h2 id="Representing-and-Using-Media-with-AVFoundation-用AVFoundation-表示和使用媒体"><a href="#Representing-and-Using-Media-with-AVFoundation-用AVFoundation-表示和使用媒体" class="headerlink" title="Representing and Using Media with AVFoundation - 用AVFoundation 表示和使用媒体"></a>Representing and Using Media with AVFoundation - 用AVFoundation 表示和使用媒体</h2><p>The primary class that the AV Foundation framework uses to represent media is <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAsset_Class/index.html#//apple_ref/occ/cl/AVAsset" target="_blank" rel="external">AVAsset</a>. The design of the framework is largely guided by this representation. Understanding its structure will help you to understand how the framework works. An AVAssetinstance is an aggregated representation of a collection of one or more pieces of media data (audio and video tracks). It provides information about the collection as a whole, such as its title, duration, natural presentation size, and so on. AVAsset is not tied to particular data format. AVAsset is the superclass of other classes used to create asset instances from media at a URL (see <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/01_UsingAssets.html#//apple_ref/doc/uid/TP40010188-CH7-SW1" target="_blank" rel="external">Using Assets</a>) and to create new compositions (see <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW1" target="_blank" rel="external">Editing</a>).</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -195,7 +212,7 @@ About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#At-a-Glance-摘要"><span class="toc-number">1.1.</span> <span class="toc-text">At a Glance - 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Representing-and-Using-Media-with-AVFoundation-用AVFoundation-表示和使用媒体"><span class="toc-number">1.2.</span> <span class="toc-text">Representing and Using Media with AVFoundation - 用AVFoundation 表示和使用媒体</span></a></li></ol></li></ol>
  
   </div>
 
