@@ -4,41 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【渔】网站推荐 | Mathematical Method, the Way of the World</title>
+    <title>【iOS】AVFoundation Programming Guide 官方文档中文翻译 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer">
     
 
     
-    <meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+    <meta name="description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
 
-Git
-Git教程 - http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
-
-Python
-Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
+Ab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【渔】网站推荐">
-<meta property="og:url" content="http://yoferzhang.com/post/20160415WebsiteRecommend/index.html">
+<meta property="og:title" content="【iOS】AVFoundation Programming Guide 官方文档中文翻译">
+<meta property="og:url" content="http://yoferzhang.com/post/20160724AVFoundation/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
-<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta property="og:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
 
-Git
-Git教程 - http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
-
-Python
-Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
-<meta property="og:updated_time" content="2016-04-15T14:25:44.000Z">
+Ab">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg">
+<meta property="og:updated_time" content="2016-07-24T07:16:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【渔】网站推荐">
-<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta name="twitter:title" content="【iOS】AVFoundation Programming Guide 官方文档中文翻译">
+<meta name="twitter:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
 
-Git
-Git教程 - http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
-
-Python
-Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
+Ab">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -102,14 +95,14 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160415WebsiteRecommend/" title="【渔】网站推荐" itemprop="url">【渔】网站推荐</a>
+      <a href="/post/20160724AVFoundation/" title="【iOS】AVFoundation Programming Guide 官方文档中文翻译" itemprop="url">【iOS】AVFoundation Programming Guide 官方文档中文翻译</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer" target="_blank" itemprop="author">Yofer</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-15T13:58:51.000Z" itemprop="datePublished"> 发表于 2016-04-15</time>
+    <time datetime="2016-07-24T02:57:30.000Z" itemprop="datePublished"> 发表于 2016-07-24</time>
     
   </p>
 </header>
@@ -118,24 +111,17 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-number">2.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法"><span class="toc-number">3.</span> <span class="toc-text">算法</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3</a></p>
 </blockquote>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
-<li>Git教程 - <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></li>
-</ul>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
-<li>Python教程 - <a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000</a></li>
-</ul>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
-<li>结构之法 算法之道 - <a href="http://blog.csdn.net/v_july_v" target="_blank" rel="external">http://blog.csdn.net/v_july_v</a></li>
-<li>UVa Online Judge - <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8" target="_blank" rel="external">https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8</a> UVa大学的在线测评，世界范围内较为权威</li>
-<li>uHunt - <a href="http://uhunt.felix-halim.net/" target="_blank" rel="external">http://uhunt.felix-halim.net/</a> UVa的统计网站</li>
-</ul>
+<h1 id="About-AVFoundation-AVFoundation概述"><a href="#About-AVFoundation-AVFoundation概述" class="headerlink" title="About AVFoundation - AVFoundation概述"></a>About AVFoundation - AVFoundation概述</h1><p>AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an Objective-C interface you use to work on a detailed level with time-based audiovisual data. For example, you can use it to examine, create, edit, or reencode media files. You can also get input streams from devices and manipulate video during realtime capture and playback. Figure I-1 shows the architecture on iOS.</p>
+<p>AVFoundation是可以用它来播放和创建基于时间的视听媒体的几个框架之一。它提供了基于时间的视听数据的详细级别上的Objective-C接口。例如，你可以用它来检查，创建，编辑或重新编码媒体文件。您也可以从设备得到输入流和在实时捕捉回放过程中操控视频。图I-1显示了iOS上的架构。</p>
+<p><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg" alt="Figure I-1  AVFoundation stack on iOS"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -143,14 +129,9 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/渔/">渔</a>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/网站/">网站</a>
-  </div>
 
 </div>
 
@@ -158,7 +139,7 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160415WebsiteRecommend/" data-title="【渔】网站推荐 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160724AVFoundation/" data-title="【iOS】AVFoundation Programming Guide 官方文档中文翻译 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -171,19 +152,11 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/20160415MarkdownSyntax/" title="【渔】Markdown语法（看这张图就够了）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  【渔】Markdown语法（看这张图就够了）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/20160414KobeLeave/"  title="【随笔】2016年4月14日 Kobe Bryant完美谢幕">
+<a href="/post/20160426Matchismo/"  title="【iOS】Stanford iOS7 Assignment - Matchismo">
  <strong>下一篇：</strong><br/> 
- <span>【随笔】2016年4月14日 Kobe Bryant完美谢幕
+ <span>【iOS】Stanford iOS7 Assignment - Matchismo
 </span>
 </a>
 </div>
@@ -192,7 +165,7 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160415WebsiteRecommend/" data-title="【渔】网站推荐" data-url="http://yoferzhang.com/post/20160415WebsiteRecommend/"></div>
+	<div class="ds-thread" data-thread-key="post/20160724AVFoundation/" data-title="【iOS】AVFoundation Programming Guide 官方文档中文翻译" data-url="http://yoferzhang.com/post/20160724AVFoundation/"></div>
 </section>
 
 
@@ -202,7 +175,7 @@ Python教程 - http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-number">2.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法"><span class="toc-number">3.</span> <span class="toc-text">算法</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-AVFoundation-AVFoundation概述"><span class="toc-number">1.</span> <span class="toc-text">About AVFoundation - AVFoundation概述</span></a></li></ol>
  
   </div>
 
