@@ -12,25 +12,26 @@
 
     
     <meta name="description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
-苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
+苹果源文档地址 - 点击这里
 
-Ab">
+About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【iOS】AVFoundation Programming Guide 官方文档中文翻译">
 <meta property="og:url" content="http://yoferzhang.com/post/20160724AVFoundation/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
 <meta property="og:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
-苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
+苹果源文档地址 - 点击这里
 
-Ab">
+About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg">
-<meta property="og:updated_time" content="2016-07-24T07:16:13.000Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f651hbl7ohj20l80dg0ts.jpg">
+<meta property="og:updated_time" content="2016-07-24T07:46:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】AVFoundation Programming Guide 官方文档中文翻译">
 <meta name="twitter:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
-苹果源文档地址 - https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3
+苹果源文档地址 - 点击这里
 
-Ab">
+About AVFoundation - AVFoundation概述AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
@@ -117,11 +118,30 @@ Ab">
 		
 		<blockquote>
 <p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
-<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3</a></p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
 </blockquote>
 <h1 id="About-AVFoundation-AVFoundation概述"><a href="#About-AVFoundation-AVFoundation概述" class="headerlink" title="About AVFoundation - AVFoundation概述"></a>About AVFoundation - AVFoundation概述</h1><p>AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an Objective-C interface you use to work on a detailed level with time-based audiovisual data. For example, you can use it to examine, create, edit, or reencode media files. You can also get input streams from devices and manipulate video during realtime capture and playback. Figure I-1 shows the architecture on iOS.</p>
 <p>AVFoundation是可以用它来播放和创建基于时间的视听媒体的几个框架之一。它提供了基于时间的视听数据的详细级别上的Objective-C接口。例如，你可以用它来检查，创建，编辑或重新编码媒体文件。您也可以从设备得到输入流和在实时捕捉回放过程中操控视频。图I-1显示了iOS上的架构。</p>
-<p><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg" alt="Figure I-1  AVFoundation stack on iOS"></p>
+<center><br>    <img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg" alt="Figure I-1  AVFoundation stack on iOS"><br></center>
+
+<center><br>    <img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f651hbl7ohj20l80dg0ts.jpg" alt="Figure I-2  AVFoundation stack on OS X"><br></center>
+
+<p>You should typically use the highest-level abstraction available that allows you to perform the tasks you want.</p>
+<ul>
+<li><p>If you simply want to play movies, use the AVKit framework.</p>
+</li>
+<li><p>On iOS, to record video when you need only minimal control over format, use the UIKit framework(<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIImagePickerController_Class/index.html#//apple_ref/occ/cl/UIImagePickerController" target="_blank" rel="external">UIImagePickerController</a>)</p>
+</li>
+</ul>
+<p>Note, however, that some of the primitive data structures that you use in AV Foundation—including time-related data structures and opaque objects to carry and describe media data—are declared in the Core Media framework.</p>
+<p>通常，您应该使用可用的最高级别的抽象接口，执行所需的任务。</p>
+<ul>
+<li><p>如果你只是想播放电影，使用AVKit框架。</p>
+</li>
+<li><p>在iOS上，当你在格式上只需要最少的控制，使用UIKit框架录制视频。(<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIImagePickerController_Class/index.html#//apple_ref/occ/cl/UIImagePickerController" target="_blank" rel="external">UIImagePickerController</a>).</p>
+</li>
+</ul>
+<p>但是请注意，某些在AV Foundation中使用的原始数据结构，包括时间相关的数据结构和不透明数据对象的传递和描述媒体数据是在Core Media framework声明的。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
