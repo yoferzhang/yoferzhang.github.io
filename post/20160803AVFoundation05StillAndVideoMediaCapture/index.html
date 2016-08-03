@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。 | Mathematical Method, the Way of the World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer">
+    
+
+    
+    <meta name="description" content="Still and Video Media Capture - 静态视频媒体捕获。To manage the capture from a device such as a camera or microphone, you assemble objects to represent inputs and outputs, and use an instance of AVCaptureSessi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。">
+<meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/index.html">
+<meta property="og:site_name" content="Mathematical Method, the Way of the World">
+<meta property="og:description" content="Still and Video Media Capture - 静态视频媒体捕获。To manage the capture from a device such as a camera or microphone, you assemble objects to represent inputs and outputs, and use an instance of AVCaptureSessi">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gmf843fwj20vi0n9jsb.jpg">
+<meta property="og:updated_time" content="2016-08-03T08:49:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。">
+<meta name="twitter:description" content="Still and Video Media Capture - 静态视频媒体捕获。To manage the capture from a device such as a camera or microphone, you assemble objects to represent inputs and outputs, and use an instance of AVCaptureSessi">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Mathematical Method, the Way of the World" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Mathematical Method, the Way of the World" title="Mathematical Method, the Way of the World"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Mathematical Method, the Way of the World">Mathematical Method, the Way of the World</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160803AVFoundation05StillAndVideoMediaCapture/" title="【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。" itemprop="url">【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer" target="_blank" itemprop="author">Yofer</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-03T07:06:53.000Z" itemprop="datePublished"> 发表于 2016-08-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Still-and-Video-Media-Capture-静态视频媒体捕获。"><span class="toc-number">1.</span> <span class="toc-text">Still and Video Media Capture - 静态视频媒体捕获。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><span class="toc-number">1.1.</span> <span class="toc-text">Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Session-配置会话"><span class="toc-number">1.1.1.</span> <span class="toc-text">Configuring a Session - 配置会话</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Still-and-Video-Media-Capture-静态视频媒体捕获。"><a href="#Still-and-Video-Media-Capture-静态视频媒体捕获。" class="headerlink" title="Still and Video Media Capture - 静态视频媒体捕获。"></a>Still and Video Media Capture - 静态视频媒体捕获。</h1><p>To manage the capture from a device such as a camera or microphone, you assemble objects to represent inputs and outputs, and use an instance of AVCaptureSession to coordinate the data flow between them. Minimally you need:</p>
+<ul>
+<li>An instance of AVCaptureDevice to represent the input device, such as a camera or microphone</li>
+<li>An instance of a concrete subclass of AVCaptureInput to configure the ports from the input device</li>
+<li>An instance of a concrete subclass of AVCaptureOutput to manage the output to a movie file or still image</li>
+<li>An instance of AVCaptureSession to coordinate the data flow from the input to the output</li>
+</ul>
+<p>从一个设备，例如照相机或者麦克风管理捕获，组合对象来表示输入和输出，并使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 的实例来协调它们之间的数据流。你需要最低限度的了解：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/cl/AVCaptureDevice" target="_blank" rel="external">AVCaptureDevice</a> 的实例表示输入设备，比如照相机或麦克风</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a> 的具体子类的实例从输入设备配置端口</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureOutput" target="_blank" rel="external">AVCaptureOutput</a> 的具体子类的实例来管理输出一个电影文件或者静态图像</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 的实例从输入到输出协调数据流</li>
+</ul>
+<p>To show the user a preview of what the camera is recording, you can use an instance of AVCaptureVideoPreviewLayer (a subclass of CALayer).</p>
+<p>You can configure multiple inputs and outputs, coordinated by a single session, as shown in Figure 4-1</p>
+<p>为了向用户展示照相机之前记录的预览，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoPreviewLayer" target="_blank" rel="external">AVCaptureVideoPreviewLayer</a> 的实例（<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/index.html#//apple_ref/occ/cl/CALayer" target="_blank" rel="external">CALayer</a> 的一个子类）</p>
+<p>可以配置多个输入和输出，由一个单独的会话协调。如图4-1所示：</p>
+<center><br>    <img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg" alt="Figure 4-1  A single session can configure multiple inputs and outputs"><br></center>
+
+<p>For many applications, this is as much detail as you need. For some operations, however, (if you want to monitor the power levels in an audio channel, for example) you need to consider how the various ports of an input device are represented and how those ports are connected to the output.</p>
+<p>对于大多数程序，这有尽可能多的你需要知道的细节。然而对于某些操作（例如如果你想监视音频信道中的功率水平），需要考虑输入设备的各种端口如何表示，以及这些端口是如何连接到输出的。</p>
+<p>A connection between a capture input and a capture output in a capture session is represented by an AVCaptureConnection object. Capture inputs (instances of AVCaptureInput) have one or more input ports (instances of AVCaptureInputPort). Capture outputs (instances of AVCaptureOutput) can accept data from one or more sources (for example, an AVCaptureMovieFileOutput object accepts both video and audio data).</p>
+<p>捕获输入和捕获输出的会话之间的连接表现为 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/cl/AVCaptureConnection" target="_blank" rel="external">AVCaptureConnection</a> 对象。捕获输入（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a>的实例）有一个或多个输入端口（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInputPort_Class/index.html#//apple_ref/occ/cl/AVCaptureInputPort" target="_blank" rel="external">AVCaptureInputPort</a>的实例）。捕获输出（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureOutput" target="_blank" rel="external">AVCaptureOutput</a>的实例）可以从一个或多个资源接受数据（例如，<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureMovieFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureMovieFileOutput" target="_blank" rel="external">AVCaptureMovieFileOutput</a> 对象接受音频和视频数据）。</p>
+<p>When you add an input or an output to a session, the session forms connections between all the compatible capture inputs’ ports and capture outputs, as shown in Figure 4-2. A connection between a capture input and a capture output is represented by an AVCaptureConnection object.</p>
+<p>当给会话添加一个输入或者一个输出时，会话构成了所有可兼容的捕获输入端口和捕获输出端口的连接，如图4-2所示。捕获输入与捕获输出之间的连接是由 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/cl/AVCaptureConnection" target="_blank" rel="external">AVCaptureConnection</a> 对象表示。</p>
+<center><br>    <img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gmf843fwj20vi0n9jsb.jpg" alt="Figure 4-2  AVCaptureConnection represents a connection between an input and output"><br></center>
+
+<p>You can use a capture connection to enable or disable the flow of data from a given input or to a given output. You can also use a connection to monitor the average and peak power levels in an audio channel.</p>
+<p>可以使用捕获连接来启用或者禁用给定输入或给定输出的数据流。也可以使用连接来监视音频信道中的平均和峰值功率水平。</p>
+<blockquote>
+<p>Note: Media capture does not support simultaneous capture of both the front-facing and back-facing cameras on iOS devices.</p>
+<p>注意：媒体捕获不支持iOS设备上的前置摄像头和后置摄像头的同时捕捉。</p>
+</blockquote>
+<h2 id="Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><a href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流" class="headerlink" title="Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流"></a>Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</h2><p>An AVCaptureSession object is the central coordinating object you use to manage data capture. You use an instance to coordinate the flow of data from AV input devices to outputs. You add the capture devices and outputs you want to the session, then start data flow by sending the session a startRunning message, and stop the data flow by sending a stopRunning message.</p>
+<p><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 对象是你用来管理数据捕获的中央协调对象。使用一个实例来协调从 <code>AV</code> 输入设备到输出的数据流。添加捕获设备并且输出你想要的会话，然后发送一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/startRunning" target="_blank" rel="external">startRunning</a> 消息启动数据流，发送 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/stopRunning" target="_blank" rel="external">stopRunning</a> 消息来停止数据流。</p>
+<pre><code class="objc"><span class="built_in">AVCaptureSession</span> *session = [[<span class="built_in">AVCaptureSession</span> alloc] init];
+<span class="comment">// Add inputs and outputs.</span>
+[session startRunning];
+</code></pre>
+<h3 id="Configuring-a-Session-配置会话"><a href="#Configuring-a-Session-配置会话" class="headerlink" title="Configuring a Session - 配置会话"></a>Configuring a Session - 配置会话</h3><p>You use a preset on the session to specify the image quality and resolution you want. A preset is a constant that identifies one of a number of possible configurations; in some cases the actual configuration is device-specific:</p>
+<p>使用会话上的 <code>preset</code> 来指定图像的质量和分辨率。预设是一个常数，确定了一部分可能的配置中的一个；在某些情况下，设计的配置是设备特有的：</p>
+<p>| Symbol | Resolution | Comments |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetHigh" target="_blank" rel="external">AVCaptureSessionPresetHigh</a> | High | Highest recording quality.This varies per device.|<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetMedium" target="_blank" rel="external">AVCaptureSessionPresetMedium</a> | Medium | Suitable for Wi-Fi sharing.The actual values may change.|<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetLow" target="_blank" rel="external">AVCaptureSessionPresetLow</a> | Low | Suitable for 3G sharing.The actual values may change. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPreset640x480" target="_blank" rel="external">AVCaptureSessionPreset640x480</a> | 640x480 | VGA |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPreset1280x720" target="_blank" rel="external">AVCaptureSessionPreset1280x720</a> | 1280x720 | 720p HD. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetPhoto" target="_blank" rel="external">AVCaptureSessionPresetPhoto</a> | Photo | Full photo resolution.This is not supported for video output. |</p>
+<p>If you want to set a media frame size-specific configuration, you should check whether it is supported before setting it, as follows:</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/" data-title="【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20160803AVFoundation06Export/" title="20160803AVFoundation06Export">
+  <strong>上一篇：</strong><br/>
+  <span>
+  20160803AVFoundation06Export</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20160803AVFoundation04Editing/"  title="【iOS文档翻译】AVFoundation Programming Guide - Editing - 编辑">
+ <strong>下一篇：</strong><br/> 
+ <span>【iOS文档翻译】AVFoundation Programming Guide - Editing - 编辑
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160803AVFoundation05StillAndVideoMediaCapture/" data-title="【iOS文档翻译】AVFoundation Programming Guide - Still and Video Media Capture - 静态视频媒体捕获。" data-url="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Still-and-Video-Media-Capture-静态视频媒体捕获。"><span class="toc-number">1.</span> <span class="toc-text">Still and Video Media Capture - 静态视频媒体捕获。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><span class="toc-number">1.1.</span> <span class="toc-text">Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Session-配置会话"><span class="toc-number">1.1.1.</span> <span class="toc-text">Configuring a Session - 配置会话</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/建立博客/" title="建立博客">建立博客<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/快速记忆/" title="快速记忆">快速记忆<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书笔记/" title="读书笔记">读书笔记<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yofer">Yofer</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
