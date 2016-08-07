@@ -11,18 +11,45 @@
     
 
     
-    <meta name="description" content="Playback - 播放To control the playback of assets, you use an AVPlayer object. During playback, you can use an AVPlayerItem instance to manage the presentation state of an asset as a whole, and an AVPlay">
+    <meta name="description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译3)Playback - 播放">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation03Playback/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
-<meta property="og:description" content="Playback - 播放To control the playback of assets, you use an AVPlayer object. During playback, you can use an AVPlayerItem instance to manage the presentation state of an asset as a whole, and an AVPlay">
+<meta property="og:description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6f9awlylkj20sh0klgmb.jpg">
-<meta property="og:updated_time" content="2016-08-07T07:57:03.000Z">
+<meta property="og:updated_time" content="2016-08-07T08:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译3)Playback - 播放">
-<meta name="twitter:description" content="Playback - 播放To control the playback of assets, you use an AVPlayer object. During playback, you can use an AVPlayerItem instance to manage the presentation state of an asset as a whole, and an AVPlay">
+<meta name="twitter:description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
 <meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
@@ -107,7 +134,19 @@
 		
 		</div>
 		
-		<h1 id="Playback-播放"><a href="#Playback-播放" class="headerlink" title="Playback - 播放"></a>Playback - 播放</h1><p>To control the playback of assets, you use an AVPlayer object. During playback, you can use an AVPlayerItem instance to manage the presentation state of an asset as a whole, and an AVPlayerItemTrack object to manage the presentation state of an individual track. To display video, you use an AVPlayerLayer object.</p>
+		<blockquote>
+<p>这</p>
+<p>是</p>
+<p>目</p>
+<p>录</p>
+<p>的</p>
+<p>分</p>
+<p>割</p>
+<p>线</p>
+<p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+</blockquote>
+<h1 id="Playback-播放"><a href="#Playback-播放" class="headerlink" title="Playback - 播放"></a>Playback - 播放</h1><p>To control the playback of assets, you use an AVPlayer object. During playback, you can use an AVPlayerItem instance to manage the presentation state of an asset as a whole, and an AVPlayerItemTrack object to manage the presentation state of an individual track. To display video, you use an AVPlayerLayer object.</p>
 <p>使用 <code>AVPlayer</code> 对象控制资产的播放。在播放期间，可以使用一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/cl/AVPlayerItem" target="_blank" rel="external">AVPlayerItem</a> 实例去管理资产作为一个整体的显示状态，<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItemTrack_Class/index.html#//apple_ref/occ/cl/AVPlayerItemTrack" target="_blank" rel="external">AVPlayerItemTrack</a>  对象来管理一个单独轨道的显示状态。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerLayer_Class/index.html#//apple_ref/occ/cl/AVPlayerLayer" target="_blank" rel="external">AVPlayerLayer</a> 显示视频。</p>
 <h2 id="Playing-Assets-播放资产"><a href="#Playing-Assets-播放资产" class="headerlink" title="Playing Assets - 播放资产"></a>Playing Assets - 播放资产</h2><p>A player is a controller object that you use to manage playback of an asset, for example starting and stopping playback, and seeking to a particular time. You use an instance of AVPlayer to play a single asset. You can use an AVQueuePlayer object to play a number of items in sequence (AVQueuePlayer is a subclass of AVPlayer). On OS X you have the option of the using the AVKit framework’s AVPlayerView class to play the content back within a view.</p>
 <p>播放器是一个控制器对象，使用这个控制器对象去管理一个资产的播放，例如开始和停止播放，并且追踪一个特定的时间。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/cl/AVPlayer" target="_blank" rel="external">AVPlayer</a> 的实例去播放单个资产。可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVQueuePlayer_Class/index.html#//apple_ref/occ/cl/AVQueuePlayer" target="_blank" rel="external">AVQueuePlayer</a> 对象去播放在一些在队列的项目（<code>AVQueuePlayer</code> 是 <code>AVPlayer</code> 的子类）。在 <code>OS X</code> 系统中，可以选择使用 <code>AVKit</code> 框架的 <code>AVPlayerView</code> 类去播放一个视图的内容。</p>

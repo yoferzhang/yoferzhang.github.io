@@ -4,23 +4,50 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>AVFoundation Programming Guide(官方文档翻译6)Export 输出 | Mathematical Method, the Way of the World</title>
+    <title>AVFoundation Programming Guide(官方文档翻译6)Export - 输出 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
     
 
     
-    <meta name="description" content="Export - 输出To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, s">
+    <meta name="description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译6)Export 输出">
+<meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译6)Export - 输出">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation06Export/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
-<meta property="og:description" content="Export - 输出To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, s">
-<meta property="og:updated_time" content="2016-08-07T07:58:01.000Z">
+<meta property="og:description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
+<meta property="og:updated_time" content="2016-08-07T08:25:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译6)Export 输出">
-<meta name="twitter:description" content="Export - 输出To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, s">
+<meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译6)Export - 输出">
+<meta name="twitter:description" content="这
+是
+目
+录
+的
+分
+割
+线
+新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Ca">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -84,7 +111,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160803AVFoundation06Export/" title="AVFoundation Programming Guide(官方文档翻译6)Export 输出" itemprop="url">AVFoundation Programming Guide(官方文档翻译6)Export 输出</a>
+      <a href="/post/20160803AVFoundation06Export/" title="AVFoundation Programming Guide(官方文档翻译6)Export - 输出" itemprop="url">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a>
   </h1>
   <p class="article-author">By
        
@@ -104,7 +131,19 @@
 		
 		</div>
 		
-		<h1 id="Export-输出"><a href="#Export-输出" class="headerlink" title="Export - 输出"></a>Export - 输出</h1><p>To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, such as modifying the file format or trimming the length of an asset (see Trimming and Transcoding a Movie). For more in-depth exporting needs, use the AVAssetReader and AVAssetWriter classes.</p>
+		<blockquote>
+<p>这</p>
+<p>是</p>
+<p>目</p>
+<p>录</p>
+<p>的</p>
+<p>分</p>
+<p>割</p>
+<p>线</p>
+<p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+</blockquote>
+<h1 id="Export-输出"><a href="#Export-输出" class="headerlink" title="Export - 输出"></a>Export - 输出</h1><p>To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, such as modifying the file format or trimming the length of an asset (see Trimming and Transcoding a Movie). For more in-depth exporting needs, use the AVAssetReader and AVAssetWriter classes.</p>
 <p>必须使用 <code>AVFoundation</code> 框架提供的导出 <code>APIs</code> 去读写音视频资产。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/cl/AVAssetExportSession" target="_blank" rel="external">AVAssetExportSession</a> 类为简单输出需要，提供了一个接口，例如修改文件格式或者削减资产的长度（见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/01_UsingAssets.html#//apple_ref/doc/uid/TP40010188-CH7-SW8" target="_blank" rel="external">Trimming and Transcoding a Movie</a>）。为了更深入的导出需求，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetReader_Class/index.html#//apple_ref/occ/cl/AVAssetReader" target="_blank" rel="external">AVAssetReader</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetWriter_Class/index.html#//apple_ref/occ/cl/AVAssetWriter" target="_blank" rel="external">AVAssetWriter</a> 类。</p>
 <p>Use an AVAssetReader when you want to perform an operation on the contents of an asset. For example, you might read the audio track of an asset to produce a visual representation of the waveform. To produce an asset from media such as sample buffers or still images, use an AVAssetWriter object.</p>
 <p>当你想对一项资产的内容进行操作时，使用 <code>AVAssetReader</code> 。例如，可以读取一个资产的音频轨道，以产生波形的可视化表示。为了从媒体（比如样品缓冲或者静态图像）生成资产，使用 <code>AVAssetWriter</code> 对象。</p>
@@ -234,7 +273,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160803AVFoundation06Export/" data-title="AVFoundation Programming Guide(官方文档翻译6)Export 输出 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160803AVFoundation06Export/" data-title="AVFoundation Programming Guide(官方文档翻译6)Export - 输出 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -268,7 +307,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160803AVFoundation06Export/" data-title="AVFoundation Programming Guide(官方文档翻译6)Export 输出" data-url="http://yoferzhang.com/post/20160803AVFoundation06Export/"></div>
+	<div class="ds-thread" data-thread-key="post/20160803AVFoundation06Export/" data-title="AVFoundation Programming Guide(官方文档翻译6)Export - 输出" data-url="http://yoferzhang.com/post/20160803AVFoundation06Export/"></div>
 </section>
 
 
