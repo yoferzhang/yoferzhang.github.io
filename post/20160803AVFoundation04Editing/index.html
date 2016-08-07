@@ -47,7 +47,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6fu9qkxtjj20mo0giq3g.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6gafmhl5zj214v0lf0ti.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6galdybkvj20zc0nnab4.jpg">
-<meta property="og:updated_time" content="2016-08-07T08:31:15.000Z">
+<meta property="og:updated_time" content="2016-08-07T08:37:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑">
 <meta name="twitter:description" content="这
@@ -163,6 +163,8 @@
 <p>点</p>
 <p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
 <p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
 </blockquote>
 <h1 id="Editing-编辑"><a href="#Editing-编辑" class="headerlink" title="Editing - 编辑"></a>Editing - 编辑</h1><p>The AVFoundation framework provides a feature-rich set of classes to facilitate the editing of audio visual assets. At the heart of AVFoundation’s editing API are compositions. A composition is simply a collection of tracks from one or more different media assets. The AVMutableComposition class provides an interface for inserting and removing tracks, as well as managing their temporal orderings. Figure 3-1 shows how a new composition is pieced together from a combination of existing assets to form a new asset. If all you want to do is merge multiple assets together sequentially into a single file, that is as much detail as you need. If you want to perform any custom audio or video processing on the tracks in your composition, you need to incorporate an audio mix or a video composition, respectively.</p>
 <p><code>AVFoundation</code> 框架提供了一个功能丰富的类集合去帮助音视频资产的编辑。 <code>AVFoundation</code><br>编辑 <code>API</code> 的核心是一些组合。一种组合物是简单的一个或者多个不同媒体资产的轨道的集合。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/cl/AVMutableComposition" target="_blank" rel="external">AVMutableComposition</a> 类提供一个可以插入和移除轨道的接口，以及管理它们的时间序列。图3-1显示了一个新的组合是怎样从一些现有的资产拼凑起来，形成新的资产。如果你想做的是将多个资产合并为一个单一的文件，这里有尽可能多的你需要掌握的细节。如果你想在你的作品中的轨道上执行任何自定义音频或视频处理，你需要分别将一个音频组合或者视频组成。</p>
