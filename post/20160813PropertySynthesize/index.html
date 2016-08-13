@@ -4,67 +4,50 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【读书笔记】最近读书的目录 | Mathematical Method, the Way of the World</title>
+    <title>【iOS】@property 和 @synthesize 总结 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
     
 
     
-    <meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+    <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
+@property
+用在 @interface 中
+用来自动生成 setter 和 getter 的声明
+用 @property int age; 就可以代替下面的两行
 
-生活功能型
-如何阅读一本书
-哈弗记忆课：过目不忘训练法
-程序员跳槽全攻略
-自控力 - Kelly McGonigal
-我最想要的记忆魔法书 - 多米尼克奥布莱恩
-最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏
-番茄工作法图解
-
-工作技能型iOS
-iOS编程
-iOS Programming：The Big Nerd Ranch Gui">
+12- (int)age; // getter- (void)setAge:(int)age; // setter
+@synthesize
+用在 @implementation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【读书笔记】最近读书的目录">
-<meta property="og:url" content="http://yoferzhang.com/post/20160325ReadIndex/index.html">
+<meta property="og:title" content="【iOS】@property 和 @synthesize 总结">
+<meta property="og:url" content="http://yoferzhang.com/post/20160813PropertySynthesize/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
-<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
+@property
+用在 @interface 中
+用来自动生成 setter 和 getter 的声明
+用 @property int age; 就可以代替下面的两行
 
-生活功能型
-如何阅读一本书
-哈弗记忆课：过目不忘训练法
-程序员跳槽全攻略
-自控力 - Kelly McGonigal
-我最想要的记忆魔法书 - 多米尼克奥布莱恩
-最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏
-番茄工作法图解
-
-工作技能型iOS
-iOS编程
-iOS Programming：The Big Nerd Ranch Gui">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f339yt2od4j20z218279q.jpg">
-<meta property="og:updated_time" content="2016-04-20T09:03:59.000Z">
+12- (int)age; // getter- (void)setAge:(int)age; // setter
+@synthesize
+用在 @implementation">
+<meta property="og:updated_time" content="2016-08-13T12:52:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【读书笔记】最近读书的目录">
-<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta name="twitter:title" content="【iOS】@property 和 @synthesize 总结">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
+@property
+用在 @interface 中
+用来自动生成 setter 和 getter 的声明
+用 @property int age; 就可以代替下面的两行
 
-生活功能型
-如何阅读一本书
-哈弗记忆课：过目不忘训练法
-程序员跳槽全攻略
-自控力 - Kelly McGonigal
-我最想要的记忆魔法书 - 多米尼克奥布莱恩
-最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏
-番茄工作法图解
-
-工作技能型iOS
-iOS编程
-iOS Programming：The Big Nerd Ranch Gui">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f339yt2od4j20z218279q.jpg">
+12- (int)age; // getter- (void)setAge:(int)age; // setter
+@synthesize
+用在 @implementation">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -128,14 +111,14 @@ iOS Programming：The Big Nerd Ranch Gui">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160325ReadIndex/" title="【读书笔记】最近读书的目录" itemprop="url">【读书笔记】最近读书的目录</a>
+      <a href="/post/20160813PropertySynthesize/" title="【iOS】@property 和 @synthesize 总结" itemprop="url">【iOS】@property 和 @synthesize 总结</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-25T12:33:13.000Z" itemprop="datePublished"> 发表于 2016-03-25</time>
+    <time datetime="2016-08-13T11:07:12.000Z" itemprop="datePublished"> 发表于 2016-08-13</time>
     
   </p>
 </header>
@@ -144,83 +127,48 @@ iOS Programming：The Big Nerd Ranch Gui">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生活功能型"><span class="toc-number">1.</span> <span class="toc-text">生活功能型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作技能型"><span class="toc-number">2.</span> <span class="toc-text">工作技能型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS"><span class="toc-number">2.1.</span> <span class="toc-text">iOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C"><span class="toc-number">2.2.</span> <span class="toc-text">C\C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python"><span class="toc-number">2.3.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#底层"><span class="toc-number">2.4.</span> <span class="toc-text">底层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络"><span class="toc-number">2.5.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.6.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学"><span class="toc-number">2.7.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MATLAB"><span class="toc-number">2.8.</span> <span class="toc-text">MATLAB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.9.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常识"><span class="toc-number">3.</span> <span class="toc-text">常识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语言学习"><span class="toc-number">4.</span> <span class="toc-text">语言学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#英语"><span class="toc-number">4.1.</span> <span class="toc-text">英语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生活动力型"><span class="toc-number">5.</span> <span class="toc-text">生活动力型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小说"><span class="toc-number">6.</span> <span class="toc-text">小说</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#property"><span class="toc-number">1.</span> <span class="toc-text">@property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synthesize"><span class="toc-number">2.</span> <span class="toc-text">@synthesize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synthesize-的细节"><span class="toc-number">3.</span> <span class="toc-text">@synthesize 的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property-新特性"><span class="toc-number">4.</span> <span class="toc-text">@property 新特性</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f339yt2od4j20z218279q.jpg" alt=""></p>
-<h2 id="生活功能型"><a href="#生活功能型" class="headerlink" title="生活功能型"></a>生活功能型</h2><ul>
-<li>如何阅读一本书</li>
-<li>哈弗记忆课：过目不忘训练法</li>
-<li>程序员跳槽全攻略</li>
-<li>自控力 - Kelly McGonigal</li>
-<li>我最想要的记忆魔法书 - 多米尼克奥布莱恩</li>
-<li>最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏</li>
-<li>番茄工作法图解</li>
+<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><ul>
+<li>用在 <code>@interface</code> 中</li>
+<li>用来自动生成 <code>setter</code> 和 <code>getter</code> 的声明</li>
+<li>用 <code>@property int age;</code> 就可以代替下面的两行</li>
 </ul>
-<h2 id="工作技能型"><a href="#工作技能型" class="headerlink" title="工作技能型"></a>工作技能型</h2><h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul>
-<li>iOS编程</li>
-<li>iOS Programming：The Big Nerd Ranch Guide</li>
-<li>Objective-C Programming</li>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">int</span>)age; <span class="comment">// getter</span></span><br><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age; <span class="comment">// setter</span></span><br></pre></td></tr></table></figure>
+<h2 id="synthesize"><a href="#synthesize" class="headerlink" title="@synthesize"></a>@synthesize</h2><ul>
+<li>用在 <code>@implementation</code> 中</li>
+<li>用来自动生成 <code>setter</code> 和 <code>getter</code> 的实现</li>
+<li>用 <code>@synthesize age = _age;</code> 就可以代替</li>
 </ul>
-<h3 id="C-C"><a href="#C-C" class="headerlink" title="C\C++"></a>C\C++</h3><ul>
-<li>C++标准库</li>
-<li>STL源码剖析 - 侯捷</li>
-<li>深度探索C++对象模型</li>
-<li>Effective C++ - Scott Meyers</li>
-<li>More Effective C++ - Scott Meyers</li>
-<li>Effective STL - Scott Meyers</li>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> _age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">	_age = age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="synthesize-的细节"><a href="#synthesize-的细节" class="headerlink" title="@synthesize 的细节"></a>@synthesize 的细节</h2><p>@synthesize age = _age;</p>
+<ul>
+<li>setter 和 getter 实现中会访问成员变量 _age</li>
+<li>如果成员变量 _age 不存在，就会自动生成一个 @private 的成员变量 _age</li>
 </ul>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
-<li>Python教程</li>
+<p>@synthesize age;</p>
+<ul>
+<li>setter 和 getter 实现中会访问成员变量 age</li>
+<li>如果成员变量 age 不存在，就会自动生成一个 @private 的成员变量 age</li>
 </ul>
-<h3 id="底层"><a href="#底层" class="headerlink" title="底层"></a>底层</h3><ul>
-<li>深入理解计算机系统</li>
+<p>手动实现</p>
+<ul>
+<li>若手动实现了 setter 方法，编译器就只会自动生成 getter 方法</li>
+<li>若手动实现了 getter 方法，编译器就只会自动生成 setter 方法</li>
+<li>若同时手动实现了 setter 和 getter 方法，编译器就不会自动生成不存在的成员变量</li>
 </ul>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
-<li>计算机网络</li>
-<li>UNIX网络编程 两卷</li>
-<li>UNIX环境高级编程</li>
+<h2 id="property-新特性"><a href="#property-新特性" class="headerlink" title="@property 新特性"></a>@property 新特性</h2><ul>
+<li>自动 Xcode 4.x 后，@property 就独揽了 @synthesize 的功能，也就是说，@property 可以同时生成 setter 和 getter 的声明和实现</li>
+<li>默认情况下， setter 和 getter 方法中的实现，会去访问下划线 _ 开头的成员变量</li>
 </ul>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
-<li>算法竞赛入门经典</li>
-<li>算法竞赛入门经典 训练指南</li>
-<li>算法导论</li>
-<li>编程之美</li>
-</ul>
-<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><ul>
-<li>重温微积分</li>
-<li>具体数学</li>
-</ul>
-<h3 id="MATLAB"><a href="#MATLAB" class="headerlink" title="MATLAB"></a>MATLAB</h3><ul>
-<li>精通MATLAB</li>
-<li>MATLAB GUI设计学习手记</li>
-<li>MATLAB 神经网络30个案例分析</li>
-<li>MATLAB统计分析与应用：40个案例分析</li>
-<li>MATLAB在数学建模中的应用</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>代码大全</li>
-</ul>
-<h2 id="常识"><a href="#常识" class="headerlink" title="常识"></a>常识</h2><ul>
-<li>知乎日报 - <a href="http://daily.zhihu.com/" target="_blank" rel="external">http://daily.zhihu.com/</a></li>
-</ul>
-<h2 id="语言学习"><a href="#语言学习" class="headerlink" title="语言学习"></a>语言学习</h2><h3 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h3><ul>
-<li>文法俱乐部 - 旋天佑</li>
-<li>把你的英语用起来 - 奶爸</li>
-</ul>
-<h2 id="生活动力型"><a href="#生活动力型" class="headerlink" title="生活动力型"></a>生活动力型</h2><ul>
-<li>你只是看起来很努力 - 李尚龙</li>
-<li>千万次摇摆，才能长大成人</li>
-<li>因为痛，所以叫青春</li>
-<li>不要让未来的你讨厌现在的自己</li>
-</ul>
-<h2 id="小说"><a href="#小说" class="headerlink" title="小说"></a>小说</h2><ul>
-<li>The Kite Runner - Khaled Hosseini</li>
-</ul>
+<blockquote>
+<p>新博客文章地址：<a href="">@property 和 @synthesize 总结</a><br>CSDN文章地址：<a href="">@property 和 @synthesize 总结</a></p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -228,7 +176,7 @@ iOS Programming：The Big Nerd Ranch Gui">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
 </div>
 
 
@@ -238,7 +186,7 @@ iOS Programming：The Big Nerd Ranch Gui">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160325ReadIndex/" data-title="【读书笔记】最近读书的目录 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160813PropertySynthesize/" data-title="【iOS】@property 和 @synthesize 总结 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -251,19 +199,11 @@ iOS Programming：The Big Nerd Ranch Gui">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/20160328SuperMemoryBackground/" title="【快速记忆】快速记忆背景">
-  <strong>上一篇：</strong><br/>
-  <span>
-  【快速记忆】快速记忆背景</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/20160325ReadNotePomodoro/"  title="【读书笔记】番茄工作法图解">
+<a href="/post/20160813DescriptionMethod/"  title="description 方法 和 SEL 【iOS】">
  <strong>下一篇：</strong><br/> 
- <span>【读书笔记】番茄工作法图解
+ <span>description 方法 和 SEL 【iOS】
 </span>
 </a>
 </div>
@@ -272,7 +212,7 @@ iOS Programming：The Big Nerd Ranch Gui">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160325ReadIndex/" data-title="【读书笔记】最近读书的目录" data-url="http://yoferzhang.com/post/20160325ReadIndex/"></div>
+	<div class="ds-thread" data-thread-key="post/20160813PropertySynthesize/" data-title="【iOS】@property 和 @synthesize 总结" data-url="http://yoferzhang.com/post/20160813PropertySynthesize/"></div>
 </section>
 
 
@@ -282,7 +222,7 @@ iOS Programming：The Big Nerd Ranch Gui">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生活功能型"><span class="toc-number">1.</span> <span class="toc-text">生活功能型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作技能型"><span class="toc-number">2.</span> <span class="toc-text">工作技能型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS"><span class="toc-number">2.1.</span> <span class="toc-text">iOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C"><span class="toc-number">2.2.</span> <span class="toc-text">C\C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python"><span class="toc-number">2.3.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#底层"><span class="toc-number">2.4.</span> <span class="toc-text">底层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络"><span class="toc-number">2.5.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.6.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学"><span class="toc-number">2.7.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MATLAB"><span class="toc-number">2.8.</span> <span class="toc-text">MATLAB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.9.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常识"><span class="toc-number">3.</span> <span class="toc-text">常识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语言学习"><span class="toc-number">4.</span> <span class="toc-text">语言学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#英语"><span class="toc-number">4.1.</span> <span class="toc-text">英语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生活动力型"><span class="toc-number">5.</span> <span class="toc-text">生活动力型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小说"><span class="toc-number">6.</span> <span class="toc-text">小说</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#property"><span class="toc-number">1.</span> <span class="toc-text">@property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synthesize"><span class="toc-number">2.</span> <span class="toc-text">@synthesize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synthesize-的细节"><span class="toc-number">3.</span> <span class="toc-text">@synthesize 的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property-新特性"><span class="toc-number">4.</span> <span class="toc-text">@property 新特性</span></a></li></ol>
  
   </div>
 

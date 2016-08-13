@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>description 方法 和 SEL [iOS] | Mathematical Method, the Way of the World</title>
+    <title>description 方法 和 SEL 【iOS】 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
@@ -17,7 +17,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 +description 方法使用 NSLog 和 %@ 输出某个对象时，会调用类对象 +description 方法，并拿到返回值进行输出
 123Class c = [Person">
 <meta property="og:type" content="article">
-<meta property="og:title" content="description 方法 和 SEL [iOS]">
+<meta property="og:title" content="description 方法 和 SEL 【iOS】">
 <meta property="og:url" content="http://yoferzhang.com/post/20160813DescriptionMethod/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -26,9 +26,9 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 +description 方法使用 NSLog 和 %@ 输出某个对象时，会调用类对象 +description 方法，并拿到返回值进行输出
 123Class c = [Person">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6s6z6ry28j21ic212qgc.jpg">
-<meta property="og:updated_time" content="2016-08-13T11:06:55.000Z">
+<meta property="og:updated_time" content="2016-08-13T12:52:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="description 方法 和 SEL [iOS]">
+<meta name="twitter:title" content="description 方法 和 SEL 【iOS】">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
 description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调用对象的 -description 方法，并拿到返回值进行输出
@@ -98,7 +98,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160813DescriptionMethod/" title="description 方法 和 SEL [iOS]" itemprop="url">description 方法 和 SEL [iOS]</a>
+      <a href="/post/20160813DescriptionMethod/" title="description 方法 和 SEL 【iOS】" itemprop="url">description 方法 和 SEL 【iOS】</a>
   </h1>
   <p class="article-author">By
        
@@ -158,7 +158,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 <p>其实消息就是SEL</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)test2</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// _cmd代表着当前方法</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSString</span> *str = <span class="built_in">NSStringFromSelector</span>(_cmd);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 会引发死循环</span></span><br><span class="line">    <span class="comment">// [self performSelector:_cmd];</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"调用了test2方法-----%@"</span>, str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>新博客文章地址：<a href="">description 方法 和 SEL</a><br>CSDN文章地址：<a href="">description 方法 和 SEL</a></p>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160813DescriptionMethod/">description 方法 和 SEL</a><br>CSDN文章地址：<a href="">description 方法 和 SEL</a></p>
 </blockquote>
   
 	</div>
@@ -177,7 +177,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160813DescriptionMethod/" data-title="description 方法 和 SEL [iOS] | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160813DescriptionMethod/" data-title="description 方法 和 SEL 【iOS】 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -190,11 +190,19 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/20160813PropertySynthesize/" title="【iOS】@property 和 @synthesize 总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【iOS】@property 和 @synthesize 总结</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/post/20160813NatureOfClass/"  title="Class 类的本质 [iOS]">
+<a href="/post/20160813NatureOfClass/"  title="Class 类的本质 【iOS】">
  <strong>下一篇：</strong><br/> 
- <span>Class 类的本质 [iOS]
+ <span>Class 类的本质 【iOS】
 </span>
 </a>
 </div>
@@ -203,7 +211,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160813DescriptionMethod/" data-title="description 方法 和 SEL [iOS]" data-url="http://yoferzhang.com/post/20160813DescriptionMethod/"></div>
+	<div class="ds-thread" data-thread-key="post/20160813DescriptionMethod/" data-title="description 方法 和 SEL 【iOS】" data-url="http://yoferzhang.com/post/20160813DescriptionMethod/"></div>
 </section>
 
 
@@ -245,7 +253,7 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>18</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
 		  
 		
 		  
