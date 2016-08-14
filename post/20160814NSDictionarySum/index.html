@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>NSDictionary字典创建,获取,遍历,可变字典的删除 | Mathematical Method, the Way of the World</title>
+    <title>NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
@@ -17,7 +17,7 @@
 1 NSDictionary 字典1.1 创建字典,不可变的12NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@&quot;xiaozhe&quot;,@&quot;name&quot;, nil];NSLog(@&quot;dic %@&quot;,dic);
 1232">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSDictionary字典创建,获取,遍历,可变字典的删除">
+<meta property="og:title" content="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS">
 <meta property="og:url" content="http://yoferzhang.com/post/20160814NSDictionarySum/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -25,9 +25,9 @@
 字典是以键值对的形式来存储数据  key value
 1 NSDictionary 字典1.1 创建字典,不可变的12NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@&quot;xiaozhe&quot;,@&quot;name&quot;, nil];NSLog(@&quot;dic %@&quot;,dic);
 1232">
-<meta property="og:updated_time" content="2016-08-14T07:00:25.000Z">
+<meta property="og:updated_time" content="2016-08-14T07:10:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSDictionary字典创建,获取,遍历,可变字典的删除">
+<meta name="twitter:title" content="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
 字典是以键值对的形式来存储数据  key value
@@ -96,7 +96,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160814NSDictionarySum/" title="NSDictionary字典创建,获取,遍历,可变字典的删除" itemprop="url">NSDictionary字典创建,获取,遍历,可变字典的删除</a>
+      <a href="/post/20160814NSDictionarySum/" title="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS" itemprop="url">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a>
   </h1>
   <p class="article-author">By
        
@@ -144,7 +144,7 @@
 <h3 id="2-5-使用for循环遍历字典"><a href="#2-5-使用for循环遍历字典" class="headerlink" title="2.5 使用for循环遍历字典"></a>2.5 使用for循环遍历字典</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * allkeys = [muDic allKeys];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; allkeys.count; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> * key = [allkeys objectAtIndex:i];</span><br><span class="line">    Student * stu = [muDic objectForKey:key];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"stu %@"</span>,stu);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="2-6-使用枚举器"><a href="#2-6-使用枚举器" class="headerlink" title="2.6 使用枚举器"></a>2.6 使用枚举器</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSEnumerator</span> * enumerator = [muDic objectEnumerator];</span><br><span class="line">Student * tmp;</span><br><span class="line"><span class="keyword">while</span> (tmp = [enumerator nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"tmp %@"</span>,tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52204512" target="_blank" rel="external">NSDictionary字典创建,获取,遍历,可变字典的删除</a></p>
 </blockquote>
   
 	</div>
@@ -163,7 +163,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160814NSDictionarySum/" data-title="NSDictionary字典创建,获取,遍历,可变字典的删除 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160814NSDictionarySum/" data-title="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -176,6 +176,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/20160814NSSetSum/" title="NSSet 集合创建,获取,遍历,可变集合的删除">
+  <strong>上一篇：</strong><br/>
+  <span>
+  NSSet 集合创建,获取,遍历,可变集合的删除</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/post/20160814NSArraySum/"  title="NSArray/NSMutableArray创建,获取,遍历,排序 - iOS">
@@ -189,7 +197,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160814NSDictionarySum/" data-title="NSDictionary字典创建,获取,遍历,可变字典的删除" data-url="http://yoferzhang.com/post/20160814NSDictionarySum/"></div>
+	<div class="ds-thread" data-thread-key="post/20160814NSDictionarySum/" data-title="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS" data-url="http://yoferzhang.com/post/20160814NSDictionarySum/"></div>
 </section>
 
 
@@ -231,7 +239,7 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>23</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>24</sup></a></li>
 		  
 		
 		  

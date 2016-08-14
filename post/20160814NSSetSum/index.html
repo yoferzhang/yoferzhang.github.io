@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Automatic Reference Counting (ARC) 总结 | Mathematical Method, the Way of the World</title>
+    <title>NSSet 集合创建,获取,遍历,可变集合的删除 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
@@ -13,42 +13,35 @@
     
     <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-ARC的判断准则：只要没有强指针指向对象，就会释放对象
-ARC特点
-不允许调用 release、 retain、 retainCount。
-允许重写dealloc，但是不允许调用[super dealloc]。
-@property的参数
+NSSet 集合
+NSArray 自然顺序
+NSSet是无序的
+注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值
 
-strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变量是弱指针（适用于OC对象类型）">
+123456789101112131415161718NSString * str1 = @&quot;one&quot;;NSString * str2 = @&quot;two&quot;;NSString * str3 = @&quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Automatic Reference Counting (ARC) 总结">
-<meta property="og:url" content="http://yoferzhang.com/post/20160812ARCSum/index.html">
+<meta property="og:title" content="NSSet 集合创建,获取,遍历,可变集合的删除">
+<meta property="og:url" content="http://yoferzhang.com/post/20160814NSSetSum/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-ARC的判断准则：只要没有强指针指向对象，就会释放对象
-ARC特点
-不允许调用 release、 retain、 retainCount。
-允许重写dealloc，但是不允许调用[super dealloc]。
-@property的参数
+NSSet 集合
+NSArray 自然顺序
+NSSet是无序的
+注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值
 
-strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变量是弱指针（适用于OC对象类型）">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6r1kewd0cj21rq0om0xz.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6r26yg8cgj21n80o2n1m.jpg">
-<meta property="og:updated_time" content="2016-08-13T03:17:13.000Z">
+123456789101112131415161718NSString * str1 = @&quot;one&quot;;NSString * str2 = @&quot;two&quot;;NSString * str3 = @&quot;">
+<meta property="og:updated_time" content="2016-08-14T07:14:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Automatic Reference Counting (ARC) 总结">
+<meta name="twitter:title" content="NSSet 集合创建,获取,遍历,可变集合的删除">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-ARC的判断准则：只要没有强指针指向对象，就会释放对象
-ARC特点
-不允许调用 release、 retain、 retainCount。
-允许重写dealloc，但是不允许调用[super dealloc]。
-@property的参数
+NSSet 集合
+NSArray 自然顺序
+NSSet是无序的
+注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值
 
-strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变量是弱指针（适用于OC对象类型）">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg">
+123456789101112131415161718NSString * str1 = @&quot;one&quot;;NSString * str2 = @&quot;two&quot;;NSString * str3 = @&quot;">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -112,14 +105,14 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160812ARCSum/" title="Automatic Reference Counting (ARC) 总结" itemprop="url">Automatic Reference Counting (ARC) 总结</a>
+      <a href="/post/20160814NSSetSum/" title="NSSet 集合创建,获取,遍历,可变集合的删除" itemprop="url">NSSet 集合创建,获取,遍历,可变集合的删除</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-12T08:04:19.000Z" itemprop="datePublished"> 发表于 2016-08-12</time>
+    <time datetime="2016-08-14T07:10:25.000Z" itemprop="datePublished"> 发表于 2016-08-14</time>
     
   </p>
 </header>
@@ -128,48 +121,24 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARC特点"><span class="toc-number">1.</span> <span class="toc-text">ARC特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Xcode的ARC转换"><span class="toc-number">2.</span> <span class="toc-text">Xcode的ARC转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARC-的循环引用"><span class="toc-number">3.</span> <span class="toc-text">ARC 的循环引用</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NSSet-集合"><span class="toc-number">1.</span> <span class="toc-text">NSSet 集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMutableSet-可变集合"><span class="toc-number">2.</span> <span class="toc-text">NSMutableSet 可变集合</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
 <p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<p>ARC的判断准则：只要没有强指针指向对象，就会释放对象</p>
-<h1 id="ARC特点"><a href="#ARC特点" class="headerlink" title="ARC特点"></a>ARC特点</h1><ul>
-<li>不允许调用 <code>release</code>、 <code>retain</code>、 <code>retainCount</code>。</li>
-<li>允许重写dealloc，但是不允许调用[super dealloc]。</li>
-<li>@property的参数</li>
+<h2 id="NSSet-集合"><a href="#NSSet-集合" class="headerlink" title="NSSet 集合"></a>NSSet 集合</h2><ul>
+<li>NSArray 自然顺序</li>
+<li>NSSet是无序的</li>
+<li>注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值</li>
 </ul>
-<p>strong ：成员变量是强指针（适用于OC对象类型）<br>weak ：成员变量是弱指针（适用于OC对象类型）</p>
-<ul>
-<li>以前的retain改为用strong</li>
-</ul>
-<p>指针分2钟：</p>
-<ul>
-<li>强指针：默认情况下，所有的指针都是强指针 __strong</li>
-<li>弱指针：__weak</li>
-</ul>
-<h1 id="Xcode的ARC转换"><a href="#Xcode的ARC转换" class="headerlink" title="Xcode的ARC转换"></a>Xcode的ARC转换</h1><p>将非ARC的代码转化为ARC：</p>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg" alt=""><br></center>
-
-<p>如果工程是 ARC的，可以将部分代码更改为非 ARC 模式：</p>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6r1kewd0cj21rq0om0xz.jpg" alt=""><br></center>
-
-<p>如果工程不是 ARC 的，可以将部分代码更改为 ARC 状态</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6r26yg8cgj21n80o2n1m.jpg" alt=""><br></center>
-
-<h1 id="ARC-的循环引用"><a href="#ARC-的循环引用" class="headerlink" title="ARC 的循环引用"></a>ARC 的循环引用</h1><p>当两端循环引用的时候，解决方案：</p>
-<ul>
-<li>ARC</li>
-</ul>
-<p>1端用strong，另1端用weak</p>
-<ul>
-<li>非ARC</li>
-</ul>
-<p>1端用retain，另1端用assign</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str1 = <span class="string">@"one"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str2 = <span class="string">@"two"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str3 = <span class="string">@"three"</span>;</span><br><span class="line"><span class="built_in">NSSet</span> * set = [[<span class="built_in">NSSet</span> alloc] initWithObjects:str1,str2,str3,str1, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"set %@"</span>,set);</span><br><span class="line"></span><br><span class="line"><span class="comment">//count</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"count %ld"</span>,set.count);</span><br><span class="line"></span><br><span class="line">OOL isContains =  [set containsObject:str1];</span><br><span class="line"><span class="keyword">if</span> (isContains)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"YES"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"NO"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSEnumerator</span> * enumerator = [set objectEnumerator];</span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"><span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NSMutableSet-可变集合"><a href="#NSMutableSet-可变集合" class="headerlink" title="NSMutableSet 可变集合"></a>NSMutableSet 可变集合</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str1 = <span class="string">@"one"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str2 = <span class="string">@"two"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1 创建一个可变集合</span></span><br><span class="line"><span class="built_in">NSMutableSet</span> * muSet = [[<span class="built_in">NSMutableSet</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.增加值</span></span><br><span class="line">[muSet addObject:str1];</span><br><span class="line">[muSet addObject:str2];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.删除</span></span><br><span class="line">[muSet removeObject:str1];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.删除所有</span></span><br><span class="line">[muSet removeAllObjects];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//5.遍历</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> * en = [muSet objectEnumerator];</span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"><span class="keyword">while</span> (value = [en nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>新博客文章地址：<a href="">Automatic Reference Counting (ARC) 总结</a><br>CSDN文章地址：<a href="">Automatic Reference Counting (ARC) 总结</a></p>
+<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
 </blockquote>
   
 	</div>
@@ -188,7 +157,7 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160812ARCSum/" data-title="Automatic Reference Counting (ARC) 总结 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -201,19 +170,11 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/20160812BlockSum/" title="Block编程总结 - iOS">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Block编程总结 - iOS</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/20160811OCMemoryManagementSum/"  title="Objective-C内存管理[iOS]">
+<a href="/post/20160814NSDictionarySum/"  title="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS">
  <strong>下一篇：</strong><br/> 
- <span>Objective-C内存管理[iOS]
+ <span>NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS
 </span>
 </a>
 </div>
@@ -222,7 +183,7 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160812ARCSum/" data-title="Automatic Reference Counting (ARC) 总结" data-url="http://yoferzhang.com/post/20160812ARCSum/"></div>
+	<div class="ds-thread" data-thread-key="post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除" data-url="http://yoferzhang.com/post/20160814NSSetSum/"></div>
 </section>
 
 
@@ -232,7 +193,7 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARC特点"><span class="toc-number">1.</span> <span class="toc-text">ARC特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Xcode的ARC转换"><span class="toc-number">2.</span> <span class="toc-text">Xcode的ARC转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARC-的循环引用"><span class="toc-number">3.</span> <span class="toc-text">ARC 的循环引用</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NSSet-集合"><span class="toc-number">1.</span> <span class="toc-text">NSSet 集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMutableSet-可变集合"><span class="toc-number">2.</span> <span class="toc-text">NSMutableSet 可变集合</span></a></li></ol>
  
   </div>
 
