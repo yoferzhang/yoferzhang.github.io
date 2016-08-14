@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>NSSet 集合创建,获取,遍历,可变集合的删除 | Mathematical Method, the Way of the World</title>
+    <title>NSSet 集合创建,获取,遍历,可变集合的删除 - iOS | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
@@ -20,7 +20,7 @@ NSSet是无序的
 
 123456789101112131415161718NSString * str1 = @&quot;one&quot;;NSString * str2 = @&quot;two&quot;;NSString * str3 = @&quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSSet 集合创建,获取,遍历,可变集合的删除">
+<meta property="og:title" content="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS">
 <meta property="og:url" content="http://yoferzhang.com/post/20160814NSSetSum/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -31,9 +31,9 @@ NSSet是无序的
 注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值
 
 123456789101112131415161718NSString * str1 = @&quot;one&quot;;NSString * str2 = @&quot;two&quot;;NSString * str3 = @&quot;">
-<meta property="og:updated_time" content="2016-08-14T07:14:30.000Z">
+<meta property="og:updated_time" content="2016-08-14T07:16:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSSet 集合创建,获取,遍历,可变集合的删除">
+<meta name="twitter:title" content="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
 NSSet 集合
@@ -105,7 +105,7 @@ NSSet是无序的
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160814NSSetSum/" title="NSSet 集合创建,获取,遍历,可变集合的删除" itemprop="url">NSSet 集合创建,获取,遍历,可变集合的删除</a>
+      <a href="/post/20160814NSSetSum/" title="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS" itemprop="url">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a>
   </h1>
   <p class="article-author">By
        
@@ -138,7 +138,7 @@ NSSet是无序的
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSEnumerator</span> * enumerator = [set objectEnumerator];</span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"><span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="NSMutableSet-可变集合"><a href="#NSMutableSet-可变集合" class="headerlink" title="NSMutableSet 可变集合"></a>NSMutableSet 可变集合</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str1 = <span class="string">@"one"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str2 = <span class="string">@"two"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1 创建一个可变集合</span></span><br><span class="line"><span class="built_in">NSMutableSet</span> * muSet = [[<span class="built_in">NSMutableSet</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.增加值</span></span><br><span class="line">[muSet addObject:str1];</span><br><span class="line">[muSet addObject:str2];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.删除</span></span><br><span class="line">[muSet removeObject:str1];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.删除所有</span></span><br><span class="line">[muSet removeAllObjects];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//5.遍历</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> * en = [muSet objectEnumerator];</span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"><span class="keyword">while</span> (value = [en nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除</a><br>CSDN文章地址：<a href="">NSSet 集合创建,获取,遍历,可变集合的删除</a></p>
 </blockquote>
   
 	</div>
@@ -157,7 +157,7 @@ NSSet是无序的
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -170,6 +170,14 @@ NSSet是无序的
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/20160814NSFoundationTran/" title="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
+  <strong>上一篇：</strong><br/>
+  <span>
+  集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/post/20160814NSDictionarySum/"  title="NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS">
@@ -183,7 +191,7 @@ NSSet是无序的
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除" data-url="http://yoferzhang.com/post/20160814NSSetSum/"></div>
+	<div class="ds-thread" data-thread-key="post/20160814NSSetSum/" data-title="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS" data-url="http://yoferzhang.com/post/20160814NSSetSum/"></div>
 </section>
 
 
@@ -225,7 +233,7 @@ NSSet是无序的
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>24</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>25</sup></a></li>
 		  
 		
 		  
