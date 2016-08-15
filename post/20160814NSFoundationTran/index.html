@@ -23,7 +23,7 @@ NSDict">
 
 NSArray 转换成 NSMutableArray123NSArray * array = @[@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];NSLog(@&quot;muarray %@&quot;,muArray);
 NSDict">
-<meta property="og:updated_time" content="2016-08-14T07:49:02.000Z">
+<meta property="og:updated_time" content="2016-08-14T07:51:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -132,7 +132,7 @@ NSDict">
 <p>格式化日期</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*格式化日期操作</span><br><span class="line">NSDate * date = [NSDate date];</span><br><span class="line"></span><br><span class="line">//表示格式化日期对象</span><br><span class="line">NSDateFormatter * f = [[NSDateFormatter alloc] init];</span><br><span class="line"></span><br><span class="line">[f setDateFormat:@"yyyy-MM-dd hh:mm:ss"];//2014/03/21</span><br><span class="line"></span><br><span class="line">//把格式与我们的日期关联起来</span><br><span class="line">NSString * str = [f stringFromDate:date];</span><br><span class="line">NSLog(@"str %@",str);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把字符串转换成日期</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">NSString * str = @"2014/03/20";</span><br><span class="line"></span><br><span class="line">NSDateFormatter * f = [[NSDateFormatter alloc] init];</span><br><span class="line">[f setDateFormat:@"yyyy/MM/dd"];</span><br><span class="line">NSDate * date = [f dateFromString:str];</span><br><span class="line">NSLog(@"date %@",date);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//处理时区问题</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDate</span> * newDate = [<span class="built_in">NSDate</span> date];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDateFormatter</span> * f = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">[f setDateFormat:<span class="string">@"yyyy-MM-dd HH:mm:ss"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * str = [f stringFromDate:newDate];</span><br><span class="line"><span class="comment">//设置时差计算方法 //GTM</span></span><br><span class="line">[f setTimeZone:[<span class="built_in">NSTimeZone</span> timeZoneWithAbbreviation:<span class="string">@"UTC"</span>]];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,str);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate</a><br>CSDN文章地址：<a href="">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate</a></p>
 </blockquote>
   
 	</div>
@@ -164,6 +164,14 @@ NSDict">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/20160814UIBase/" title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS">
+  <strong>上一篇：</strong><br/>
+  <span>
+  UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/post/20160814NSSetSum/"  title="NSSet 集合创建,获取,遍历,可变集合的删除 - iOS">
