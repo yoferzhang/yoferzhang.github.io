@@ -4,32 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【随笔】2016年4月14日 Kobe Bryant完美谢幕 | Mathematical Method, the Way of the World</title>
+    <title>UIKit继承结构 | Mathematical Method, the Way of the World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
     
 
     
-    <meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
-
-前言　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73胜的光芒都比之暗淡。
-NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎么看过NBA，">
+    <meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【随笔】2016年4月14日 Kobe Bryant完美谢幕">
-<meta property="og:url" content="http://yoferzhang.com/post/20160414KobeLeave/index.html">
+<meta property="og:title" content="UIKit继承结构">
+<meta property="og:url" content="http://yoferzhang.com/post/20160821UIKitClasses/index.html">
 <meta property="og:site_name" content="Mathematical Method, the Way of the World">
-<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
-
-前言　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73胜的光芒都比之暗淡。
-NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎么看过NBA，">
-<meta property="og:updated_time" content="2016-04-15T14:25:34.000Z">
+<meta property="og:description">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71p8jxat6j20o90w77fk.jpg">
+<meta property="og:updated_time" content="2016-08-21T13:44:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【随笔】2016年4月14日 Kobe Bryant完美谢幕">
-<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
-
-前言　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73胜的光芒都比之暗淡。
-NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎么看过NBA，">
+<meta name="twitter:title" content="UIKit继承结构">
+<meta name="twitter:description">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71p8jxat6j20o90w77fk.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -93,14 +86,14 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20160414KobeLeave/" title="【随笔】2016年4月14日 Kobe Bryant完美谢幕" itemprop="url">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a>
+      <a href="/post/20160821UIKitClasses/" title="UIKit继承结构" itemprop="url">UIKit继承结构</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-14T10:17:26.000Z" itemprop="datePublished"> 发表于 2016-04-14</time>
+    <time datetime="2016-08-21T13:43:58.000Z" itemprop="datePublished"> 发表于 2016-08-21</time>
     
   </p>
 </header>
@@ -109,32 +102,20 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NBA-amp-科比"><span class="toc-number">2.</span> <span class="toc-text">NBA & 科比</span></a></li></ol>
+			
 		
 		</div>
 		
-		<blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73胜的光芒都比之暗淡。</p>
-<h2 id="NBA-amp-科比"><a href="#NBA-amp-科比" class="headerlink" title="NBA &amp; 科比"></a>NBA &amp; 科比</h2><p>　　紫金王朝时代的我在上小学，虽然没有怎么看过NBA，但我那是已经认识到有个打篮球的叫科比的人很厉害。后来自己在看球的时候就已经非常喜欢科比了，24号科比两连冠最后痛失3冠王朝的时刻我也非常伤心，那时候听到有人对科比指指点点的时候真的很痛心。如今自己身上有着一些类似科比的精神，科比离开了NBA，离开了最容易看到他的视线，离开了最容易看到他精神的球场。默然…</p>
-<p>　　但是相信科比的精神终将伴随着我。</p>
-<p>　　谨以此纪念科比的谢幕；Of cource，他的人生没有谢幕，我们的人生更要精彩！</p>
-  
+		<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71p8jxat6j20o90w77fk.jpg" alt=""><br></center>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/随笔/">随笔</a>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/科比，NBA/">科比，NBA</a>
-  </div>
 
 </div>
 
@@ -142,7 +123,7 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20160414KobeLeave/" data-title="【随笔】2016年4月14日 Kobe Bryant完美谢幕 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20160821UIKitClasses/" data-title="UIKit继承结构 | Mathematical Method, the Way of the World" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,18 +137,18 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/20160415WebsiteRecommend/" title="【渔】网站推荐">
+ <a href="/post/20160823Cocoapods/" title="Cocoapods 安装">
   <strong>上一篇：</strong><br/>
   <span>
-  【渔】网站推荐</span>
+  Cocoapods 安装</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/post/20160408FirstHackintosh/"  title="【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用">
+<a href="/post/20160821ControllerManager/"  title="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">
  <strong>下一篇：</strong><br/> 
- <span>【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用
+ <span>【iOS】iOS控制器管理,代码,xib,Storyboard,Segue
 </span>
 </a>
 </div>
@@ -176,7 +157,7 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160414KobeLeave/" data-title="【随笔】2016年4月14日 Kobe Bryant完美谢幕" data-url="http://yoferzhang.com/post/20160414KobeLeave/"></div>
+	<div class="ds-thread" data-thread-key="post/20160821UIKitClasses/" data-title="UIKit继承结构" data-url="http://yoferzhang.com/post/20160821UIKitClasses/"></div>
 </section>
 
 
@@ -186,7 +167,7 @@ NBA &amp;amp; 科比　　紫金王朝时代的我在上小学，虽然没有怎
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NBA-amp-科比"><span class="toc-number">2.</span> <span class="toc-text">NBA & 科比</span></a></li></ol>
+ 
  
   </div>
 
