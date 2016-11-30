@@ -1,0 +1,636 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS】Cocos2dx | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+基础新工程
+看文档新建工程
+然后对照配置自己的工程
+
+概念术语
+Mesh 网格
+Model 模型，能被渲染的对象，是mesh的集合，也就是Sprite3D
+Camera 摄像机，应该是类似观察者的设置，不同的观察位置看同一个场景的不同效果
+Texture 纹理，
+Light 光照
+
+3D3D例子编辑器
+Particle Universe
+
+模型格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】Cocos2dx">
+<meta property="og:url" content="http://yoferzhang.com/post/20160922Cocos2dxNote/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+基础新工程
+看文档新建工程
+然后对照配置自己的工程
+
+概念术语
+Mesh 网格
+Model 模型，能被渲染的对象，是mesh的集合，也就是Sprite3D
+Camera 摄像机，应该是类似观察者的设置，不同的观察位置看同一个场景的不同效果
+Texture 纹理，
+Light 光照
+
+3D3D例子编辑器
+Particle Universe
+
+模型格">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f86s5n68cpj215e1f61kx.jpg">
+<meta property="og:updated_time" content="2016-09-26T09:07:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】Cocos2dx">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+基础新工程
+看文档新建工程
+然后对照配置自己的工程
+
+概念术语
+Mesh 网格
+Model 模型，能被渲染的对象，是mesh的集合，也就是Sprite3D
+Camera 摄像机，应该是类似观察者的设置，不同的观察位置看同一个场景的不同效果
+Texture 纹理，
+Light 光照
+
+3D3D例子编辑器
+Particle Universe
+
+模型格">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f86s5n68cpj215e1f61kx.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160922Cocos2dxNote/" title="【iOS】Cocos2dx" itemprop="url">【iOS】Cocos2dx</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-22T03:45:36.000Z" itemprop="datePublished"> 发表于 2016-09-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新工程"><span class="toc-number">1.1.</span> <span class="toc-text">新工程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">2.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#术语"><span class="toc-number">2.1.</span> <span class="toc-text">术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D"><span class="toc-number">2.2.</span> <span class="toc-text">3D</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3D例子编辑器"><span class="toc-number">2.2.1.</span> <span class="toc-text">3D例子编辑器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型格式介绍：obj-c3t-c3b"><span class="toc-number">2.2.2.</span> <span class="toc-text">模型格式介绍：obj, c3t, c3b</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sprite3D"><span class="toc-number">2.2.3.</span> <span class="toc-text">Sprite3D</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法，构造函数和析构函数的消失"><span class="toc-number">2.3.</span> <span class="toc-text">工厂方法，构造函数和析构函数的消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游戏逻辑架构"><span class="toc-number">2.4.</span> <span class="toc-text">游戏逻辑架构</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="新工程"><a href="#新工程" class="headerlink" title="新工程"></a>新工程</h3><ul>
+<li>看文档新建工程</li>
+<li>然后对照配置自己的工程</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
+<li>Mesh 网格</li>
+<li>Model 模型，能被渲染的对象，是mesh的集合，也就是Sprite3D</li>
+<li>Camera 摄像机，应该是类似观察者的设置，不同的观察位置看同一个场景的不同效果</li>
+<li>Texture 纹理，</li>
+<li>Light 光照</li>
+</ul>
+<h3 id="3D"><a href="#3D" class="headerlink" title="3D"></a>3D</h3><h4 id="3D例子编辑器"><a href="#3D例子编辑器" class="headerlink" title="3D例子编辑器"></a>3D例子编辑器</h4><ul>
+<li>Particle Universe</li>
+</ul>
+<h4 id="模型格式介绍：obj-c3t-c3b"><a href="#模型格式介绍：obj-c3t-c3b" class="headerlink" title="模型格式介绍：obj, c3t, c3b"></a>模型格式介绍：obj, c3t, c3b</h4><p>目前，我们可以支持3种模型格式，分别是obj,c3t,c3b，其中c3t和c3b是通过FBX模型文件进行二次转换后得到的，FBX是一种通用导出格式，可以通过maya或max进行导出，接下来向大家介绍一下这几种文件格式：</p>
+<ul>
+<li>obj：obj是max或maya默认可以导出的格式，不需要任何转换，但是它有一个缺点就是不支持动画的导出。</li>
+<li>c3t：c3t文件是通过FBX模型文件转换后生成的Json格式的文件，使用c3t格式的目的是方便用户进行模型数据的查看和版本比较，由于c3t文件是Json格式的，所以它的文件体积比较大，载入速度也比较慢，通常在实际游戏中不提倡使用。</li>
+<li>c3b：c3b是二进制文件，数据的内容与c3t文件是一样的，不同的是c3b文件体积小，加载速度快，提倡在实际游戏开发中使用。</li>
+</ul>
+<h4 id="Sprite3D"><a href="#Sprite3D" class="headerlink" title="Sprite3D"></a>Sprite3D</h4><p>自己在工程里面尝试添加3D模型，并且设置旋转</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> HelloWorld::addSprite3D()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line">    Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> sprite = Sprite3D::create(<span class="string">"res/model/dragon/dragon.c3b"</span>); <span class="comment">//c3b file, created with the FBX-converter</span></span><br><span class="line">    sprite-&gt;setScale(<span class="number">5.f</span>); <span class="comment">//sets the object scale in float</span></span><br><span class="line">    sprite-&gt;setPosition(Vec2(visibleSize.width/<span class="number">2</span> + origin.x, visibleSize.height/<span class="number">2</span> + origin.y)); <span class="comment">//sets sprite position</span></span><br><span class="line">    <span class="keyword">this</span>-&gt;addChild(sprite, <span class="number">1</span>); <span class="comment">//adds sprite to scene, z-index: 1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// rotate around the X axis</span></span><br><span class="line">    <span class="keyword">auto</span> rotation = RotateBy::create(<span class="number">15</span>, Vec3(<span class="number">0</span>, <span class="number">360</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="comment">// our sprite object runs the action</span></span><br><span class="line">    sprite-&gt;runAction(RepeatForever::create(rotation));</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="工厂方法，构造函数和析构函数的消失"><a href="#工厂方法，构造函数和析构函数的消失" class="headerlink" title="工厂方法，构造函数和析构函数的消失"></a>工厂方法，构造函数和析构函数的消失</h3><p>假设一个类叫 A，遵循 cocos2dx 风格创建对像。他就应该定义成如下模式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A.h</span></span><br><span class="line"><span class="keyword">class</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> A* <span class="title">create</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A.cpp</span></span><br><span class="line">A* A::create()</span><br><span class="line">&#123;</span><br><span class="line">    A * pRet = new A();</span><br><span class="line">    <span class="keyword">if</span> (pRet &amp;&amp; pRet-&gt;init())</span><br><span class="line">    &#123;</span><br><span class="line">        pRet-&gt;autorelease();</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> pRet;</span><br><span class="line">        pRet = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    return pRet;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> A::init()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1 父类的初始化</span></span><br><span class="line">    <span class="comment">//2 真正初始化内容</span></span><br><span class="line">    return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设计特点:将构造器和析构器置为空，构造器初始化的部门通过 init()函数 来完成。析构器清理的部分通过 autorelease()来业托管。</p>
+<p>优点: 通过工厂方法的运行，使的接口统一。</p>
+<p>cocos2dx中用宏更加简便，不过注意有参数的情况下只能自己实现，不能使用下面宏的方法：</p>
+<p>HelloWorldScene.cpp</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 'layer' is an autorelease object</span></span><br><span class="line">    <span class="keyword">auto</span> layer = HelloWorld::create();</span><br></pre></td></tr></table></figure>
+<p>HelloWorldScene.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// implement the "static create()" method manually</span></span><br><span class="line">    CREATE_FUNC(HelloWorld); <span class="comment">// 工厂方法</span></span><br></pre></td></tr></table></figure>
+<p>CCPlatformMacros.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** @def CREATE_FUNC(__TYPE__)</span><br><span class="line"> * Define a create function for a specific type, such as Layer.</span><br><span class="line"> *</span><br><span class="line"> * @param __TYPE__  class type to add create(), such as Layer.</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CREATE_FUNC(__TYPE__) \</span><br><span class="line">static __TYPE__* create() \</span><br><span class="line">&#123; \</span><br><span class="line">    __TYPE__ *pRet = new(std::nothrow) __TYPE__(); \</span><br><span class="line">    <span class="meta-keyword">if</span> (pRet &amp;&amp; pRet-&gt;init()) \</span><br><span class="line">    &#123; \</span><br><span class="line">        pRet-&gt;autorelease(); \</span><br><span class="line">        return pRet; \</span><br><span class="line">    &#125; \</span><br><span class="line">    <span class="meta-keyword">else</span> \</span><br><span class="line">    &#123; \</span><br><span class="line">        delete pRet; \</span><br><span class="line">        pRet = nullptr; \</span><br><span class="line">        return nullptr; \</span><br><span class="line">    &#125; \</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="游戏逻辑架构"><a href="#游戏逻辑架构" class="headerlink" title="游戏逻辑架构"></a>游戏逻辑架构</h3><p><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f86s5n68cpj215e1f61kx.jpg" alt=""></p>
+<blockquote>
+<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20160922Cocos2dxNote/" data-title="【iOS】Cocos2dx | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20160926Cocos2dxViewAnimation/" title="【iOS】Cocos2dx封装为view方便做3D动画效果">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【iOS】Cocos2dx封装为view方便做3D动画效果</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20160918ReplayKit/"  title="【iOS】ReplayKit库，iOS原生直播神器">
+ <strong>下一篇：</strong><br/> 
+ <span>【iOS】ReplayKit库，iOS原生直播神器
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160922Cocos2dxNote/" data-title="【iOS】Cocos2dx" data-url="http://yoferzhang.com/post/20160922Cocos2dxNote/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新工程"><span class="toc-number">1.1.</span> <span class="toc-text">新工程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">2.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#术语"><span class="toc-number">2.1.</span> <span class="toc-text">术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D"><span class="toc-number">2.2.</span> <span class="toc-text">3D</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3D例子编辑器"><span class="toc-number">2.2.1.</span> <span class="toc-text">3D例子编辑器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型格式介绍：obj-c3t-c3b"><span class="toc-number">2.2.2.</span> <span class="toc-text">模型格式介绍：obj, c3t, c3b</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sprite3D"><span class="toc-number">2.2.3.</span> <span class="toc-text">Sprite3D</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂方法，构造函数和析构函数的消失"><span class="toc-number">2.3.</span> <span class="toc-text">工厂方法，构造函数和析构函数的消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游戏逻辑架构"><span class="toc-number">2.4.</span> <span class="toc-text">游戏逻辑架构</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/建立博客/" title="建立博客">建立博客<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/快速记忆/" title="快速记忆">快速记忆<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书笔记/" title="读书笔记">读书笔记<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
