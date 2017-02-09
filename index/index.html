@@ -1,0 +1,728 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOSiOS开发相关
+Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note - http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/
+Stanford iOS7 Assignment - Matchismo - http://yoferzhang.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YoferZhang 的博客">
+<meta property="og:url" content="http://yoferzhang.com/index/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="iOSiOS开发相关
+Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note - http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/
+Stanford iOS7 Assignment - Matchismo - http://yoferzhang.">
+<meta property="og:updated_time" content="2016-09-08T09:16:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YoferZhang 的博客">
+<meta name="twitter:description" content="iOSiOS开发相关
+Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note - http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/
+Stanford iOS7 Assignment - Matchismo - http://yoferzhang.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoferzhang.com/index/"/>
+
+
+
+
+
+  <title>
+  
+
+  
+     | YoferZhang 的博客
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YoferZhang 的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline"></h2>
+
+
+
+</header>
+
+    
+    
+      <h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><h3 id="iOS开发相关"><a href="#iOS开发相关" class="headerlink" title="iOS开发相关"></a>iOS开发相关</h3><ul>
+<li>Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note - <a href="http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/" target="_blank">http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</a></li>
+<li>Stanford iOS7 Assignment - Matchismo - <a href="http://yoferzhang.com/post/20160426Matchismo/" target="_blank">http://yoferzhang.com/post/20160426Matchismo/</a></li>
+</ul>
+<h3 id="Apple-开发文档"><a href="#Apple-开发文档" class="headerlink" title="Apple 开发文档"></a>Apple 开发文档</h3><table>
+<thead>
+<tr>
+<th>地址</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6" target="_blank" rel="external">Advanced Memory Management Programming Guide</a></td>
+<td>高级内存管理</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226" target="_blank" rel="external">Transitioning to ARC Release Notes</a></td>
+<td>ARC用的多</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i" target="_blank" rel="external">Key-Value Coding Programming Guide</a></td>
+<td>虽然属于语言范畴，但是iOS对键值编程使用非常广泛</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i" target="_blank" rel="external">Key-Value Observing Programming Guide</a></td>
+<td>KVC的重点应用形式</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043-SW1" target="_blank" rel="external">Notification Programming Topics</a></td>
+<td>Notification，苹果自己随处可见</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1" target="_blank" rel="external">View Controller Programming Guide for iOS</a></td>
+<td>视图控制器</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009503-CH1-SW2" target="_blank" rel="external">View Programming Guide for iOS</a></td>
+<td>GUI需要重视</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514" target="_blank" rel="external">Core Animation Programming Guide</a></td>
+<td>动画，主要是layer 的概念掌握</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1" target="_blank" rel="external">Concurrency Programming Guide</a></td>
+<td>并发编程</td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="一些看过的开源代码"><a href="#一些看过的开源代码" class="headerlink" title="一些看过的开源代码"></a>一些看过的开源代码</h3><table>
+<thead>
+<tr>
+<th>地址</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/XLAccount/MiaoBo" target="_blank" rel="external">MiaoBo</a></td>
+<td>IOS视频直播 + 推流实现 采用开源框架ijkplayer 以及LFLiveKit实现推流，主要完善关注，分享和登录</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zzyspace/ZYShareView" target="_blank" rel="external">ZYShareView</a></td>
+<td>应用中常见的分享/功能菜单面板, 高仿微信:-)</td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href=""></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="开源库"><a href="#开源库" class="headerlink" title="开源库"></a>开源库</h3><h2 id="快速记忆"><a href="#快速记忆" class="headerlink" title="快速记忆"></a>快速记忆</h2><blockquote>
+<p>毕设学到的一些知识，感谢唐厚俭老师给到自己的这个题目</p>
+</blockquote>
+<p><a href="" target="_blank"></a></p>
+<ul>
+<li>快速记忆背景 - <a href="http://yoferzhang.com/post/20160328SuperMemoryBackground/" target="_blank">http://yoferzhang.com/post/20160328SuperMemoryBackground/</a></li>
+<li>数字编码表 - <a href="http://yoferzhang.com/post/20160329NumberCodeTable/" target="_blank">http://yoferzhang.com/post/20160329NumberCodeTable/</a></li>
+</ul>
+<h2 id="渔"><a href="#渔" class="headerlink" title="渔"></a>渔</h2><blockquote>
+<p>推荐网站、工具，或者自己的一些小折腾</p>
+</blockquote>
+<ul>
+<li>使用Github和Hexo搭建属于自己的博客 - <a href="http://yoferzhang.com/post/20160323buildBlog01/" target="_blank">http://yoferzhang.com/post/20160323buildBlog01/</a></li>
+<li>网站推荐 - <a href="http://yoferzhang.com/post/20160415WebsiteRecommend/" target="_blank">http://yoferzhang.com/post/20160415WebsiteRecommend/</a></li>
+<li>Markdown语法（看这张图就够了） - <a href="http://yoferzhang.com/post/20160415MarkdownSyntax/" target="_blank">http://yoferzhang.com/post/20160415MarkdownSyntax/</a></li>
+<li>联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用 - <a href="http://yoferzhang.com/post/20160408FirstHackintosh/" target="_blank">http://yoferzhang.com/post/20160408FirstHackintosh/</a></li>
+<li>NTFS转HFS - <a href="http://yoferzhang.com/post/20160416DiskFormatForHFS/" target="_blank">http://yoferzhang.com/post/20160416DiskFormatForHFS/</a></li>
+</ul>
+<h2 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h2><blockquote>
+<p>自己读书时用xmind制作的一些笔记</p>
+</blockquote>
+<ul>
+<li>最近读书的目录 - <a href="http://yoferzhang.com/post/20160325ReadIndex/" target="_blank">http://yoferzhang.com/post/20160325ReadIndex/</a></li>
+<li>把你的英语用起来 - <a href="http://yoferzhang.com/post/20160322readNotes001/" target="_blank">http://yoferzhang.com/post/20160322readNotes001/</a></li>
+<li>番茄工作法图解 - <a href="http://yoferzhang.com/post/20160325ReadNotePomodoro/" target="_blank">http://yoferzhang.com/post/20160325ReadNotePomodoro/</a></li>
+</ul>
+<h2 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h2><blockquote>
+<p>记录生活中想法，阶段性总结</p>
+</blockquote>
+<ul>
+<li>鹅场offer已Get，下周签约，终于能静下心来总结总结 - <a href="http://yoferzhang.com/post/20160322essay002/" target="_blank">http://yoferzhang.com/post/20160322essay002/</a></li>
+<li>2016年4月14日 Kobe Bryant完美谢幕 - <a href="http://yoferzhang.com/post/20160414KobeLeave/" target="_blank">http://yoferzhang.com/post/20160414KobeLeave/</a></li>
+</ul>
+<h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><blockquote>
+<p>C语言知识</p>
+</blockquote>
+<ul>
+<li>malloc,calloc,relloc异同示例 - <a href="http://yoferzhang.com/post/20160417MallocCallocRelloc/" target="_blank">http://yoferzhang.com/post/20160417MallocCallocRelloc/</a></li>
+<li>C语言内存四区 - 概念与代码示例 - <a href="http://yoferzhang.com/post/20160417CMemory/" target="_blank">http://yoferzhang.com/post/20160417CMemory/</a></li>
+<li>结构体内存对齐模式 - <a href="http://yoferzhang.com/post/20160419StructMemory/" target="_blank">http://yoferzhang.com/post/20160419StructMemory/</a></li>
+</ul>
+<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><blockquote>
+<p>C++知识</p>
+</blockquote>
+<ul>
+<li>原CSDN博客上的C++类别文章汇总 - <a href="http://yoferzhang.com/post/20160419CPPCSDNSummary/" target="_blank">http://yoferzhang.com/post/20160419CPPCSDNSummary/</a></li>
+</ul>
+<h2 id="ELSPOD"><a href="#ELSPOD" class="headerlink" title="ELSPOD"></a>ELSPOD</h2><blockquote>
+<p>ELSPOD听力材料学习记录</p>
+</blockquote>
+<ul>
+<li>Essay - English as a Second Language Podcast - <a href="http://yoferzhang.com/post/20160420ESLPODEssay/" target="_blank">http://yoferzhang.com/post/20160420ESLPODEssay/</a></li>
+<li>Vocabulary - <a href="http://yoferzhang.com/post/20160420ESLPODVocabulary/" target="_blank">http://yoferzhang.com/post/20160420ESLPODVocabulary/</a></li>
+</ul>
+
+    
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="index/index.html"
+           data-title="" data-url="http://yoferzhang.com/index/index.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg"
+               alt="Yofer Zhang" />
+          <p class="site-author-name" itemprop="name">Yofer Zhang</p>
+          <p class="site-description motion-element" itemprop="description">接下来自己能够坚持写博客，记录是一个好习惯</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yofer Zhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yoferzhang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
