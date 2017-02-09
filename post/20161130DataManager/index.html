@@ -89,20 +89,14 @@
 
 <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
 <meta property="og:url" content="http://yoferzhang.com/post/20161130DataManager/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
@@ -110,15 +104,12 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74oxc6bmuj20qg10079r.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faae0jjuq4j210v0aegob.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faaeyb9e4gj213i03bmxw.jpg">
-<meta property="og:updated_time" content="2016-11-30T13:37:57.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:19:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
 
 
@@ -381,6 +372,7 @@
 <p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
 <h2 id="应用沙盒"><a href="#应用沙盒" class="headerlink" title="应用沙盒"></a>应用沙盒</h2><p>每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒</p>
+<a id="more"></a>
 <p>应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）</p>
 <p><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg" alt=""></p>
 <p>模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)<br>/Users/apple/Library/Application Support/iPhone Simulator/6.0/Applications</p>
@@ -670,7 +662,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -679,7 +671,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -688,7 +680,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

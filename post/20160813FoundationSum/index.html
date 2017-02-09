@@ -99,7 +99,7 @@
 
 结构体NSRange(location length)1234typedef struct _NSRange &amp;#123;    NSUInteger location;    NSUInteger length;&amp;#125; NSRange;
 123NSRange r1 = &amp;#123;2, 4&amp;#125;; // 不用NSRange r2 =">
-<meta property="og:updated_time" content="2016-08-13T14:56:25.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:28:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 结构体">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -369,6 +369,7 @@
 <h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><h2 id="NSRange-location-length"><a href="#NSRange-location-length" class="headerlink" title="NSRange(location length)"></a>NSRange(location length)</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _<span class="built_in">NSRange</span> &#123;</span><br><span class="line">    <span class="built_in">NSUInteger</span> location;</span><br><span class="line">    <span class="built_in">NSUInteger</span> length;</span><br><span class="line">&#125; <span class="built_in">NSRange</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSRange</span> r1 = &#123;<span class="number">2</span>, <span class="number">4</span>&#125;; <span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r2 = &#123;.location = <span class="number">2</span>, .length = <span class="number">4</span>&#125;;<span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r3 = <span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">4</span>); <span class="comment">// 掌握</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"i love oc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找某个字符串在str中的范围</span></span><br><span class="line"><span class="comment">// 如果找不到，length=0，location=NSNotFound==-1</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [str rangeOfString:<span class="string">@"java"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"loc = %ld, length=%ld"</span>, range.location, range.length);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="NSPoint-CGPoint-NSSize-CGSize-NSRect-CGRect-CGPint-CGSize"><a href="#NSPoint-CGPoint-NSSize-CGSize-NSRect-CGRect-CGPint-CGSize" class="headerlink" title="NSPoint\CGPoint, NSSize\CGSize, NSRect\CGRect (CGPint CGSize)"></a>NSPoint\CGPoint, NSSize\CGSize, NSRect\CGRect (CGPint CGSize)</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="built_in">CGPoint</span> &#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> x;</span><br><span class="line">    <span class="built_in">CGFloat</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CGPoint</span> <span class="built_in">CGPoint</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="built_in">CGSize</span> &#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> width;</span><br><span class="line">    <span class="built_in">CGFloat</span> height;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CGSize</span> <span class="built_in">CGSize</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="built_in">CGRect</span> &#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> origin;</span><br><span class="line">    <span class="built_in">CGSize</span> size;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CGRect</span> <span class="built_in">CGRect</span>;</span><br></pre></td></tr></table></figure>
@@ -499,7 +500,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -508,7 +509,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -517,7 +518,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

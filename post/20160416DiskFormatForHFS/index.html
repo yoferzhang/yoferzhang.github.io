@@ -105,7 +105,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
 fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupted system callerror: failed to push some refs to
 
 　　搜了一下stackoverflow上找">
-<meta property="og:updated_time" content="2016-04-16T12:25:23.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:34:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【渔】NTFS转HFS">
 <meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
@@ -383,6 +383,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
 <blockquote>
 <p>I have a Mac on an SSD with an internal NTFS-formatted HDD I use for storage. I was having the same issue trying to push a repo located in the HDD, but as soon as I copied the repo to the SSD the push worked just fine. On Linux I have no problem pushing from the HDD, so this must be an issue with Tuxera NTFS, which is the NTFS driver I’m using on Mac.<br>If you’re in the same situation as me, I suggest you move that repository to an HFS+ formatted drive or try pushing from a different Operating System.</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>　　就是因为我用了Tuxera NTFS来使用NTFS格式的硬盘导致了我<code>git push</code>的时候出现了问题，一个解决方法是把仓库放到mac系统盘里面，但是我不想这样过于增大系统盘的空间。然后想到把1T硬盘中的200G空间从NTFS改成HFS+。备份好东西，然后在winpe情况下删除了分区，重新建立了一个HFS+的分区。</p>
 <p>　　这里需要注意的一点是：之前在装黑苹果的时候提到过可以直接通过<code>diskgenius</code>修改分区参数，将盘符改为AF，但是<code>diskgenius</code>只能对MBR分区格式的硬盘进行这样的操作，对于GUID的是不可以的，这时候就要用到<code>diskpart</code>工具。方法如下：</p>
 <blockquote>
@@ -516,7 +517,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -525,7 +526,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -534,7 +535,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
