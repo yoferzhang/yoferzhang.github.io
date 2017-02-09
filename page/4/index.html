@@ -248,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160426Matchismo/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSArraySum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -273,8 +273,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160426Matchismo/" itemprop="url">
-                  【iOS】Stanford iOS7 Assignment - Matchismo
+                <a class="post-title-link" href="/post/20160814NSArraySum/" itemprop="url">
+                  NSArray/NSMutableArray创建,获取,遍历,排序 - iOS
                 </a>
               
             
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-26T19:00:23+08:00">
-                2016-04-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T13:46:43+08:00">
+                2016-08-14
               </time>
             
 
@@ -331,8 +331,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160426Matchismo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160426Matchismo/" itemprop="commentCount"></span>
+                <a href="/post/20160814NSArraySum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814NSArraySum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -360,19 +360,14 @@
       
         
           <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-<p>Github地址：<a href="https://github.com/yoferzhang/Matchismo">https://github.com/yoferzhang/Matchismo</a></p>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<h2 id="Matchismo"><a href="#Matchismo" class="headerlink" title="Matchismo"></a>Matchismo</h2><p>Stanford iOS7 Assignment</p>
-<p>Use Xcode 7.3 AND OS X EI Captian 10.11.4</p>
-<blockquote>
-<p>更新时间：2016.04.22</p>
-</blockquote>
-<h2 id="简单牌面翻转"><a href="#简单牌面翻转" class="headerlink" title="简单牌面翻转"></a>简单牌面翻转</h2><p>修改<code>Main.storyboard</code>：设置背景色，添加一个<code>Button</code>，添加背景图和前景图。设置<code>Title</code>为<code>A♣︎</code>。并在<code>ViewController.m</code>中添加一个方法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)touchCardButton:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="keyword">if</span> ([sender.currentTitle length]) &#123;</span><br><span class="line">        [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardBack"</span>]</span><br><span class="line">                          forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        [sender setTitle:<span class="string">@""</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardFront"</span>]</span><br><span class="line">                          forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        [sender setTitle:<span class="string">@"A♣︎"</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// update flipCount in there</span></span><br><span class="line">    <span class="comment">// because every time touch the button, this method will be call</span></span><br><span class="line">    <span class="keyword">self</span>.flipCount++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-数组基本"><a href="#1-数组基本" class="headerlink" title="1 数组基本"></a>1 数组基本</h2><h3 id="1-1-创建数组"><a href="#1-1-创建数组" class="headerlink" title="1.1 创建数组"></a>1.1 创建数组</h3><p>NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作</p>
+<p>下面这种方式相当于什么都没做</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = [[<span class="built_in">NSArray</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,array);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/post/20160426Matchismo/#more" rel="contents">
+            <a class="btn" href="/post/20160814NSArraySum/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -415,7 +410,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813NSStringSum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -440,8 +435,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160420ObjectiveCProgrammingNote/" itemprop="url">
-                  【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note
+                <a class="post-title-link" href="/post/20160813NSStringSum/" itemprop="url">
+                  NSString的获取,判断,转换,重组,文件读写 - iOS
                 </a>
               
             
@@ -457,8 +452,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-20T14:41:27+08:00">
-                2016-04-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T22:57:06+08:00">
+                2016-08-13
               </time>
             
 
@@ -498,8 +493,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160420ObjectiveCProgrammingNote/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160420ObjectiveCProgrammingNote/" itemprop="commentCount"></span>
+                <a href="/post/20160813NSStringSum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813NSStringSum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -527,17 +522,18 @@
       
         
           <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<p>直接上图，只为记录，复习oc知识，看的也蛮快的</p>
-<ul>
-<li>若图太大，无法加载，直接给笔记原地址 - <a href="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f337y2z8b6j21k6q5sqv9.jpg" target="_blank">点此进入</a></li>
-<li>这本书记录的词汇 - <a href="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f3382qyrqlj216x61vhdd.jpg" target="_blank">点此进入</a></li>
-<li>Xmind存放地址 - <a href="https://github.com/yoferzhang/ReadingNotes" target="_blank">点此进入</a></li>
+<h2 id="1-NSString-类"><a href="#1-NSString-类" class="headerlink" title="1 NSString 类"></a>1 NSString 类</h2><ul>
+<li>Foundation框架,苹果公司提供给我们的工具箱</li>
+<li>许多的类,(属性,方法)</li>
+<li>闭源</li>
+<li>Foundation中的所有的类文件都是以NS开头,方便统一使用</li>
+<li>NSObject(基类),NSString</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/post/20160420ObjectiveCProgrammingNote/#more" rel="contents">
+            <a class="btn" href="/post/20160813NSStringSum/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -580,7 +576,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160419StructMemory/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813FoundationSum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -605,8 +601,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160419StructMemory/" itemprop="url">
-                  【C语言】结构体内存对齐模式
+                <a class="post-title-link" href="/post/20160813FoundationSum/" itemprop="url">
+                  iOS 结构体
                 </a>
               
             
@@ -622,8 +618,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-19T20:57:46+08:00">
-                2016-04-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T22:05:37+08:00">
+                2016-08-13
               </time>
             
 
@@ -645,8 +641,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -663,164 +659,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160419StructMemory/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160419StructMemory/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<p>　　结构体内存对齐模式各种情况代码详解：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> a; <span class="comment">// 此时结构体占用4个字节</span></span><br><span class="line">	<span class="keyword">char</span> b; <span class="comment">// 此时结构体占用8个字节</span></span><br><span class="line">	<span class="keyword">char</span> c; <span class="comment">// 还是8个字节</span></span><br><span class="line">	<span class="keyword">char</span> d; <span class="comment">// 还是8个字节</span></span><br><span class="line">	<span class="keyword">char</span> e; <span class="comment">// 还是8个字节</span></span><br><span class="line">	<span class="keyword">char</span> f; <span class="comment">// 现在是12个字节  </span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> B</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> a; <span class="comment">// 1个字节</span></span><br><span class="line">	<span class="keyword">char</span> b; <span class="comment">// 2个字节</span></span><br><span class="line">	<span class="keyword">char</span> c; <span class="comment">// 3个字节</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> c</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">10</span>]; <span class="comment">// 10个字节</span></span><br><span class="line">	<span class="keyword">char</span> a; <span class="comment">// 11个字节</span></span><br><span class="line">	<span class="comment">// 对于char型数组来说，会把数组每个元素当作一个char类型</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> d</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> name[<span class="number">10</span>]; <span class="comment">// 40个字节</span></span><br><span class="line">	<span class="keyword">char</span> a; <span class="comment">// 44个字节</span></span><br><span class="line">	<span class="keyword">char</span> b; <span class="comment">// 44个字节</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> e</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> a; <span class="comment">// 1个字节</span></span><br><span class="line">	<span class="keyword">int</span> b; <span class="comment">// 8个字节</span></span><br><span class="line">	<span class="keyword">char</span> c; <span class="comment">// 12个字节</span></span><br><span class="line">	<span class="comment">// 这种写法内存的消耗相比A就会变大</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> f</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> a; <span class="comment">// 1</span></span><br><span class="line">	<span class="keyword">short</span> b; <span class="comment">// 4注意这里short占用的是剩下三个字节中的后两个</span></span><br><span class="line">	<span class="comment">// 内存对齐总是以2的倍数对齐</span></span><br><span class="line">	<span class="keyword">char</span> c; <span class="comment">// 所以此时是6</span></span><br><span class="line">	<span class="keyword">int</span> d; <span class="comment">// 12</span></span><br><span class="line">	<span class="keyword">short</span> e; <span class="comment">// 16</span></span><br><span class="line">	<span class="keyword">char</span> f; <span class="comment">// 16</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160417CMemory/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160417CMemory/" itemprop="url">
-                  【C语言】C语言内存四区 - 概念与代码示例
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-17T22:12:38+08:00">
-                2016-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160417CMemory/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160417CMemory/" itemprop="commentCount"></span>
+                <a href="/post/20160813FoundationSum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813FoundationSum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -848,13 +688,14 @@
       
         
           <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-<p>从我源博客那里搬过来的文章，边复习边搬家。</p>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<center><br><img src="http://ww4.sinaimg.cn/large/a9c4d5f6jw1f3020ta1aej20g70bbglr.jpg" alt="内存四区图示"><br></center>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><h2 id="NSRange-location-length"><a href="#NSRange-location-length" class="headerlink" title="NSRange(location length)"></a>NSRange(location length)</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _<span class="built_in">NSRange</span> &#123;</span><br><span class="line">    <span class="built_in">NSUInteger</span> location;</span><br><span class="line">    <span class="built_in">NSUInteger</span> length;</span><br><span class="line">&#125; <span class="built_in">NSRange</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSRange</span> r1 = &#123;<span class="number">2</span>, <span class="number">4</span>&#125;; <span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r2 = &#123;.location = <span class="number">2</span>, .length = <span class="number">4</span>&#125;;<span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r3 = <span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">4</span>); <span class="comment">// 掌握</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"i love oc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找某个字符串在str中的范围</span></span><br><span class="line"><span class="comment">// 如果找不到，length=0，location=NSNotFound==-1</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [str rangeOfString:<span class="string">@"java"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"loc = %ld, length=%ld"</span>, range.location, range.length);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/post/20160417CMemory/#more" rel="contents">
+            <a class="btn" href="/post/20160813FoundationSum/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -897,7 +738,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160417MallocCallocRelloc/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813PropertySynthesize/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -922,8 +763,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160417MallocCallocRelloc/" itemprop="url">
-                  【C语言】malloc,calloc,relloc异同示例
+                <a class="post-title-link" href="/post/20160813PropertySynthesize/" itemprop="url">
+                  iOS - @property 和 @synthesize 总结
                 </a>
               
             
@@ -939,8 +780,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-17T21:58:39+08:00">
-                2016-04-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T19:07:12+08:00">
+                2016-08-13
               </time>
             
 
@@ -962,8 +803,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -980,174 +821,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160417MallocCallocRelloc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160417MallocCallocRelloc/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-<p>从我源博客那里搬过来的文章，边复习边搬家。</p>
-</blockquote>
-<h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> * <span class="title">malloc</span><span class="params">(size_t _Size)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>　　<code>malloc</code>函数在堆中分配参数<code>_Size</code>指定大小的内存，单位：字节，函数返回<code>void *</code>指针。</p>
-<h3 id="calloc"><a href="#calloc" class="headerlink" title="calloc"></a>calloc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> * <span class="title">calloc</span><span class="params">(size_t _Count, size_t _Size)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>　　<code>calloc</code>与<code>malloc</code>类似，负责在堆中分配内存。</p>
-<p>　　第一个参数是所需内存单元数量，第二个参数是每个内存单元的大小（单位：字节），<code>calloc</code>自动将分配的内存置为0。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (int *)<span class="built_in">calloc</span>(<span class="number">100</span>, sizeof(int)); <span class="comment">// 分配100个int</span></span><br></pre></td></tr></table></figure>
-<h3 id="ralloc"><a href="#ralloc" class="headerlink" title="ralloc"></a>ralloc</h3><p>　　重新分配用<code>malloc</code>或者<code>calloc</code>函数在堆中分配内存空间的大小。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> * <span class="title">realloc</span><span class="params">(<span class="keyword">void</span> *p, size_t _NewSize)</span></span>;</span><br></pre></td></tr></table></figure>
-<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *p)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>　　<code>free</code>负责在堆中释放<code>malloc</code>和<code>calloc</code>分配的内存。参数<code>p</code>为<code>malloc</code>返回的堆中的地址。</p>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">char</span> *p = (char *)<span class="built_in">malloc</span>(<span class="number">10</span>); <span class="comment">// 分配内存，但是没有赋初值  </span></span><br><span class="line">    <span class="built_in">memset</span>(p, <span class="number">0</span>, <span class="number">10</span>); <span class="comment">// 这里需要手动赋值，下面的方法则不需要  </span></span><br><span class="line">    <span class="keyword">char</span> *p1 = (char *)<span class="built_in">calloc</span>(<span class="number">10</span>, sizeof(char)); <span class="comment">// 分配内存，并自动设置为0  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">char</span> *p2 = (char *)<span class="built_in">realloc</span>(p1, <span class="number">20</span>); <span class="comment">// 在原有内存基础上，在堆中间连续增加的内存  </span></span><br><span class="line">    <span class="comment">// 如果原有内存没有连续空间可拓展，那么会新分配一个空间，将原有内存copy到新空间，然后释放原有内存  </span></span><br><span class="line">    <span class="comment">// realloc和malloc，只分配内存，不进行赋值操作  </span></span><br><span class="line">      </span><br><span class="line">    <span class="keyword">char</span> *p3 = (char *)<span class="built_in">realloc</span>(NULL, <span class="number">5</span>); <span class="comment">// 等价于mallco(5)  </span></span><br><span class="line">  </span><br><span class="line">    <span class="built_in">free</span>(p);  </span><br><span class="line">    <span class="built_in">free</span>(p1);  </span><br><span class="line">    <span class="built_in">free</span>(p2);  </span><br><span class="line">    <span class="built_in">free</span>(p3);  </span><br><span class="line">    return <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160416DiskFormatForHFS/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160416DiskFormatForHFS/" itemprop="url">
-                  【渔】NTFS转HFS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-16T18:50:12+08:00">
-                2016-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渔/" itemprop="url" rel="index">
-                    <span itemprop="name">渔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160416DiskFormatForHFS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160416DiskFormatForHFS/" itemprop="commentCount"></span>
+                <a href="/post/20160813PropertySynthesize/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813PropertySynthesize/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1175,19 +850,17 @@
       
         
           <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　今天用git的时候遇到一个问题：</p>
-<blockquote>
-<p>fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:<br>Interrupted system call<br>error: failed to push some refs to</p>
-</blockquote>
-<p>　　搜了一下stackoverflow上找到了原因和解决办法：</p>
-<blockquote>
-<p>I have a Mac on an SSD with an internal NTFS-formatted HDD I use for storage. I was having the same issue trying to push a repo located in the HDD, but as soon as I copied the repo to the SSD the push worked just fine. On Linux I have no problem pushing from the HDD, so this must be an issue with Tuxera NTFS, which is the NTFS driver I’m using on Mac.<br>If you’re in the same situation as me, I suggest you move that repository to an HFS+ formatted drive or try pushing from a different Operating System.</p>
-</blockquote>
+<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><ul>
+<li>用在 <code>@interface</code> 中</li>
+<li>用来自动生成 <code>setter</code> 和 <code>getter</code> 的声明</li>
+<li>用 <code>@property int age;</code> 就可以代替下面的两行</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">int</span>)age; <span class="comment">// getter</span></span><br><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age; <span class="comment">// setter</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/post/20160416DiskFormatForHFS/#more" rel="contents">
+            <a class="btn" href="/post/20160813PropertySynthesize/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1230,7 +903,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160415MarkdownSyntax/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813DescriptionMethod/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -1255,8 +928,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160415MarkdownSyntax/" itemprop="url">
-                  【渔】Markdown语法（看这张图就够了）
+                <a class="post-title-link" href="/post/20160813DescriptionMethod/" itemprop="url">
+                  description 方法 和 SEL - iOS
                 </a>
               
             
@@ -1272,8 +945,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-15T22:15:45+08:00">
-                2016-04-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T15:55:53+08:00">
+                2016-08-13
               </time>
             
 
@@ -1295,8 +968,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渔/" itemprop="url" rel="index">
-                    <span itemprop="name">渔</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -1313,8 +986,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160415MarkdownSyntax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160415MarkdownSyntax/" itemprop="commentCount"></span>
+                <a href="/post/20160813DescriptionMethod/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813DescriptionMethod/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1341,17 +1014,24 @@
 
       
         
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<p>　　这是维基百科的一张图，基本就够用了 - <a href="https://en.wikipedia.org/wiki/Markdown#Example" target="_blank" rel="external">https://en.wikipedia.org/wiki/Markdown#Example</a></p>
-<center><br><img src="http://img.blog.csdn.net/20160120212221668" alt=""><br></center>
-
-<center><br><img src="http://img.blog.csdn.net/20160120212232841" alt=""><br></center>
-
-<center><br><img src="http://img.blog.csdn.net/20160120212241872" alt=""><br></center>
-          
+<h1 id="description"><a href="#description" class="headerlink" title="description"></a>description</h1><h2 id="description-方法"><a href="#description-方法" class="headerlink" title="-description 方法"></a>-description 方法</h2><p>使用 <code>NSLog</code> 和 <code>%@</code> 输出某个对象时，会调用对象的 <code>-description</code> 方法，并拿到返回值进行输出</p>
+<h2 id="description-方法-1"><a href="#description-方法-1" class="headerlink" title="+description 方法"></a>+description 方法</h2><p>使用 <code>NSLog</code> 和 <code>%@</code> 输出某个对象时，会调用类对象 <code>+description</code> 方法，并拿到返回值进行输出</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class c = [Person class];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, c);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>会调用类的 +description 方法</li>
+<li>拿到 +description 方法的返回值（NSString *）显示到屏幕上</li>
+<li>+description 方法默认返回的是“类名”</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813DescriptionMethod/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1390,7 +1070,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160415WebsiteRecommend/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813NatureOfClass/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -1415,8 +1095,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160415WebsiteRecommend/" itemprop="url">
-                  【渔】网站推荐
+                <a class="post-title-link" href="/post/20160813NatureOfClass/" itemprop="url">
+                  Class 类的本质 - iOS
                 </a>
               
             
@@ -1432,8 +1112,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-15T21:58:51+08:00">
-                2016-04-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T10:52:57+08:00">
+                2016-08-13
               </time>
             
 
@@ -1443,28 +1123,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渔/" itemprop="url" rel="index">
-                    <span itemprop="name">渔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -1473,8 +1131,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160415WebsiteRecommend/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160415WebsiteRecommend/" itemprop="commentCount"></span>
+                <a href="/post/20160813NatureOfClass/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813NatureOfClass/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1501,23 +1159,21 @@
 
       
         
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
-<li>Git教程 - <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></li>
+<h2 id="1-类也是个对象"><a href="#1-类也是个对象" class="headerlink" title="1 类也是个对象"></a>1 类也是个对象</h2><ul>
+<li>其实类也是一个对象，是 Class 类型的对象，简称 “类对象”</li>
+<li>Class 类型的定义</li>
 </ul>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
-<li>Python教程 - <a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000</a></li>
-</ul>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
-<li>结构之法 算法之道 - <a href="http://blog.csdn.net/v_july_v" target="_blank" rel="external">http://blog.csdn.net/v_july_v</a></li>
-<li>UVa Online Judge - <a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8" target="_blank" rel="external">https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8</a> UVa大学的在线测评，世界范围内较为权威</li>
-<li>uHunt - <a href="http://uhunt.felix-halim.net/" target="_blank" rel="external">http://uhunt.felix-halim.net/</a> UVa的统计网站</li>
-</ul>
-
-          
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#if !OBJC_TYPES_DEFINED</span></span><br><span class="line"><span class="comment">/// An opaque type that represents an Objective-C class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_class *Class;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Represents an instance of a class.</span></span><br><span class="line"><span class="keyword">struct</span> objc_object &#123;</span><br><span class="line">    Class isa  OBJC_ISA_<span class="built_in">AVAILABILITY</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// A pointer to an instance of a class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_object *<span class="keyword">id</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813NatureOfClass/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1556,7 +1212,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160414KobeLeave/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813CategorySum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -1581,8 +1237,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160414KobeLeave/" itemprop="url">
-                  【随笔】2016年4月14日 Kobe Bryant完美谢幕
+                <a class="post-title-link" href="/post/20160813CategorySum/" itemprop="url">
+                  Category 分类、类别 总结 - iOS
                 </a>
               
             
@@ -1598,8 +1254,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-14T18:17:26+08:00">
-                2016-04-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T10:23:41+08:00">
+                2016-08-13
               </time>
             
 
@@ -1621,8 +1277,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -1639,8 +1295,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160414KobeLeave/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160414KobeLeave/" itemprop="commentCount"></span>
+                <a href="/post/20160813CategorySum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813CategorySum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1667,16 +1323,19 @@
 
       
         
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73胜的光芒都比之暗淡。</p>
-<h2 id="NBA-amp-科比"><a href="#NBA-amp-科比" class="headerlink" title="NBA &amp; 科比"></a>NBA &amp; 科比</h2><p>　　紫金王朝时代的我在上小学，虽然没有怎么看过NBA，但我那是已经认识到有个打篮球的叫科比的人很厉害。后来自己在看球的时候就已经非常喜欢科比了，24号科比两连冠最后痛失3冠王朝的时刻我也非常伤心，那时候听到有人对科比指指点点的时候真的很痛心。如今自己身上有着一些类似科比的精神，科比离开了NBA，离开了最容易看到他的视线，离开了最容易看到他精神的球场。默然…</p>
-<p>　　但是相信科比的精神终将伴随着我。</p>
-<p>　　谨以此纪念科比的谢幕；Of cource，他的人生没有谢幕，我们的人生更要精彩！</p>
-
-          
+          <h2 id="分类作用"><a href="#分类作用" class="headerlink" title="分类作用"></a>分类作用</h2><p>分类：可以给某一个类扩充一些方法（不修改原来类的代码）</p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> (分类名称)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span> (分类名称)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul>
+<li>一个庞大的类可以分模块开发</li>
+<li>一个庞大的类可以由多个人来编写，更有利于团队合作</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813CategorySum/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1715,7 +1374,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160408FirstHackintosh/">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813ProtocolSum/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yofer Zhang">
@@ -1740,8 +1399,8 @@
             
               
                 
-                <a class="post-title-link" href="/post/20160408FirstHackintosh/" itemprop="url">
-                  【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用
+                <a class="post-title-link" href="/post/20160813ProtocolSum/" itemprop="url">
+                  Protocol 协议总结 - iOS
                 </a>
               
             
@@ -1757,8 +1416,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-08T17:57:18+08:00">
-                2016-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T09:48:15+08:00">
+                2016-08-13
               </time>
             
 
@@ -1780,8 +1439,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渔/" itemprop="url" rel="index">
-                    <span itemprop="name">渔</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -1798,8 +1457,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20160408FirstHackintosh/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160408FirstHackintosh/" itemprop="commentCount"></span>
+                <a href="/post/20160813ProtocolSum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813ProtocolSum/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1826,1042 +1485,25 @@
 
       
         
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li>本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；</li>
-<li>虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；</li>
-<li>这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；</li>
-<li>具体配置可以去看Y430P的说明，我是i7高分的；</li>
-<li>接着来一张装好的图</li>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><h2 id="1-基本用途"><a href="#1-基本用途" class="headerlink" title="1 基本用途"></a>1 基本用途</h2><ul>
+<li>可以用来声明一大堆方法（不能声明成员变量）</li>
+<li>只要某个类遵守了这个协议，就相当于拥有了这个协议中的所有方法声明</li>
+<li>只要父类遵守了某个协议，就相当于子类也遵守了</li>
 </ul>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f2plaaq1u6j20ga09udgw.jpg" alt=""><br></center>
-
-<h2 id="要求说明"><a href="#要求说明" class="headerlink" title="要求说明"></a>要求说明</h2><p>　　本人是做iOS开发的，之前用mac mini，但越发觉得配置更不上；然后用联想本的虚拟机，可是无法跑出所有的硬件的功效，实属无奈；接下来的两天时不时的爬帖，权衡利弊之下，最终决定入坑。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><blockquote>
-<p>首先一定要搜一下你的电脑机型是否有成功案例，这一点很重要，除非想DIY驱动，不然你就得借鉴别人的经验。</p>
-</blockquote>
-<p>　　刚开始的时候远景没有邀请码，很多东西下不到。就在<a href="http://osx86.cn/" target="_blank" rel="external">黑苹果乐园</a>先看了许多的基础知识，这里重点一定要分清你是要四叶草安装原版还是变色龙安装懒人版，不同的安装方式，你下载的镜像就不同，一定要注意区别。我的机型选择的是四叶草加原版镜像。</p>
-<p>　　黑苹果乐园有一些通用的安装教程，先熟悉一下整体的过程，这时候尽量别动手。然后跑去远景开始找你自己的机型。远景黑苹果专区有集合贴 - <a href="http://bbs.pcbeta.com/forum-554-1.html" target="_blank" rel="external">http://bbs.pcbeta.com/forum-554-1.html</a>。去找到自己的机型，然后看成功之人的经验帖，这时候就可以动手了。</p>
-<p>　　Y430P的帖子为 - <a href="http://bbs.pcbeta.com/viewthread-1653139-1-1.html" target="_blank" rel="external">[教程] 【Y430P】10.11.1安装、驱动、dsdt修改简单教程</a>。没有账号进去是看不到图片的，但是不影响，因为里面哪一步不懂，可以在黑苹果乐园找到同一步骤的教程，看那里的图。这个帖子下面楼主给了一个群号，是为了方便讨论Y430P黑苹果的安装问题，加进去之后可以寻求帮助，借个账号，登录远景看有图的教程。所以类似的方法大家可以尝试，找到几个大神，在出问题的时候还能帮助一下自己。</p>
-<p>　　安装过程中第一个大问题就是我的固态分区格式是MBR，加上考虑了一下安全稳定的因素，果断备份了点必要信息，直接重新分区为GPT了，我是250G的固态，win8.1给了80G的空间，剩下都给OSX。接下来先安装了OSX，整体下来都没有大问题，教程很详细，不过最后安装完成的EFI文件有问题，在QQ群里面找到了最新的。</p>
-<blockquote>
-<p>对于分区格式的问题，我是在都装完之后才被推荐用“傲梅分区助手”无损转换硬盘格式，当然我这里没有尝试，大家懒得再做一遍win的可以试一下。</p>
-</blockquote>
-<p>　　最后就是安装windows系统。当然完成之后现在的OSX还要依赖于U盘才能引导启动。不过也有这方便的很多帖子，推荐一个简单的 - <a href="http://tieba.baidu.com/p/4313982363?pn=0&amp;" target="_blank" rel="external">[技术向]y430p成功上黑苹果10.10.5</a>。这个帖子的最后说明了怎么完成本地硬盘引导。</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>　　现在OSX用的很流畅，博客用OSX部署了一遍，代码本来就在OSX上写，office365直接登录在OSX上，思维导图用的xmind，也是双平台都有。。。现在MATLAB据悉OSX更新太慢，就还是切换到win下用吧，不过幸好现在MATLAB也不是常用软件了。</p>
-<blockquote>
-<p>有一点小插曲，不管是虚拟机还是黑苹果，登录账号的时候最好不要用iPhone上的账号，因为很有可能被苹果查出，然后锁定手机，这样你的手机(或者iPad)就黑了==。解决办法就是自己重新找个邮箱申请一个。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160329NumberCodeTable/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160329NumberCodeTable/" itemprop="url">
-                  【快速记忆】数字编码表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-29T08:18:51+08:00">
-                2016-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/快速记忆/" itemprop="url" rel="index">
-                    <span itemprop="name">快速记忆</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160329NumberCodeTable/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160329NumberCodeTable/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="双数编码表"><a href="#双数编码表" class="headerlink" title="双数编码表"></a>双数编码表</h2><p>　　数字编码是最基础的记忆训练。首先需要记住00-99所对应的关键词。数字编码就是把00-99所对应的关键词跟需要记忆的事物联系在一次进行记忆。常见的数字编码都运用谐音、特定含义、外形转化等。这里通过对不同类型的编码进行整理，将数字转化为谐音，数字谐音桩的特点为：</p>
-<ul>
-<li>固定化：一数一词一图，“三一”永久固定，易于形成集体讨论气氛。</li>
-<li>谐音化：110个数字全部由谐音转化而来，大幅减轻初学者回想难度，加速记忆法入门。</li>
-<li>图像化：图片清晰、经典，长宽全部为98像素，具有颜色丰富、空间立体、场景生动等情境化要素，是会说话、讲故事的图片。</li>
-<li>日常化：采用了日常生活中常见词语和图片，有利于大家以熟带新，快速掌握。</li>
-<li>区分化：全部采用散读法，如17读作“一七”，而不读作“十七”，有效区分了十系列与四十系列，避免了卷舌与不卷舌之争。</li>
+<h2 id="2-格式"><a href="#2-格式" class="headerlink" title="2 格式"></a>2 格式</h2><ul>
+<li>协议的编写</li>
 </ul>
-<h3 id="00-99的双数编码表"><a href="#00-99的双数编码表" class="headerlink" title="00-99的双数编码表"></a>00-99的双数编码表</h3><blockquote>
-<p>为方便按艾宾浩斯规律复习，将100个数字分为十组。</p>
-</blockquote>
-<h4 id="00-09"><a href="#00-09" class="headerlink" title="00-09"></a>00-09</h4><center><br>    <img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f2cor4z5pgj22o5184kjs.jpg" alt=""><br></center>
-
-<h4 id="10-19"><a href="#10-19" class="headerlink" title="10-19"></a>10-19</h4><center><br>    <img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f2dfk08gn3j22o5184x6u.jpg" alt=""><br></center>
-
-<h4 id="20-29"><a href="#20-29" class="headerlink" title="20-29"></a>20-29</h4><center><br>    <img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f2dfkl91qyj22o5184kjr.jpg" alt=""><br></center>
-
-<h4 id="30-39"><a href="#30-39" class="headerlink" title="30-39"></a>30-39</h4><center><br>    <img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6jw1f2dfl72h4kj22o518g4qw.jpg" alt=""><br></center>
-
-<h4 id="40-49"><a href="#40-49" class="headerlink" title="40-49"></a>40-49</h4><center><br>    <img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f2dfltonksj22o5184b2g.jpg" alt=""><br></center>
-
-<h4 id="50-59"><a href="#50-59" class="headerlink" title="50-59"></a>50-59</h4><center><br>    <img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6jw1f2dfmh2lerj22o517znpk.jpg" alt=""><br></center>
-
-<h4 id="60-69"><a href="#60-69" class="headerlink" title="60-69"></a>60-69</h4><center><br>    <img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6jw1f2dfn1u4w5j22o5184u13.jpg" alt=""><br></center>
-
-<h4 id="70-79"><a href="#70-79" class="headerlink" title="70-79"></a>70-79</h4><center><br>    <img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6jw1f2dfnjwe1lj22o518ghdy.jpg" alt=""><br></center>
-
-<h4 id="80-89"><a href="#80-89" class="headerlink" title="80-89"></a>80-89</h4><center><br>    <img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f2dfo5xr3mj22o518g7wo.jpg" alt=""><br></center>
-
-<h4 id="90-99"><a href="#90-99" class="headerlink" title="90-99"></a>90-99</h4><center><br>    <img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f2dfooh1idj22o5184x6u.jpg" alt=""><br></center>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160328SuperMemoryBackground/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160328SuperMemoryBackground/" itemprop="url">
-                  【快速记忆】快速记忆背景
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-28T14:04:47+08:00">
-                2016-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/快速记忆/" itemprop="url" rel="index">
-                    <span itemprop="name">快速记忆</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160328SuperMemoryBackground/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160328SuperMemoryBackground/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本文主要介绍快速记忆相关的背景知识，以便在之后的练习中进行更加深刻的内省。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160325ReadIndex/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160325ReadIndex/" itemprop="url">
-                  【读书笔记】最近读书的目录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-25T20:33:13+08:00">
-                2016-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160325ReadIndex/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160325ReadIndex/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f339yt2od4j20z218279q.jpg" alt=""></p>
-<h2 id="生活功能型"><a href="#生活功能型" class="headerlink" title="生活功能型"></a>生活功能型</h2><ul>
-<li>如何阅读一本书</li>
-<li>哈弗记忆课：过目不忘训练法</li>
-<li>程序员跳槽全攻略</li>
-<li>自控力 - Kelly McGonigal</li>
-<li>我最想要的记忆魔法书 - 多米尼克奥布莱恩</li>
-<li>最强大脑：写给中国人的记忆魔法书 - 王峰 陈林 刘苏</li>
-<li>番茄工作法图解</li>
-</ul>
-<h2 id="工作技能型"><a href="#工作技能型" class="headerlink" title="工作技能型"></a>工作技能型</h2><h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul>
-<li>iOS编程</li>
-<li>iOS Programming：The Big Nerd Ranch Guide</li>
-<li>Objective-C Programming</li>
-</ul>
-<h3 id="C-C"><a href="#C-C" class="headerlink" title="C\C++"></a>C\C++</h3><ul>
-<li>C++标准库</li>
-<li>STL源码剖析 - 侯捷</li>
-<li>深度探索C++对象模型</li>
-<li>Effective C++ - Scott Meyers</li>
-<li>More Effective C++ - Scott Meyers</li>
-<li>Effective STL - Scott Meyers</li>
-</ul>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
-<li>Python教程</li>
-</ul>
-<h3 id="底层"><a href="#底层" class="headerlink" title="底层"></a>底层</h3><ul>
-<li>深入理解计算机系统</li>
-</ul>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
-<li>计算机网络</li>
-<li>UNIX网络编程 两卷</li>
-<li>UNIX环境高级编程</li>
-</ul>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
-<li>算法竞赛入门经典</li>
-<li>算法竞赛入门经典 训练指南</li>
-<li>算法导论</li>
-<li>编程之美</li>
-</ul>
-<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><ul>
-<li>重温微积分</li>
-<li>具体数学</li>
-</ul>
-<h3 id="MATLAB"><a href="#MATLAB" class="headerlink" title="MATLAB"></a>MATLAB</h3><ul>
-<li>精通MATLAB</li>
-<li>MATLAB GUI设计学习手记</li>
-<li>MATLAB 神经网络30个案例分析</li>
-<li>MATLAB统计分析与应用：40个案例分析</li>
-<li>MATLAB在数学建模中的应用</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>代码大全</li>
-</ul>
-<h2 id="常识"><a href="#常识" class="headerlink" title="常识"></a>常识</h2><ul>
-<li>知乎日报 - <a href="http://daily.zhihu.com/" target="_blank" rel="external">http://daily.zhihu.com/</a></li>
-</ul>
-<h2 id="语言学习"><a href="#语言学习" class="headerlink" title="语言学习"></a>语言学习</h2><h3 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h3><ul>
-<li>文法俱乐部 - 旋天佑</li>
-<li>把你的英语用起来 - 奶爸</li>
-</ul>
-<h2 id="生活动力型"><a href="#生活动力型" class="headerlink" title="生活动力型"></a>生活动力型</h2><ul>
-<li>你只是看起来很努力 - 李尚龙</li>
-<li>千万次摇摆，才能长大成人</li>
-<li>因为痛，所以叫青春</li>
-<li>不要让未来的你讨厌现在的自己</li>
-</ul>
-<h2 id="小说"><a href="#小说" class="headerlink" title="小说"></a>小说</h2><ul>
-<li>The Kite Runner - Khaled Hosseini</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160325ReadNotePomodoro/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160325ReadNotePomodoro/" itemprop="url">
-                  【读书笔记】番茄工作法图解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-25T20:27:53+08:00">
-                2016-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160325ReadNotePomodoro/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160325ReadNotePomodoro/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<p>　　我现在是用的软件是番茄土豆 - <a href="https://pomotodo.com/" target="_blank" rel="external">https://pomotodo.com/</a></p>
-<p><center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f29dokbq8rj20ru0rt42c.jpg" alt="番茄工作法"><br></center>&gt;</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160323buildBlog01/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160323buildBlog01/" itemprop="url">
-                  【建立博客】使用Github和Hexo搭建属于自己的博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-23T16:40:10+08:00">
-                2016-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/建立博客/" itemprop="url" rel="index">
-                    <span itemprop="name">建立博客</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160323buildBlog01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160323buildBlog01/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="前言-Preface"><a href="#前言-Preface" class="headerlink" title="前言 | Preface"></a>前言 | Preface</h2><blockquote>
-<p>建立博客也花了些心思，记录下这点滴</p>
-</blockquote>
-<p>　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是<a href="http://hexo.io/docs/" target="_blank" rel="external">Hexo</a>加上<a href="https://github.com/" target="_blank" rel="external">Github</a>。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。</p>
-<blockquote>
-<p>我其实刚开始搭建就是对前端了解太少，后来遇到很多小白的问题</p>
-</blockquote>
-<h2 id="安装Hexo，Node-js和Github"><a href="#安装Hexo，Node-js和Github" class="headerlink" title="安装Hexo，Node.js和Github"></a>安装Hexo，Node.js和Github</h2><blockquote>
-<p>关于什么是Hexo，推荐看：<a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-1/</a></p>
-</blockquote>
-<p>　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以<a href="https://www.google.com/" target="_blank" rel="external">Google</a>。我的系统是win8.1。</p>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>　　Node.js下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a>。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”</p>
-<p>　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""><br></center>
-
-<blockquote>
-<p>现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。</p>
-</blockquote>
-<h3 id="安装Github"><a href="#安装Github" class="headerlink" title="安装Github"></a>安装Github</h3><p>　　小白推荐使用Github for windows，下载地址<a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a>。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>　　前一步安装Github for windows之后，桌面上会有一个GIt Shell，双击打开。<br>在里面输入npm命令安装Hexo。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这一步可能会比较慢，如果时间太长，推荐全局科学上网。</p>
-</blockquote>
-<p>　　到这需要安装的东西就完成了，下面开始进行配置。</p>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="创建Hexo文件夹"><a href="#创建Hexo文件夹" class="headerlink" title="创建Hexo文件夹"></a>创建Hexo文件夹</h3><p>　　自行建立一个空文件夹，比如我的是：<code>E:\blog</code>。进入Git Shell切换到该路径下(<code>cd e:\blog</code>)，然后执行以下指令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>等待Hexo初始化完成，文件夹中会自动新建所需要的文件夹。<br>然后执行</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>　　现在文件已经部署到自己的电脑上了，可以在本地进行查看。</p>
-<h3 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h3><p>　　1. 生成完整的网页静态文件，命令为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>此时目录中会生成一个文件夹，比如在我的目录(<code>E:\blog</code>)下生成了一个<code>public</code>文件夹，这里面放的就是我们后面要传到GIthub上面的文件。</p>
-</blockquote>
-<p>　　2. 本地生成服务器，命令为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>效果如下图：</p>
-</blockquote>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""><br></center>
-
-<p>　　然后在浏览器地址栏中输入：<code>localhost:4000</code>，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。</p>
-<h3 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h3><blockquote>
-<p>首先注册帐号</p>
-</blockquote>
-<p>　　Github帐号注册地址：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a>。</p>
-<blockquote>
-<p>接下来创建仓库(repository)。</p>
-</blockquote>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""><br></center>
-
-<p>　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""><br></center>
-
-<blockquote>
-<p>注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加<code>.github.io</code>，比如我的就是<code>yoferzhang.github.io</code>，名字千万别错。</p>
-</blockquote>
-<p>　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择<code>Clone</code>，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(<code>E:\</code>)。这时候E盘下就会生成一个文件夹，我的是<code>E:\yoferzhang.github.io</code>。</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""><br></center>
-
-<blockquote>
-<p>把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。</p>
-</blockquote>
-<p>　　我的是<code>E:\blog\public</code>文件夹下的所有文件，拷贝到<code>E:\yoferzhang.github.io</code>。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的<code>Sync</code>，第一次<code>Sync</code>可能是<code>Publish</code>。这时候就可以在浏览器中输入<code>yoferzhang.github.io</code>(注意把用户名换成你的)，查看自己的主页。</p>
-<blockquote>
-<p>官方说明：<a href="https://pages.github.com/" target="_blank" rel="external">https://pages.github.com/</a></p>
-<p>至此你已经可以通过<code>yoferzhang.github.io</code>来访问你的网站了，但我们还想用独特的域名。</p>
-</blockquote>
-<h2 id="域名和DNS"><a href="#域名和DNS" class="headerlink" title="域名和DNS"></a>域名和DNS</h2><h3 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h3><blockquote>
-<p>域名我是在GoDaddy上买的，整个购买过程很简单，后面的配置问题再详细说明；我买的是.com域名，毕竟这个识别度高些吧。</p>
-</blockquote>
-<p><a href="http://www.godaddy.com/" target="_blank" rel="external">http://www.godaddy.com/</a></p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><blockquote>
-<p>我用DNSPOD，用QQ就可以登录管理，这个不需要买，但这个需要配置，后面讲到。</p>
-</blockquote>
-<p><a href="https://www.dnspod.cn/" target="_blank" rel="external">https://www.dnspod.cn/</a></p>
-<h3 id="配置域名和DNS"><a href="#配置域名和DNS" class="headerlink" title="配置域名和DNS"></a>配置域名和DNS</h3><p>　　首先去DNOPOD上面添加自己在GoDaddy上购买的域名。</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg" alt=""><br></center>
-
-<p>　　然后去GoDaddy官网，登录进入，找到自己的产品，管理域名，设置域名服务器为DNSPod的2个DNS短地址，参考官方说明：<br><a href="https://support.dnspod.cn/Kb/showarticle/tsid/42/" target="_blank" rel="external">https://support.dnspod.cn/Kb/showarticle/tsid/42/</a></p>
-<blockquote>
-<p>PS:官方说明中的图片是比较老的版本，GoDaddy新界面也很好找到相应的设置。</p>
-</blockquote>
-<p>　　下面需要在项目中添加一个名为<code>CNAME</code>的文件，可以直接在本地用sublime text新建，比如我在<code>E:\yoferzhang.github.io</code>文件夹下建立了一个<code>CNAME</code>的文件，里面输入你自己的域名(我输入的内容是<code>yoferzhang.com</code>)。至此，你的博客已经可以通过独有域名(<a href="http://yoferzhang.com)进行访问了。">http://yoferzhang.com)进行访问了。</a></p>
-<h2 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h2><p>　　在你的Hexo文件夹下(我的是<code>E:\blog</code>)用Git Shell输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;hexo post&quot; #`hexo post`是文件名，自己修改</span><br></pre></td></tr></table></figure>
-<p>　　就会在<code>E:\blog\source\_posts</code>中生成一个<code>hexo-post.md</code>文件，这个文件就是你的博文md文件，推荐用<code>sublime text</code>编辑，自行寻找sublime添加markdown语法高亮的方法。当然，其他markdown编辑器也非常多，自行取舍。重要的是动手写。</p>
-<blockquote>
-<p>发布内容到<code>pulbic</code>文件夹，最后同理手动复制内容到Github本地仓库目录(<code>E:\yoferzhang.github.io</code>)，同步到Github。查看效果。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>　　大家刚部署好的博客可能和我现在长的不一样，那是因为我使用了Jacman模板，Jacman模板的下载和配置大家可以直接参考原博主：</p>
-<ul>
-<li><a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a></li>
-<li><a href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/" target="_blank" rel="external">http://wuchong.me/blog/2014/11/20/how-to-use-jacman/</a></li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
-<p>对于其中很多概念不理解的地方可以参考下面的博客。</p>
-</blockquote>
-<ul>
-<li>使用GitHub和Hexo搭建免费静态Blog - <a href="http://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="external">http://wsgzao.github.io/post/hexo-guide/</a></li>
-<li>如何搭建一个独立博客——简明 Github Pages与 jekyll 教程 - <a href="http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/</a></li>
-<li>Zippera hexo系列教程 - <a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">http://zipperary.com/categories/hexo/</a><blockquote>
-<p>Zippera的系列里面有Hexo原模板的详细优化配置。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><blockquote>
-<p>写于2016年4月20日</p>
-</blockquote>
-<p>　　前端时间把博客部署到了coding，结果最近两天可以上传成功，但是网页不更新了，伤，又换回到了github。</p>
-<h2 id="写于最后"><a href="#写于最后" class="headerlink" title="写于最后"></a>写于最后</h2><p>　　可能有同学会在Jacman模板的配置那里遇到比较多的问题，我就直接把我的配置贴在这里了，不懂的可以参考一下。</p>
-<blockquote>
-<p>Hexo配置文件(<code>E:\blog\_config.yml</code>)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"># Hexo Configuration</span><br><span class="line">## Docs: http://hexo.io/docs/configuration.html</span><br><span class="line">## Source: https://github.com/hexojs/hexo/</span><br><span class="line"></span><br><span class="line"># Site</span><br><span class="line">title: Yofer Zhang</span><br><span class="line">subtitle: 数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</span><br><span class="line">description: 接下来自己能够坚持写博客，记录是一个好习惯</span><br><span class="line">author: Yofer</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://yoferzhang.com</span><br><span class="line">root: /</span><br><span class="line">permalink: post/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"># Directory</span><br><span class="line">source_dir: source</span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"># Writing</span><br><span class="line">new_post_name: :title.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: false # Transform title into titlecase</span><br><span class="line">external_link: true # Open external links in new tab</span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: false</span><br><span class="line">post_asset_folder: false</span><br><span class="line">relative_link: false</span><br><span class="line">future: true</span><br><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  tab_replace:</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">tag_map:</span><br><span class="line"></span><br><span class="line"># Date / Time format</span><br><span class="line">## Hexo uses Moment.js to parse and display date</span><br><span class="line">## You can customize the date format as defined in</span><br><span class="line">## http://momentjs.com/docs/#/displaying/format/</span><br><span class="line">date_format: YYYY-MM-DD</span><br><span class="line">time_format: HH:mm:ss</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: http://hexo.io/plugins/</span><br><span class="line">## Themes: http://hexo.io/themes/</span><br><span class="line">theme: jacman</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: http://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://git.coding.net/yoferzhang/yoferzhang.git</span><br><span class="line">  branch: coding-pages</span><br><span class="line"></span><br><span class="line"># Others</span><br><span class="line">index_generator:</span><br><span class="line">  per_page: 10 ##首页默认10篇文章标题 如果值为0不分页</span><br><span class="line"></span><br><span class="line">archive_generator:</span><br><span class="line">    per_page: 0 ##归档页面默认10篇文章标题</span><br><span class="line">    yearly: true  ##生成年视图</span><br><span class="line">    monthly: true ##生成月视图</span><br><span class="line"></span><br><span class="line">tag_generator:</span><br><span class="line">    per_page: 0 ##标签分类页面默认10篇文章</span><br><span class="line"></span><br><span class="line">category_generator: </span><br><span class="line">    per_page: 0 ###分类页面默认10篇文章</span><br><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom ##feed类型 atom或者rss2</span><br><span class="line">    path: atom.xml ##feed路径</span><br><span class="line">    limit: 20  ##feed文章最小数量</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>上面repository里面我没有填github，而是coding的地址，是因为我换到coding部署了，毕竟github国内访问会稍慢。下一篇说一下转到coding配置的问题。</p>
-<p>Jacman配置文件(<code>E:\blog\themes\jacman\_config.yml</code>)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">##### Menu</span><br><span class="line">menu:</span><br><span class="line">  主页 | Home: /</span><br><span class="line">  索引 | Index: /index</span><br><span class="line">  归档 | Archives: /archives</span><br><span class="line">  关于 | About: /about</span><br><span class="line">## you can create `tags` and `categories` folders in `../source`.</span><br><span class="line">## And create a `index.md` file in each of them.</span><br><span class="line">## set `front-matter`as</span><br><span class="line">## layout: tags (or categories)</span><br><span class="line">## title: tags (or categories)</span><br><span class="line">## ---</span><br><span class="line"></span><br><span class="line">#### Widgets</span><br><span class="line">widgets: </span><br><span class="line">- github-card</span><br><span class="line">- category</span><br><span class="line">- links</span><br><span class="line">- douban</span><br><span class="line">- rss</span><br><span class="line">- weibo</span><br><span class="line">  ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### RSS </span><br><span class="line">rss: /atom.xml ## RSS address.</span><br><span class="line"></span><br><span class="line">#### Image</span><br><span class="line">imglogo:</span><br><span class="line">  enable: true             ## display image logo true/false.</span><br><span class="line">  src: img/logo.jpg        ## `.svg` and `.png` are recommended,please put image into the theme folder `/jacman/source/img`.</span><br><span class="line">favicon: img/faviconr.ico   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.     </span><br><span class="line">apple_icon: img/jacman.jpg ## size:114px*114px,please put image into the theme folder `/jacman/source/img`.</span><br><span class="line">author_img: img/author.jpg ## size:220px*220px.display author avatar picture.if don&apos;t want to display,please don&apos;t set this.</span><br><span class="line">banner_img:  #img/banner.jpg ## size:1920px*200px+. Banner Picture</span><br><span class="line">### Theme Color </span><br><span class="line">theme_color:</span><br><span class="line">    theme: &apos;#9933FF&apos;    ##the defaut theme color is blue</span><br><span class="line"></span><br><span class="line"># 代码高亮主题</span><br><span class="line"># available: default | night</span><br><span class="line">highlight_theme: night</span><br><span class="line"></span><br><span class="line">#### index post is expanding or not </span><br><span class="line">index:</span><br><span class="line">  expand: false           ## default is unexpanding,so you can only see the short description of each post.</span><br><span class="line">  excerpt_link: Read More  </span><br><span class="line"></span><br><span class="line">close_aside: false  #close sidebar in post page if true</span><br><span class="line">mathjax: false      #enable mathjax if true</span><br><span class="line"></span><br><span class="line">### Creative Commons License Support, see http://creativecommons.org/ </span><br><span class="line">### you can choose: by , by-nc , by-nc-nd , by-nc-sa , by-nd , by-sa , zero</span><br><span class="line">creative_commons: none</span><br><span class="line"></span><br><span class="line">#### Author information</span><br><span class="line">author:</span><br><span class="line">  intro_line1:  &quot;Hello ,I&apos;m Yofer Zhang in Tencent.&quot;    ## 网站底部的个人介绍</span><br><span class="line">  intro_line2:  &quot;This is my blog,thank you to here.&quot;  </span><br><span class="line">  weibo_verifier:  ## 微博秀的验证码</span><br><span class="line">  tsina:  ## 用于微博秀和微博分享</span><br><span class="line">  weibo:  ## 用于显示网站底部社交按钮，下同</span><br><span class="line">  douban:  ## 是从豆瓣个人主页拔下来的：https://www.douban.com/people/zyq522376829/        </span><br><span class="line">  zhihu:  ## 同上：https://www.zhihu.com/people/yoferzhang</span><br><span class="line">  email:    </span><br><span class="line">  twitter:  </span><br><span class="line">  github:    </span><br><span class="line">  facebook: </span><br><span class="line">  linkedin: </span><br><span class="line">  google_plus: </span><br><span class="line">  stackoverflow: </span><br><span class="line">## if you set them, the corresponding  share button will show on the footer</span><br><span class="line"></span><br><span class="line">#### Toc</span><br><span class="line">toc:</span><br><span class="line">  article: true   ## show contents in article.</span><br><span class="line">  aside: true     ## show contents in aside.</span><br><span class="line">## you can set both of the value to true of neither of them.</span><br><span class="line">## if you don&apos;t want display contents in a specified post,you can modify `front-matter` and add `toc: false`.</span><br><span class="line"></span><br><span class="line">#### Links链接</span><br><span class="line">links:</span><br><span class="line">  Hexo: https://hexo.io/</span><br><span class="line">  Github: https://github.com/yoferzhang</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Comment 评论</span><br><span class="line">duoshuo_shortname: yoferzhang</span><br><span class="line">disqus_shortname:     ## e.g. wuchong   your disqus short name.</span><br><span class="line"></span><br><span class="line">#### Share button 分享按钮</span><br><span class="line">jiathis:</span><br><span class="line">  enable: false ## if you use jiathis as your share tool,the built-in share tool won&apos;t be display.</span><br><span class="line">  id:    ## e.g. 1889330 your jiathis ID. </span><br><span class="line">  tsina: ## e.g. 2176287895 Your weibo id,It will be used in share button.</span><br><span class="line"></span><br><span class="line">#### Analytics 网站统计</span><br><span class="line">google_analytics:</span><br><span class="line">  enable: false</span><br><span class="line">  id:        ## e.g. UA-46321946-2 your google analytics ID.</span><br><span class="line">  site:      ## e.g. wuchong.me your google analytics site or set the value as auto.</span><br><span class="line">## You MUST upgrade to Universal Analytics first!</span><br><span class="line">## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN</span><br><span class="line">baidu_tongji:</span><br><span class="line">  enable: true</span><br><span class="line">  sitecode:  ## e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code</span><br><span class="line">cnzz_tongji:</span><br><span class="line">  enable: false</span><br><span class="line">  siteid:    ## e.g. 1253575964 your cnzz tongji site id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Miscellaneous</span><br><span class="line">ShowCustomFont: true  ## you can change custom font in `variable.styl` and `font.styl` which in the theme folder `/jacman/source/css`.</span><br><span class="line">fancybox: true        ## if you use gallery post or want use fancybox please set the value to true.</span><br><span class="line">totop: true           ## if you want to scroll to top in every post set the value to true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Custom Search</span><br><span class="line">google_cse: </span><br><span class="line">  enable: false</span><br><span class="line">  cx:   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.</span><br><span class="line">## https://www.google.com/cse/ </span><br><span class="line">## To enable the custom search You must create a &quot;search&quot; folder in &apos;/source&apos; and a &quot;index.md&quot; file</span><br><span class="line">## set the &apos;front-matter&apos; as</span><br><span class="line">## layout: search </span><br><span class="line">## title: search</span><br><span class="line">## ---</span><br><span class="line">baidu_search:     ## http://zn.baidu.com/</span><br><span class="line">  enable: false</span><br><span class="line">  id:  ## e.g. &quot;783281470518440642&quot;  for your baidu search id</span><br><span class="line">  site: http://zhannei.baidu.com/cse/search  ## your can change to your site instead of the default site</span><br><span class="line">  </span><br><span class="line">tinysou_search:     ## http://tinysou.com/</span><br><span class="line">  enable: false</span><br><span class="line">  id:  ## e.g. &quot;4ac092ad8d749fdc6293&quot; for your tiny search id</span><br><span class="line"></span><br><span class="line">swiftype:     ## https://swiftype.com/</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>里面涉及到我自己一些帐号的问题我就删掉了</p>
-</blockquote>
-
-          
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> 协议名称 &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"> <span class="comment">// 方法声明列表....</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813ProtocolSum/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2895,7 +1537,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2972,16 +1614,12 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/yoferzhang" target="_blank" title="Github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   Github
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
                   
                   WeChat
                 </a>
@@ -2990,8 +1628,6 @@
               <span class="links-of-author-item">
                 <a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   LinkedIn
                 </a>
               </span>
@@ -2999,16 +1635,12 @@
               <span class="links-of-author-item">
                 <a href="https://www.douban.com/people/zyq522376829" target="_blank" title="豆瓣">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   豆瓣
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://www.zhihu.com/people/yoferzhang" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
                   
                   知乎
                 </a>

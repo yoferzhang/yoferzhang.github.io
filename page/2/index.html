@@ -248,6 +248,1139 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160902ViewProgrammingGuide/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160902ViewProgrammingGuide/" itemprop="url">
+                  【iOS】View Programming Guide for iOS 视图编程指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-02T15:25:29+08:00">
+                2016-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160902ViewProgrammingGuide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160902ViewProgrammingGuide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h1 id="1-有关-Windows-and-Views"><a href="#1-有关-Windows-and-Views" class="headerlink" title="1 有关 Windows and Views"></a>1 有关 Windows and Views</h1><p>每个应用都至少有一个 window 和一个 view。</p>
+<h2 id="1-1-添加额外的-Window"><a href="#1-1-添加额外的-Window" class="headerlink" title="1.1 添加额外的 Window"></a>1.1 添加额外的 Window</h2><p>一般在有外界显示设备的时候才需要添加额外的 window</p>
+<p>下面的代码举了一个例子，这里假定对象实现了方法 externalWindow，externalWindow 存储一个 window 的引用</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)configureExternalDisplayAndShowWithContent:(<span class="built_in">UIViewController</span>*)rootVC</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// Configure the content only if a second screen is available.</span></span><br><span class="line">   <span class="keyword">if</span> ([[<span class="built_in">UIScreen</span> screens] count] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="built_in">UIScreen</span>* externalScreen = [[<span class="built_in">UIScreen</span> screens] objectAtIndex:<span class="number">1</span>];</span><br><span class="line">      <span class="built_in">CGRect</span> screenBounds = externalScreen.bounds;</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// Configure the window</span></span><br><span class="line">      <span class="keyword">self</span>.externalWindow = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:screenBounds];</span><br><span class="line">      <span class="keyword">self</span>.externalWindow.windowLevel = <span class="built_in">UIWindowLevelNormal</span>;</span><br><span class="line">      <span class="keyword">self</span>.externalWindow.screen = externalScreen;</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// Install the root view controller</span></span><br><span class="line">      <span class="keyword">self</span>.externalWindow.rootViewController = rootVC;</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// Show the window, but do not make it key.</span></span><br><span class="line">      <span class="keyword">self</span>.externalWindow.hidden = <span class="literal">NO</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// No external display available for configuration.</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160902ViewProgrammingGuide/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160831KVO/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160831KVO/" itemprop="url">
+                  【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-31T20:53:27+08:00">
+                2016-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160831KVO/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160831KVO/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+</blockquote>
+<h1 id="1-Introduction-to-Key-Value-Observing-Programming-Guide-KVO编程指南介绍"><a href="#1-Introduction-to-Key-Value-Observing-Programming-Guide-KVO编程指南介绍" class="headerlink" title="1 Introduction to Key-Value Observing Programming Guide - KVO编程指南介绍"></a>1 Introduction to Key-Value Observing Programming Guide - KVO编程指南介绍</h1><p>Key-value observing is a mechanism that allows objects to be notified of changes to specified properties of other objects.</p>
+<p>键 - 值观察是一种机制，当指定对象属性改变的时候允许另一个对象接受通知。</p>
+<blockquote>
+<p>Important: In order to understand key-value observing, you must first understand key-value coding.</p>
+<p>重要：了解键值观察之前，首先要理解键值编程 (<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i">key-value coding</a>)</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160831KVO/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160830ConcurrencyProgrammingGuide/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160830ConcurrencyProgrammingGuide/" itemprop="url">
+                  【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-30T17:41:03+08:00">
+                2016-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160830ConcurrencyProgrammingGuide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160830ConcurrencyProgrammingGuide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="1-多线程概念"><a href="#1-多线程概念" class="headerlink" title="1. 多线程概念"></a>1. 多线程概念</h2><p>进程</p>
+<ul>
+<li>正在进行中的程序被称为进程，负责程序运行的内存分配</li>
+<li>每一个进程都有自己独立的虚拟内存空间</li>
+</ul>
+<p>线程</p>
+<ul>
+<li>线程是进程中一个独立的执行路径(控制单元)</li>
+<li>一个进程中至少包含一条线程，即主线程</li>
+<li>可以将耗时的执行路径(如：网络请求)放在其他线程中执行</li>
+</ul>
+<p>创建线程的目的就是为了开启一条新的执行路径，运行指定的代码，与主线程中的代码实现同时运行</p>
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7bzfmbtm6j210d09eq7t.jpg" alt=""><br></center>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160830ConcurrencyProgrammingGuide/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160825property/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160825property/" itemprop="url">
+                  【iOS】property属性的weak,strong,copy,assign
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-25T16:55:48+08:00">
+                2016-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160825property/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160825property/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>@property属性的用法</p>
+<ul>
+<li>weak(assign) :  代理\UI控件</li>
+<li>strong(retain) : 其他对象(除代理\UI控件\字符串以外的对象)</li>
+<li>copy : 字符串</li>
+<li>assign : 非对象类型(基本数据类型int\float\BOOL\枚举\结构体)</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160824Contacts/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160824Contacts/" itemprop="url">
+                  【iOS】私人通讯录Demo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-24T16:14:59+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160824Contacts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160824Contacts/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Github地址：<a href="https://github.com/yoferzhang/PersonalContacts-">PersonalContacts</a></p>
+<h2 id="私人通讯录"><a href="#私人通讯录" class="headerlink" title="私人通讯录"></a>私人通讯录</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本 Demo 简单演示了一些小控件的应用。</p>
+<ul>
+<li>比如导航栏的设置；</li>
+<li>界面全部是代码写的，没有用stroyboard。</li>
+<li>UITextField，UILabel，UIButton等小控件的精确控制；</li>
+<li>页面之间的数据传输；</li>
+<li>数据的本地化存储；</li>
+<li>UITableView 的添加删除Cell</li>
+<li>在系统提供样式的Cell中代码添加自定义View</li>
+<li>利用第三方控件模拟网络请求等待，就是转菊花</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160824Contacts/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160823Cocoapods/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160823Cocoapods/" itemprop="url">
+                  Cocoapods 安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-23T11:44:17+08:00">
+                2016-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160823Cocoapods/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160823Cocoapods/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>先看 <a href="http://blog.csdn.net/wangyanchang21/article/details/51885383" target="_blank" rel="external">cocoapods:安装/更新Ruby环境教程</a> 将ruby更新到2.2.0以上，因为cocoapods要求</p>
+<p>然后再看 <a href="http://www.jianshu.com/p/24e0a451bca1" target="_blank" rel="external">iOS开发之Cocoapods</a> 安装cocoapods</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160821UIKitClasses/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yofer Zhang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YoferZhang 的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/post/20160821UIKitClasses/" itemprop="url">
+                  UIKit继承结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-21T21:43:58+08:00">
+                2016-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160821UIKitClasses/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160821UIKitClasses/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71p8jxat6j20o90w77fk.jpg" alt=""><br></center>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160821ControllerManager/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -410,2254 +1543,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160821ApplicationStart/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160821ApplicationStart/" itemprop="url">
-                  【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-21T16:48:31+08:00">
-                2016-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160821ApplicationStart/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160821ApplicationStart/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="项目中常见文件"><a href="#项目中常见文件" class="headerlink" title="项目中常见文件"></a>项目中常见文件</h2><h3 id="Info-plist常见的设置"><a href="#Info-plist常见的设置" class="headerlink" title="Info.plist常见的设置"></a>Info.plist常见的设置</h3><p>建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除</p>
-<p>项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”</p>
-<h3 id="Info-plist"><a href="#Info-plist" class="headerlink" title="Info.plist"></a>Info.plist</h3><p>常见属性(红色部分是用文本编辑器打开时看到的key)</p>
-<ul>
-<li>Localiztion native development region(CFBundleDevelopmentRegion)-本地化相关</li>
-<li>Bundle display name(CFBundleDisplayName)-程序安装后显示的名称,限制在10－12个字符，如果超出，将被显示缩写名称</li>
-<li>Icon file(CFBundleIconFile)-app图标名称,一般为Icon.png</li>
-<li>Bundle version(CFBundleVersion)-应用程序的版本号，每次往App Store上发布一个新版本时，需要增加这个版本号</li>
-<li>Main storyboard file base name(NSMainStoryboardFile)-主storyboard文件的名称</li>
-<li>Bundle identifier(CFBundleIdentifier)-项目的唯一标识，部署到真机时用到</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160821ApplicationStart/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160817XcodePlug/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160817XcodePlug/" itemprop="url">
-                  【iOS】Xcode插件管理工具Alcatraz,常用插件介绍
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-17T09:02:44+08:00">
-                2016-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160817XcodePlug/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160817XcodePlug/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="Alcatraz"><a href="#Alcatraz" class="headerlink" title="Alcatraz"></a>Alcatraz</h2><p>Alcatraz 工具可以在Xcode下安装管理插件，官网 - <a href="http://alcatraz.io/">Alcatraz</a></p>
-<p>命令行安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh</span><br></pre></td></tr></table></figure>
-<p>安装完成重启Xcode之后，就会在 Window 选项下看到 Package Manager：</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6wgxx0pswj20ms0e2gpd.jpg" alt=""><br></center>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160817XcodePlug/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160816NotificationSum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160816NotificationSum/" itemprop="url">
-                  【iOS】Notification通知,通知中心,发布通知,通知代理对比
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-16T16:45:54+08:00">
-                2016-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160816NotificationSum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160816NotificationSum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>对象之间标准的信息传递方式：一个对象调用另一个对象的方法。这要求发送消息的对象知道谁接收消息，消息的响应是什么。但是比如两个独立的子系统，没有耦合关系，就需要另一种形式，通知 Notification</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160816NotificationSum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160816ViewControllerProgrammingGuide/" itemprop="url">
-                  【iOS】视图控制器编程指南View Controller Programming Guide for iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-16T14:05:51+08:00">
-                2016-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160816ViewControllerProgrammingGuide/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160816ViewControllerProgrammingGuide/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<p><a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1">官方文档地址</a></p>
-<h1 id="OverView-简介"><a href="#OverView-简介" class="headerlink" title="OverView 简介"></a>OverView 简介</h1><h2 id="The-Role-of-View-Controllers-视图控制器的作用"><a href="#The-Role-of-View-Controllers-视图控制器的作用" class="headerlink" title="The Role of View Controllers - 视图控制器的作用"></a>The Role of View Controllers - 视图控制器的作用</h2><p>视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。</p>
-<p>因为他们在你的应用程序中扮演着重要的角色，视图控制器几乎在你所做的一切的中心。<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/cl/UIViewController">UIViewController</a> 类定义的方法和属性来管理您的视图，处理事件，从一个视图控制器转换到另一个，并协调您的应用程序的其他部分。创建一个<code>UIViewController</code> 的子类并添加你需要实现你的应用程序行为的自定义代码。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160816ViewControllerProgrammingGuide/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814UIBase/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160814UIBase/" itemprop="url">
-                  UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T16:52:37+08:00">
-                2016-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160814UIBase/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814UIBase/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>IBAction:<br>1&gt; 能保证方法可以连线<br>2&gt; 相当于void</p>
-<p>IBOutlet:<br>1&gt; 能保证属性可以连线</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160814UIBase/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSFoundationTran/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160814NSFoundationTran/" itemprop="url">
-                  集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T15:18:20+08:00">
-                2016-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160814NSFoundationTran/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814NSFoundationTran/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="NSArray-转换成-NSMutableArray"><a href="#NSArray-转换成-NSMutableArray" class="headerlink" title="NSArray 转换成 NSMutableArray"></a>NSArray 转换成 NSMutableArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"><span class="built_in">NSMutableArray</span> * muArray = [<span class="built_in">NSMutableArray</span> arrayWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muarray %@"</span>,muArray);</span><br></pre></td></tr></table></figure>
-<h2 id="NSDictonary-转换成-NSMutableDictionary"><a href="#NSDictonary-转换成-NSMutableDictionary" class="headerlink" title="NSDictonary 转换成 NSMutableDictionary"></a>NSDictonary 转换成 NSMutableDictionary</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</span><br><span class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [<span class="built_in">NSMutableDictionary</span> dictionaryWithDictionary:dic];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mudic %@ "</span>,muDic);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160814NSFoundationTran/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSSetSum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160814NSSetSum/" itemprop="url">
-                  NSSet 集合创建,获取,遍历,可变集合的删除 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T15:10:25+08:00">
-                2016-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160814NSSetSum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814NSSetSum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="NSSet-集合"><a href="#NSSet-集合" class="headerlink" title="NSSet 集合"></a>NSSet 集合</h2><ul>
-<li>NSArray 自然顺序</li>
-<li>NSSet是无序的</li>
-<li>注意:这个是最为重要的功能 NSSet 中不能够存储重复的数据,可以用它来去除重复的值</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160814NSSetSum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSDictionarySum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160814NSDictionarySum/" itemprop="url">
-                  NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T14:39:18+08:00">
-                2016-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160814NSDictionarySum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814NSDictionarySum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<p>字典是以键值对的形式来存储数据  key value</p>
-<h2 id="1-NSDictionary-字典"><a href="#1-NSDictionary-字典" class="headerlink" title="1 NSDictionary 字典"></a>1 NSDictionary 字典</h2><h2 id="1-1-创建字典-不可变的"><a href="#1-1-创建字典-不可变的" class="headerlink" title="1.1 创建字典,不可变的"></a>1.1 创建字典,不可变的</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> * dic = [<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:<span class="string">@"xiaozhe"</span>,<span class="string">@"name"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dic %@"</span>,dic);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">44</span>:<span class="number">17.460</span> <span class="number">07</span>-字典类[<span class="number">2325</span>:<span class="number">547877</span>] dic &#123;</span><br><span class="line">    name = xiaozhe;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160814NSDictionarySum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSArraySum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160814NSArraySum/" itemprop="url">
-                  NSArray/NSMutableArray创建,获取,遍历,排序 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T13:46:43+08:00">
-                2016-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160814NSArraySum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160814NSArraySum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="1-数组基本"><a href="#1-数组基本" class="headerlink" title="1 数组基本"></a>1 数组基本</h2><h3 id="1-1-创建数组"><a href="#1-1-创建数组" class="headerlink" title="1.1 创建数组"></a>1.1 创建数组</h3><p>NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作</p>
-<p>下面这种方式相当于什么都没做</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = [[<span class="built_in">NSArray</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,array);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160814NSArraySum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813NSStringSum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160813NSStringSum/" itemprop="url">
-                  NSString的获取,判断,转换,重组,文件读写 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T22:57:06+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160813NSStringSum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813NSStringSum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="1-NSString-类"><a href="#1-NSString-类" class="headerlink" title="1 NSString 类"></a>1 NSString 类</h2><ul>
-<li>Foundation框架,苹果公司提供给我们的工具箱</li>
-<li>许多的类,(属性,方法)</li>
-<li>闭源</li>
-<li>Foundation中的所有的类文件都是以NS开头,方便统一使用</li>
-<li>NSObject(基类),NSString</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160813NSStringSum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813FoundationSum/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160813FoundationSum/" itemprop="url">
-                  iOS 结构体
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T22:05:37+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160813FoundationSum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813FoundationSum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><h2 id="NSRange-location-length"><a href="#NSRange-location-length" class="headerlink" title="NSRange(location length)"></a>NSRange(location length)</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _<span class="built_in">NSRange</span> &#123;</span><br><span class="line">    <span class="built_in">NSUInteger</span> location;</span><br><span class="line">    <span class="built_in">NSUInteger</span> length;</span><br><span class="line">&#125; <span class="built_in">NSRange</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSRange</span> r1 = &#123;<span class="number">2</span>, <span class="number">4</span>&#125;; <span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r2 = &#123;.location = <span class="number">2</span>, .length = <span class="number">4</span>&#125;;<span class="comment">// 不用</span></span><br><span class="line"><span class="built_in">NSRange</span> r3 = <span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">4</span>); <span class="comment">// 掌握</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"i love oc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找某个字符串在str中的范围</span></span><br><span class="line"><span class="comment">// 如果找不到，length=0，location=NSNotFound==-1</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [str rangeOfString:<span class="string">@"java"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"loc = %ld, length=%ld"</span>, range.location, range.length);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160813FoundationSum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813PropertySynthesize/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160813PropertySynthesize/" itemprop="url">
-                  iOS - @property 和 @synthesize 总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T19:07:12+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160813PropertySynthesize/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813PropertySynthesize/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><ul>
-<li>用在 <code>@interface</code> 中</li>
-<li>用来自动生成 <code>setter</code> 和 <code>getter</code> 的声明</li>
-<li>用 <code>@property int age;</code> 就可以代替下面的两行</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">int</span>)age; <span class="comment">// getter</span></span><br><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age; <span class="comment">// setter</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160813PropertySynthesize/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813DescriptionMethod/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160813DescriptionMethod/" itemprop="url">
-                  description 方法 和 SEL - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T15:55:53+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160813DescriptionMethod/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813DescriptionMethod/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h1 id="description"><a href="#description" class="headerlink" title="description"></a>description</h1><h2 id="description-方法"><a href="#description-方法" class="headerlink" title="-description 方法"></a>-description 方法</h2><p>使用 <code>NSLog</code> 和 <code>%@</code> 输出某个对象时，会调用对象的 <code>-description</code> 方法，并拿到返回值进行输出</p>
-<h2 id="description-方法-1"><a href="#description-方法-1" class="headerlink" title="+description 方法"></a>+description 方法</h2><p>使用 <code>NSLog</code> 和 <code>%@</code> 输出某个对象时，会调用类对象 <code>+description</code> 方法，并拿到返回值进行输出</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class c = [Person class];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, c);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>会调用类的 +description 方法</li>
-<li>拿到 +description 方法的返回值（NSString *）显示到屏幕上</li>
-<li>+description 方法默认返回的是“类名”</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160813DescriptionMethod/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813NatureOfClass/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Yofer Zhang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1e3siexaeopj.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YoferZhang 的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YoferZhang 的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/20160813NatureOfClass/" itemprop="url">
-                  Class 类的本质 - iOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-13T10:52:57+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160813NatureOfClass/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="post/20160813NatureOfClass/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="1-类也是个对象"><a href="#1-类也是个对象" class="headerlink" title="1 类也是个对象"></a>1 类也是个对象</h2><ul>
-<li>其实类也是一个对象，是 Class 类型的对象，简称 “类对象”</li>
-<li>Class 类型的定义</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#if !OBJC_TYPES_DEFINED</span></span><br><span class="line"><span class="comment">/// An opaque type that represents an Objective-C class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_class *Class;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Represents an instance of a class.</span></span><br><span class="line"><span class="keyword">struct</span> objc_object &#123;</span><br><span class="line">    Class isa  OBJC_ISA_<span class="built_in">AVAILABILITY</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// A pointer to an instance of a class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_object *<span class="keyword">id</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160813NatureOfClass/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2734,16 +1624,12 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/yoferzhang" target="_blank" title="Github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   Github
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
                   
                   WeChat
                 </a>
@@ -2752,8 +1638,6 @@
               <span class="links-of-author-item">
                 <a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   LinkedIn
                 </a>
               </span>
@@ -2761,16 +1645,12 @@
               <span class="links-of-author-item">
                 <a href="https://www.douban.com/people/zyq522376829" target="_blank" title="豆瓣">
                   
-                    <i class="fa fa-fw fa-globe"></i>
-                  
                   豆瓣
                 </a>
               </span>
             
               <span class="links-of-author-item">
                 <a href="https://www.zhihu.com/people/yoferzhang" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
                   
                   知乎
                 </a>
