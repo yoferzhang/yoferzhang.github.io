@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20161130DataManager/</loc>
+    <lastmod>2017-02-09T08:02:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</title>
+        <pubTime>2016-11-30T13:02:30.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
+    <lastmod>2017-02-09T05:34:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】NTFS转HFS</title>
+        <pubTime>2016-04-16T10:50:12.000Z</pubTime>
+        
+        <tag>磁盘格式，HFS，NTFS</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
+    <lastmod>2017-02-09T05:34:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>【C语言】C语言内存四区 - 概念与代码示例</title>
+        <pubTime>2016-04-17T14:12:38.000Z</pubTime>
+        
+        <tag>C语言,内存四区</tag>
+         
+         
+           
+             
+              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
+    <lastmod>2017-02-09T05:33:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</title>
+        <pubTime>2016-04-20T06:41:27.000Z</pubTime>
+        
+        <tag>oc，笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160426Matchismo/</loc>
+    <lastmod>2017-02-09T05:33:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Stanford iOS7 Assignment - Matchismo</title>
+        <pubTime>2016-04-26T11:00:23.000Z</pubTime>
+        
+        <tag>纸牌</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160724AVFoundation/</loc>
+    <lastmod>2017-02-09T05:33:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译)完整版中英对照</title>
+        <pubTime>2016-07-24T02:57:30.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation01Introduction/</loc>
+    <lastmod>2017-02-09T05:32:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</title>
+        <pubTime>2016-08-03T07:05:49.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/</loc>
+    <lastmod>2017-02-09T05:31:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</title>
+        <pubTime>2016-08-03T07:06:08.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation03Playback/</loc>
+    <lastmod>2017-02-09T05:31:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</title>
+        <pubTime>2016-08-03T07:06:24.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation04Editing/</loc>
+    <lastmod>2017-02-09T05:30:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</title>
+        <pubTime>2016-08-03T07:06:35.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/</loc>
+    <lastmod>2017-02-09T05:30:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</title>
+        <pubTime>2016-08-03T07:07:26.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation06Export/</loc>
+    <lastmod>2017-02-09T05:30:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译6)Export - 输出</title>
+        <pubTime>2016-08-03T07:07:05.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160810AboutHTTPLiveStream/</loc>
+    <lastmod>2017-02-09T05:30:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>About HTTP Live Streaming官方文档翻译 [iOS]</title>
+        <pubTime>2016-08-10T07:55:15.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160811OCMemoryManagement/</loc>
+    <lastmod>2017-02-09T05:29:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</title>
+        <pubTime>2016-08-11T06:27:38.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160811OCMemoryManagementSum/</loc>
+    <lastmod>2017-02-09T05:29:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Objective-C内存管理[iOS]</title>
+        <pubTime>2016-08-11T11:14:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160812ARCSum/</loc>
+    <lastmod>2017-02-09T05:29:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Automatic Reference Counting (ARC) 总结</title>
+        <pubTime>2016-08-12T08:04:19.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160812BlockSum/</loc>
+    <lastmod>2017-02-09T05:29:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Block编程总结 - iOS</title>
+        <pubTime>2016-08-12T12:43:33.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813CategorySum/</loc>
+    <lastmod>2017-02-09T05:29:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>Category 分类、类别 总结 - iOS</title>
+        <pubTime>2016-08-13T02:23:41.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813DescriptionMethod/</loc>
+    <lastmod>2017-02-09T05:28:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>description 方法 和 SEL - iOS</title>
+        <pubTime>2016-08-13T07:55:53.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813FoundationSum/</loc>
+    <lastmod>2017-02-09T05:28:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS 结构体</title>
+        <pubTime>2016-08-13T14:05:37.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813NatureOfClass/</loc>
+    <lastmod>2017-02-09T05:28:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Class 类的本质 - iOS</title>
+        <pubTime>2016-08-13T02:52:57.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813NSStringSum/</loc>
+    <lastmod>2017-02-09T05:28:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>NSString的获取,判断,转换,重组,文件读写 - iOS</title>
+        <pubTime>2016-08-13T14:57:06.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813PropertySynthesize/</loc>
+    <lastmod>2017-02-09T05:28:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS - @property 和 @synthesize 总结</title>
+        <pubTime>2016-08-13T11:07:12.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160813ProtocolSum/</loc>
+    <lastmod>2017-02-09T05:28:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Protocol 协议总结 - iOS</title>
+        <pubTime>2016-08-13T01:48:15.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSArraySum/</loc>
+    <lastmod>2017-02-09T05:28:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</title>
+        <pubTime>2016-08-14T05:46:43.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSDictionarySum/</loc>
+    <lastmod>2017-02-09T05:28:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</title>
+        <pubTime>2016-08-14T06:39:18.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSFoundationTran/</loc>
+    <lastmod>2017-02-09T05:27:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</title>
+        <pubTime>2016-08-14T07:18:20.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSSetSum/</loc>
+    <lastmod>2017-02-09T05:27:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</title>
+        <pubTime>2016-08-14T07:10:25.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160814UIBase/</loc>
+    <lastmod>2017-02-09T05:27:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</title>
+        <pubTime>2016-08-14T08:52:37.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160816NotificationSum/</loc>
+    <lastmod>2017-02-09T05:27:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Notification通知,通知中心,发布通知,通知代理对比</title>
+        <pubTime>2016-08-16T08:45:54.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/</loc>
+    <lastmod>2017-02-09T05:27:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】视图控制器编程指南View Controller Programming Guide for iOS</title>
+        <pubTime>2016-08-16T06:05:51.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160817XcodePlug/</loc>
+    <lastmod>2017-02-09T05:26:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</title>
+        <pubTime>2016-08-17T01:02:44.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160821ApplicationStart/</loc>
+    <lastmod>2017-02-09T05:26:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</title>
+        <pubTime>2016-08-21T08:48:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160821ControllerManager/</loc>
+    <lastmod>2017-02-09T05:25:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</title>
+        <pubTime>2016-08-21T13:02:25.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160824Contacts/</loc>
+    <lastmod>2017-02-09T05:25:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】私人通讯录Demo</title>
+        <pubTime>2016-08-24T08:14:59.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160830ConcurrencyProgrammingGuide/</loc>
+    <lastmod>2017-02-09T05:24:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</title>
+        <pubTime>2016-08-30T09:41:03.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160831KVO/</loc>
+    <lastmod>2017-02-09T05:24:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</title>
+        <pubTime>2016-08-31T12:53:27.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160902ViewProgrammingGuide/</loc>
+    <lastmod>2017-02-09T05:24:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】View Programming Guide for iOS 视图编程指南</title>
+        <pubTime>2016-09-02T07:25:29.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160905CoreAnimationProgrammingGuide/</loc>
+    <lastmod>2017-02-09T05:23:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Core Animation Programming Guide 核心动画编程指南</title>
+        <pubTime>2016-09-05T02:18:23.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160909ErrorLibpngErrorUnhandledCritical/</loc>
+    <lastmod>2017-02-09T05:22:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</title>
+        <pubTime>2016-09-09T01:22:59.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160918ReplayKit/</loc>
+    <lastmod>2017-02-09T05:22:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】ReplayKit库，iOS原生直播神器</title>
+        <pubTime>2016-09-18T11:38:10.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160926Cocos2dxViewAnimation/</loc>
+    <lastmod>2017-02-09T05:21:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】Cocos2dx封装为view方便做3D动画效果</title>
+        <pubTime>2016-09-22T03:45:36.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20161024LLDBQuickStartGuide/</loc>
+    <lastmod>2017-02-09T05:21:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】LLDB调试指南</title>
+        <pubTime>2016-10-24T00:56:09.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20161109TableViewPG/</loc>
+    <lastmod>2017-02-09T05:20:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Table View Programming Guide for iOS</title>
+        <pubTime>2016-11-09T01:06:19.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20170116ViewControllerProgrammingGuide/</loc>
+    <lastmod>2017-02-09T04:49:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</title>
+        <pubTime>2017-01-16T01:50:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
+    <lastmod>2016-12-28T12:59:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</title>
+        <pubTime>2016-08-03T07:06:53.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/hexo-post/</loc>
+    <lastmod>2016-10-31T06:49:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>模板</title>
+        <pubTime>2016-03-22T12:21:48.000Z</pubTime>
+        
+        <tag>随笔，测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160825property/</loc>
+    <lastmod>2016-08-25T08:56:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】property属性的weak,strong,copy,assign</title>
+        <pubTime>2016-08-25T08:55:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160823Cocoapods/</loc>
+    <lastmod>2016-08-23T03:46:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cocoapods 安装</title>
+        <pubTime>2016-08-23T03:44:17.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160821UIKitClasses/</loc>
+    <lastmod>2016-08-21T13:44:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>UIKit继承结构</title>
+        <pubTime>2016-08-21T13:43:58.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
+    <lastmod>2016-07-22T13:18:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</title>
+        <pubTime>2016-04-08T09:57:18.000Z</pubTime>
+        
+        <tag>黑苹果，联想</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160325ReadIndex/</loc>
+    <lastmod>2016-04-20T09:03:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>【读书笔记】最近读书的目录</title>
+        <pubTime>2016-03-25T12:33:13.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
+    <lastmod>2016-04-20T00:50:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>【建立博客】使用Github和Hexo搭建属于自己的博客</title>
+        <pubTime>2016-03-23T08:40:10.000Z</pubTime>
+        
+        <tag>博客,hexo,jacman</tag>
+         
+         
+           
+             
+              <breadCrumb title="建立博客" url="http://yoferzhang.com/categories/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
+    <lastmod>2016-04-19T13:01:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>【C语言】结构体内存对齐模式</title>
+        <pubTime>2016-04-19T12:57:46.000Z</pubTime>
+        
+        <tag>C语言,结构体，内存，对齐</tag>
+         
+         
+           
+             
+              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
+    <lastmod>2016-04-17T14:19:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>【C语言】malloc,calloc,relloc异同示例</title>
+        <pubTime>2016-04-17T13:58:39.000Z</pubTime>
+        
+        <tag>C语言,malloc,calloc,relloc</tag>
+         
+         
+           
+             
+              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
+    <lastmod>2016-04-16T00:17:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】Markdown语法（看这张图就够了）</title>
+        <pubTime>2016-04-15T14:15:45.000Z</pubTime>
+        
+        <tag>markdown，语法</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160415WebsiteRecommend/</loc>
+    <lastmod>2016-04-15T14:25:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】网站推荐</title>
+        <pubTime>2016-04-15T13:58:51.000Z</pubTime>
+        
+        <tag>网站</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
+    <lastmod>2016-04-15T14:25:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>【随笔】2016年4月14日 Kobe Bryant完美谢幕</title>
+        <pubTime>2016-04-14T10:17:26.000Z</pubTime>
+        
+        <tag>科比，NBA</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160329NumberCodeTable/</loc>
+    <lastmod>2016-04-15T14:25:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>【快速记忆】数字编码表</title>
+        <pubTime>2016-03-29T00:18:51.000Z</pubTime>
+        
+        <tag>数字记忆</tag>
+         
+         
+           
+             
+              <breadCrumb title="快速记忆" url="http://yoferzhang.com/categories/%E5%BF%AB%E9%80%9F%E8%AE%B0%E5%BF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
+    <lastmod>2016-04-15T14:25:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>【快速记忆】快速记忆背景</title>
+        <pubTime>2016-03-28T06:04:47.000Z</pubTime>
+        
+        <tag>快速记忆，大脑，艾宾浩斯</tag>
+         
+         
+           
+             
+              <breadCrumb title="快速记忆" url="http://yoferzhang.com/categories/%E5%BF%AB%E9%80%9F%E8%AE%B0%E5%BF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
+    <lastmod>2016-04-15T14:25:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>【读书笔记】番茄工作法图解</title>
+        <pubTime>2016-03-25T12:27:53.000Z</pubTime>
+        
+        <tag>番茄,读书</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
+    <lastmod>2016-04-15T14:23:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>【读书笔记】把你的英语用起来</title>
+        <pubTime>2016-03-22T14:07:41.000Z</pubTime>
+        
+        <tag>笔记,英语,学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
+    <lastmod>2016-04-15T14:23:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</title>
+        <pubTime>2016-03-22T15:03:33.000Z</pubTime>
+        
+        <tag>随笔,腾讯,心得</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>
