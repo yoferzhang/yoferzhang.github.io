@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+项目中常见文件Info.plist常见的设置建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除
+项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”
+Info.plist常见属性(红色部分是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面">
+<meta property="og:url" content="http://yoferzhang.com/post/20160821ApplicationStart/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+项目中常见文件Info.plist常见的设置建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除
+项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”
+Info.plist常见属性(红色部分是">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71mriihs2j21a40mu11j.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71nh0t4mpj217m0meacp.jpg">
+<meta property="og:updated_time" content="2017-02-09T05:26:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+项目中常见文件Info.plist常见的设置建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除
+项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”
+Info.plist常见属性(红色部分是">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面 | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160821ApplicationStart" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160821ApplicationStart/" class="article-date">
+      <time datetime="2016-08-21T08:48:31.000Z" itemprop="datePublished">2016-08-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="项目中常见文件"><a href="#项目中常见文件" class="headerlink" title="项目中常见文件"></a>项目中常见文件</h2><h3 id="Info-plist常见的设置"><a href="#Info-plist常见的设置" class="headerlink" title="Info.plist常见的设置"></a>Info.plist常见的设置</h3><p>建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除</p>
+<p>项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”</p>
+<h3 id="Info-plist"><a href="#Info-plist" class="headerlink" title="Info.plist"></a>Info.plist</h3><p>常见属性(红色部分是用文本编辑器打开时看到的key)</p>
+<ul>
+<li>Localiztion native development region(CFBundleDevelopmentRegion)-本地化相关</li>
+<li>Bundle display name(CFBundleDisplayName)-程序安装后显示的名称,限制在10－12个字符，如果超出，将被显示缩写名称</li>
+<li>Icon file(CFBundleIconFile)-app图标名称,一般为Icon.png</li>
+<li>Bundle version(CFBundleVersion)-应用程序的版本号，每次往App Store上发布一个新版本时，需要增加这个版本号</li>
+<li>Main storyboard file base name(NSMainStoryboardFile)-主storyboard文件的名称</li>
+<li>Bundle identifier(CFBundleIdentifier)-项目的唯一标识，部署到真机时用到</li>
+</ul>
+<a id="more"></a>
+<p>Info.plist 格式内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleDevelopmentRegion<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>en<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleExecutable<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>$(EXECUTABLE_NAME)<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleDisplayName<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>PickerView Demo<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleIdentifier<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>$(PRODUCT_BUNDLE_IDENTIFIER)<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleInfoDictionaryVersion<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>6.0<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleName<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>$(PRODUCT_NAME)<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundlePackageType<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>APPL<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleShortVersionString<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>CFBundleVersion<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>1<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>LSRequiresIPhoneOS<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>UILaunchStoryboardName<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>LaunchScreen<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>UIRequiredDeviceCapabilities<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>armv7<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>UISupportedInterfaceOrientations<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>UIInterfaceOrientationPortrait<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>UIInterfaceOrientationLandscapeLeft<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>UIInterfaceOrientationLandscapeRight<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="pch文件"><a href="#pch文件" class="headerlink" title="pch文件"></a>pch文件</h3><ul>
+<li>项目的Supporting files文件夹下面有个“工程名-Prefix.pch”文件，也是一个头文件</li>
+<li>pch头文件的内容能被项目中的其他所有源文件共享和访问</li>
+<li>一般在pch文件中定义一些全局的宏</li>
+<li>在pch文件中添加下列预处理指令，然后在项目中使用Log(…)来输出日志信息，就可以在发布应用的时候，一次性将NSLog语句移除（在调试模式下，才有定义DEBUG）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#ifdef DEBUG</span></span><br><span class="line"><span class="meta">#define Log(...) NSLog(__VA_ARGS__)</span></span><br><span class="line"><span class="meta">#else</span></span><br><span class="line"><span class="meta">#define Log(...) /* */</span></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Availability.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#ifndef __IPHONE_5_0</span></span><br><span class="line"><span class="meta">#warning <span class="meta-string">"This project uses features only available in iOS SDK 5.0 and later."</span></span></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/************__OBJC__BEGIN************/</span></span><br><span class="line"><span class="comment">// 里面的所有内容只能用到.m文件中或者.mm</span></span><br><span class="line"><span class="meta">#ifdef __OBJC__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#ifdef DEBUG  // 调试阶段</span></span><br><span class="line"><span class="meta">#define MJLog(...) NSLog(__VA_ARGS__)</span></span><br><span class="line"><span class="meta">#else // 发布阶段</span></span><br><span class="line"><span class="meta">#define MJLog(...)</span></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#define ABC 10</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"><span class="comment">/************__OBJC__END************/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  外面的所有东西,整个项目共享</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#define Name 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> pch文件的作用:</span><br><span class="line"> 1.存放一些全局的宏(整个项目中都用得上的宏)</span><br><span class="line"> 2.用来包含一些全部的头文件(整个项目中都用得上的头文件)</span><br><span class="line"> 3.能自动打开或者关闭日志输出功能</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h2><h3 id="什么是UIApplication"><a href="#什么是UIApplication" class="headerlink" title="什么是UIApplication"></a>什么是UIApplication</h3><ul>
+<li>UIApplication对象是应用程序的象征</li>
+<li>每一个应用都有自己的UIApplication对象，而且是单例的</li>
+<li>通过[UIApplication sharedApplication]可以获得这个单例对象</li>
+<li>一个iOS程序启动后创建的第一个对象就是UIApplication对象</li>
+<li>利用UIApplication对象，能进行一些应用级别的操作</li>
+</ul>
+<h3 id="UIApplication的常用属性"><a href="#UIApplication的常用属性" class="headerlink" title="UIApplication的常用属性"></a>UIApplication的常用属性</h3><p>设置应用程序图标右上角的红色提醒数字</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> applicationIconBadgeNumber;</span><br></pre></td></tr></table></figure>
+<p>0代表清除图标右上角的数字</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];</span><br><span class="line">app.applicationIconBadgeNumber = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>设置联网指示器的可见性</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,getter=isNetworkActivityIndicatorVisible) <span class="built_in">BOOL</span> networkActivityIndicatorVisible;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];</span><br><span class="line">app.networkActivityIndicatorVisible = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="iOS7中的状态栏"><a href="#iOS7中的状态栏" class="headerlink" title="iOS7中的状态栏"></a>iOS7中的状态栏</h3><p>从iOS7开始，系统提供了2种管理状态栏的方式</p>
+<ul>
+<li>通过UIViewController管理（每一个UIViewController都可以拥有自己不同的状态栏）</li>
+<li>通过UIApplication管理（一个应用程序的状态栏都由它统一管理）</li>
+</ul>
+<p>在iOS7中，默认情况下，状态栏都是由UIViewController管理的，UIViewController实现下列方法就可以轻松管理状态栏的可见性和样式</p>
+<p>状态栏的样式</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIStatusBarStyle</span>)preferredStatusBarStyle;</span><br></pre></td></tr></table></figure>
+<p>状态栏的可见性</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)prefersStatusBarHidden;</span><br></pre></td></tr></table></figure>
+<h3 id="利用UIApplication来管理状态栏"><a href="#利用UIApplication来管理状态栏" class="headerlink" title="利用UIApplication来管理状态栏"></a>利用UIApplication来管理状态栏</h3><p>如果想利用UIApplication来管理状态栏，首先得修改Info.plist的设置</p>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg" alt=""><br></center>
+
+<h3 id="openURL"><a href="#openURL" class="headerlink" title="openURL:"></a>openURL:</h3><p>UIApplication有个功能十分强大的openURL:方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)openURL:(<span class="built_in">NSURL</span>*)url;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>URL : 一个资源的唯一路径</li>
+<li>URL的组成 == 协议头://主机域名/路径</li>
+<li>网络资源URL的组成 == <a href="http://www.baidu.com/1.png" target="_blank" rel="external">http://www.baidu.com/1.png</a></li>
+<li>本地文件资源URL的组成 == file:///Users/apple/Desktop/1.png</li>
+</ul>
+<p>打电话</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];</span><br><span class="line">[app openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"tel://10086"</span>]];</span><br></pre></td></tr></table></figure>
+<p>发短信</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[app openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"sms://10086"</span>]];</span><br></pre></td></tr></table></figure>
+<p>发邮件</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[app openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"mailto://12345@qq.com"</span>]];</span><br></pre></td></tr></table></figure>
+<p>打开一个网页资源</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[app openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://yoferzhang.com"</span>]];</span><br></pre></td></tr></table></figure>
+<p>打开其他app程序</p>
+<h2 id="UIApplicationDelegate"><a href="#UIApplicationDelegate" class="headerlink" title="UIApplicationDelegate"></a>UIApplicationDelegate</h2><h3 id="UIApplication-和-delegate"><a href="#UIApplication-和-delegate" class="headerlink" title="UIApplication 和 delegate"></a>UIApplication 和 delegate</h3><p>所有的移动操作系统都有个致命的缺点：app很容易受到打扰。比如一个来电或者锁屏会导致app进入后台甚至被终止</p>
+<p>还有很多其它类似的情况会导致app受到干扰，在app受到干扰时，会产生一些系统事件，这时UIApplication会通知它的delegate对象，让delegate代理来处理这些系统事件</p>
+<p>delegate可处理的事件包括：</p>
+<ul>
+<li>应用程序的生命周期事件(如程序启动和关闭)</li>
+<li>系统事件(如来电)</li>
+<li>内存警告</li>
+<li>… …</li>
+</ul>
+<h3 id="UIApplicationDelegate协议"><a href="#UIApplicationDelegate协议" class="headerlink" title="UIApplicationDelegate协议"></a>UIApplicationDelegate协议</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app接收到内存警告时调用</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidReceiveMemoryWarning:(<span class="built_in">UIApplication</span> *)application;</span><br><span class="line"><span class="comment">// app进入后台时调用（比如按了home键）</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application;</span><br><span class="line"><span class="comment">// app启动完毕时调用</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions;</span><br></pre></td></tr></table></figure>
+<p>每次新建完项目，都有个带有“AppDelegate”字眼的类，它就是UIApplication的代理</p>
+<p>AppDelegate默认已经遵守了UIApplicationDelegate协议，已经是UIApplication的代理</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> *  app进入后台的时候调用</span><br><span class="line"> *</span><br><span class="line"> *  一般在这里保存应用的数据(游戏数据,比如暂停游戏)</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span></span><br><span class="line">    <span class="comment">// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  清除不需要再使用的内存</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span></span><br><span class="line">    <span class="comment">// Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="程序启动过程"><a href="#程序启动过程" class="headerlink" title="程序启动过程"></a>程序启动过程</h2><h3 id="iOS程序的启动过程"><a href="#iOS程序的启动过程" class="headerlink" title="iOS程序的启动过程"></a>iOS程序的启动过程</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71mriihs2j21a40mu11j.jpg" alt=""><br></center>
+
+<h3 id="UIApplicationMain"><a href="#UIApplicationMain" class="headerlink" title="UIApplicationMain"></a>UIApplicationMain</h3><p>main函数中执行了一个UIApplicationMain这个函数</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">UIApplicationMain</span>(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[], <span class="built_in">NSString</span> * __nullable principalClassName, <span class="built_in">NSString</span> * __nullable delegateClassName);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>argc、argv：直接传递给UIApplicationMain进行相关处理即可</li>
+<li>principalClassName：指定应用程序类名（app的象征），该类必须是UIApplication(或子类)。如果为nil,则用UIApplication类作为默认值</li>
+<li>delegateClassName：指定应用程序的代理类，该类必须遵守UIApplicationDelegate协议</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>UIApplicationMain函数会根据principalClassName创建UIApplication对象，根据delegateClassName创建一个delegate对象，并将该delegate对象赋值给UIApplication对象中的delegate属性</p>
+<p>接着会建立应用程序的Main Runloop（事件循环），进行事件的处理(首先会在程序完毕后调用delegate对象的application:didFinishLaunchingWithOptions:方法)</p>
+<p>程序正常退出时UIApplicationMain函数才返回</p>
+<h2 id="UIWindow"><a href="#UIWindow" class="headerlink" title="UIWindow"></a>UIWindow</h2><h3 id="UIWindow-1"><a href="#UIWindow-1" class="headerlink" title="UIWindow"></a>UIWindow</h3><p>UIWindow是一种特殊的UIView，通常在一个app中只会有一个UIWindow</p>
+<p>iOS程序启动完毕后，创建的第一个视图控件就是UIWindow，接着创建控制器的view，最后将控制器的view添加到UIWindow上，于是控制器的view就显示在屏幕上了</p>
+<p>一个iOS程序之所以能显示到屏幕上，完全是因为它有UIWindow</p>
+<p>也就说，没有UIWindow，就看不见任何UI界面</p>
+<p>添加UIView到UIWindow中两种常见方式:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)addSubview:(<span class="built_in">UIView</span> *)view;</span><br><span class="line"><span class="comment">// 直接将view添加到UIWindow中，但并不会理会view对应的UIViewController</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIViewController</span> *rootViewController;</span><br><span class="line"><span class="comment">// 自动将rootViewController的view添加到UIWindow中，负责管理rootViewController的生命周期</span></span><br></pre></td></tr></table></figure>
+<p>常用方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)makeKeyWindow;</span><br><span class="line"><span class="comment">// 让当前UIWindow变成keyWindow（主窗口）</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)makeKeyAndVisible;</span><br><span class="line"><span class="comment">// 让当前UIWindow变成keyWindow，并显示出来</span></span><br></pre></td></tr></table></figure>
+<h3 id="UIWindow的获得"><a href="#UIWindow的获得" class="headerlink" title="UIWindow的获得"></a>UIWindow的获得</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].windows</span><br></pre></td></tr></table></figure>
+<p>在本应用中打开的UIWindow列表，这样就可以接触应用中的任何一个UIView对象<br>(平时输入文字弹出的键盘，就处在一个新的UIWindow中)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].keyWindow</span><br></pre></td></tr></table></figure>
+<p>用来接收键盘以及非触摸类的消息事件的UIWindow，而且程序中每个时刻只能有一个UIWindow是keyWindow。如果某个UIWindow内部的文本框不能输入文字，可能是因为这个UIWindow不是keyWindow</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.window</span><br></pre></td></tr></table></figure>
+<p>获得某个UIView所在的UIWindow</p>
+<h3 id="四大对象关系图"><a href="#四大对象关系图" class="headerlink" title="四大对象关系图"></a>四大对象关系图</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71nh0t4mpj217m0meacp.jpg" alt=""><br></center>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>程序启动的完整过程</p>
+<p>1.main函数</p>
+<p>2.UIApplicationMain</p>
+<ul>
+<li>创建UIApplication对象</li>
+<li>创建UIApplication的delegate对象</li>
+</ul>
+<p>3.delegate对象开始处理(监听)系统事件(没有storyboard)</p>
+<ul>
+<li>程序启动完毕的时候, 就会调用代理的application:didFinishLaunchingWithOptions:方法</li>
+<li>在application:didFinishLaunchingWithOptions:中创建UIWindow</li>
+<li>创建和设置UIWindow的rootViewController</li>
+<li>显示窗口</li>
+</ul>
+<p>3.根据Info.plist获得最主要storyboard的文件名,加载最主要的storyboard(有storyboard)</p>
+<ul>
+<li>创建UIWindow</li>
+<li>创建和设置UIWindow的rootViewController</li>
+<li>显示窗口</li>
+</ul>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160821ApplicationStart/">iOS程序启动过程,原理,UIApplication,代码启动界面</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52269631" target="_blank" rel="external">iOS程序启动过程,原理,UIApplication,代码启动界面</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-21, 16:48:31</p>
+        <p><span>最后更新:</span>2017-02-09, 13:26:10</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160821ApplicationStart/" title="【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面">http://yoferzhang.com/post/20160821ApplicationStart/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160821ApplicationStart/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160821ControllerManager/">
+                    【iOS】iOS控制器管理,代码,xib,Storyboard,Segue
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160817XcodePlug/">
+                    【iOS】Xcode插件管理工具Alcatraz,常用插件介绍
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目中常见文件"><span class="toc-number">1.</span> <span class="toc-text">项目中常见文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Info-plist常见的设置"><span class="toc-number">1.1.</span> <span class="toc-text">Info.plist常见的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Info-plist"><span class="toc-number">1.2.</span> <span class="toc-text">Info.plist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pch文件"><span class="toc-number">1.3.</span> <span class="toc-text">pch文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIApplication"><span class="toc-number">2.</span> <span class="toc-text">UIApplication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是UIApplication"><span class="toc-number">2.1.</span> <span class="toc-text">什么是UIApplication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIApplication的常用属性"><span class="toc-number">2.2.</span> <span class="toc-text">UIApplication的常用属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS7中的状态栏"><span class="toc-number">2.3.</span> <span class="toc-text">iOS7中的状态栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用UIApplication来管理状态栏"><span class="toc-number">2.4.</span> <span class="toc-text">利用UIApplication来管理状态栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#openURL"><span class="toc-number">2.5.</span> <span class="toc-text">openURL:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIApplicationDelegate"><span class="toc-number">3.</span> <span class="toc-text">UIApplicationDelegate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIApplication-和-delegate"><span class="toc-number">3.1.</span> <span class="toc-text">UIApplication 和 delegate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIApplicationDelegate协议"><span class="toc-number">3.2.</span> <span class="toc-text">UIApplicationDelegate协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程序启动过程"><span class="toc-number">4.</span> <span class="toc-text">程序启动过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS程序的启动过程"><span class="toc-number">4.1.</span> <span class="toc-text">iOS程序的启动过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIApplicationMain"><span class="toc-number">4.2.</span> <span class="toc-text">UIApplicationMain</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWindow"><span class="toc-number">5.</span> <span class="toc-text">UIWindow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWindow-1"><span class="toc-number">5.1.</span> <span class="toc-text">UIWindow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWindow的获得"><span class="toc-number">5.2.</span> <span class="toc-text">UIWindow的获得</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四大对象关系图"><span class="toc-number">5.3.</span> <span class="toc-text">四大对象关系图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160821ApplicationStart/" data-title="【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面" data-url="http://yoferzhang.com/post/20160821ApplicationStart/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160821ControllerManager/" title="上一篇: 【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160817XcodePlug/" title="下一篇: 【iOS】Xcode插件管理工具Alcatraz,常用插件介绍">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

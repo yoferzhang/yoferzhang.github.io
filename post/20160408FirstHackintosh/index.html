@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+背景
+本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；
+虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；
+这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；
+具体配置可以去看Y430P的说明，我是i7高分的；
+接着来一张装好的图
+
+
+
+要求说明　　本人是做iOS开发的，之前用ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用">
+<meta property="og:url" content="http://yoferzhang.com/post/20160408FirstHackintosh/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+背景
+本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；
+虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；
+这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；
+具体配置可以去看Y430P的说明，我是i7高分的；
+接着来一张装好的图
+
+
+
+要求说明　　本人是做iOS开发的，之前用ma">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f2plaaq1u6j20ga09udgw.jpg">
+<meta property="og:updated_time" content="2016-07-22T13:18:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用">
+<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+背景
+本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；
+虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；
+这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；
+具体配置可以去看Y430P的说明，我是i7高分的；
+接着来一张装好的图
+
+
+
+要求说明　　本人是做iOS开发的，之前用ma">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f2plaaq1u6j20ga09udgw.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用 | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160408FirstHackintosh" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160408FirstHackintosh/" class="article-date">
+      <time datetime="2016-04-08T09:57:18.000Z" itemprop="datePublished">2016-04-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/渔/">渔</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；</li>
+<li>虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；</li>
+<li>这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；</li>
+<li>具体配置可以去看Y430P的说明，我是i7高分的；</li>
+<li>接着来一张装好的图</li>
+</ul>
+<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f2plaaq1u6j20ga09udgw.jpg" alt=""><br></center>
+
+<h2 id="要求说明"><a href="#要求说明" class="headerlink" title="要求说明"></a>要求说明</h2><p>　　本人是做iOS开发的，之前用mac mini，但越发觉得配置更不上；然后用联想本的虚拟机，可是无法跑出所有的硬件的功效，实属无奈；接下来的两天时不时的爬帖，权衡利弊之下，最终决定入坑。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><blockquote>
+<p>首先一定要搜一下你的电脑机型是否有成功案例，这一点很重要，除非想DIY驱动，不然你就得借鉴别人的经验。</p>
+</blockquote>
+<p>　　刚开始的时候远景没有邀请码，很多东西下不到。就在<a href="http://osx86.cn/" target="_blank" rel="external">黑苹果乐园</a>先看了许多的基础知识，这里重点一定要分清你是要四叶草安装原版还是变色龙安装懒人版，不同的安装方式，你下载的镜像就不同，一定要注意区别。我的机型选择的是四叶草加原版镜像。</p>
+<p>　　黑苹果乐园有一些通用的安装教程，先熟悉一下整体的过程，这时候尽量别动手。然后跑去远景开始找你自己的机型。远景黑苹果专区有集合贴 - <a href="http://bbs.pcbeta.com/forum-554-1.html" target="_blank" rel="external">http://bbs.pcbeta.com/forum-554-1.html</a>。去找到自己的机型，然后看成功之人的经验帖，这时候就可以动手了。</p>
+<p>　　Y430P的帖子为 - <a href="http://bbs.pcbeta.com/viewthread-1653139-1-1.html" target="_blank" rel="external">[教程] 【Y430P】10.11.1安装、驱动、dsdt修改简单教程</a>。没有账号进去是看不到图片的，但是不影响，因为里面哪一步不懂，可以在黑苹果乐园找到同一步骤的教程，看那里的图。这个帖子下面楼主给了一个群号，是为了方便讨论Y430P黑苹果的安装问题，加进去之后可以寻求帮助，借个账号，登录远景看有图的教程。所以类似的方法大家可以尝试，找到几个大神，在出问题的时候还能帮助一下自己。</p>
+<p>　　安装过程中第一个大问题就是我的固态分区格式是MBR，加上考虑了一下安全稳定的因素，果断备份了点必要信息，直接重新分区为GPT了，我是250G的固态，win8.1给了80G的空间，剩下都给OSX。接下来先安装了OSX，整体下来都没有大问题，教程很详细，不过最后安装完成的EFI文件有问题，在QQ群里面找到了最新的。</p>
+<blockquote>
+<p>对于分区格式的问题，我是在都装完之后才被推荐用“傲梅分区助手”无损转换硬盘格式，当然我这里没有尝试，大家懒得再做一遍win的可以试一下。</p>
+</blockquote>
+<p>　　最后就是安装windows系统。当然完成之后现在的OSX还要依赖于U盘才能引导启动。不过也有这方便的很多帖子，推荐一个简单的 - <a href="http://tieba.baidu.com/p/4313982363?pn=0&amp;" target="_blank" rel="external">[技术向]y430p成功上黑苹果10.10.5</a>。这个帖子的最后说明了怎么完成本地硬盘引导。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>　　现在OSX用的很流畅，博客用OSX部署了一遍，代码本来就在OSX上写，office365直接登录在OSX上，思维导图用的xmind，也是双平台都有。。。现在MATLAB据悉OSX更新太慢，就还是切换到win下用吧，不过幸好现在MATLAB也不是常用软件了。</p>
+<blockquote>
+<p>有一点小插曲，不管是虚拟机还是黑苹果，登录账号的时候最好不要用iPhone上的账号，因为很有可能被苹果查出，然后锁定手机，这样你的手机(或者iPad)就黑了==。解决办法就是自己重新找个邮箱申请一个。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-04-08, 17:57:18</p>
+        <p><span>最后更新:</span>2016-07-22, 21:18:23</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160408FirstHackintosh/" title="【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用">http://yoferzhang.com/post/20160408FirstHackintosh/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160408FirstHackintosh/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160414KobeLeave/">
+                    【随笔】2016年4月14日 Kobe Bryant完美谢幕
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160329NumberCodeTable/">
+                    【快速记忆】数字编码表
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#要求说明"><span class="toc-number">2.</span> <span class="toc-text">要求说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程"><span class="toc-number">3.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在最后"><span class="toc-number">4.</span> <span class="toc-text">写在最后</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160408FirstHackintosh/" data-title="【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用" data-url="http://yoferzhang.com/post/20160408FirstHackintosh/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160414KobeLeave/" title="上一篇: 【随笔】2016年4月14日 Kobe Bryant完美谢幕">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160329NumberCodeTable/" title="下一篇: 【快速记忆】数字编码表">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

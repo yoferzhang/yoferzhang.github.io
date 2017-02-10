@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+通知对象之间标准的信息传递方式：一个对象调用另一个对象的方法。这要求发送消息的对象知道谁接收消息，消息的响应是什么。但是比如两个独立的子系统，没有耦合关系，就需要另一种形式，通知 Notification">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】Notification通知,通知中心,发布通知,通知代理对比">
+<meta property="og:url" content="http://yoferzhang.com/post/20160816NotificationSum/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+通知对象之间标准的信息传递方式：一个对象调用另一个对象的方法。这要求发送消息的对象知道谁接收消息，消息的响应是什么。但是比如两个独立的子系统，没有耦合关系，就需要另一种形式，通知 Notification">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vonrn750j21d60jwdq3.jpg">
+<meta property="og:updated_time" content="2017-02-09T05:27:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】Notification通知,通知中心,发布通知,通知代理对比">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+通知对象之间标准的信息传递方式：一个对象调用另一个对象的方法。这要求发送消息的对象知道谁接收消息，消息的响应是什么。但是比如两个独立的子系统，没有耦合关系，就需要另一种形式，通知 Notification">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vonrn750j21d60jwdq3.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【iOS】Notification通知,通知中心,发布通知,通知代理对比 | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160816NotificationSum" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160816NotificationSum/" class="article-date">
+      <time datetime="2016-08-16T08:45:54.000Z" itemprop="datePublished">2016-08-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【iOS】Notification通知,通知中心,发布通知,通知代理对比
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>对象之间标准的信息传递方式：一个对象调用另一个对象的方法。这要求发送消息的对象知道谁接收消息，消息的响应是什么。但是比如两个独立的子系统，没有耦合关系，就需要另一种形式，通知 Notification</p>
+<a id="more"></a>
+<h2 id="通知中心-NSNotificationCenter"><a href="#通知中心-NSNotificationCenter" class="headerlink" title="通知中心(NSNotificationCenter)"></a>通知中心(NSNotificationCenter)</h2><p><code>Cocoa</code> 有两种类型的通知中心</p>
+<ul>
+<li><code>NSNotificationCenter</code>类在单进程中管理通知</li>
+<li><code>NSDistributedNotificationCenter</code> 类管理一个计算机上的多个进程之间的通知</li>
+</ul>
+<p>每一个应用程序都有一个通知中心(NSNotificationCenter)实例，专门负责协助不同对象之间的消息通信</p>
+<p>任何一个对象都可以向通知中心发布通知(NSNotification)，描述自己在做什么。其他感兴趣的对象(Observer)可以申请在某个特定通知发布时(或在某个特定的对象发布通知时)收到这个通知</p>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vonrn750j21d60jwdq3.jpg" alt=""><br></center>
+
+<h2 id="通知-NSNotification"><a href="#通知-NSNotification" class="headerlink" title="通知(NSNotification)"></a>通知(NSNotification)</h2><p>一个完整的通知一般包含3个属性：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)name; <span class="comment">// 通知的名称</span></span><br><span class="line">- (<span class="keyword">id</span>)object; <span class="comment">// 通知发布者(是谁要发布通知)</span></span><br><span class="line">- (<span class="built_in">NSDictionary</span> *)userInfo; <span class="comment">// 一些额外的信息(通知发布者传递给通知接收者的信息内容)</span></span><br></pre></td></tr></table></figure>
+<p>初始化一个通知（NSNotification）对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ (instancetype)notificationWithName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject;</span><br><span class="line">+ (instancetype)notificationWithName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject userInfo:(<span class="built_in">NSDictionary</span> *)aUserInfo;</span><br><span class="line">- (instancetype)initWithName:(<span class="built_in">NSString</span> *)name object:(<span class="keyword">id</span>)object userInfo:(<span class="built_in">NSDictionary</span> *)userInfo;</span><br></pre></td></tr></table></figure>
+<h2 id="发布通知"><a href="#发布通知" class="headerlink" title="发布通知"></a>发布通知</h2><p>通知中心(NSNotificationCenter)提供了相应的方法来帮助发布通知</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)postNotification:(<span class="built_in">NSNotification</span> *)notification;</span><br></pre></td></tr></table></figure>
+<p>发布一个notification通知，可在notification对象中设置通知的名称、通知发布者、额外信息等</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)postNotificationName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject;</span><br></pre></td></tr></table></figure>
+<p>发布一个名称为aName的通知，anObject为这个通知的发布者</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)postNotificationName:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject userInfo:(<span class="built_in">NSDictionary</span> *)aUserInfo;</span><br></pre></td></tr></table></figure>
+<p>发布一个名称为aName的通知，anObject为这个通知的发布者，aUserInfo为额外信息</p>
+<h2 id="注册通知监听器"><a href="#注册通知监听器" class="headerlink" title="注册通知监听器"></a>注册通知监听器</h2><p>通知中心(NSNotificationCenter)提供了方法来注册一个监听通知的监听器(Observer)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)addObserver:(<span class="keyword">id</span>)observer selector:(SEL)aSelector name:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>observer：监听器，即谁要接收这个通知</li>
+<li>aSelector：收到通知后，回调监听器的这个方法，并且把通知对象当做参数传入</li>
+<li>aName：通知的名称。如果为nil，那么无论通知的名称是什么，监听器都能收到这个通知</li>
+<li>anObject：通知发布者。如果为anObject和aName都为nil，监听器都收到所有的通知</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)addObserverForName:(<span class="built_in">NSString</span> *)name object:(<span class="keyword">id</span>)obj queue:(<span class="built_in">NSOperationQueue</span> *)queue usingBlock:(<span class="keyword">void</span> (^)(<span class="built_in">NSNotification</span> *note))block;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>name：通知的名称</li>
+<li>obj：通知发布者</li>
+<li>block：收到对应的通知时，会回调这个block</li>
+<li>queue：决定了block在哪个操作队列中执行，如果传nil，默认在当前操作队列中同步执行</li>
+</ul>
+<h2 id="取消注册通知监听器"><a href="#取消注册通知监听器" class="headerlink" title="取消注册通知监听器"></a>取消注册通知监听器</h2><p>通知中心不会保留(retain)监听器对象，在通知中心注册过的对象，必须在该对象释放前取消注册。否则，当相应的通知再次出现时，通知中心仍然会向该监听器发送消息。因为相应的监听器对象已经被释放了，所以可能会导致应用崩溃</p>
+<p>通知中心提供了相应的方法来取消注册监听器</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)removeObserver:(<span class="keyword">id</span>)observer;</span><br><span class="line">- (<span class="keyword">void</span>)removeObserver:(<span class="keyword">id</span>)observer name:(<span class="built_in">NSString</span> *)aName object:(<span class="keyword">id</span>)anObject;</span><br></pre></td></tr></table></figure>
+<p>一般在监听器销毁之前取消注册（如在监听器中加入下列代码）：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">	<span class="comment">//[super dealloc];  非ARC中需要调用此句</span></span><br><span class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="UIDevice通知"><a href="#UIDevice通知" class="headerlink" title="UIDevice通知"></a>UIDevice通知</h2><p>UIDevice类提供了一个单例对象，它代表着设备，通过它可以获得一些设备相关的信息，比如电池电量值(batteryLevel)、电池状态(batteryState)、设备的类型(model，比如iPod、iPhone等)、设备的系统(systemVersion)</p>
+<p>通过[UIDevice currentDevice]可以获取这个单例对象</p>
+<p>UIDevice对象会不间断地发布一些通知，下列是UIDevice对象所发布通知的名称常量：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIDeviceOrientationDidChangeNotification</span> <span class="comment">// 设备旋转</span></span><br><span class="line"><span class="built_in">UIDeviceBatteryStateDidChangeNotification</span> <span class="comment">// 电池状态改变</span></span><br><span class="line"><span class="built_in">UIDeviceBatteryLevelDidChangeNotification</span> <span class="comment">// 电池电量改变</span></span><br><span class="line"><span class="built_in">UIDeviceProximityStateDidChangeNotification</span> <span class="comment">// 近距离传感器(比如设备贴近了使用者的脸部)</span></span><br></pre></td></tr></table></figure>
+<h2 id="键盘通知"><a href="#键盘通知" class="headerlink" title="键盘通知"></a>键盘通知</h2><p>我们经常需要在键盘弹出或者隐藏的时候做一些特定的操作,因此需要监听键盘的状态</p>
+<p>键盘状态改变的时候,系统会发出一些特定的通知</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIKeyboardWillShowNotification</span> <span class="comment">// 键盘即将显示</span></span><br><span class="line"><span class="built_in">UIKeyboardDidShowNotification</span> <span class="comment">// 键盘显示完毕</span></span><br><span class="line"><span class="built_in">UIKeyboardWillHideNotification</span> <span class="comment">// 键盘即将隐藏</span></span><br><span class="line"><span class="built_in">UIKeyboardDidHideNotification</span> <span class="comment">// 键盘隐藏完毕</span></span><br><span class="line"><span class="built_in">UIKeyboardWillChangeFrameNotification</span> <span class="comment">// 键盘的位置尺寸即将发生改变</span></span><br><span class="line"><span class="built_in">UIKeyboardDidChangeFrameNotification</span> <span class="comment">// 键盘的位置尺寸改变完毕</span></span><br></pre></td></tr></table></figure>
+<p>系统发出键盘通知时,会附带一下跟键盘有关的额外信息(字典),字典常见的key如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIKeyboardFrameBeginUserInfoKey</span> <span class="comment">// 键盘刚开始的frame</span></span><br><span class="line"><span class="built_in">UIKeyboardFrameEndUserInfoKey</span> <span class="comment">// 键盘最终的frame(动画执行完毕后)</span></span><br><span class="line"><span class="built_in">UIKeyboardAnimationDurationUserInfoKey</span> <span class="comment">// 键盘动画的时间</span></span><br><span class="line"><span class="built_in">UIKeyboardAnimationCurveUserInfoKey</span> <span class="comment">// 键盘动画的执行节奏(快慢)</span></span><br></pre></td></tr></table></figure>
+<h2 id="通知和代理的选择"><a href="#通知和代理的选择" class="headerlink" title="通知和代理的选择"></a>通知和代理的选择</h2><p>共同点</p>
+<ul>
+<li>利用通知和代理都能完成对象之间的通信<br>(比如A对象告诉D对象发生了什么事情, A对象传递数据给D对象)</li>
+</ul>
+<p>不同点</p>
+<ul>
+<li>代理 : 一对一关系(1个对象只能告诉另1个对象发生了什么事情)</li>
+<li>通知 : 多对多关系(1个对象能告诉N个对象发生了什么事情, 1个对象能得知N个对象发生了什么事情)</li>
+</ul>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160816NotificationSum/">Notification通知,通知中心,发布通知,通知代理对比</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52225328" target="_blank" rel="external">Notification通知,通知中心,发布通知,通知代理对比</a></p>
+</blockquote>
+<p>参考文档链接：<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043-SW1" target="_blank" rel="external">Notification Programming Topics</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-16, 16:45:54</p>
+        <p><span>最后更新:</span>2017-02-09, 13:27:24</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160816NotificationSum/" title="【iOS】Notification通知,通知中心,发布通知,通知代理对比">http://yoferzhang.com/post/20160816NotificationSum/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160816NotificationSum/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160817XcodePlug/">
+                    【iOS】Xcode插件管理工具Alcatraz,常用插件介绍
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160816ViewControllerProgrammingGuide/">
+                    【iOS】视图控制器编程指南View Controller Programming Guide for iOS
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#通知"><span class="toc-number">1.</span> <span class="toc-text">通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知中心-NSNotificationCenter"><span class="toc-number">2.</span> <span class="toc-text">通知中心(NSNotificationCenter)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知-NSNotification"><span class="toc-number">3.</span> <span class="toc-text">通知(NSNotification)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布通知"><span class="toc-number">4.</span> <span class="toc-text">发布通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册通知监听器"><span class="toc-number">5.</span> <span class="toc-text">注册通知监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#取消注册通知监听器"><span class="toc-number">6.</span> <span class="toc-text">取消注册通知监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIDevice通知"><span class="toc-number">7.</span> <span class="toc-text">UIDevice通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘通知"><span class="toc-number">8.</span> <span class="toc-text">键盘通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知和代理的选择"><span class="toc-number">9.</span> <span class="toc-text">通知和代理的选择</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【iOS】Notification通知,通知中心,发布通知,通知代理对比　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160816NotificationSum/" data-title="【iOS】Notification通知,通知中心,发布通知,通知代理对比" data-url="http://yoferzhang.com/post/20160816NotificationSum/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160817XcodePlug/" title="上一篇: 【iOS】Xcode插件管理工具Alcatraz,常用插件介绍">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160816ViewControllerProgrammingGuide/" title="下一篇: 【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

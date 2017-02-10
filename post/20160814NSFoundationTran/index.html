@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+NSArray 转换成 NSMutableArray123NSArray * array = @[@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];NSLog(@&quot;muarray %@&quot;,muArray);
+NSDict">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
+<meta property="og:url" content="http://yoferzhang.com/post/20160814NSFoundationTran/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+NSArray 转换成 NSMutableArray123NSArray * array = @[@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];NSLog(@&quot;muarray %@&quot;,muArray);
+NSDict">
+<meta property="og:updated_time" content="2017-02-09T05:27:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+NSArray 转换成 NSMutableArray123NSArray * array = @[@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];NSLog(@&quot;muarray %@&quot;,muArray);
+NSDict">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160814NSFoundationTran" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160814NSFoundationTran/" class="article-date">
+      <time datetime="2016-08-14T07:18:20.000Z" itemprop="datePublished">2016-08-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="NSArray-转换成-NSMutableArray"><a href="#NSArray-转换成-NSMutableArray" class="headerlink" title="NSArray 转换成 NSMutableArray"></a>NSArray 转换成 NSMutableArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"><span class="built_in">NSMutableArray</span> * muArray = [<span class="built_in">NSMutableArray</span> arrayWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muarray %@"</span>,muArray);</span><br></pre></td></tr></table></figure>
+<h2 id="NSDictonary-转换成-NSMutableDictionary"><a href="#NSDictonary-转换成-NSMutableDictionary" class="headerlink" title="NSDictonary 转换成 NSMutableDictionary"></a>NSDictonary 转换成 NSMutableDictionary</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</span><br><span class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [<span class="built_in">NSMutableDictionary</span> dictionaryWithDictionary:dic];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mudic %@ "</span>,muDic);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="NSset-转换成-NSMutableSet"><a href="#NSset-转换成-NSMutableSet" class="headerlink" title="NSset 转换成 NSMutableSet"></a>NSset 转换成 NSMutableSet</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSSet</span> * set = [[<span class="built_in">NSSet</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSMutableSet</span> *muSet = [<span class="built_in">NSMutableSet</span> setWithSet:set];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br></pre></td></tr></table></figure>
+<h2 id="NSArray-转换成NSSet"><a href="#NSArray-转换成NSSet" class="headerlink" title="NSArray 转换成NSSet"></a>NSArray 转换成NSSet</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableSet</span> * muSet2 = [<span class="built_in">NSMutableSet</span> setWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet2 %@"</span>,muSet2);</span><br></pre></td></tr></table></figure>
+<h2 id="NSDictionary-转化成-NSArray"><a href="#NSDictionary-转化成-NSArray" class="headerlink" title="NSDictionary 转化成 NSArray"></a>NSDictionary 转化成 NSArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * allkeys = [dic allKeys];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"allkeys %@"</span>,allkeys);</span><br><span class="line"><span class="built_in">NSArray</span> * allValues = [dic allValues];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"allValues %@"</span>,allValues);</span><br></pre></td></tr></table></figure>
+<h2 id="NSString-转换成-NSArray"><a href="#NSString-转换成-NSArray" class="headerlink" title="NSString 转换成 NSArray"></a>NSString 转换成 NSArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str = <span class="string">@"www.yoferzhang.com"</span>;</span><br><span class="line"><span class="built_in">NSArray</span> * strArray = [str componentsSeparatedByString:<span class="string">@"."</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"strArray %@"</span>,strArray);</span><br></pre></td></tr></table></figure>
+<h2 id="谈一谈字典数组集合的手动内存管理"><a href="#谈一谈字典数组集合的手动内存管理" class="headerlink" title="谈一谈字典数组集合的手动内存管理"></a>谈一谈字典数组集合的手动内存管理</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// retainCount 1</span></span><br><span class="line">        Person * p  = [[Person alloc] init];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//1</span></span><br><span class="line">        <span class="built_in">NSMutableArray</span> * array = [[<span class="built_in">NSMutableArray</span> alloc] initWithCapacity:<span class="number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当你把对象存入到,数组中的时候,数组会对这个对象进行一次 retain操作</span></span><br><span class="line">        [array addObject:p];<span class="comment">// [p retain] retaiCount 2</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当你把一个对象移除数组中的时候,会对该对象进行一次 release操作 retainCount 1</span></span><br><span class="line"><span class="comment">//        [array removeObject:p];</span></span><br><span class="line">        <span class="comment">//会对数组中所有的对象,进行一次,relsease操作</span></span><br><span class="line"><span class="comment">//        [array removeAllObjects];</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当集合对象被销毁的时候,会对其内部所有的对象进行一次 release操作</span></span><br><span class="line">        <span class="comment">//0</span></span><br><span class="line">        [array release];</span><br><span class="line">        <span class="comment">//retainCount - 0</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//0</span></span><br><span class="line">        [p release];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"ddddd"</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="谈一谈字典数组集合的ARC机制内存管理"><a href="#谈一谈字典数组集合的ARC机制内存管理" class="headerlink" title="谈一谈字典数组集合的ARC机制内存管理"></a>谈一谈字典数组集合的ARC机制内存管理</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ARC机制,是否需要担心内存溢出呢</span></span><br><span class="line"><span class="comment">//谁告诉你不用的心得啊:道理就是下面的示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        </span><br><span class="line">        Person * p = [[Person alloc] init];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSMutableArray</span> * array = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当一个对象被存入集合中的时候,默认会保存它的强指针</span></span><br><span class="line">        [array addObject:p];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当个把一个对象从集合中,删除的时候,会释放掉这个对象的强指针</span></span><br><span class="line"><span class="comment">//        [array removeObject:p];</span></span><br><span class="line">        </span><br><span class="line"><span class="comment">//        [array removeAllObjects];</span></span><br><span class="line">        </span><br><span class="line">        array = <span class="literal">nil</span>;</span><br><span class="line">        </span><br><span class="line">        p = <span class="literal">nil</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"adfasdf"</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用-NSData-处理数据"><a href="#使用-NSData-处理数据" class="headerlink" title="使用 NSData 处理数据"></a>使用 NSData 处理数据</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//音频文件,文本文件,视频文件就必须使用NSData数据类</span></span><br><span class="line">        <span class="comment">/*</span><br><span class="line">        NSString * str = @"www.yoferzhang.com";</span><br><span class="line">        NSError * error;</span><br><span class="line">        [str writeToFile:@"/Users/yoferzhang/Desktop/text.txt" atomically:YES encoding:NSUTF8StringEncoding error:&amp;error];</span><br><span class="line">        */</span></span><br><span class="line">        <span class="comment">/*</span><br><span class="line">        NSString * path = @"/Users/yoferzhagn/Desktop/text.txt";</span><br><span class="line">        //把目标文件加载到内存中.</span><br><span class="line">        //NSData 是不可变长度的Data类型,只能够通过一次加载完成所有的数据</span><br><span class="line">        NSData * data = [NSData dataWithContentsOfFile:path];</span><br><span class="line">        </span><br><span class="line">        NSLog(@"data length %ld",data.length);</span><br><span class="line">        NSString * pathTo = @"/Users/yoferzhang/Desktop/nextext.txt";</span><br><span class="line">        //把加载到内存中的文件,写入到指定的位置</span><br><span class="line">        BOOL isWriteSuccess = [data writeToFile:pathTo atomically:YES];</span><br><span class="line">        </span><br><span class="line">        if (isWriteSuccess)</span><br><span class="line">        &#123;</span><br><span class="line">            NSLog(@"写入成功");</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            NSLog(@"写入失败");</span><br><span class="line">        &#125;</span><br><span class="line">          */</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//当需要把多个NSData数据拼接成一个数据存储的时候,就要想到使用NSMutableData这个类型</span></span><br><span class="line">        <span class="built_in">NSString</span> * str1 = <span class="string">@"好好学习"</span>;</span><br><span class="line">        <span class="built_in">NSString</span> * str2 = <span class="string">@"天天向上"</span>;</span><br><span class="line">        <span class="built_in">NSString</span> * str3 = <span class="string">@"今天休息"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSMutableData</span> * muData = [[<span class="built_in">NSMutableData</span> alloc] init];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSData</span> * d1 = [str1 dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        <span class="built_in">NSData</span> * d2 = [str2 dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        <span class="built_in">NSData</span> * d3 = [str3 dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//appendData 能够把nsdata对象加入到 muData对象中</span></span><br><span class="line">        [muData appendData:d1];</span><br><span class="line">        [muData appendData:d2];</span><br><span class="line">        [muData appendData:d3];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSString</span> * path = <span class="string">@"/Users/yoferzhang/Desktop/测试文件.txt"</span>;</span><br><span class="line">        <span class="comment">//NSMutableData是继承至NSData的所以可以调用writeToFile 把数据写入到一个指定的目录下</span></span><br><span class="line">        <span class="built_in">BOOL</span> isWriteSuccess = [muData writeToFile:path atomically:<span class="literal">YES</span>];</span><br><span class="line">        <span class="keyword">if</span> (isWriteSuccess)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"创建成功"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"创建失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NSDate-日期操作"><a href="#NSDate-日期操作" class="headerlink" title="NSDate 日期操作"></a>NSDate 日期操作</h2><p>获得日期对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDate</span> * date = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"date %@"</span>,date);</span><br></pre></td></tr></table></figure>
+<p>比较日期</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSTimeInterval</span> secondes = <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDate</span> * now = [<span class="built_in">NSDate</span> date];</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟昨天 24 * 60 * 60</span></span><br><span class="line"><span class="built_in">NSDate</span> * yesDay = [now addTimeInterval:-secondes];</span><br><span class="line"></span><br><span class="line"><span class="comment">//比较两个日期是否相同</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> isEqual = [now isEqualToDate:yesDay];</span><br><span class="line"><span class="keyword">if</span> (isEqual)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"相同"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"不相同"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得两个日期中比较早的一个</span></span><br><span class="line"><span class="built_in">NSDate</span> * earler = [yesDay earlierDate:now];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,earler);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDate</span> * later = [yesDay laterDate:now];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"later %@"</span>,later);</span><br></pre></td></tr></table></figure>
+<p>格式化日期</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*格式化日期操作</span><br><span class="line">NSDate * date = [NSDate date];</span><br><span class="line"></span><br><span class="line">//表示格式化日期对象</span><br><span class="line">NSDateFormatter * f = [[NSDateFormatter alloc] init];</span><br><span class="line"></span><br><span class="line">[f setDateFormat:@"yyyy-MM-dd hh:mm:ss"];//2014/03/21</span><br><span class="line"></span><br><span class="line">//把格式与我们的日期关联起来</span><br><span class="line">NSString * str = [f stringFromDate:date];</span><br><span class="line">NSLog(@"str %@",str);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//把字符串转换成日期</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">NSString * str = @"2014/03/20";</span><br><span class="line"></span><br><span class="line">NSDateFormatter * f = [[NSDateFormatter alloc] init];</span><br><span class="line">[f setDateFormat:@"yyyy/MM/dd"];</span><br><span class="line">NSDate * date = [f dateFromString:str];</span><br><span class="line">NSLog(@"date %@",date);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//处理时区问题</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDate</span> * newDate = [<span class="built_in">NSDate</span> date];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDateFormatter</span> * f = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">[f setDateFormat:<span class="string">@"yyyy-MM-dd HH:mm:ss"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * str = [f stringFromDate:newDate];</span><br><span class="line"><span class="comment">//设置时差计算方法 //GTM</span></span><br><span class="line">[f setTimeZone:[<span class="built_in">NSTimeZone</span> timeZoneWithAbbreviation:<span class="string">@"UTC"</span>]];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,str);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate</a><br>CSDN文章地址：<a href="">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-14, 15:18:20</p>
+        <p><span>最后更新:</span>2017-02-09, 13:27:56</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160814NSFoundationTran/" title="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">http://yoferzhang.com/post/20160814NSFoundationTran/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160814NSFoundationTran/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160814UIBase/">
+                    UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160814NSSetSum/">
+                    NSSet 集合创建,获取,遍历,可变集合的删除 - iOS
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NSArray-转换成-NSMutableArray"><span class="toc-number">1.</span> <span class="toc-text">NSArray 转换成 NSMutableArray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSDictonary-转换成-NSMutableDictionary"><span class="toc-number">2.</span> <span class="toc-text">NSDictonary 转换成 NSMutableDictionary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSset-转换成-NSMutableSet"><span class="toc-number">3.</span> <span class="toc-text">NSset 转换成 NSMutableSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSArray-转换成NSSet"><span class="toc-number">4.</span> <span class="toc-text">NSArray 转换成NSSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSDictionary-转化成-NSArray"><span class="toc-number">5.</span> <span class="toc-text">NSDictionary 转化成 NSArray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-转换成-NSArray"><span class="toc-number">6.</span> <span class="toc-text">NSString 转换成 NSArray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈一谈字典数组集合的手动内存管理"><span class="toc-number">7.</span> <span class="toc-text">谈一谈字典数组集合的手动内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈一谈字典数组集合的ARC机制内存管理"><span class="toc-number">8.</span> <span class="toc-text">谈一谈字典数组集合的ARC机制内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-NSData-处理数据"><span class="toc-number">9.</span> <span class="toc-text">使用 NSData 处理数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSDate-日期操作"><span class="toc-number">10.</span> <span class="toc-text">NSDate 日期操作</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160814NSFoundationTran/" data-title="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS" data-url="http://yoferzhang.com/post/20160814NSFoundationTran/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160814UIBase/" title="上一篇: UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160814NSSetSum/" title="下一篇: NSSet 集合创建,获取,遍历,可变集合的删除 - iOS">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

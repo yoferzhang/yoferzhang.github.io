@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【建立博客】使用Github和Hexo搭建属于自己的博客">
+<meta property="og:url" content="http://yoferzhang.com/post/20160323buildBlog01/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg">
+<meta property="og:updated_time" content="2016-04-20T00:50:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【建立博客】使用Github和Hexo搭建属于自己的博客">
+<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+
+前言 | Preface
+建立博客也花了些心思，记录下这点滴
+
+　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【建立博客】使用Github和Hexo搭建属于自己的博客 | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160323buildBlog01" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160323buildBlog01/" class="article-date">
+      <time datetime="2016-03-23T08:40:10.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【建立博客】使用Github和Hexo搭建属于自己的博客
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/建立博客/">建立博客</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="前言-Preface"><a href="#前言-Preface" class="headerlink" title="前言 | Preface"></a>前言 | Preface</h2><blockquote>
+<p>建立博客也花了些心思，记录下这点滴</p>
+</blockquote>
+<p>　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是<a href="http://hexo.io/docs/" target="_blank" rel="external">Hexo</a>加上<a href="https://github.com/" target="_blank" rel="external">Github</a>。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第一次建立博客的同学，尤其一些不是很懂前端的。</p>
+<blockquote>
+<p>我其实刚开始搭建就是对前端了解太少，后来遇到很多小白的问题</p>
+</blockquote>
+<h2 id="安装Hexo，Node-js和Github"><a href="#安装Hexo，Node-js和Github" class="headerlink" title="安装Hexo，Node.js和Github"></a>安装Hexo，Node.js和Github</h2><blockquote>
+<p>关于什么是Hexo，推荐看：<a href="http://zipperary.com/2013/05/28/hexo-guide-1/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-1/</a></p>
+</blockquote>
+<p>　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以<a href="https://www.google.com/" target="_blank" rel="external">Google</a>。我的系统是win8.1。</p>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>　　Node.js下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a>。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”</p>
+<p>　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：</p>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""><br></center>
+
+<blockquote>
+<p>现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。</p>
+</blockquote>
+<h3 id="安装Github"><a href="#安装Github" class="headerlink" title="安装Github"></a>安装Github</h3><p>　　小白推荐使用Github for windows，下载地址<a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a>。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>　　前一步安装Github for windows之后，桌面上会有一个GIt Shell，双击打开。<br>在里面输入npm命令安装Hexo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这一步可能会比较慢，如果时间太长，推荐全局科学上网。</p>
+</blockquote>
+<p>　　到这需要安装的东西就完成了，下面开始进行配置。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="创建Hexo文件夹"><a href="#创建Hexo文件夹" class="headerlink" title="创建Hexo文件夹"></a>创建Hexo文件夹</h3><p>　　自行建立一个空文件夹，比如我的是：<code>E:\blog</code>。进入Git Shell切换到该路径下(<code>cd e:\blog</code>)，然后执行以下指令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>等待Hexo初始化完成，文件夹中会自动新建所需要的文件夹。<br>然后执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>　　现在文件已经部署到自己的电脑上了，可以在本地进行查看。</p>
+<h3 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h3><p>　　1. 生成完整的网页静态文件，命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此时目录中会生成一个文件夹，比如在我的目录(<code>E:\blog</code>)下生成了一个<code>public</code>文件夹，这里面放的就是我们后面要传到GIthub上面的文件。</p>
+</blockquote>
+<p>　　2. 本地生成服务器，命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>效果如下图：</p>
+</blockquote>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""><br></center>
+
+<p>　　然后在浏览器地址栏中输入：<code>localhost:4000</code>，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。</p>
+<h3 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h3><blockquote>
+<p>首先注册帐号</p>
+</blockquote>
+<p>　　Github帐号注册地址：<a href="https://github.com/" target="_blank" rel="external">https://github.com/</a>。</p>
+<blockquote>
+<p>接下来创建仓库(repository)。</p>
+</blockquote>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""><br></center>
+
+<p>　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：</p>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""><br></center>
+
+<blockquote>
+<p>注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加<code>.github.io</code>，比如我的就是<code>yoferzhang.github.io</code>，名字千万别错。</p>
+</blockquote>
+<p>　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择<code>Clone</code>，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(<code>E:\</code>)。这时候E盘下就会生成一个文件夹，我的是<code>E:\yoferzhang.github.io</code>。</p>
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""><br></center>
+
+<blockquote>
+<p>把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。</p>
+</blockquote>
+<p>　　我的是<code>E:\blog\public</code>文件夹下的所有文件，拷贝到<code>E:\yoferzhang.github.io</code>。此时Github客户端就会识别出文件的改变，输入Summary，提交，然后点右上角的<code>Sync</code>，第一次<code>Sync</code>可能是<code>Publish</code>。这时候就可以在浏览器中输入<code>yoferzhang.github.io</code>(注意把用户名换成你的)，查看自己的主页。</p>
+<blockquote>
+<p>官方说明：<a href="https://pages.github.com/" target="_blank" rel="external">https://pages.github.com/</a></p>
+<p>至此你已经可以通过<code>yoferzhang.github.io</code>来访问你的网站了，但我们还想用独特的域名。</p>
+</blockquote>
+<h2 id="域名和DNS"><a href="#域名和DNS" class="headerlink" title="域名和DNS"></a>域名和DNS</h2><h3 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h3><blockquote>
+<p>域名我是在GoDaddy上买的，整个购买过程很简单，后面的配置问题再详细说明；我买的是.com域名，毕竟这个识别度高些吧。</p>
+</blockquote>
+<p><a href="http://www.godaddy.com/" target="_blank" rel="external">http://www.godaddy.com/</a></p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><blockquote>
+<p>我用DNSPOD，用QQ就可以登录管理，这个不需要买，但这个需要配置，后面讲到。</p>
+</blockquote>
+<p><a href="https://www.dnspod.cn/" target="_blank" rel="external">https://www.dnspod.cn/</a></p>
+<h3 id="配置域名和DNS"><a href="#配置域名和DNS" class="headerlink" title="配置域名和DNS"></a>配置域名和DNS</h3><p>　　首先去DNOPOD上面添加自己在GoDaddy上购买的域名。</p>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg" alt=""><br></center>
+
+<p>　　然后去GoDaddy官网，登录进入，找到自己的产品，管理域名，设置域名服务器为DNSPod的2个DNS短地址，参考官方说明：<br><a href="https://support.dnspod.cn/Kb/showarticle/tsid/42/" target="_blank" rel="external">https://support.dnspod.cn/Kb/showarticle/tsid/42/</a></p>
+<blockquote>
+<p>PS:官方说明中的图片是比较老的版本，GoDaddy新界面也很好找到相应的设置。</p>
+</blockquote>
+<p>　　下面需要在项目中添加一个名为<code>CNAME</code>的文件，可以直接在本地用sublime text新建，比如我在<code>E:\yoferzhang.github.io</code>文件夹下建立了一个<code>CNAME</code>的文件，里面输入你自己的域名(我输入的内容是<code>yoferzhang.com</code>)。至此，你的博客已经可以通过独有域名(<a href="http://yoferzhang.com)进行访问了。">http://yoferzhang.com)进行访问了。</a></p>
+<h2 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h2><p>　　在你的Hexo文件夹下(我的是<code>E:\blog</code>)用Git Shell输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;hexo post&quot; #`hexo post`是文件名，自己修改</span><br></pre></td></tr></table></figure>
+<p>　　就会在<code>E:\blog\source\_posts</code>中生成一个<code>hexo-post.md</code>文件，这个文件就是你的博文md文件，推荐用<code>sublime text</code>编辑，自行寻找sublime添加markdown语法高亮的方法。当然，其他markdown编辑器也非常多，自行取舍。重要的是动手写。</p>
+<blockquote>
+<p>发布内容到<code>pulbic</code>文件夹，最后同理手动复制内容到Github本地仓库目录(<code>E:\yoferzhang.github.io</code>)，同步到Github。查看效果。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>　　大家刚部署好的博客可能和我现在长的不一样，那是因为我使用了Jacman模板，Jacman模板的下载和配置大家可以直接参考原博主：</p>
+<ul>
+<li><a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a></li>
+<li><a href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/" target="_blank" rel="external">http://wuchong.me/blog/2014/11/20/how-to-use-jacman/</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
+<p>对于其中很多概念不理解的地方可以参考下面的博客。</p>
+</blockquote>
+<ul>
+<li>使用GitHub和Hexo搭建免费静态Blog - <a href="http://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="external">http://wsgzao.github.io/post/hexo-guide/</a></li>
+<li>如何搭建一个独立博客——简明 Github Pages与 jekyll 教程 - <a href="http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/</a></li>
+<li>Zippera hexo系列教程 - <a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">http://zipperary.com/categories/hexo/</a><blockquote>
+<p>Zippera的系列里面有Hexo原模板的详细优化配置。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><blockquote>
+<p>写于2016年4月20日</p>
+</blockquote>
+<p>　　前端时间把博客部署到了coding，结果最近两天可以上传成功，但是网页不更新了，伤，又换回到了github。</p>
+<h2 id="写于最后"><a href="#写于最后" class="headerlink" title="写于最后"></a>写于最后</h2><p>　　可能有同学会在Jacman模板的配置那里遇到比较多的问题，我就直接把我的配置贴在这里了，不懂的可以参考一下。</p>
+<blockquote>
+<p>Hexo配置文件(<code>E:\blog\_config.yml</code>)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"># Hexo Configuration</span><br><span class="line">## Docs: http://hexo.io/docs/configuration.html</span><br><span class="line">## Source: https://github.com/hexojs/hexo/</span><br><span class="line"></span><br><span class="line"># Site</span><br><span class="line">title: Yofer Zhang</span><br><span class="line">subtitle: 数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</span><br><span class="line">description: 接下来自己能够坚持写博客，记录是一个好习惯</span><br><span class="line">author: Yofer</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://yoferzhang.com</span><br><span class="line">root: /</span><br><span class="line">permalink: post/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"># Directory</span><br><span class="line">source_dir: source</span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"># Writing</span><br><span class="line">new_post_name: :title.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: false # Transform title into titlecase</span><br><span class="line">external_link: true # Open external links in new tab</span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: false</span><br><span class="line">post_asset_folder: false</span><br><span class="line">relative_link: false</span><br><span class="line">future: true</span><br><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  tab_replace:</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">tag_map:</span><br><span class="line"></span><br><span class="line"># Date / Time format</span><br><span class="line">## Hexo uses Moment.js to parse and display date</span><br><span class="line">## You can customize the date format as defined in</span><br><span class="line">## http://momentjs.com/docs/#/displaying/format/</span><br><span class="line">date_format: YYYY-MM-DD</span><br><span class="line">time_format: HH:mm:ss</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: http://hexo.io/plugins/</span><br><span class="line">## Themes: http://hexo.io/themes/</span><br><span class="line">theme: jacman</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: http://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://git.coding.net/yoferzhang/yoferzhang.git</span><br><span class="line">  branch: coding-pages</span><br><span class="line"></span><br><span class="line"># Others</span><br><span class="line">index_generator:</span><br><span class="line">  per_page: 10 ##首页默认10篇文章标题 如果值为0不分页</span><br><span class="line"></span><br><span class="line">archive_generator:</span><br><span class="line">    per_page: 0 ##归档页面默认10篇文章标题</span><br><span class="line">    yearly: true  ##生成年视图</span><br><span class="line">    monthly: true ##生成月视图</span><br><span class="line"></span><br><span class="line">tag_generator:</span><br><span class="line">    per_page: 0 ##标签分类页面默认10篇文章</span><br><span class="line"></span><br><span class="line">category_generator: </span><br><span class="line">    per_page: 0 ###分类页面默认10篇文章</span><br><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom ##feed类型 atom或者rss2</span><br><span class="line">    path: atom.xml ##feed路径</span><br><span class="line">    limit: 20  ##feed文章最小数量</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面repository里面我没有填github，而是coding的地址，是因为我换到coding部署了，毕竟github国内访问会稍慢。下一篇说一下转到coding配置的问题。</p>
+<p>Jacman配置文件(<code>E:\blog\themes\jacman\_config.yml</code>)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">##### Menu</span><br><span class="line">menu:</span><br><span class="line">  主页 | Home: /</span><br><span class="line">  索引 | Index: /index</span><br><span class="line">  归档 | Archives: /archives</span><br><span class="line">  关于 | About: /about</span><br><span class="line">## you can create `tags` and `categories` folders in `../source`.</span><br><span class="line">## And create a `index.md` file in each of them.</span><br><span class="line">## set `front-matter`as</span><br><span class="line">## layout: tags (or categories)</span><br><span class="line">## title: tags (or categories)</span><br><span class="line">## ---</span><br><span class="line"></span><br><span class="line">#### Widgets</span><br><span class="line">widgets: </span><br><span class="line">- github-card</span><br><span class="line">- category</span><br><span class="line">- links</span><br><span class="line">- douban</span><br><span class="line">- rss</span><br><span class="line">- weibo</span><br><span class="line">  ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### RSS </span><br><span class="line">rss: /atom.xml ## RSS address.</span><br><span class="line"></span><br><span class="line">#### Image</span><br><span class="line">imglogo:</span><br><span class="line">  enable: true             ## display image logo true/false.</span><br><span class="line">  src: img/logo.jpg        ## `.svg` and `.png` are recommended,please put image into the theme folder `/jacman/source/img`.</span><br><span class="line">favicon: img/faviconr.ico   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.     </span><br><span class="line">apple_icon: img/jacman.jpg ## size:114px*114px,please put image into the theme folder `/jacman/source/img`.</span><br><span class="line">author_img: img/author.jpg ## size:220px*220px.display author avatar picture.if don&apos;t want to display,please don&apos;t set this.</span><br><span class="line">banner_img:  #img/banner.jpg ## size:1920px*200px+. Banner Picture</span><br><span class="line">### Theme Color </span><br><span class="line">theme_color:</span><br><span class="line">    theme: &apos;#9933FF&apos;    ##the defaut theme color is blue</span><br><span class="line"></span><br><span class="line"># 代码高亮主题</span><br><span class="line"># available: default | night</span><br><span class="line">highlight_theme: night</span><br><span class="line"></span><br><span class="line">#### index post is expanding or not </span><br><span class="line">index:</span><br><span class="line">  expand: false           ## default is unexpanding,so you can only see the short description of each post.</span><br><span class="line">  excerpt_link: Read More  </span><br><span class="line"></span><br><span class="line">close_aside: false  #close sidebar in post page if true</span><br><span class="line">mathjax: false      #enable mathjax if true</span><br><span class="line"></span><br><span class="line">### Creative Commons License Support, see http://creativecommons.org/ </span><br><span class="line">### you can choose: by , by-nc , by-nc-nd , by-nc-sa , by-nd , by-sa , zero</span><br><span class="line">creative_commons: none</span><br><span class="line"></span><br><span class="line">#### Author information</span><br><span class="line">author:</span><br><span class="line">  intro_line1:  &quot;Hello ,I&apos;m Yofer Zhang in Tencent.&quot;    ## 网站底部的个人介绍</span><br><span class="line">  intro_line2:  &quot;This is my blog,thank you to here.&quot;  </span><br><span class="line">  weibo_verifier:  ## 微博秀的验证码</span><br><span class="line">  tsina:  ## 用于微博秀和微博分享</span><br><span class="line">  weibo:  ## 用于显示网站底部社交按钮，下同</span><br><span class="line">  douban:  ## 是从豆瓣个人主页拔下来的：https://www.douban.com/people/zyq522376829/        </span><br><span class="line">  zhihu:  ## 同上：https://www.zhihu.com/people/yoferzhang</span><br><span class="line">  email:    </span><br><span class="line">  twitter:  </span><br><span class="line">  github:    </span><br><span class="line">  facebook: </span><br><span class="line">  linkedin: </span><br><span class="line">  google_plus: </span><br><span class="line">  stackoverflow: </span><br><span class="line">## if you set them, the corresponding  share button will show on the footer</span><br><span class="line"></span><br><span class="line">#### Toc</span><br><span class="line">toc:</span><br><span class="line">  article: true   ## show contents in article.</span><br><span class="line">  aside: true     ## show contents in aside.</span><br><span class="line">## you can set both of the value to true of neither of them.</span><br><span class="line">## if you don&apos;t want display contents in a specified post,you can modify `front-matter` and add `toc: false`.</span><br><span class="line"></span><br><span class="line">#### Links链接</span><br><span class="line">links:</span><br><span class="line">  Hexo: https://hexo.io/</span><br><span class="line">  Github: https://github.com/yoferzhang</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Comment 评论</span><br><span class="line">duoshuo_shortname: yoferzhang</span><br><span class="line">disqus_shortname:     ## e.g. wuchong   your disqus short name.</span><br><span class="line"></span><br><span class="line">#### Share button 分享按钮</span><br><span class="line">jiathis:</span><br><span class="line">  enable: false ## if you use jiathis as your share tool,the built-in share tool won&apos;t be display.</span><br><span class="line">  id:    ## e.g. 1889330 your jiathis ID. </span><br><span class="line">  tsina: ## e.g. 2176287895 Your weibo id,It will be used in share button.</span><br><span class="line"></span><br><span class="line">#### Analytics 网站统计</span><br><span class="line">google_analytics:</span><br><span class="line">  enable: false</span><br><span class="line">  id:        ## e.g. UA-46321946-2 your google analytics ID.</span><br><span class="line">  site:      ## e.g. wuchong.me your google analytics site or set the value as auto.</span><br><span class="line">## You MUST upgrade to Universal Analytics first!</span><br><span class="line">## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN</span><br><span class="line">baidu_tongji:</span><br><span class="line">  enable: true</span><br><span class="line">  sitecode:  ## e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code</span><br><span class="line">cnzz_tongji:</span><br><span class="line">  enable: false</span><br><span class="line">  siteid:    ## e.g. 1253575964 your cnzz tongji site id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Miscellaneous</span><br><span class="line">ShowCustomFont: true  ## you can change custom font in `variable.styl` and `font.styl` which in the theme folder `/jacman/source/css`.</span><br><span class="line">fancybox: true        ## if you use gallery post or want use fancybox please set the value to true.</span><br><span class="line">totop: true           ## if you want to scroll to top in every post set the value to true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Custom Search</span><br><span class="line">google_cse: </span><br><span class="line">  enable: false</span><br><span class="line">  cx:   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.</span><br><span class="line">## https://www.google.com/cse/ </span><br><span class="line">## To enable the custom search You must create a &quot;search&quot; folder in &apos;/source&apos; and a &quot;index.md&quot; file</span><br><span class="line">## set the &apos;front-matter&apos; as</span><br><span class="line">## layout: search </span><br><span class="line">## title: search</span><br><span class="line">## ---</span><br><span class="line">baidu_search:     ## http://zn.baidu.com/</span><br><span class="line">  enable: false</span><br><span class="line">  id:  ## e.g. &quot;783281470518440642&quot;  for your baidu search id</span><br><span class="line">  site: http://zhannei.baidu.com/cse/search  ## your can change to your site instead of the default site</span><br><span class="line">  </span><br><span class="line">tinysou_search:     ## http://tinysou.com/</span><br><span class="line">  enable: false</span><br><span class="line">  id:  ## e.g. &quot;4ac092ad8d749fdc6293&quot; for your tiny search id</span><br><span class="line"></span><br><span class="line">swiftype:     ## https://swiftype.com/</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>里面涉及到我自己一些帐号的问题我就删掉了</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-03-23, 16:40:10</p>
+        <p><span>最后更新:</span>2016-04-20, 08:50:12</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160323buildBlog01/" title="【建立博客】使用Github和Hexo搭建属于自己的博客">http://yoferzhang.com/post/20160323buildBlog01/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160323buildBlog01/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160325ReadNotePomodoro/">
+                    【读书笔记】番茄工作法图解
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160322essay002/">
+                    【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言-Preface"><span class="toc-number">1.</span> <span class="toc-text">前言 | Preface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Hexo，Node-js和Github"><span class="toc-number">2.</span> <span class="toc-text">安装Hexo，Node.js和Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Node-js"><span class="toc-number">2.1.</span> <span class="toc-text">安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Github"><span class="toc-number">2.2.</span> <span class="toc-text">安装Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Hexo"><span class="toc-number">2.3.</span> <span class="toc-text">安装Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-number">3.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Hexo文件夹"><span class="toc-number">3.1.</span> <span class="toc-text">创建Hexo文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地查看"><span class="toc-number">3.2.</span> <span class="toc-text">本地查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署到Github上"><span class="toc-number">3.3.</span> <span class="toc-text">部署到Github上</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名和DNS"><span class="toc-number">4.</span> <span class="toc-text">域名和DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#购买域名"><span class="toc-number">4.1.</span> <span class="toc-text">购买域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">4.2.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置域名和DNS"><span class="toc-number">4.3.</span> <span class="toc-text">配置域名和DNS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写博客"><span class="toc-number">5.</span> <span class="toc-text">写博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-number">6.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迁移"><span class="toc-number">8.</span> <span class="toc-text">迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写于最后"><span class="toc-number">9.</span> <span class="toc-text">写于最后</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【建立博客】使用Github和Hexo搭建属于自己的博客　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160323buildBlog01/" data-title="【建立博客】使用Github和Hexo搭建属于自己的博客" data-url="http://yoferzhang.com/post/20160323buildBlog01/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160325ReadNotePomodoro/" title="上一篇: 【读书笔记】番茄工作法图解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160322essay002/" title="下一篇: 【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

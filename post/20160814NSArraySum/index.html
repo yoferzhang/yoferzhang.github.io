@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+1 数组基本1.1 创建数组NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作
+下面这种方式相当于什么都没做
+123NSArray * array = [[NSArray alloc] init];NSLog(@&quot;%@&quot;,array);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSArray/NSMutableArray创建,获取,遍历,排序 - iOS">
+<meta property="og:url" content="http://yoferzhang.com/post/20160814NSArraySum/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+1 数组基本1.1 创建数组NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作
+下面这种方式相当于什么都没做
+123NSArray * array = [[NSArray alloc] init];NSLog(@&quot;%@&quot;,array);">
+<meta property="og:updated_time" content="2017-02-09T05:28:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSArray/NSMutableArray创建,获取,遍历,排序 - iOS">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+1 数组基本1.1 创建数组NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作
+下面这种方式相当于什么都没做
+123NSArray * array = [[NSArray alloc] init];NSLog(@&quot;%@&quot;,array);">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>NSArray/NSMutableArray创建,获取,遍历,排序 - iOS | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160814NSArraySum" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160814NSArraySum/" class="article-date">
+      <time datetime="2016-08-14T05:46:43.000Z" itemprop="datePublished">2016-08-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NSArray/NSMutableArray创建,获取,遍历,排序 - iOS
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="1-数组基本"><a href="#1-数组基本" class="headerlink" title="1 数组基本"></a>1 数组基本</h2><h3 id="1-1-创建数组"><a href="#1-1-创建数组" class="headerlink" title="1.1 创建数组"></a>1.1 创建数组</h3><p>NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作</p>
+<p>下面这种方式相当于什么都没做</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = [[<span class="built_in">NSArray</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,array);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="1-2-通过构造方法的方式创建一个NSArray"><a href="#1-2-通过构造方法的方式创建一个NSArray" class="headerlink" title="1.2 通过构造方法的方式创建一个NSArray"></a>1.2 通过构造方法的方式创建一个NSArray</h3><p>在创建一个NSArray的时候,集合的最后一个元素一定是nil</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array1 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,array1);</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-数组中可以存储不同类型的对象"><a href="#1-3-数组中可以存储不同类型的对象" class="headerlink" title="1.3 数组中可以存储不同类型的对象"></a>1.3 数组中可以存储不同类型的对象</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> * number = [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">10</span>];</span><br><span class="line"><span class="built_in">NSArray</span> * array2 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,number, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2  %@"</span>,array2);</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-数组实际上存储的是对象的地址-同样也可以存储数组的地址"><a href="#1-4-数组实际上存储的是对象的地址-同样也可以存储数组的地址" class="headerlink" title="1.4 数组实际上存储的是对象的地址,同样也可以存储数组的地址"></a>1.4 数组实际上存储的是对象的地址,同样也可以存储数组的地址</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * a1 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> * a2 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"1"</span>,<span class="string">@"2"</span>,<span class="string">@"3"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> * a3 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:a1,a2, <span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"a3 %@"</span>,a3);</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-存储自定义的对象"><a href="#1-5-存储自定义的对象" class="headerlink" title="1.5 存储自定义的对象"></a>1.5 存储自定义的对象</h3><p>最好都 description 方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">NSString</span> * name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name andAge:(<span class="keyword">int</span>)age;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name andAge:(<span class="keyword">int</span>)age</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        _name = name;</span><br><span class="line">        _age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)description</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"age = %d name = %@"</span>,_age,_name];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person * p1 = [[Person alloc] initWithName:<span class="string">@"xiaozhe"</span> andAge:<span class="number">20</span>];</span><br><span class="line">Person * p2 = [[Person alloc] initWithName:<span class="string">@"hell"</span> andAge:<span class="number">18</span>];</span><br><span class="line">Person * p3 = [[Person alloc] initWithName:<span class="string">@"marray"</span> andAge:<span class="number">38</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> * array3 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:p1,p2,p3, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array3  %@"</span>,array3);</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-数组中存储基本数据类型"><a href="#1-6-数组中存储基本数据类型" class="headerlink" title="1.6 数组中存储基本数据类型"></a>1.6 数组中存储基本数据类型</h3><p>如果你要在数组中存储基本数据类型,请包装好了之后在去存 NSNumber</p>
+<p>注意不要把nil值存储到 NSArray 中,会导致数据丢失</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str = <span class="literal">nil</span>;</span><br><span class="line"><span class="built_in">NSArray</span> * array4 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"2"</span>,str,[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">23</span>], <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array4 %@"</span>,array4);</span><br></pre></td></tr></table></figure>
+<h3 id="1-7-创建数组的快捷方式"><a href="#1-7-创建数组的快捷方式" class="headerlink" title="1.7 创建数组的快捷方式"></a>1.7 创建数组的快捷方式</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * karray = @[<span class="string">@"a"</span>,<span class="string">@"b"</span>,<span class="string">@"c"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"karray %@"</span>,karray);</span><br></pre></td></tr></table></figure>
+<h3 id="1-8-快速获得一个数组中的元素"><a href="#1-8-快速获得一个数组中的元素" class="headerlink" title="1.8 快速获得一个数组中的元素"></a>1.8 快速获得一个数组中的元素</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * kstr = karray[<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"kstr %@"</span>,kstr);</span><br></pre></td></tr></table></figure>
+<h3 id="1-9-从数组中取出数据"><a href="#1-9-从数组中取出数据" class="headerlink" title="1.9 从数组中取出数据"></a>1.9 从数组中取出数据</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>, <span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>数组的index时从0开始的</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * str = [array objectAtIndex:<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str %@"</span>,str);</span><br></pre></td></tr></table></figure>
+<h3 id="1-10-获得数组的元素个数"><a href="#1-10-获得数组的元素个数" class="headerlink" title="1.10 获得数组的元素个数"></a>1.10 获得数组的元素个数</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUInteger</span> arrayCount = [array count];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arrayCount %d"</span>,arrayCount);</span><br></pre></td></tr></table></figure>
+<h3 id="1-11-判断数组中是否存在某个对象"><a href="#1-11-判断数组中是否存在某个对象" class="headerlink" title="1.11 判断数组中是否存在某个对象"></a>1.11 判断数组中是否存在某个对象</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Person * p1 = [[Person alloc] initWithName:<span class="string">@"yofer"</span> andAge:<span class="number">20</span>];</span><br><span class="line">Person * p2 = [[Person alloc] initWithName:<span class="string">@"luke"</span> andAge:<span class="number">30</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> * array = @[p1,p2];</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> isContain = [array containsObject:p1];</span><br><span class="line"><span class="keyword">if</span> (isContain)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"存在"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"不存在"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-遍历数组"><a href="#2-遍历数组" class="headerlink" title="2 遍历数组"></a>2 遍历数组</h2><h3 id="2-1-使用for循环遍历数组"><a href="#2-1-使用for循环遍历数组" class="headerlink" title="2.1 使用for循环遍历数组"></a>2.1 使用for循环遍历数组</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.count; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> * str = array[i];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%d] = %@"</span>,i,str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-使用增强for循环的方式遍历数组"><a href="#2-2-使用增强for循环的方式遍历数组" class="headerlink" title="2.2 使用增强for循环的方式遍历数组"></a>2.2 使用增强for循环的方式遍历数组</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> * str <span class="keyword">in</span> array)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>,str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-注意事项"><a href="#2-3-注意事项" class="headerlink" title="2.3 注意事项"></a>2.3 注意事项</h3><p>如果你的数组中村粗了多种不同类型的数据,那么最好不要调用某个对象特有的方法,会导致程序崩溃</p>
+<p>在实际的开发中,一个数组往往只负责存储一种数据类型</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Person * p1 = [[Person alloc] init];</span><br><span class="line"><span class="built_in">NSArray</span> * array2 = @[<span class="string">@"one"</span>,[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">10</span>],p1];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> * str <span class="keyword">in</span> array2)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//    NSLog(@"array2 str %@",str);</span></span><br><span class="line"><span class="comment">//    NSLog(@"str %ld",str.length);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-枚举器"><a href="#2-4-枚举器" class="headerlink" title="2.4 枚举器"></a>2.4 枚举器</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array3 = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSEnumerator</span> * enumerateor =  [array3 objectEnumerator];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (value = [enumerateor nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"enum str %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-数组排序"><a href="#3-数组排序" class="headerlink" title="3 数组排序"></a>3 数组排序</h2><h3 id="3-1-使用-sortedArrayUsingSelector"><a href="#3-1-使用-sortedArrayUsingSelector" class="headerlink" title="3.1 使用 sortedArrayUsingSelector"></a>3.1 使用 sortedArrayUsingSelector</h3><p>是最简单的排序方式</p>
+<p>数组是按照你存入元素的顺序存储的</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"b"</span>,<span class="string">@"d"</span>,<span class="string">@"a"</span>,<span class="string">@"z"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"排序前 array %@"</span>,array);</span><br><span class="line"></span><br><span class="line">array = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];</span><br><span class="line"><span class="comment">// NSArray * array1 = [array sortedArrayUsingSelector:@selector(compare:)];</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"排序后 array %@"</span>,array);</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-使用block方式排序"><a href="#3-2-使用block方式排序" class="headerlink" title="3.2 使用block方式排序"></a>3.2 使用block方式排序</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array2 = @[<span class="string">@"z"</span>,<span class="string">@"4"</span>,<span class="string">@"b"</span>,<span class="string">@"3"</span>,<span class="string">@"x"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2 排序前 %@"</span>,array2);</span><br><span class="line">array2 = [array2 sortedArrayUsingComparator:^<span class="built_in">NSComparisonResult</span>(<span class="keyword">id</span> obj1, <span class="keyword">id</span> obj2) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    NSComparisonResult retuslt = [obj1 compare:obj2];</span><br><span class="line">    </span><br><span class="line">    return retuslt;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="comment">//obj1 compare obj2 就是正序排序</span></span><br><span class="line">    <span class="comment">//  return [obj1 compare:obj2];</span></span><br><span class="line">    <span class="comment">//obj2 compare obj1 就是倒序排序</span></span><br><span class="line">    <span class="keyword">return</span> [obj2 compare:obj1];</span><br><span class="line">    </span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2 排序后 %@"</span>,array2);</span><br></pre></td></tr></table></figure>
+<p>先给一个 Person 类</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> * name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> * year;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name  andAge:(<span class="keyword">int</span>)age andYear:(<span class="built_in">NSString</span> *)year;</span><br><span class="line"><span class="comment">//+ (id)personWithName:(NSString *)name  andAge:(int)age andYear:(NSString *)year;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name  andAge:(<span class="keyword">int</span>)age andYear:(<span class="built_in">NSString</span> *)year</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        _name = name;</span><br><span class="line">        _age = age;</span><br><span class="line">        _year = year;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)description</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"name %@ age %d year %@"</span>,_name,_age,_year];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-定制化数组对象排序"><a href="#3-3-定制化数组对象排序" class="headerlink" title="3.3 定制化数组对象排序"></a>3.3 定制化数组对象排序</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person * p1 = [[Person alloc] initWithName:<span class="string">@"xiaozhe"</span> andAge:<span class="number">20</span> andYear:<span class="string">@"1990"</span>];</span><br><span class="line">Person * p2 = [[Person alloc] initWithName:<span class="string">@"alex"</span> andAge:<span class="number">18</span> andYear:<span class="string">@"2990"</span>];</span><br><span class="line">Person * p3 = [[Person alloc] initWithName:<span class="string">@"merry"</span> andAge:<span class="number">25</span> andYear:<span class="string">@"1890"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> * array3 = @[p1,p2,p3];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array3 排序前 %@"</span>,array3);</span><br></pre></td></tr></table></figure>
+<p>如果你向给你自己定义的对象排序,必须根据某一个属性来排序,</p>
+<p>sortDescriptorWithKey 参数要的就是你对象中,要依据哪个属性来排序,你就把哪个属性的名字当成key传入</p>
+<p>ascending YES表示正序 NO表示倒序</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSSortDescriptor</span> * d1 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"age"</span> ascending:<span class="literal">NO</span>];</span><br><span class="line"><span class="built_in">NSSortDescriptor</span> * d2 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"year"</span> ascending:<span class="literal">NO</span>];</span><br></pre></td></tr></table></figure>
+<p>如果你要使用多个属性进行排序,默认在前面的NSSortDescriptor优先级比较高</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * descripts = @[d2,d1];</span><br><span class="line"></span><br><span class="line">array3 = [array3 sortedArrayUsingDescriptors:descripts];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array 3 排序后  %@"</span>,array3);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">13</span>:<span class="number">57.238</span> <span class="number">05</span>-数组排序[<span class="number">2105</span>:<span class="number">516991</span>] array3 排序前 (</span><br><span class="line">    <span class="string">"name xiaozhe age 20 year 1990"</span>,</span><br><span class="line">    <span class="string">"name alex age 18 year 2990"</span>,</span><br><span class="line">    <span class="string">"name merry age 25 year 1890"</span></span><br><span class="line">)</span><br><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">13</span>:<span class="number">57.238</span> <span class="number">05</span>-数组排序[<span class="number">2105</span>:<span class="number">516991</span>] array <span class="number">3</span> 排序后  (</span><br><span class="line">    <span class="string">"name alex age 18 year 2990"</span>,</span><br><span class="line">    <span class="string">"name xiaozhe age 20 year 1990"</span>,</span><br><span class="line">    <span class="string">"name merry age 25 year 1890"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>再次测试：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array4 = @[p1,p2,p3];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array4 排序前 %@"</span>,array4);</span><br><span class="line">array4 = [array4 sortedArrayUsingComparator:^<span class="built_in">NSComparisonResult</span>(<span class="keyword">id</span> obj1, <span class="keyword">id</span> obj2) &#123;</span><br><span class="line">    </span><br><span class="line">    Person * p1 = obj1;</span><br><span class="line">    Person * p2 = obj2;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//year</span></span><br><span class="line">    <span class="keyword">return</span> [p1.year compare:p2.year];</span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array4 排序后 %@"</span>,array4);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">13</span>:<span class="number">57.238</span> <span class="number">05</span>-数组排序[<span class="number">2105</span>:<span class="number">516991</span>] array4 排序前 (</span><br><span class="line">    <span class="string">"name xiaozhe age 20 year 1990"</span>,</span><br><span class="line">    <span class="string">"name alex age 18 year 2990"</span>,</span><br><span class="line">    <span class="string">"name merry age 25 year 1890"</span></span><br><span class="line">)</span><br><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">13</span>:<span class="number">57.238</span> <span class="number">05</span>-数组排序[<span class="number">2105</span>:<span class="number">516991</span>] array4 排序后 (</span><br><span class="line">    <span class="string">"name merry age 25 year 1890"</span>,</span><br><span class="line">    <span class="string">"name xiaozhe age 20 year 1990"</span>,</span><br><span class="line">    <span class="string">"name alex age 18 year 2990"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="4-可变数组-NSMutableArray"><a href="#4-可变数组-NSMutableArray" class="headerlink" title="4 可变数组: NSMutableArray"></a>4 可变数组: NSMutableArray</h2><p>NSMutableArray 继承至 NSArray</p>
+<h3 id="4-1-创建可变数组"><a href="#4-1-创建可变数组" class="headerlink" title="4.1 创建可变数组"></a>4.1 创建可变数组</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> * array = [[<span class="built_in">NSMutableArray</span> alloc] initWithCapacity:<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<p>使用addObject 动态给数组中增加元素</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[array addObject:<span class="string">@"one"</span>];</span><br><span class="line">[array addObject:<span class="string">@"two"</span>];</span><br><span class="line">[array addObject:<span class="string">@"three"</span>];</span><br><span class="line">[array addObject:<span class="string">@"one"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> * str1 = <span class="string">@"one"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str2 = <span class="string">@"two"</span>;</span><br><span class="line"><span class="built_in">NSString</span> * str3 = <span class="string">@"three"</span>;</span><br></pre></td></tr></table></figure>
+<p>数组中可以存储,同一个对象多次</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[array addObject:str1];</span><br><span class="line">[array addObject:str2];</span><br><span class="line">[array addObject:str3];</span><br><span class="line">[array addObject:str1];</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-指定对象插入的位置"><a href="#4-2-指定对象插入的位置" class="headerlink" title="4.2 指定对象插入的位置"></a>4.2 指定对象插入的位置</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[array insertObject:str1 atIndex:<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-删除-会通过对象-删除数组中所有的同一个地址的对象"><a href="#4-3-删除-会通过对象-删除数组中所有的同一个地址的对象" class="headerlink" title="4.3 删除 会通过对象,删除数组中所有的同一个地址的对象"></a>4.3 删除 会通过对象,删除数组中所有的同一个地址的对象</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[array removeObject:str1];</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-通过索引的方式删除对象-超出了数组的count值-那么就会导致异常-index-beyond-bounds"><a href="#4-4-通过索引的方式删除对象-超出了数组的count值-那么就会导致异常-index-beyond-bounds" class="headerlink" title="4.4 通过索引的方式删除对象,超出了数组的count值,那么就会导致异常 index beyond bounds"></a>4.4 通过索引的方式删除对象,超出了数组的count值,那么就会导致异常 index beyond bounds</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[array removeObjectAtIndex:<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">[array addObject:str2];</span><br><span class="line">[array addObject:str3];</span><br><span class="line">[array addObject:str1];</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-删除数组中所有的元素"><a href="#4-5-删除数组中所有的元素" class="headerlink" title="4.5 删除数组中所有的元素"></a>4.5 删除数组中所有的元素</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[array removeAllObjects];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array %@"</span>,array);</span><br><span class="line"></span><br><span class="line">[array addObject:str2];</span><br><span class="line">[array addObject:str3];</span><br><span class="line">[array addObject:str1];</span><br></pre></td></tr></table></figure>
+<h2 id="5-可变数组-NSMutableArray-遍历"><a href="#5-可变数组-NSMutableArray-遍历" class="headerlink" title="5 可变数组 NSMutableArray 遍历"></a>5 可变数组 NSMutableArray 遍历</h2><h3 id="5-1-for换遍历"><a href="#5-1-for换遍历" class="headerlink" title="5.1 for换遍历"></a>5.1 for换遍历</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.count; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> * str = [array objectAtIndex:i];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//在遍历数组的时候,千万不要给数组中,增加,或者删除元素</span></span><br><span class="line">    <span class="comment">// [array removeObject:str1];</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str %@"</span>,str);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-增强for循环"><a href="#5-2-增强for循环" class="headerlink" title="5.2 增强for循环"></a>5.2 增强for循环</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> * str <span class="keyword">in</span> array)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//    [array removeObject:str1];</span></span><br><span class="line">    <span class="comment">//如果你在增强for循环中,删除元素,会直接导致异常出现</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str %@"</span>,str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-枚举器"><a href="#5-3-枚举器" class="headerlink" title="5.3 枚举器"></a>5.3 枚举器</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSEnumerator</span> * enumerator = [array objectEnumerator];</span><br><span class="line"><span class="built_in">NSString</span> * value;</span><br><span class="line"><span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</span><br><span class="line">    <span class="comment">//如果你在枚举器中,删除元素,会直接导致异常出现</span></span><br><span class="line"><span class="comment">//    [array removeObject:str1];</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str %@"</span>,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-4-要通过遍历的方式确定删除哪个元素怎么办"><a href="#5-4-要通过遍历的方式确定删除哪个元素怎么办" class="headerlink" title="5.4 要通过遍历的方式确定删除哪个元素怎么办"></a>5.4 要通过遍历的方式确定删除哪个元素怎么办</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> * array2 = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">[array2 addObject:<span class="string">@"1"</span>];</span><br><span class="line">[array2 addObject:<span class="string">@"2"</span>];</span><br><span class="line">[array2 addObject:<span class="string">@"3"</span>];</span><br><span class="line">[array2 addObject:<span class="string">@"4"</span>];</span><br><span class="line">[array2 addObject:<span class="string">@"5"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSMutableArray</span> * tmp = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> * str <span class="keyword">in</span> array2)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ([str isEqualToString:<span class="string">@"3"</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        [tmp addObject:str];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2 %@"</span>,array2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"tmp %@"</span>,tmp);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">35</span>:<span class="number">20.437</span> <span class="number">06</span>-可变数组[<span class="number">2252</span>:<span class="number">538261</span>] array2 (</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="number">2</span>,</span><br><span class="line">    <span class="number">3</span>,</span><br><span class="line">    <span class="number">4</span>,</span><br><span class="line">    <span class="number">5</span></span><br><span class="line">)</span><br><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-14</span> <span class="number">14</span>:<span class="number">35</span>:<span class="number">20.437</span> <span class="number">06</span>-可变数组[<span class="number">2252</span>:<span class="number">538261</span>] tmp (</span><br><span class="line">    <span class="number">3</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>遍历临时数组</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tmp.count; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> * str = [tmp objectAtIndex:i];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//从原数组中删除,临时数组中存储的对象</span></span><br><span class="line">    [array2 removeObject:str];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2 %@"</span>,array2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52204506" target="_blank" rel="external">NSArray/NSMutableArray创建,获取,遍历,排序</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-14, 13:46:43</p>
+        <p><span>最后更新:</span>2017-02-09, 13:28:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160814NSArraySum/" title="NSArray/NSMutableArray创建,获取,遍历,排序 - iOS">http://yoferzhang.com/post/20160814NSArraySum/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160814NSArraySum/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160814NSDictionarySum/">
+                    NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160813NSStringSum/">
+                    NSString的获取,判断,转换,重组,文件读写 - iOS
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数组基本"><span class="toc-number">1.</span> <span class="toc-text">1 数组基本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-创建数组"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-通过构造方法的方式创建一个NSArray"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 通过构造方法的方式创建一个NSArray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-数组中可以存储不同类型的对象"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 数组中可以存储不同类型的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-数组实际上存储的是对象的地址-同样也可以存储数组的地址"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 数组实际上存储的是对象的地址,同样也可以存储数组的地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-存储自定义的对象"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 存储自定义的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-数组中存储基本数据类型"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 数组中存储基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-创建数组的快捷方式"><span class="toc-number">1.7.</span> <span class="toc-text">1.7 创建数组的快捷方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-快速获得一个数组中的元素"><span class="toc-number">1.8.</span> <span class="toc-text">1.8 快速获得一个数组中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-从数组中取出数据"><span class="toc-number">1.9.</span> <span class="toc-text">1.9 从数组中取出数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-获得数组的元素个数"><span class="toc-number">1.10.</span> <span class="toc-text">1.10 获得数组的元素个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-判断数组中是否存在某个对象"><span class="toc-number">1.11.</span> <span class="toc-text">1.11 判断数组中是否存在某个对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-遍历数组"><span class="toc-number">2.</span> <span class="toc-text">2 遍历数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-使用for循环遍历数组"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 使用for循环遍历数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-使用增强for循环的方式遍历数组"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用增强for循环的方式遍历数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-注意事项"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-枚举器"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 枚举器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-数组排序"><span class="toc-number">3.</span> <span class="toc-text">3 数组排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-使用-sortedArrayUsingSelector"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 使用 sortedArrayUsingSelector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-使用block方式排序"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 使用block方式排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-定制化数组对象排序"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 定制化数组对象排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-可变数组-NSMutableArray"><span class="toc-number">4.</span> <span class="toc-text">4 可变数组: NSMutableArray</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建可变数组"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建可变数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-指定对象插入的位置"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 指定对象插入的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-删除-会通过对象-删除数组中所有的同一个地址的对象"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 删除 会通过对象,删除数组中所有的同一个地址的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-通过索引的方式删除对象-超出了数组的count值-那么就会导致异常-index-beyond-bounds"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 通过索引的方式删除对象,超出了数组的count值,那么就会导致异常 index beyond bounds</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-删除数组中所有的元素"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 删除数组中所有的元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-可变数组-NSMutableArray-遍历"><span class="toc-number">5.</span> <span class="toc-text">5 可变数组 NSMutableArray 遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-for换遍历"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 for换遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-增强for循环"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 增强for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-枚举器"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 枚举器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-要通过遍历的方式确定删除哪个元素怎么办"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 要通过遍历的方式确定删除哪个元素怎么办</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"NSArray/NSMutableArray创建,获取,遍历,排序 - iOS　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160814NSArraySum/" data-title="NSArray/NSMutableArray创建,获取,遍历,排序 - iOS" data-url="http://yoferzhang.com/post/20160814NSArraySum/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160814NSDictionarySum/" title="上一篇: NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160813NSStringSum/" title="下一篇: NSString的获取,判断,转换,重组,文件读写 - iOS">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

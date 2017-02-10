@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+官方文档地址
+OverView 简介The Role of View Controllers - 视图控制器的作用视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。
+因为他们在你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
+<meta property="og:url" content="http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+官方文档地址
+OverView 简介The Role of View Controllers - 视图控制器的作用视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。
+因为他们在你">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vljhj6yvj20ts0u0t8x.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6vm04ft6bj20i30bzt8y.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vmodoektj20ov0gvmx7.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vmznbodyj20p40gb0ss.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vn7blcwdj20wd0podga.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vn9s627wj20qn0vpmxk.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vnd49ituj20u50v5t95.jpg">
+<meta property="og:updated_time" content="2017-02-09T05:27:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+官方文档地址
+OverView 简介The Role of View Controllers - 视图控制器的作用视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。
+因为他们在你">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【iOS】视图控制器编程指南View Controller Programming Guide for iOS | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160816ViewControllerProgrammingGuide" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160816ViewControllerProgrammingGuide/" class="article-date">
+      <time datetime="2016-08-16T06:05:51.000Z" itemprop="datePublished">2016-08-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【iOS】视图控制器编程指南View Controller Programming Guide for iOS
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<p><a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1" target="_blank" rel="external">官方文档地址</a></p>
+<h1 id="OverView-简介"><a href="#OverView-简介" class="headerlink" title="OverView 简介"></a>OverView 简介</h1><h2 id="The-Role-of-View-Controllers-视图控制器的作用"><a href="#The-Role-of-View-Controllers-视图控制器的作用" class="headerlink" title="The Role of View Controllers - 视图控制器的作用"></a>The Role of View Controllers - 视图控制器的作用</h2><p>视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。</p>
+<p>因为他们在你的应用程序中扮演着重要的角色，视图控制器几乎在你所做的一切的中心。<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/cl/UIViewController" target="_blank" rel="external">UIViewController</a> 类定义的方法和属性来管理您的视图，处理事件，从一个视图控制器转换到另一个，并协调您的应用程序的其他部分。创建一个<code>UIViewController</code> 的子类并添加你需要实现你的应用程序行为的自定义代码。</p>
+<a id="more"></a>
+<p>有两种类型的视图控制器：</p>
+<ul>
+<li><code>Content</code> 视图控制器管理一些软件内容的离散部分，并且是你创建试图控制器的主要类型</li>
+<li><code>Container</code> 视图控制器收集来自其他视图控制器信息（称为子视图控制器 ），并以便于导航或呈现不同视图控制器的内容的方式来呈现它。</li>
+</ul>
+<h3 id="View-Management-视图管理"><a href="#View-Management-视图管理" class="headerlink" title="View Management - 视图管理"></a>View Management - 视图管理</h3><p>视图控制器的最重要的作用是管理视图的层次。每个视图控制器有一个包含所有视图控制器的内容的单根视图。对于根视图，您可以添加你需要显示内容的 <code>views</code> 。如图1-1所示视图控制器和视图之间的内置关系。视图控制器总是有它的根视图的引用，每个视图都有其子视图强引用。</p>
+<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg" alt="Figure 1-1Relationship between a view controller and its views"><br></center>
+
+<blockquote>
+<p>Note: It is common practice to use outlets to access other views in your view controller’s view hierarchy. Because a view controller manages the content of all its views, outlets let you store references to the views that you need. The outlets themselves are connected to the actual view objects automatically when the views are loaded from the storyboard.</p>
+</blockquote>
+<p>一个内容视图控制器通过自身管理所有的视图。容器视图控制器管理自己的视图以及它的一个或多个子视图控制器的根视图。容器不能管理其子女的内容。它只能管理根视图，根据容器的设计调整大小和位置。图1-2说明了一个拆分视图控制器及其子女的关系。拆分视图控制器管理的总体尺寸和其子视图的位置，但是子视图控制器管理这些视图的实际内容。</p>
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vljhj6yvj20ts0u0t8x.jpg" alt="Figure 1-2View controllers can manage content from other view controllers"><br></center>
+
+<p>有关管理视图控制器的视图的信息，请参阅 <a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html#//apple_ref/doc/uid/TP40007457-CH7-SW6" target="_blank" rel="external">Managing View Layout.</a></p>
+<h3 id="Data-Marshaling-数据编排"><a href="#Data-Marshaling-数据编排" class="headerlink" title="Data Marshaling - 数据编排"></a>Data Marshaling - 数据编排</h3><p>视图控制器作为其管理的视图和您的应用程序的数据之间的中介。<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/cl/UIViewController" target="_blank" rel="external">UIViewController</a> 类的方法和属性，让你管理你的应用程序的视觉呈现。当你创建一个 <code>UIViewController</code> 的子类。您可以添加您需要在子类来管理您的数据的任何变量。添加自定义变量，创建像在图1-3的关系，在视图控制器将数据和用于提供该数据。 两者之间移动数据来回是你的责任。</p>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6vm04ft6bj20i30bzt8y.jpg" alt="图1-3视图控制器的数据对象和视图之间起中介作用"><br></center>
+
+
+<p>你应该总是你的视图控制器和数据对象内维持职责完全分离。大多数用于确保数据结构的完整性的逻辑所属的数据对象本身。 视图控制器可以验证从输入的意见来，然后打包你的数据对象要求的格式该输入，但你应该尽量减少视图控制器在管理中的实际数据的作用。</p>
+<p>一个 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDocument_Class/index.html#//apple_ref/occ/cl/UIDocument" target="_blank" rel="external">UIDocument</a> 目的是从您的视图控制器分别管理自己的数据的一种方法。 文档对象是一个知道如何读取和写入数据，永久存储控制器对象。 当你继承，您可以添加任何逻辑和方法，你需要提取数据，并将其传递给视图控制器或您的应用程序的其他部分。 视图控制器可以存储接收，使其更容易地更新视图的任何数据的副本，但文件仍拥有真正的数据。</p>
+<h3 id="User-Interactions-用户交互"><a href="#User-Interactions-用户交互" class="headerlink" title="User Interactions - 用户交互"></a>User Interactions - 用户交互</h3><p>视图控制器是响应者对象 ，并能够处理回落响应链事件。 虽然他们有能力这样做，视图控制器很少直接处理触摸事件。 相反，通常视图处理自己的触摸事件并把结果汇报到相关委托或目标对象的方法，它通常是视图控制器。 因此，在视图控制器大多数事件是使用委托方法或<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/Devpedia-CocoaApp/TargetAction.html#//apple_ref/doc/uid/TP40009071-CH3" target="_blank" rel="external"> action methods.</a> 。</p>
+<p>有关在您的视图控制器实施行动方法的详细信息，请参阅<a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html#//apple_ref/doc/uid/TP40007457-CH7-SW11" target="_blank" rel="external"> Handling User Interactions</a>. 有关处理其他类型的事件的信息，请参阅<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541" target="_blank" rel="external"> Event Handling Guide for iOS</a></p>
+<h3 id="Resource-Management-资源管理"><a href="#Resource-Management-资源管理" class="headerlink" title="Resource Management - 资源管理"></a>Resource Management - 资源管理</h3><p>视图控制器承担自己的视图，它创建的任何对象的所有责任。 在<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/cl/UIViewController" target="_blank" rel="external">UIViewController</a>类自动处理视图管理的大多数方面。 例如，UIKit会自动释放那些不再需要的任何视图相关的资源。 在你 <code>UIViewController</code> 子类，你负责管理明确是你创建的任何对象。</p>
+<p>当可用内存不足时，UIKit的应用要求释放他们不再需要任何资源。 它这样做的一种方法是通过调用您的视图控制器的方法 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/instm/UIViewController/didReceiveMemoryWarning" target="_blank" rel="external">didReceiveMemoryWarning</a>。 使用该方法来消除，你不再需要或以后就能很容易重新创建对象的引用。 例如，您可以使用该方法来删除缓存数据。 你可以当内存不足情况发生时释放尽可能多的内存是非常重要的。 消耗太多内存的应用可能会直接被系统终止，恢复内存。</p>
+<h3 id="Adaptivity-适应性"><a href="#Adaptivity-适应性" class="headerlink" title="Adaptivity - 适应性"></a>Adaptivity - 适应性</h3><p>视图控制器负责的视图的展示，并适应该视图底层环境相匹配。 每一个iOS应用程序应该能够在iPad上，并在几个不同尺寸的iPhone上运行。 而不是为每个设备提供不同的视图控制器和视图层次，它更易于使用，能够适应其观点不断变化的空间需求的单一视图控制器。</p>
+<p>在iOS系统中，视图控制器需要处理粗粒度的变化和细粒度的变化。 当一个视图控制器的 <code>traits</code> 发生改变粗粒度的变化发生。 性状是描述整体环境，诸如显示刻度属性。 最重要的特征之一是两个视图控制器的水平和垂直尺寸，这表明视图控制器在给定尺寸的空间有多大。 您可以使用尺寸级别的变化而改变视图的布局， 如图1-4所示 。 当水平尺寸类是<code>regular</code> ，视图控制器利用额外的水平空间来安排内容。 当水平尺寸级别紧凑 ，视图控制器垂直排列其内容。</p>
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vmodoektj20ov0gvmx7.jpg" alt="图1-4适应视图大小变化级"><br></center>
+
+<p>在一个给定的大小类，有可能在任何时候发生更细粒度大小的变化。当用户旋转iPhone从纵向到横向，大小类可能不会改变，但屏幕尺寸通常改变。当你使用自动布局，UIKit自动调整视图的大小和位置来匹配新的维度。根据需要视图控制器可以做出更多的调整。</p>
+<p>有关自适应的详细信息，请参阅<a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/TheAdaptiveModel.html#//apple_ref/doc/uid/TP40007457-CH19-SW1" target="_blank" rel="external">The Adaptive Model.</a></p>
+<h2 id="The-View-Controller-Hierarchy-视图控制器层次"><a href="#The-View-Controller-Hierarchy-视图控制器层次" class="headerlink" title="The View Controller Hierarchy - 视图控制器层次"></a>The View Controller Hierarchy - 视图控制器层次</h2><p>您的应用程序的视图控制器之间的关系定义每个视图控制器所需的行为。 UIKit的希望您能在规定的方式使用视图控制器。 保持适当的视图控制器的关系，确保自动行为传递到正确的视图控制器在需要的时候。 如果你违反了规定的遏制和演示的关系，你的应用程序的某些部分停止的行为预期。</p>
+<h3 id="根视图控制器"><a href="#根视图控制器" class="headerlink" title="根视图控制器"></a>根视图控制器</h3><p>根视图控制器是视图控制器层次结构的锚。 每个窗口都只有其内容填充该窗口一个根视图控制器。 根视图控制器定义了用户看到的初始内容。 如图2-1所示根视图控制器和窗口之间的关系。 因为窗口有没有自己的可视内容，视图控制器的视图提供的所有内容。</p>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vmznbodyj20p40gb0ss.jpg" alt=""><br></center>
+
+<p>编程设置一个根视图是UITableView的app</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HomePageViewController</span> : <span class="title">UITableViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"HomePageViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HomePageViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HomePageViewController</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning &#123;</span><br><span class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</span><br><span class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITableViewController</span> *homePageController = [[HomePageViewController alloc] init];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[<span class="built_in">UIScreen</span> mainScreen] bounds]];</span><br><span class="line">    <span class="keyword">self</span>.window.rootViewController = homePageController;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Container-View-Controllers-容器视图控制器"><a href="#Container-View-Controllers-容器视图控制器" class="headerlink" title="Container View Controllers - 容器视图控制器"></a>Container View Controllers - 容器视图控制器</h3><p>UIKit 有3个容器视图控制器UINavigationController, UISplitViewController, and UIPageViewController.</p>
+<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vn7blcwdj20wd0podga.jpg" alt=""><br></center>
+
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vn9s627wj20qn0vpmxk.jpg" alt=""><br></center>
+
+<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vnd49ituj20u50v5t95.jpg" alt=""><br></center>
+
+<h2 id="Design-Tips-设计技巧"><a href="#Design-Tips-设计技巧" class="headerlink" title="Design Tips - 设计技巧"></a>Design Tips - 设计技巧</h2><h3 id="Use-System-Supplied-View-Controllers-Whenever-Possible-尽可能使用系统提供的视图控制器"><a href="#Use-System-Supplied-View-Controllers-Whenever-Possible-尽可能使用系统提供的视图控制器" class="headerlink" title="Use System-Supplied View Controllers Whenever Possible - 尽可能使用系统提供的视图控制器"></a>Use System-Supplied View Controllers Whenever Possible - 尽可能使用系统提供的视图控制器</h3><p>UIImagePickerController UIKit中类显示捕获的图片和视频，并访问用户的相机胶卷的标准接口。</p>
+<p>你创建自己的自定义视图控制器之前，看一下现有的框架，看是否有视图控制器已经存在，您要执行的任务。</p>
+<ul>
+<li>UIKit框架提供的视图控制器显示警报，拍照和视频，以及在iCloud上管理文件。UIKit中还定义了你可以用它来组织你的内容许多标准容器视图控制器。</li>
+<li>该框架的GameKit提供的视图控制器匹配的玩家和管理排行榜，成就和其他游戏功能。</li>
+<li>地址簿UI框架提供的视图控制器用于显示和采摘的联系信息。</li>
+<li>在MediaPlayer框架提供视图控制器用于播放和管理视频，以及用于从用户的库中选择媒体资产。</li>
+<li>该EventKit UI框架提供的视图控制器用于显示和编辑用户的日历数据。</li>
+<li>该GLKit框架提供用于管理OpenGL渲染表面的视图控制器。</li>
+<li>该Multipeer连接框架提供的视图控制器用于检测其他用户，并邀请他们来连接。</li>
+<li>消息UI框架提供的视图控制器用于撰写电子邮件和短信。</li>
+<li>该PassKit框架提供的视图控制器显示通行证，并将它们添加到存折。</li>
+<li>社交框架提供的视图控制器用于撰写消息的Twitter，Facebook和其他社交媒体网站。</li>
+<li>该AVFoundation框架提供用于显示媒体资产视图控制器。</li>
+</ul>
+<blockquote>
+<p>注意：切勿改装系统提供的视图控制器的视图层次结构。 每个视图控制器拥有自己的视图层次和负责维护该层次结构的完整性。 进行更改可能会引入错误到你的代码或防止所属视图控制器正确操作。 在系统视图控制器的情况下，始终依靠视图控制器的公开可用的方法和属性，使所有修改。</p>
+</blockquote>
+<h1 id="View-Controller-Definition"><a href="#View-Controller-Definition" class="headerlink" title="View Controller Definition"></a>View Controller Definition</h1><h2 id="Defining-Your-Subclass"><a href="#Defining-Your-Subclass" class="headerlink" title="Defining Your Subclass"></a>Defining Your Subclass</h2><ul>
+<li>使用UITableViewController特别是当你的视图控制器的主视图是一个表。</li>
+<li>使用UICollectionViewController特别是当你的视图控制器的主视图是一个集合视图。</li>
+<li>使用UIViewController 对于所有其他视图控制器。</li>
+</ul>
+<h3 id="定义UI"><a href="#定义UI" class="headerlink" title="定义UI"></a>定义UI</h3><h3 id="用户界面触摸"><a href="#用户界面触摸" class="headerlink" title="用户界面触摸"></a>用户界面触摸</h3><p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/Devpedia-CocoaApp/Outlet.html#//apple_ref/doc/uid/TP40009071-CH4" target="_blank" rel="external">outlets</a></p>
+<h3 id="在运行时展示-view"><a href="#在运行时展示-view" class="headerlink" title="在运行时展示 view"></a>在运行时展示 view</h3><ol>
+<li>Instantiates views using the information in your storyboard file.</li>
+<li>Connects all outlets and actions.</li>
+<li>Assigns the root view to the view controller’s view property.</li>
+<li>Calls the view controller’s awakeFromNib method.When this method is called, the view controller’s trait collection is empty and views may not be in their final positions.</li>
+<li>Calls the view controller’s viewDidLoad method.</li>
+<li>Use this method to add or remove views, modify layout constraints, and load data for your views.</li>
+</ol>
+<h3 id="管理-view-布局"><a href="#管理-view-布局" class="headerlink" title="管理 view 布局"></a>管理 view 布局</h3><h3 id="高效管理内存"><a href="#高效管理内存" class="headerlink" title="高效管理内存"></a>高效管理内存</h3><blockquote>
+<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href=""></a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-16, 14:05:51</p>
+        <p><span>最后更新:</span>2017-02-09, 13:27:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160816ViewControllerProgrammingGuide/" title="【iOS】视图控制器编程指南View Controller Programming Guide for iOS">http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160816NotificationSum/">
+                    【iOS】Notification通知,通知中心,发布通知,通知代理对比
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160814UIBase/">
+                    UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OverView-简介"><span class="toc-number">1.</span> <span class="toc-text">OverView 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Role-of-View-Controllers-视图控制器的作用"><span class="toc-number">1.1.</span> <span class="toc-text">The Role of View Controllers - 视图控制器的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-Management-视图管理"><span class="toc-number">1.1.1.</span> <span class="toc-text">View Management - 视图管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Marshaling-数据编排"><span class="toc-number">1.1.2.</span> <span class="toc-text">Data Marshaling - 数据编排</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Interactions-用户交互"><span class="toc-number">1.1.3.</span> <span class="toc-text">User Interactions - 用户交互</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Management-资源管理"><span class="toc-number">1.1.4.</span> <span class="toc-text">Resource Management - 资源管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptivity-适应性"><span class="toc-number">1.1.5.</span> <span class="toc-text">Adaptivity - 适应性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-View-Controller-Hierarchy-视图控制器层次"><span class="toc-number">1.2.</span> <span class="toc-text">The View Controller Hierarchy - 视图控制器层次</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#根视图控制器"><span class="toc-number">1.2.1.</span> <span class="toc-text">根视图控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Container-View-Controllers-容器视图控制器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Container View Controllers - 容器视图控制器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Tips-设计技巧"><span class="toc-number">1.3.</span> <span class="toc-text">Design Tips - 设计技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-System-Supplied-View-Controllers-Whenever-Possible-尽可能使用系统提供的视图控制器"><span class="toc-number">1.3.1.</span> <span class="toc-text">Use System-Supplied View Controllers Whenever Possible - 尽可能使用系统提供的视图控制器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#View-Controller-Definition"><span class="toc-number">2.</span> <span class="toc-text">View Controller Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Defining-Your-Subclass"><span class="toc-number">2.1.</span> <span class="toc-text">Defining Your Subclass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义UI"><span class="toc-number">2.1.1.</span> <span class="toc-text">定义UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户界面触摸"><span class="toc-number">2.1.2.</span> <span class="toc-text">用户界面触摸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在运行时展示-view"><span class="toc-number">2.1.3.</span> <span class="toc-text">在运行时展示 view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理-view-布局"><span class="toc-number">2.1.4.</span> <span class="toc-text">管理 view 布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高效管理内存"><span class="toc-number">2.1.5.</span> <span class="toc-text">高效管理内存</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【iOS】视图控制器编程指南View Controller Programming Guide for iOS　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160816ViewControllerProgrammingGuide/" data-title="【iOS】视图控制器编程指南View Controller Programming Guide for iOS" data-url="http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160816NotificationSum/" title="上一篇: 【iOS】Notification通知,通知中心,发布通知,通知代理对比">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160814UIBase/" title="下一篇: UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

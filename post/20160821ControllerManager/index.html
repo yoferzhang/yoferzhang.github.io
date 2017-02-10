@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+控制器的创建如何创建一个控制器控制器常见的创建方式有以下几种
+
+通过storyboard创建
+
+直接创建
+
+
+1ViewController *viewController = [[ViewController alloc] init];
+
+指定xib文件来创建
+
+1ViewController *viewController = [[ViewC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">
+<meta property="og:url" content="http://yoferzhang.com/post/20160821ControllerManager/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+控制器的创建如何创建一个控制器控制器常见的创建方式有以下几种
+
+通过storyboard创建
+
+直接创建
+
+
+1ViewController *viewController = [[ViewController alloc] init];
+
+指定xib文件来创建
+
+1ViewController *viewController = [[ViewC">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f71op0s7g3j219s0jsdl4.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f71okmavqkj212w0pmq4t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gta3r14j20u20mc77i.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gwj56kmj219g0eiq76.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74jl839a5j219e0b4n0s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f74jnm6riyj21p60bsdkj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74jp58k7pj209i03t74k.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74jrpfs7uj20jr0adjsy.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74ju6p3s8j21ds0d440f.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74vlp24flj21760jo0yu.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f75zhdmnifj21bg0kq792.jpg">
+<meta property="og:updated_time" content="2017-02-09T05:25:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+控制器的创建如何创建一个控制器控制器常见的创建方式有以下几种
+
+通过storyboard创建
+
+直接创建
+
+
+1ViewController *viewController = [[ViewController alloc] init];
+
+指定xib文件来创建
+
+1ViewController *viewController = [[ViewC">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【iOS】iOS控制器管理,代码,xib,Storyboard,Segue | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-malloc-calloc-relloc/">C语言,malloc,calloc,relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-内存四区/">C语言,内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言-结构体，内存，对齐/">C语言,结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown，语法/">markdown，语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc，笔记/">oc，笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客-hexo-jacman/">博客,hexo,jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆，大脑，艾宾浩斯/">快速记忆，大脑，艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄-读书/">番茄,读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式，HFS，NTFS/">磁盘格式，HFS，NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比，NBA/">科比，NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记-英语-学习/">笔记,英语,学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔-腾讯-心得/">随笔,腾讯,心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果，联想/">黑苹果，联想</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">iOSer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160821ControllerManager" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20160821ControllerManager/" class="article-date">
+      <time datetime="2016-08-21T13:02:25.000Z" itemprop="datePublished">2016-08-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【iOS】iOS控制器管理,代码,xib,Storyboard,Segue
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="控制器的创建"><a href="#控制器的创建" class="headerlink" title="控制器的创建"></a>控制器的创建</h2><h3 id="如何创建一个控制器"><a href="#如何创建一个控制器" class="headerlink" title="如何创建一个控制器"></a>如何创建一个控制器</h3><p>控制器常见的创建方式有以下几种</p>
+<ul>
+<li><p>通过storyboard创建</p>
+</li>
+<li><p>直接创建</p>
+</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [[ViewController alloc] init];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>指定xib文件来创建</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [[ViewController alloc] initWithNibName:<span class="string">@"ViewController"</span> bundle:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="通过storyboard创建控制器"><a href="#通过storyboard创建控制器" class="headerlink" title="通过storyboard创建控制器"></a>通过storyboard创建控制器</h3><p>先加载storyboard文件（Test是storyboard的文件名）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIStoryboard</span> *storyboard = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"Test"</span> bundle:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>接着初始化storyboard中的控制器</p>
+<p>初始化“初始控制器”（箭头所指的控制器）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [storyboard instantiateInitialViewController];</span><br></pre></td></tr></table></figure>
+<p>通过一个标识初始化对应的控制器</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@”viewController<span class="string">"];</span></span><br></pre></td></tr></table></figure>
+<h2 id="控制器的-view"><a href="#控制器的-view" class="headerlink" title="控制器的 view"></a>控制器的 view</h2><h3 id="ViewController的view的创建"><a href="#ViewController的view的创建" class="headerlink" title="ViewController的view的创建"></a>ViewController的view的创建</h3><center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg" alt=""><br></center>
+
+<h3 id="控制器view的延迟加载"><a href="#控制器view的延迟加载" class="headerlink" title="控制器view的延迟加载"></a>控制器view的延迟加载</h3><p>控制器的view是延迟加载的：用到时再加载</p>
+<p>可以用isViewLoaded方法判断一个UIViewController的view是否已经被加载</p>
+<p>控制器的view加载完毕就会调用viewDidLoad方法</p>
+<h2 id="多控制器管理"><a href="#多控制器管理" class="headerlink" title="多控制器管理"></a>多控制器管理</h2><p>一个iOS的app很少只由一个控制器组成,除非这个app极其简单</p>
+<p>当app中有多个控制器的时候,我们就需要对这些控制器进行管理</p>
+<p>有多个view时，可以用一个大的view去管理1个或者多个小view</p>
+<p>控制器也是如此，用1个控制器去管理其他多个控制器</p>
+<p>比如，用一个控制器A去管理3个控制器B、C、D</p>
+<ul>
+<li>控制器A被称为控制器B、C、D的“父控制器”</li>
+<li>控制器B、C、D的被称为控制器A的“子控制器”</li>
+</ul>
+<p>为了便于管理控制器，iOS提供了2个比较特殊的控制器</p>
+<ul>
+<li>UINavigationController</li>
+<li>UITabBarController</li>
+</ul>
+<h2 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h2><h3 id="UINavigationController-1"><a href="#UINavigationController-1" class="headerlink" title="UINavigationController"></a>UINavigationController</h3><p>利用UINavigationController，可以轻松地管理多个控制器，轻松完成控制器之间的切换，典型例子就是系统自带的“设置”应用</p>
+<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f71op0s7g3j219s0jsdl4.jpg" alt=""><br></center>
+
+<p>UINavigationController的使用步骤</p>
+<ul>
+<li>初始化UINavigationController</li>
+<li>设置UIWindow的rootViewController为UINavigationController</li>
+<li>根据具体情况，通过push方法添加对应个数的子控制器</li>
+</ul>
+<h3 id="UINavigationController的子控制器"><a href="#UINavigationController的子控制器" class="headerlink" title="UINavigationController的子控制器"></a>UINavigationController的子控制器</h3><p>UINavigationController以栈的形式保存子控制器</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSArray</span>&lt;__kindof <span class="built_in">UIViewController</span> *&gt; *viewControllers; <span class="comment">// The current view controller stack.</span></span><br></pre></td></tr></table></figure>
+<p>使用push方法能将某个控制器压入栈</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)pushViewController:(<span class="built_in">UIViewController</span> *)viewController animated:(<span class="built_in">BOOL</span>)animated;</span><br><span class="line"><span class="comment">// Uses a horizontal slide transition. Has no effect if the view controller is already in the stack.</span></span><br></pre></td></tr></table></figure>
+<p>使用pop方法可以移除控制器</p>
+<ul>
+<li>将栈顶的控制器移除</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable <span class="built_in">UIViewController</span> *)popViewControllerAnimated:(<span class="built_in">BOOL</span>)animated;</span><br><span class="line"><span class="comment">// Returns the popped controller.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>回到指定的子控制器</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable <span class="built_in">NSArray</span>&lt;__kindof <span class="built_in">UIViewController</span> *&gt; *)popToViewController:(<span class="built_in">UIViewController</span> *)viewController animated:(<span class="built_in">BOOL</span>)animated;</span><br><span class="line"><span class="comment">// Pops view controllers until the one specified is on top. Returns the popped controllers.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>回到根控制器（栈底控制器）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable <span class="built_in">NSArray</span>&lt;__kindof <span class="built_in">UIViewController</span> *&gt; *)popToRootViewControllerAnimated:(<span class="built_in">BOOL</span>)animated;</span><br><span class="line"><span class="comment">// Pops until there's only a single view controller left on the stack. Returns the popped controllers.</span></span><br></pre></td></tr></table></figure>
+<h3 id="UINavigationController的view结构"><a href="#UINavigationController的view结构" class="headerlink" title="UINavigationController的view结构"></a>UINavigationController的view结构</h3><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f71okmavqkj212w0pmq4t.jpg" alt=""><br></center>
+
+<h3 id="如何修改导航栏的内容"><a href="#如何修改导航栏的内容" class="headerlink" title="如何修改导航栏的内容"></a>如何修改导航栏的内容</h3><p>导航栏的内容由栈顶控制器的navigationItem属性决定</p>
+<p>UINavigationItem有以下属性影响着导航栏的内容</p>
+<ul>
+<li>左上角的返回按钮</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIBarButtonItem</span> *backBarButtonItem;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中间的标题视图</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIView</span>          *titleView;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中间的标题文字</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>)   <span class="built_in">NSString</span>        *title;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>左上角的视图</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIBarButtonItem</span> *leftBarButtonItem;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>右上角的视图</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIBarButtonItem</span> *rightBarButtonItem;</span><br></pre></td></tr></table></figure>
+<h2 id="Segue"><a href="#Segue" class="headerlink" title="Segue"></a>Segue</h2><h3 id="什么是Segue"><a href="#什么是Segue" class="headerlink" title="什么是Segue"></a>什么是Segue</h3><p>Storyboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）</p>
+<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gta3r14j20u20mc77i.jpg" alt=""><br></center>
+
+<h3 id="Segue的属性"><a href="#Segue的属性" class="headerlink" title="Segue的属性"></a>Segue的属性</h3><p>每一个Segue对象，都有3个属性</p>
+<ul>
+<li><p>唯一标识</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *identifier;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>来源控制器</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="keyword">id</span> sourceViewController;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>目标控制器</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="keyword">id</span> destinationViewController;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gwj56kmj219g0eiq76.jpg" alt=""><br></center>
+
+<h3 id="Segue的类型"><a href="#Segue的类型" class="headerlink" title="Segue的类型"></a>Segue的类型</h3><p>根据Segue的执行（跳转）时刻，Segue可以分为2大类型</p>
+<ul>
+<li>自动型：点击某个控件后（比如按钮），自动执行Segue，自动完成界面跳转</li>
+<li>手动型：需要通过写代码手动执行Segue，才能完成界面跳转</li>
+</ul>
+<h3 id="自动型Segue"><a href="#自动型Segue" class="headerlink" title="自动型Segue"></a>自动型Segue</h3><p>按住Control键，直接从控件拖线到目标控制器</p>
+<center><br><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74jl839a5j219e0b4n0s.jpg" alt=""><br></center>
+
+<p>点击“登录”按钮后，就会自动跳转到右边的控制器</p>
+<p>如果点击某个控件后，不需要做任何判断，一定要跳转到下一个界面，建议使用“自动型Segue”</p>
+<h3 id="手动型Segue"><a href="#手动型Segue" class="headerlink" title="手动型Segue"></a>手动型Segue</h3><p>按住Control键，从来源控制器拖线到目标控制器</p>
+<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f74jnm6riyj21p60bsdkj.jpg" alt=""><br></center>
+
+<p>手动型的Segue需要设置一个标识（如下图）</p>
+<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74jp58k7pj209i03t74k.jpg" alt=""><br></center>
+
+<p>在恰当的时刻，使用perform方法执行对应的Segue</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSegueWithIdentifier:<span class="string">@"login2contacts"</span> sender:<span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// Segue必须由来源控制器来执行，也就是说，这个perform方法必须由来源控制器来调用</span></span><br></pre></td></tr></table></figure>
+<p>如果点击某个控件后，需要做一些判断，也就是说：满足一定条件后才跳转到下一个界面，建议使用“手动型Segue”</p>
+<h3 id="performSegueWithIdentifier-sender"><a href="#performSegueWithIdentifier-sender" class="headerlink" title="performSegueWithIdentifier:sender:"></a>performSegueWithIdentifier:sender:</h3><p>利用performSegueWithIdentifier:方法可以执行某个Segue，完成界面跳转</p>
+<p>接下来研究performSegueWithIdentifier:sender:方法的完整执行过程</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSegueWithIdentifier:@“login2contacts” sender:<span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 这个self是来源控制器</span></span><br></pre></td></tr></table></figure>
+<p>1.根据identifier去storyboard中找到对应的线，新建UIStoryboardSegue对象</p>
+<ul>
+<li>设置Segue对象的sourceViewController（来源控制器）</li>
+<li>新建并且设置Segue对象的destinationViewController（目标控制器）</li>
+</ul>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74jrpfs7uj20jr0adjsy.jpg" alt=""><br></center>
+
+<p>2.调用sourceViewController的下面方法，做一些跳转前的准备工作并且传入创建好的Segue对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareForSegue:(<span class="built_in">UIStoryboardSegue</span> *)segue sender:(<span class="keyword">id</span>)sender;</span><br><span class="line"><span class="comment">// 这个sender是当初performSegueWithIdentifier:sender:中传入的sender</span></span><br></pre></td></tr></table></figure>
+<p>3.调用Segue对象的- (void)perform;方法开始执行界面跳转操作</p>
+<ul>
+<li>取得sourceViewController所在的UINavigationController</li>
+<li>调用UINavigationController的push方法将destinationViewController压入栈中，完成跳转</li>
+</ul>
+<p>Sender参数的传递</p>
+<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74ju6p3s8j21ds0d440f.jpg" alt=""><br></center>
+
+<h3 id="控制器的数据传递"><a href="#控制器的数据传递" class="headerlink" title="控制器的数据传递"></a>控制器的数据传递</h3><p>控制器之间的数据传递主要有2种情况:顺传和逆传</p>
+<p>顺传</p>
+<p>控制器的跳转方向: A -&gt; C<br>数据的传递方向: A -&gt; C<br>数据的传递方式: 在A的prepareForSegue:sender:方法中根据segue参数取得destinationViewController, 也就是控制器C, 直接给控制器C传递数据<br>(要在C的viewDidLoad方法中取得数据,来赋值给界面上的UI控件)</p>
+<h2 id="UITabBarController"><a href="#UITabBarController" class="headerlink" title="UITabBarController"></a>UITabBarController</h2><p>跟UINavigationController类似，UITabBarController也可以轻松地管理多个控制器，轻松完成控制器之间的切换，典型例子就是QQ、微信等应用</p>
+<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74vlp24flj21760jo0yu.jpg" alt=""><br></center>
+
+<h3 id="UITabBarController的简单使用"><a href="#UITabBarController的简单使用" class="headerlink" title="UITabBarController的简单使用"></a>UITabBarController的简单使用</h3><p>UITabBarController的使用步骤</p>
+<ul>
+<li>初始化UITabBarController</li>
+<li>设置UIWindow的rootViewController为UITabBarController</li>
+<li>根据具体情况，通过addChildViewController方法添加对应个数的子控制器</li>
+</ul>
+<h3 id="UITabBarController的子控制器"><a href="#UITabBarController的子控制器" class="headerlink" title="UITabBarController的子控制器"></a>UITabBarController的子控制器</h3><p>UITabBarController添加控制器的方式</p>
+<p>设置子控制器数组</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSArray</span> *viewControllers;</span><br></pre></td></tr></table></figure>
+<h3 id="UITabBar"><a href="#UITabBar" class="headerlink" title="UITabBar"></a>UITabBar</h3><p>如果UITabBarController有N个子控制器，那么UITabBar内部就会有N个UITabBarButton作为子控件</p>
+<p>UITabBarButton里面显示什么内容，由对应子控制器的tabBarItem属性决定</p>
+<p>UITabBarItem有以下属性影响着UITabBarButton的内容</p>
+<ul>
+<li><p>标题文字</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *title;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图标</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIImage</span> *image;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选中时的图标</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIImage</span> *selectedImage;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提醒数字</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *badgeValue;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="App主流UI框架结构"><a href="#App主流UI框架结构" class="headerlink" title="App主流UI框架结构"></a>App主流UI框架结构</h3><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f75zhdmnifj21bg0kq792.jpg" alt=""><br></center>
+
+<h2 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h2><p>除了push之外，还有另外一种控制器的切换方式，那就是Modal</p>
+<p>任何控制器都能通过Modal的形式展示出来</p>
+<p>Modal的默认效果：新控制器从屏幕的最底部往上钻，直到盖住之前的控制器为止</p>
+<p>以Modal的形式展示控制器<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)presentViewController:(<span class="built_in">UIViewController</span> *)viewControllerToPresent animated: (<span class="built_in">BOOL</span>)flag completion:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))completion</span><br></pre></td></tr></table></figure></p>
+<p>关闭当初Modal出来的控制器<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dismissViewControllerAnimated: (<span class="built_in">BOOL</span>)flag completion: (<span class="keyword">void</span> (^)(<span class="keyword">void</span>))completion;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160821ControllerManager/">iOS控制器管理,代码,xib,Storyboard,Segue</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52316315" target="_blank" rel="external">iOS控制器管理,代码,xib,Storyboard,Segue</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-21, 21:02:25</p>
+        <p><span>最后更新:</span>2017-02-09, 13:25:59</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160821ControllerManager/" title="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">http://yoferzhang.com/post/20160821ControllerManager/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160821ControllerManager/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160821UIKitClasses/">
+                    UIKit继承结构
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160821ApplicationStart/">
+                    【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制器的创建"><span class="toc-number">1.</span> <span class="toc-text">控制器的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何创建一个控制器"><span class="toc-number">1.1.</span> <span class="toc-text">如何创建一个控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过storyboard创建控制器"><span class="toc-number">1.2.</span> <span class="toc-text">通过storyboard创建控制器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制器的-view"><span class="toc-number">2.</span> <span class="toc-text">控制器的 view</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ViewController的view的创建"><span class="toc-number">2.1.</span> <span class="toc-text">ViewController的view的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制器view的延迟加载"><span class="toc-number">2.2.</span> <span class="toc-text">控制器view的延迟加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多控制器管理"><span class="toc-number">3.</span> <span class="toc-text">多控制器管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UINavigationController"><span class="toc-number">4.</span> <span class="toc-text">UINavigationController</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UINavigationController-1"><span class="toc-number">4.1.</span> <span class="toc-text">UINavigationController</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UINavigationController的子控制器"><span class="toc-number">4.2.</span> <span class="toc-text">UINavigationController的子控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UINavigationController的view结构"><span class="toc-number">4.3.</span> <span class="toc-text">UINavigationController的view结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何修改导航栏的内容"><span class="toc-number">4.4.</span> <span class="toc-text">如何修改导航栏的内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Segue"><span class="toc-number">5.</span> <span class="toc-text">Segue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Segue"><span class="toc-number">5.1.</span> <span class="toc-text">什么是Segue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segue的属性"><span class="toc-number">5.2.</span> <span class="toc-text">Segue的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Segue的类型"><span class="toc-number">5.3.</span> <span class="toc-text">Segue的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动型Segue"><span class="toc-number">5.4.</span> <span class="toc-text">自动型Segue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动型Segue"><span class="toc-number">5.5.</span> <span class="toc-text">手动型Segue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#performSegueWithIdentifier-sender"><span class="toc-number">5.6.</span> <span class="toc-text">performSegueWithIdentifier:sender:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制器的数据传递"><span class="toc-number">5.7.</span> <span class="toc-text">控制器的数据传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITabBarController"><span class="toc-number">6.</span> <span class="toc-text">UITabBarController</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UITabBarController的简单使用"><span class="toc-number">6.1.</span> <span class="toc-text">UITabBarController的简单使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITabBarController的子控制器"><span class="toc-number">6.2.</span> <span class="toc-text">UITabBarController的子控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITabBar"><span class="toc-number">6.3.</span> <span class="toc-text">UITabBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App主流UI框架结构"><span class="toc-number">6.4.</span> <span class="toc-text">App主流UI框架结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Modal"><span class="toc-number">7.</span> <span class="toc-text">Modal</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【iOS】iOS控制器管理,代码,xib,Storyboard,Segue　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160821ControllerManager/" data-title="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue" data-url="http://yoferzhang.com/post/20160821ControllerManager/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160821UIKitClasses/" title="上一篇: UIKit继承结构">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160821ApplicationStart/" title="下一篇: 【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
