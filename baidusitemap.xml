@@ -3,14 +3,13 @@
 
 
     
-    
   <url>
-    <loc>http://yoferzhang.com/post/20161130DataManager/</loc>
-    <lastmod>2017-02-09T08:02:00.000Z</lastmod>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
+    <lastmod>2017-02-16T08:40:26.000Z</lastmod>
     <data>
         <display>
-        <title>【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</title>
-        <pubTime>2016-11-30T13:02:30.000Z</pubTime>
+        <title>AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</title>
+        <pubTime>2016-08-03T07:06:53.000Z</pubTime>
         
          
            
@@ -23,19 +22,21 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
-    <lastmod>2017-02-09T05:34:09.000Z</lastmod>
+    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
+    <lastmod>2017-02-16T08:39:50.000Z</lastmod>
     <data>
         <display>
-        <title>【渔】NTFS转HFS</title>
-        <pubTime>2016-04-16T10:50:12.000Z</pubTime>
+        <title>【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</title>
+        <pubTime>2016-04-20T06:41:27.000Z</pubTime>
         
-        <tag>磁盘格式，HFS，NTFS</tag>
+        <tag>笔记</tag>
+         
+        <tag>oc</tag>
          
          
            
              
-              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
           
         </display>
     </data>
@@ -43,14 +44,16 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
-    <lastmod>2017-02-09T05:34:02.000Z</lastmod>
+    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
+    <lastmod>2017-02-16T08:39:39.000Z</lastmod>
     <data>
         <display>
-        <title>【C语言】C语言内存四区 - 概念与代码示例</title>
-        <pubTime>2016-04-17T14:12:38.000Z</pubTime>
+        <title>【C语言】结构体内存对齐模式</title>
+        <pubTime>2016-04-19T12:57:46.000Z</pubTime>
         
-        <tag>C语言,内存四区</tag>
+        <tag>C语言</tag>
+         
+        <tag>结构体，内存，对齐</tag>
          
          
            
@@ -63,15 +66,292 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
-    <lastmod>2017-02-09T05:33:34.000Z</lastmod>
+    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
+    <lastmod>2017-02-16T08:39:32.000Z</lastmod>
     <data>
         <display>
-        <title>【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</title>
-        <pubTime>2016-04-20T06:41:27.000Z</pubTime>
+        <title>【C语言】malloc,calloc,relloc异同示例</title>
+        <pubTime>2016-04-17T13:58:39.000Z</pubTime>
         
-        <tag>oc，笔记</tag>
+        <tag>C语言</tag>
          
+        <tag>malloc</tag>
+         
+        <tag>calloc</tag>
+         
+        <tag>relloc</tag>
+         
+         
+           
+             
+              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
+    <lastmod>2017-02-16T08:39:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>【C语言】C语言内存四区 - 概念与代码示例</title>
+        <pubTime>2016-04-17T14:12:38.000Z</pubTime>
+        
+        <tag>C语言</tag>
+         
+        <tag>内存四区</tag>
+         
+         
+           
+             
+              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
+    <lastmod>2017-02-16T08:39:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】NTFS转HFS</title>
+        <pubTime>2016-04-16T10:50:12.000Z</pubTime>
+        
+        <tag>磁盘格式</tag>
+         
+        <tag>HFS</tag>
+         
+        <tag>NTFS</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
+    <lastmod>2017-02-16T08:39:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】Markdown语法（看这张图就够了）</title>
+        <pubTime>2016-04-15T14:15:45.000Z</pubTime>
+        
+        <tag>markdown</tag>
+         
+        <tag>语法</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
+    <lastmod>2017-02-16T08:39:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>【随笔】2016年4月14日 Kobe Bryant完美谢幕</title>
+        <pubTime>2016-04-14T10:17:26.000Z</pubTime>
+        
+        <tag>科比</tag>
+         
+        <tag>NBA</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
+    <lastmod>2017-02-16T08:38:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</title>
+        <pubTime>2016-04-08T09:57:18.000Z</pubTime>
+        
+        <tag>黑苹果</tag>
+         
+        <tag>联想</tag>
+         
+         
+           
+             
+              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
+    <lastmod>2017-02-16T08:38:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>【快速记忆】快速记忆背景</title>
+        <pubTime>2016-03-28T06:04:47.000Z</pubTime>
+        
+        <tag>快速记忆</tag>
+         
+        <tag>大脑</tag>
+         
+        <tag>艾宾浩斯</tag>
+         
+         
+           
+             
+              <breadCrumb title="快速记忆" url="http://yoferzhang.com/categories/%E5%BF%AB%E9%80%9F%E8%AE%B0%E5%BF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
+    <lastmod>2017-02-16T08:38:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>【读书笔记】番茄工作法图解</title>
+        <pubTime>2016-03-25T12:27:53.000Z</pubTime>
+        
+        <tag>番茄</tag>
+         
+        <tag>读书</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
+    <lastmod>2017-02-16T08:38:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>【建立博客】使用Github和Hexo搭建属于自己的博客</title>
+        <pubTime>2016-03-23T08:40:10.000Z</pubTime>
+        
+        <tag>博客</tag>
+         
+        <tag>hexo</tag>
+         
+        <tag>jacman</tag>
+         
+         
+           
+             
+              <breadCrumb title="建立博客" url="http://yoferzhang.com/categories/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
+    <lastmod>2017-02-16T08:38:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>【读书笔记】把你的英语用起来</title>
+        <pubTime>2016-03-22T14:07:41.000Z</pubTime>
+        
+        <tag>笔记</tag>
+         
+        <tag>英语</tag>
+         
+        <tag>学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
+    <lastmod>2017-02-16T08:38:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</title>
+        <pubTime>2016-03-22T15:03:33.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+        <tag>腾讯</tag>
+         
+        <tag>心得</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
+    <lastmod>2017-02-16T08:37:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>【健身】健身记录；健身课表；健身心得</title>
+        <pubTime>2017-02-16T03:08:29.000Z</pubTime>
+        
+        <tag>健身</tag>
+         
+        <tag>肌肉</tag>
+         
+         
+           
+             
+              <breadCrumb title="健身" url="http://yoferzhang.com/categories/%E5%81%A5%E8%BA%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20161130DataManager/</loc>
+    <lastmod>2017-02-09T08:02:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</title>
+        <pubTime>2016-11-30T13:02:30.000Z</pubTime>
+        
          
            
              
@@ -817,24 +1097,6 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
-    <lastmod>2016-12-28T12:59:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</title>
-        <pubTime>2016-08-03T07:06:53.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://yoferzhang.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoferzhang.com/post/hexo-post/</loc>
     <lastmod>2016-10-31T06:49:55.000Z</lastmod>
     <data>
@@ -911,26 +1173,6 @@
     
     
   <url>
-    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
-    <lastmod>2016-07-22T13:18:23.000Z</lastmod>
-    <data>
-        <display>
-        <title>【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</title>
-        <pubTime>2016-04-08T09:57:18.000Z</pubTime>
-        
-        <tag>黑苹果，联想</tag>
-         
-         
-           
-             
-              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoferzhang.com/post/20160325ReadIndex/</loc>
     <lastmod>2016-04-20T09:03:59.000Z</lastmod>
     <data>
@@ -942,86 +1184,6 @@
            
              
               <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
-    <lastmod>2016-04-20T00:50:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>【建立博客】使用Github和Hexo搭建属于自己的博客</title>
-        <pubTime>2016-03-23T08:40:10.000Z</pubTime>
-        
-        <tag>博客,hexo,jacman</tag>
-         
-         
-           
-             
-              <breadCrumb title="建立博客" url="http://yoferzhang.com/categories/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
-    <lastmod>2016-04-19T13:01:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>【C语言】结构体内存对齐模式</title>
-        <pubTime>2016-04-19T12:57:46.000Z</pubTime>
-        
-        <tag>C语言,结构体，内存，对齐</tag>
-         
-         
-           
-             
-              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
-    <lastmod>2016-04-17T14:19:05.000Z</lastmod>
-    <data>
-        <display>
-        <title>【C语言】malloc,calloc,relloc异同示例</title>
-        <pubTime>2016-04-17T13:58:39.000Z</pubTime>
-        
-        <tag>C语言,malloc,calloc,relloc</tag>
-         
-         
-           
-             
-              <breadCrumb title="C语言" url="http://yoferzhang.com/categories/C%E8%AF%AD%E8%A8%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
-    <lastmod>2016-04-16T00:17:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>【渔】Markdown语法（看这张图就够了）</title>
-        <pubTime>2016-04-15T14:15:45.000Z</pubTime>
-        
-        <tag>markdown，语法</tag>
-         
-         
-           
-             
-              <breadCrumb title="渔" url="http://yoferzhang.com/categories/%E6%B8%94/"/>
           
         </display>
     </data>
@@ -1049,26 +1211,6 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
-    <lastmod>2016-04-15T14:25:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>【随笔】2016年4月14日 Kobe Bryant完美谢幕</title>
-        <pubTime>2016-04-14T10:17:26.000Z</pubTime>
-        
-        <tag>科比，NBA</tag>
-         
-         
-           
-             
-              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoferzhang.com/post/20160329NumberCodeTable/</loc>
     <lastmod>2016-04-15T14:25:24.000Z</lastmod>
     <data>
@@ -1082,86 +1224,6 @@
            
              
               <breadCrumb title="快速记忆" url="http://yoferzhang.com/categories/%E5%BF%AB%E9%80%9F%E8%AE%B0%E5%BF%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
-    <lastmod>2016-04-15T14:25:18.000Z</lastmod>
-    <data>
-        <display>
-        <title>【快速记忆】快速记忆背景</title>
-        <pubTime>2016-03-28T06:04:47.000Z</pubTime>
-        
-        <tag>快速记忆，大脑，艾宾浩斯</tag>
-         
-         
-           
-             
-              <breadCrumb title="快速记忆" url="http://yoferzhang.com/categories/%E5%BF%AB%E9%80%9F%E8%AE%B0%E5%BF%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
-    <lastmod>2016-04-15T14:25:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>【读书笔记】番茄工作法图解</title>
-        <pubTime>2016-03-25T12:27:53.000Z</pubTime>
-        
-        <tag>番茄,读书</tag>
-         
-         
-           
-             
-              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
-    <lastmod>2016-04-15T14:23:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>【读书笔记】把你的英语用起来</title>
-        <pubTime>2016-03-22T14:07:41.000Z</pubTime>
-        
-        <tag>笔记,英语,学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="读书笔记" url="http://yoferzhang.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
-    <lastmod>2016-04-15T14:23:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</title>
-        <pubTime>2016-03-22T15:03:33.000Z</pubTime>
-        
-        <tag>随笔,腾讯,心得</tag>
-         
-         
-           
-             
-              <breadCrumb title="随笔" url="http://yoferzhang.com/categories/%E9%9A%8F%E7%AC%94/"/>
           
         </display>
     </data>

@@ -2,6 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
+    
+    <lastmod>2017-02-16T08:40:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
+    
+    <lastmod>2017-02-16T08:39:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
+    
+    <lastmod>2017-02-16T08:39:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
+    
+    <lastmod>2017-02-16T08:39:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
+    
+    <lastmod>2017-02-16T08:39:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
+    
+    <lastmod>2017-02-16T08:39:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
+    
+    <lastmod>2017-02-16T08:39:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
+    
+    <lastmod>2017-02-16T08:39:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
+    
+    <lastmod>2017-02-16T08:38:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
+    
+    <lastmod>2017-02-16T08:38:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
+    
+    <lastmod>2017-02-16T08:38:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
+    
+    <lastmod>2017-02-16T08:38:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
+    
+    <lastmod>2017-02-16T08:38:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
+    
+    <lastmod>2017-02-16T08:38:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
+    
+    <lastmod>2017-02-16T08:37:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoferzhang.com/tags/index.html</loc>
     
     <lastmod>2017-02-10T02:08:58.000Z</lastmod>
@@ -12,27 +117,6 @@
     <loc>http://yoferzhang.com/post/20161130DataManager/</loc>
     
     <lastmod>2017-02-09T08:02:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
-    
-    <lastmod>2017-02-09T05:34:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
-    
-    <lastmod>2017-02-09T05:34:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
-    
-    <lastmod>2017-02-09T05:33:34.000Z</lastmod>
     
   </url>
   
@@ -324,13 +408,6 @@
   </url>
   
   <url>
-    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
-    
-    <lastmod>2016-12-28T12:59:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoferzhang.com/post/hexo-post/</loc>
     
     <lastmod>2016-10-31T06:49:55.000Z</lastmod>
@@ -373,44 +450,9 @@
   </url>
   
   <url>
-    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
-    
-    <lastmod>2016-07-22T13:18:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoferzhang.com/post/20160325ReadIndex/</loc>
     
     <lastmod>2016-04-20T09:03:59.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
-    
-    <lastmod>2016-04-20T00:50:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
-    
-    <lastmod>2016-04-19T13:01:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
-    
-    <lastmod>2016-04-17T14:19:05.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
-    
-    <lastmod>2016-04-16T00:17:26.000Z</lastmod>
     
   </url>
   
@@ -422,44 +464,9 @@
   </url>
   
   <url>
-    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
-    
-    <lastmod>2016-04-15T14:25:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoferzhang.com/post/20160329NumberCodeTable/</loc>
     
     <lastmod>2016-04-15T14:25:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
-    
-    <lastmod>2016-04-15T14:25:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
-    
-    <lastmod>2016-04-15T14:25:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
-    
-    <lastmod>2016-04-15T14:23:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
-    
-    <lastmod>2016-04-15T14:23:40.000Z</lastmod>
     
   </url>
   
