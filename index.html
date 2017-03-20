@@ -270,6 +270,68 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20170306DeepLearningRegression" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20170306DeepLearningRegression/" class="article-date">
+      <time datetime="2017-03-06T06:45:55.000Z" itemprop="datePublished">2017-03-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/post/20170306DeepLearningRegression/">【测试】只是为了测试数学公式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>这个model 应该长什么样子呢，先写一个简单的</p>
+<p>$$<br>y = b + w \cdot x_{cp}<br>$$</p>
+<p>$w$ 和 $b$ 是参数，可以是任何值。</p>
+<p>定好了损失函数，可以衡量每一个方程的好坏，接下来需要从函数集中挑选一个最好的方程。将这个过程数学化：</p>
+<p>$$<br>f^{*}=\arg \min_{f} L(f)<br>$$</p>
+<p>考虑只有一个参数 $w$ 的损失函数，随机的选取一个初始点，计算 $w = w^{0}$ 时 $L$ 对 $w$ 的微分，然后顺着切线下降的方向更改 $w$ 的值（因为这里是求极小值），即斜率为负，增加$w$ ；斜率为正，减小$w$ .</p>
+<p>随机选取初始值 $\theta^{0} = \left[ \begin{matrix} \theta^{0}<em>{1}\ \theta^{0}</em>{2} \end{matrix} \right]$</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20170216FitnessDiary" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -746,79 +808,9 @@
 
 
   
-    <article id="post-20160909ErrorLibpngErrorUnhandledCritical" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/post/20160909ErrorLibpngErrorUnhandledCritical/" class="article-date">
-      <time datetime="2016-09-09T01:22:59.000Z" itemprop="datePublished">2016-09-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
-</blockquote>
-<p>XCode 8 GM 版本编译 cocos2dx的代码，在加载 sprite 时，比如</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sprite-&gt;setPosition(Vec2(visibleSize.width/<span class="number">2</span> + origin.x, visibleSize.height/<span class="number">2</span> + origin.y));</span><br></pre></td></tr></table></figure>
-<p>会弹出错误：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">libpng error: CgBI: unhandled critical chunk</span><br><span class="line">libpng error: CgBI: unhandled critical chunk</span><br><span class="line">libpng error: CgBI: unhandled critical chunk</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
-    </div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a href="/post/20160909ErrorLibpngErrorUnhandledCritical/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

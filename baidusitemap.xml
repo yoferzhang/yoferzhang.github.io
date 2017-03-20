@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
-    <lastmod>2017-03-15T08:22:23.000Z</lastmod>
+    <lastmod>2017-03-20T15:38:07.000Z</lastmod>
     <data>
         <display>
         <title>【健身】健身记录；健身课表；健身心得</title>
@@ -20,6 +20,21 @@
              
               <breadCrumb title="健身" url="http://yoferzhang.com/categories/%E5%81%A5%E8%BA%AB/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20170306DeepLearningRegression/</loc>
+    <lastmod>2017-03-20T15:36:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>【测试】只是为了测试数学公式</title>
+        <pubTime>2017-03-06T06:45:55.000Z</pubTime>
+        
+         
+           
         </display>
     </data>
     </url>
