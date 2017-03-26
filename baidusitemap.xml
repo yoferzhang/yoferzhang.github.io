@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoferzhang.com/post/20170326ML02Regression/</loc>
+    <lastmod>2017-03-26T15:47:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习入门系列02，Regression 回归：案例研究</title>
+        <pubTime>2017-03-26T15:02:44.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>深度学习</tag>
+         
+        <tag>梯度下降法</tag>
+         
+        <tag>损失函数</tag>
+         
+        <tag>回归</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoferzhang.com/post/20170326ML01Introduction/</loc>
     <lastmod>2017-03-26T14:59:54.000Z</lastmod>
     <data>
