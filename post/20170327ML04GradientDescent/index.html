@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
+
+什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习入门系列04，Gradient Descent（梯度下降法）">
+<meta property="og:url" content="http://yoferzhang.com/post/20170327ML04GradientDescent/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
+
+什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p768yjij212g0msgps.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p7olqw1j212k0mqjvn.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8iqqphj212a0n241f.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8x3ggkj20x00hsac3.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9awbcij21080ikmzo.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9pq9l1j210a0kmmzx.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pa69l64j212s0ng42l.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pakwyxsj213i0kik9e.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pb38dvnj212e0lu4d7.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pbh8oqtj21200s00xi.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pc5kle1j212g0nq48s.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pcmc0lcj20zk0iuq8m.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pd1h0xtj213c0m00x5.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdgqdzwj212q0kqn0q.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdwqnqzj212a0mingb.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0perzpcgj212g0t0qho.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pf85k6hj212s0jsdic.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pfmfsbvj21240j4amj.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pg12er4j212e0nyk53.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pghquu2j211y0n4wid.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pgz0bohj213e0nswjd.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0phhfnifj21200s0qet.jpg">
+<meta property="og:updated_time" content="2017-03-26T16:38:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习入门系列04，Gradient Descent（梯度下降法）">
+<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
+
+什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>机器学习入门系列04，Gradient Descent（梯度下降法） | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Adagrad/">Adagrad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HFS/">HFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTFS/">NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/calloc/">calloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jacman/">jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/malloc/">malloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc/">oc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/relloc/">relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交叉检验/">交叉检验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存四区/">内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类/">分类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回归/">回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大脑/">大脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习率/">学习率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆/">快速记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/损失函数/">损失函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方差/">方差</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无偏估计/">无偏估计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泰勒展开式/">泰勒展开式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄/">番茄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式/">磁盘格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比/">科比</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性回归/">线性回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构体，内存，对齐/">结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/联想/">联想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/肌肉/">肌肉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/腾讯/">腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/艾宾浩斯/">艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语/">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书/">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Amor Fati</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20170327ML04GradientDescent" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20170327ML04GradientDescent/" class="article-date">
+      <time datetime="2017-03-26T16:28:14.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习入门系列04，Gradient Descent（梯度下降法）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Adagrad/">Adagrad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习率/">学习率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/泰勒展开式/">泰勒展开式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<blockquote>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66632699" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66632699</a></p>
+</blockquote>
+<h1 id="什么是Gradient-Descent（梯度下降法）？"><a href="#什么是Gradient-Descent（梯度下降法）？" class="headerlink" title="什么是Gradient Descent（梯度下降法）？"></a>什么是Gradient Descent（梯度下降法）？</h1><p>在第二篇文章中有介绍到梯度下降法的做法，传送门：<a href="地址地址地址">机器学习入门系列02，Regression 回归：案例研究</a></p>
+<h2 id="Review-梯度下降法"><a href="#Review-梯度下降法" class="headerlink" title="Review: 梯度下降法"></a>Review: 梯度下降法</h2><p>在回归问题的第三步中，需要解决下面的最优化问题：</p>
+<p>$$<br>\theta^{*} = \arg \min_{\theta} L(\theta)<br>$$</p>
+<p>$$<br>L: loss function （损失函数）<br>$$</p>
+<p>$$<br>\theta: parameters （参数）<br>$$</p>
+<blockquote>
+<p>这里的parameters是复数，即 $\theta$ 指代一堆参数，比如上篇说到的 $w$ 和 $b$。</p>
+</blockquote>
+<p>我们要找一组参数 $\theta$ ，让损失函数越小越好，这个问题可以用梯度下降法解决：</p>
+<p>假设 $\theta$ 有里面有两个参数 ${\theta<em>{1}, \theta</em>{2}}$</p>
+<p>随机选取初始值 </p>
+<p>$$<br>\theta^{0} = \left[ \begin{matrix} \theta^{0}<em>{1}\ \theta^{0}</em>{2} \end{matrix} \right]<br>$$</p>
+<p>这里可能某个平台不支持矩阵输入，看下图就好。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg" alt=""></p>
+<p>然后分别计算初始点处，两个参数对 $L$ 的偏微分，然后 $\theta^{0}$ 减掉 $\eta$ 乘上偏微分的值，得到一组新的参数。同理反复进行这样的计算。黄色部分为简洁的写法，$\nabla L(\theta)$即为<strong>梯度</strong>。</p>
+<blockquote>
+<p>$\eta$叫做Learning rates（学习速率）</p>
+</blockquote>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p768yjij212g0msgps.jpg" alt=""></p>
+<p>上图举例将梯度下降法的计算过程进行可视化。</p>
+<h1 id="Tip1：调整-learning-rates（学习速率）"><a href="#Tip1：调整-learning-rates（学习速率）" class="headerlink" title="Tip1：调整 learning rates（学习速率）"></a>Tip1：调整 learning rates（学习速率）</h1><h2 id="小心翼翼地调整-learning-rate"><a href="#小心翼翼地调整-learning-rate" class="headerlink" title="小心翼翼地调整 learning rate"></a>小心翼翼地调整 learning rate</h2><p>举例：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p7olqw1j212k0mqjvn.jpg" alt=""></p>
+<p>上图左边黑色为损失函数的曲线，假设从左边最高点开始，如果 learning rate 调整的刚刚好，比如红色的线，就能顺利找到最低点。如果  learning rate 调整的太小，比如蓝色的线，就会走的太慢，虽然这种情况给足够多的时间也可以找到最低点，实际情况可能会等不及出结果。如果  learning rate 调整的有点大，比如绿色的线，就会在上面震荡，走不下去，永远无法到达最低点。还有可能非常大，比如黄色的线，直接就飞出去了，update参数的时候只会发现损失函数越更新越大。</p>
+<p>虽然这样的可视化可以很直观观察，但可视化也只是能在参数是一维或者二维的时候进行，更高维的情况已经无法可视化了。</p>
+<p>解决方法就是上图右边的方案，将参数改变对损失函数的影响进行可视化。比如 learning rate 太小（蓝色的线），损失函数下降的非常慢；learning rate 太大（绿色的线），损失函数下降很快，但马上就卡住不下降了；learning rate特别大（黄色的线），损失函数就飞出去了；红色的就是差不多刚好，可以得到一个好的结果。</p>
+<h2 id="自适应-learning-rate"><a href="#自适应-learning-rate" class="headerlink" title="自适应 learning rate"></a>自适应 learning rate</h2><p>举一个简单的思想：随着次数的增加，通过一些因子来减少 learning rate</p>
+<ul>
+<li>通常刚开始，初始点会距离最低点比较远，所以使用大一点的 learning rate</li>
+<li>update好几次参数之后呢，比较靠近最低点了，此时减少 learning rate</li>
+<li>比如 $\eta^{t} = \eta / \sqrt{t+1}$，$t$ 是次数。随着次数的增加，$\eta^{t}$ 减小</li>
+</ul>
+<p>但 learning rate 不能是 one-size-fits-all ，不同的参数需要不同的 learning rate</p>
+<h2 id="Adagrad-算法"><a href="#Adagrad-算法" class="headerlink" title="Adagrad 算法"></a>Adagrad 算法</h2><h3 id="Adagrad-是什么？"><a href="#Adagrad-是什么？" class="headerlink" title="Adagrad 是什么？"></a>Adagrad 是什么？</h3><p>每个参数的学习率都把它除上之前微分的均方根。解释：</p>
+<p>普通的梯度下降为：</p>
+<p>$$<br>w^{t + 1} \leftarrow w^{t} - \eta^{t} g^{t}<br>$$</p>
+<p>$$<br>\eta^{t} = \frac{\eta}{\sqrt{t+1}}<br>$$</p>
+<p>$w$ 是一个参数</p>
+<p>Adagrad 可以做的更好：</p>
+<p>$$<br>w^{t+1} \leftarrow w^{t} - \frac{\eta^{t}}{\sigma} g^{t}<br>$$</p>
+<p>$$<br>g^{t} = \frac{\partial L(\theta^{t})}{\partial w}<br>$$</p>
+<p>$\sigma^{t}$:之前参数的所有微分的均方根，对于每个参数都是不一样的。</p>
+<h3 id="Adagrad举例"><a href="#Adagrad举例" class="headerlink" title="Adagrad举例"></a>Adagrad举例</h3><p>下图是一个参数的更新过程</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8iqqphj212a0n241f.jpg" alt=""></p>
+<p>将 Adagrad 的式子进行化简：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8x3ggkj20x00hsac3.jpg" alt=""></p>
+<h3 id="Adagrad-存在的矛盾？"><a href="#Adagrad-存在的矛盾？" class="headerlink" title="Adagrad 存在的矛盾？"></a>Adagrad 存在的矛盾？</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9awbcij21080ikmzo.jpg" alt=""></p>
+<p>在 Adagrad 中，当梯度越大的时候，步伐应该越大，但下面分母又导致当梯度越大的时候，步伐会越小。</p>
+<p>下图是一个直观的解释：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9pq9l1j210a0kmmzx.jpg" alt=""></p>
+<p>下面给一个正式的解释：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pa69l64j212s0ng42l.jpg" alt=""></p>
+<p>比如初始点在 $x<em>{0}$，最低点为 $-\frac{b}{2a}$，最佳的步伐就是 $x</em>{0}$ 到最低点之间的距离 $| x<em>{0} + \frac{b}{2a} |$，也可以写成 $\frac{| 2ax</em>{0} + b|}{2a}$。而刚好 $ |2ax<em>{0} + b|$ 就是方程绝对值在$x</em>{0}$这一点的微分。</p>
+<p>这样可以认为如果算出来的微分越大，则距离最低点越远。而且最好的步伐和微分的大小成正比。所以如果踏出去的步伐和微分成正比，它可能是比较好的。</p>
+<p>结论1-1：梯度越大，就跟最低点的距离越远。</p>
+<p>这个结论在多个参数的时候就不一定成立了。</p>
+<h3 id="多参数下结论不一定成立"><a href="#多参数下结论不一定成立" class="headerlink" title="多参数下结论不一定成立"></a>多参数下结论不一定成立</h3><p><strong>对比不同的参数</strong></p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pakwyxsj213i0kik9e.jpg" alt=""></p>
+<p>上图左边是两个参数的损失函数，颜色代表损失函数的值。如果只考虑参数 $w<em>{1}$，就像图中蓝色的线，得到右边上图结果；如果只考虑参数 $w</em>{2}$，就像图中绿色的线，得到右边下图的结果。确实对于a和b，结论1-1是成立的，同理c和b也成立。但是如果对比a和c，就不成立了，c比a大，但c距离最低点是比较近的。</p>
+<p>所以结论1-1是在没有考虑跨参数对比的情况下，才能成立的。所以还不完善。</p>
+<p>之前说到的最佳距离$\frac{| 2ax_{0} + b|}{2a}$，还有个分母 $2a$ 。对function进行二次微分刚好可以得到：</p>
+<p>$$<br>\frac{\partial^{2}y}{\partial x^{2}} = 2a<br>$$</p>
+<p>所以最好的步伐应该是：</p>
+<p>$$<br>\frac{一次微分}{二次微分}<br>$$</p>
+<p>即不止和一次微分成正比，还和二次微分成反比。最好的step应该考虑到二次微分：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pb38dvnj212e0lu4d7.jpg" alt=""></p>
+<h3 id="Adagrad-进一步的解释"><a href="#Adagrad-进一步的解释" class="headerlink" title="Adagrad 进一步的解释"></a>Adagrad 进一步的解释</h3><p>再回到之前的 Adagrad</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pbh8oqtj21200s00xi.jpg" alt=""></p>
+<p>对于$\sqrt{\sum^{t}_{i=0} (g^{i})^{2} }$ 就是希望再尽可能不增加过多运算的情况下模拟二次微分。（如果计算二次微分，在实际情况中可能会增加很多的时间消耗）</p>
+<h1 id="Tip2：Stochastic-Gradient-Descent（随机梯度下降法）"><a href="#Tip2：Stochastic-Gradient-Descent（随机梯度下降法）" class="headerlink" title="Tip2：Stochastic Gradient Descent（随机梯度下降法）"></a>Tip2：Stochastic Gradient Descent（随机梯度下降法）</h1><p>之前的梯度下降：</p>
+<p>$$<br>L =\sum<em>{n} \left( \hat{y}^{n} - (b + \sum w</em>{i} x^{n}_{i})   \right)^{2}<br>$$</p>
+<p>$$<br>\theta^{i} = \theta^{i -1} - \eta \nabla L(\theta^{i -1})<br>$$</p>
+<p>而Stochastic Gradient Descent（更快）：</p>
+<p>损失函数不需要处理训练集所有的数据，选取一个例子 $x^{n}$</p>
+<p>$$<br>L^{n} = \left( \hat{y}^{n} - (b + \sum w<em>{i} x^{n}</em>{i}   \right)^{2}<br>$$</p>
+<p>$$<br>\theta^{i} = \theta^{i -1} - \eta \nabla L^{n}(\theta^{i -1})<br>$$</p>
+<p>此时不需要像之前那样对所有的数据进行处理，只需要计算某一个例子的损失函数$L^{n}$，就可以赶紧update 梯度。</p>
+<p>对比：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pc5kle1j212g0nq48s.jpg" alt=""></p>
+<p>常规梯度下降法走一步要处理到所有二十个examples，但Stochastic 此时已经走了二十步（没处理一个example就更新）</p>
+<h1 id="Tip3：Feature-Scaling（特征缩放）"><a href="#Tip3：Feature-Scaling（特征缩放）" class="headerlink" title="Tip3：Feature Scaling（特征缩放）"></a>Tip3：Feature Scaling（特征缩放）</h1><p>比如有个function：</p>
+<p>$$<br>y = b + w<em>{1}x</em>{1} + w<em>{2}x</em>{2}<br>$$</p>
+<p>两个输入的分布的范围很不一样，建议把他们的范围缩放，使得不同输入的范围是一样的。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pcmc0lcj20zk0iuq8m.jpg" alt=""></p>
+<h2 id="为什么要这样做？"><a href="#为什么要这样做？" class="headerlink" title="为什么要这样做？"></a>为什么要这样做？</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pd1h0xtj213c0m00x5.jpg" alt=""></p>
+<p>上图左边是$x<em>{1}$的scale比 $x</em>{2}$要小很多，所以当$w<em>{1}$ 和 $w</em>{2}$做同样的变化时，$w<em>{1}$对y的变化影响是比较小的，$x</em>{2}$对y的变化影响是比较大的。</p>
+<p>坐标系中是两个参数的error surface（现在考虑左边蓝色），因为$w<em>{1}$对y的变化影响比较小，所以$w</em>{1}$对损失函数的影响比较小，$w<em>{1}$对损失函数有比较小的微分，所以$w</em>{1}$方向上是比较平滑的。同理$x<em>{2}$对y的影响比较大，所以$x</em>{2}$对损失函数的影响比较大，所以在$x_{2}$方向有比较尖的峡谷。</p>
+<p>上图右边是两个参数scaling比较接近，右边的绿色图就比较接近圆形。</p>
+<p>对于左边的情况，上面讲过这种狭长的情形不过不用Adagrad的话是比较难处理的，两个方向上需要不同的学习率，同一组学习率会搞不定它。而右边情形更新参数就会变得比较容易。左边的梯度下降并不是向着最低点方向走的，而是顺着等高线切线法线方向走的。但绿色就可以向着圆心（最低点）走，这样做参数更新也是比较有效率。</p>
+<h2 id="怎么做-scaling？"><a href="#怎么做-scaling？" class="headerlink" title="怎么做 scaling？"></a>怎么做 scaling？</h2><p>方法非常多，这里举例一种常见的做法：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdgqdzwj212q0kqn0q.jpg" alt=""></p>
+<p>上图每一列都是一个例子，里面都有一组feature。</p>
+<p>对每一个维度$i$（绿色框）都计算平均数，记做$m<em>{i}$；还要计算标准差，记做$\sigma</em>{i}$。</p>
+<p>然后用第r个例子中的第i个输入，减掉平均数$m<em>{i}$，然后除以标准差$\sigma</em>{i}$，得到的结果是所有的维数都是0，所有的方差都是1</p>
+<h1 id="梯度下降的理论基础"><a href="#梯度下降的理论基础" class="headerlink" title="梯度下降的理论基础"></a>梯度下降的理论基础</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当用梯度下降解决问题：</p>
+<p>$$<br>\theta^{*} = \arg \min_{\theta} L(\theta)<br>$$</p>
+<p>每次更新参数 $\theta$，都得到一个新的 $\theta$，它都使得损失函数更小。即：</p>
+<p>$$<br>L(\theta^{0}) &gt; L(\theta^{1}) &gt; L(\theta^{2})&gt;\cdots<br>$$</p>
+<p>上述结论正确吗？</p>
+<p>结论是不正确的。。。</p>
+<h1 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h1><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdwqnqzj212a0mingb.jpg" alt=""></p>
+<p>比如在$\theta^{0}$处，可以在一个小范围的圆圈内找到损失函数细小的$\theta^{1}$，不断的这样去寻找。</p>
+<p>接下来就是如果在小圆圈内快速的找到最小值？</p>
+<h2 id="Taylor-Series（泰勒展开式）"><a href="#Taylor-Series（泰勒展开式）" class="headerlink" title="Taylor Series（泰勒展开式）"></a>Taylor Series（泰勒展开式）</h2><p>先介绍一下泰勒展开式</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>若$h(x)$在$x = x_{0}$点的某个领域内有无限阶导数（即无限可微分，infinitely differentiable），那么在此领域内有：</p>
+<p>$$<br>h(x) = \sum^{\infty}<em>{k = 0} \frac{h^{k}(x</em>{0})}{k!} (x - x_{0})^{k}<br>$$</p>
+<p>$$<br>=h(x<em>{0}) + h’(x</em>{0})(x - x<em>{0}) + \frac{h’’(x</em>{0})}{2!}(x - x_{0})^2 + \cdots  \qquad  (1-1)<br>$$</p>
+<p>当$x$很接近$x<em>{0}$时，有$h(x) \approx h(x</em>{0}) + h’(x<em>{0})(x - x</em>{0})$</p>
+<p>式1-1就是函数$h(x)$在$x = x_{0}$点附近关于$x$的幂函数展开式，也叫<strong>泰勒展开式</strong>。</p>
+<p>举例：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0perzpcgj212g0t0qho.jpg" alt=""></p>
+<p>图中3条蓝色线是把前3项作图，橙色线是 $sin(x)$。</p>
+<h3 id="多变量泰勒展开式"><a href="#多变量泰勒展开式" class="headerlink" title="多变量泰勒展开式"></a>多变量泰勒展开式</h3><p>下面是两个变量的泰勒展开式</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pf85k6hj212s0jsdic.jpg" alt=""></p>
+<h2 id="利用泰勒展开式简化"><a href="#利用泰勒展开式简化" class="headerlink" title="利用泰勒展开式简化"></a>利用泰勒展开式简化</h2><p>回到之前如何快速在圆圈内找到最小值。基于泰勒展开式，在$(a,b)$ 点的红色圆圈范围内，可以将损失函数用泰勒展开式进行简化：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pfmfsbvj21240j4amj.jpg" alt=""></p>
+<p>将问题进而简化为下图：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pg12er4j212e0nyk53.jpg" alt=""></p>
+<p>不考虑s的话，可以看出剩下的部分就是两个向量$(\Delta \theta<em>{1}, \Delta \theta</em>{2})$ 和 $(u, v)$的内积，那怎样让它最小，就是和向量 $(u, v)$ 方向相反的向量</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pghquu2j211y0n4wid.jpg" alt=""></p>
+<p>然后将u和v带入。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pgz0bohj213e0nswjd.jpg" alt=""></p>
+<p>$$<br>L(\theta) \approx s + u(\theta<em>{1} - a) + v(\theta</em>{2} - b)    (1-2)<br>$$</p>
+<p>发现最后的式子就是梯度下降的式子。但这里用这种方法找到这个式子有个前提，泰勒展开式给的损失函数的估算值是要足够精确的，而这需要红色的圈圈足够小（也就是学习率足够小）来保证。所以理论上每次更新参数都想要损失函数减小的话，即保证式1-2 成立的话，就需要学习率足够足够小才可以。</p>
+<p>所以实际中，当更新参数的时候，如果学习率没有设好，是有可能式1-2是不成立的，所以导致做梯度下降的时候，损失函数没有越来越小。</p>
+<blockquote>
+<p>式1-2只考虑了泰勒展开式的一次项，如果考虑到二次项（比如牛顿法），在实际中不是特别好，会涉及到二次微分等，多很多的运算，性价比不好。</p>
+</blockquote>
+<h1 id="梯度下降的限制"><a href="#梯度下降的限制" class="headerlink" title="梯度下降的限制"></a>梯度下降的限制</h1><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0phhfnifj21200s0qet.jpg" alt=""></p>
+<ul>
+<li>容易陷入局部极值</li>
+<li>还有可能卡在不是极值，但微分值是0的地方</li>
+<li>还有可能实际中只是当微分值小于某一个数值就停下来了，但这里只是比较平缓，并不是极值点</li>
+</ul>
+<blockquote>
+<p>新博客地址：<a href="http://yoferzhang.com/post/20170327ML04GradientDescent">http://yoferzhang.com/post/20170327ML04GradientDescent</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20170327ML04GradientDescent/">机器学习入门系列04，Gradient Descent（梯度下降法）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2017-03-27, 00:28:14</p>
+        <p><span>最后更新:</span>2017-03-27, 00:38:41</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20170327ML04GradientDescent/" title="机器学习入门系列04，Gradient Descent（梯度下降法）">http://yoferzhang.com/post/20170327ML04GradientDescent/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170327ML04GradientDescent/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20170327ML03BiasAndVariance/">
+                    机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是Gradient-Descent（梯度下降法）？"><span class="toc-number">1.</span> <span class="toc-text">什么是Gradient Descent（梯度下降法）？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-梯度下降法"><span class="toc-number">1.1.</span> <span class="toc-text">Review: 梯度下降法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tip1：调整-learning-rates（学习速率）"><span class="toc-number">2.</span> <span class="toc-text">Tip1：调整 learning rates（学习速率）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#小心翼翼地调整-learning-rate"><span class="toc-number">2.1.</span> <span class="toc-text">小心翼翼地调整 learning rate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自适应-learning-rate"><span class="toc-number">2.2.</span> <span class="toc-text">自适应 learning rate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adagrad-算法"><span class="toc-number">2.3.</span> <span class="toc-text">Adagrad 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Adagrad-是什么？"><span class="toc-number">2.3.1.</span> <span class="toc-text">Adagrad 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adagrad举例"><span class="toc-number">2.3.2.</span> <span class="toc-text">Adagrad举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adagrad-存在的矛盾？"><span class="toc-number">2.3.3.</span> <span class="toc-text">Adagrad 存在的矛盾？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多参数下结论不一定成立"><span class="toc-number">2.3.4.</span> <span class="toc-text">多参数下结论不一定成立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adagrad-进一步的解释"><span class="toc-number">2.3.5.</span> <span class="toc-text">Adagrad 进一步的解释</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tip2：Stochastic-Gradient-Descent（随机梯度下降法）"><span class="toc-number">3.</span> <span class="toc-text">Tip2：Stochastic Gradient Descent（随机梯度下降法）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tip3：Feature-Scaling（特征缩放）"><span class="toc-number">4.</span> <span class="toc-text">Tip3：Feature Scaling（特征缩放）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要这样做？"><span class="toc-number">4.1.</span> <span class="toc-text">为什么要这样做？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么做-scaling？"><span class="toc-number">4.2.</span> <span class="toc-text">怎么做 scaling？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#梯度下降的理论基础"><span class="toc-number">5.</span> <span class="toc-text">梯度下降的理论基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">5.1.</span> <span class="toc-text">问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数学理论"><span class="toc-number">6.</span> <span class="toc-text">数学理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Taylor-Series（泰勒展开式）"><span class="toc-number">6.1.</span> <span class="toc-text">Taylor Series（泰勒展开式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">6.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多变量泰勒展开式"><span class="toc-number">6.1.2.</span> <span class="toc-text">多变量泰勒展开式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用泰勒展开式简化"><span class="toc-number">6.2.</span> <span class="toc-text">利用泰勒展开式简化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#梯度下降的限制"><span class="toc-number">7.</span> <span class="toc-text">梯度下降的限制</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"机器学习入门系列04，Gradient Descent（梯度下降法）　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20170327ML04GradientDescent/" data-title="机器学习入门系列04，Gradient Descent（梯度下降法）" data-url="http://yoferzhang.com/post/20170327ML04GradientDescent/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20170327ML03BiasAndVariance/" title="下一篇: 机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML04GradientDescent/">机器学习入门系列04，Gradient Descent（梯度下降法）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML03BiasAndVariance/">机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML02Regression/">机器学习入门系列02，Regression 回归：案例研究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML01Introduction/">机器学习入门系列01，Introduction 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170306DeepLearningRegression/">【测试】只是为了测试数学公式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170216FitnessDiary/">【健身】健身记录；健身课表；健身心得</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
