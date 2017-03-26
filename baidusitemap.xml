@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://yoferzhang.com/post/20170326DLIntroduction/</loc>
+    <lastmod>2017-03-26T11:11:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>【机器学习】入门系列01，Introduction 简介</title>
+        <pubTime>2017-03-26T11:03:55.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>深度学习</tag>
+         
+        <tag>分类</tag>
+         
+        <tag>AlphaGo</tag>
+         
+        <tag>线性回归</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20170306DeepLearningRegression/</loc>
+    <lastmod>2017-03-20T15:55:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>【测试】只是为了测试数学公式</title>
+        <pubTime>2017-03-06T06:45:55.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
     <lastmod>2017-03-20T15:38:07.000Z</lastmod>
     <data>
@@ -20,21 +60,6 @@
              
               <breadCrumb title="健身" url="http://yoferzhang.com/categories/%E5%81%A5%E8%BA%AB/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoferzhang.com/post/20170306DeepLearningRegression/</loc>
-    <lastmod>2017-03-20T15:36:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>【测试】只是为了测试数学公式</title>
-        <pubTime>2017-03-06T06:45:55.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
