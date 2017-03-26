@@ -15,34 +15,59 @@
 
 
 
-<meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
-前言　　今天用git的时候遇到一个问题：
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupted system callerror: failed to push some refs to
-
-　　搜了一下stackoverflow上找">
+我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【渔】NTFS转HFS">
-<meta property="og:url" content="http://yoferzhang.com/post/20160416DiskFormatForHFS/index.html">
+<meta property="og:title" content="机器学习入门系列01，Introduction 简介">
+<meta property="og:url" content="http://yoferzhang.com/post/20170326ML01Introduction/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
-前言　　今天用git的时候遇到一个问题：
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupted system callerror: failed to push some refs to
-
-　　搜了一下stackoverflow上找">
-<meta property="og:updated_time" content="2017-02-16T08:39:23.000Z">
+我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0evuvwccj20ng042gn5.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ewlwd1yj20vw0byn3v.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0exn3ri5j21080legwh.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0eyillqbj212k0lythh.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ezk7m7kj210c0qqtcg.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f0l1hi0j20oe04gwf0.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f1e0somj211y0ag3zn.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f2vi19lj20z00l8dgm.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f3jd278j20xo0j8jsp.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f49759tj20zq0jwgy4.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f4uqylgj21160nawt0.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5g8hvdj20qs0jeq49.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5zur6pj211g0lik15.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f6o89p0j211e08on2j.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f781j5vj212s0cwdpw.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f7s2pkfj210e0dmjx5.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f8g4v9sj21040o241r.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9310jsj20z20jytki.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9xlbl6j21040mawum.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0fahrm70j21040lk7ll.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g0n0om7j21d40t41ki.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g196w8zj210i0k61kx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g1tadjsj21do0syb29.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2cnb63j20zu0s8tjh.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2x9gqrj212i0q044l.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g3h5048j21340l27cv.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0g40v56nj211y0s8wil.jpg">
+<meta property="og:updated_time" content="2017-03-26T14:59:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【渔】NTFS转HFS">
-<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+<meta name="twitter:title" content="机器学习入门系列01，Introduction 简介">
+<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
-前言　　今天用git的时候遇到一个问题：
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupted system callerror: failed to push some refs to
-
-　　搜了一下stackoverflow上找">
+我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -72,7 +97,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>【渔】NTFS转HFS | YoferZhang 的博客</title>
+<title>机器学习入门系列01，Introduction 简介 | YoferZhang 的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -284,11 +309,11 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-20160416DiskFormatForHFS" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20170326ML01Introduction" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/post/20160416DiskFormatForHFS/" class="article-date">
-      <time datetime="2016-04-16T10:50:12.000Z" itemprop="datePublished">2016-04-16</time>
+      <a href="/post/20170326ML01Introduction/" class="article-date">
+      <time datetime="2017-03-26T14:58:55.000Z" itemprop="datePublished">2017-03-26</time>
 </a>
 
 
@@ -303,7 +328,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
         
   
     <h1 class="article-title" itemprop="name">
-      【渔】NTFS转HFS
+      机器学习入门系列01，Introduction 简介
     </h1>
   
 
@@ -311,14 +336,10 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/渔/">渔</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HFS/">HFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NTFS/">NTFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/磁盘格式/">磁盘格式</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分类/">分类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线性回归/">线性回归</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -328,24 +349,76 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　今天用git的时候遇到一个问题：</p>
+        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
-<p>fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:<br>Interrupted system call<br>error: failed to push some refs to</p>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66478149" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66478149</a></p>
 </blockquote>
-<p>　　搜了一下stackoverflow上找到了原因和解决办法：</p>
-<blockquote>
-<p>I have a Mac on an SSD with an internal NTFS-formatted HDD I use for storage. I was having the same issue trying to push a repo located in the HDD, but as soon as I copied the repo to the SSD the push worked just fine. On Linux I have no problem pushing from the HDD, so this must be an issue with Tuxera NTFS, which is the NTFS driver I’m using on Mac.<br>If you’re in the same situation as me, I suggest you move that repository to an HFS+ formatted drive or try pushing from a different Operating System.</p>
-</blockquote>
+<h1 id="我们将要学习什么东东？"><a href="#我们将要学习什么东东？" class="headerlink" title="我们将要学习什么东东？"></a>我们将要学习什么东东？</h1><h2 id="什么是机器学习？"><a href="#什么是机器学习？" class="headerlink" title="什么是机器学习？"></a>什么是机器学习？</h2><p> <img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg" alt=""><br>有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”</p>
 <a id="more"></a>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>　　就是因为我用了Tuxera NTFS来使用NTFS格式的硬盘导致了我<code>git push</code>的时候出现了问题，一个解决方法是把仓库放到mac系统盘里面，但是我不想这样过于增大系统盘的空间。然后想到把1T硬盘中的200G空间从NTFS改成HFS+。备份好东西，然后在winpe情况下删除了分区，重新建立了一个HFS+的分区。</p>
-<p>　　这里需要注意的一点是：之前在装黑苹果的时候提到过可以直接通过<code>diskgenius</code>修改分区参数，将盘符改为AF，但是<code>diskgenius</code>只能对MBR分区格式的硬盘进行这样的操作，对于GUID的是不可以的，这时候就要用到<code>diskpart</code>工具。方法如下：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg" alt=""><br>有右边这样非常大的图片数据集，写程序来进行学习，然后可以识别左边这样图，识别为正确的物种。</p>
+<h3 id="机器学习-approx-寻找一个函数"><a href="#机器学习-approx-寻找一个函数" class="headerlink" title="机器学习 $\approx$ 寻找一个函数"></a>机器学习 $\approx$ 寻找一个函数</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg" alt=""></p>
+<h3 id="Framework-框架"><a href="#Framework-框架" class="headerlink" title="Framework 框架"></a>Framework 框架</h3><ul>
+<li>Image Recognition 图像识别</li>
+</ul>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0evuvwccj20ng042gn5.jpg" alt=""></p>
+<p>函数集($f<em>{1},f</em>{2},\ldots $)，通常将一个函数称为Model（模型）</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ewlwd1yj20vw0byn3v.jpg" alt=""></p>
+<p>为了找到最好的函数 $f$ ，将训练集图像放入函数集的输入中，函数集输出识别结果。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0exn3ri5j21080legwh.jpg" alt=""></p>
+<p>下面来看具体步骤</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0eyillqbj212k0lythh.jpg" alt=""></p>
+<p>Step1.确定一组函数（Model），函数集怎么找后面会再介绍。<br>Step2.将训练集对函数集进行训练。<br>Step3.挑选出“最好”的函数 $f^{<em>}$<br>然后就可以使用 $f^{</em>}$ 来对新的测试集进行检测。</p>
+<h2 id="整体都学习哪些知识（Learning-Map）"><a href="#整体都学习哪些知识（Learning-Map）" class="headerlink" title="整体都学习哪些知识（Learning Map）"></a>整体都学习哪些知识（Learning Map）</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ezk7m7kj210c0qqtcg.jpg" alt=""></p>
+<h3 id="Regression（回归）是什么"><a href="#Regression（回归）是什么" class="headerlink" title="Regression（回归）是什么?"></a>Regression（回归）是什么?</h3><p>Regression 意思是，我们要找到这样一个函数 $f$，使得输出为 scalar（标量，数值）</p>
 <blockquote>
-<p>这里希望各位小白先去百度了解一下MBR和GPT(GUID)的区别，所以 MBR下的短ID，AF是无法再GPT被识别的，那么怎么办呢?<br>这里要普及一下，我们知道OS的HFS文件系统标识在MBR分区下是AF对吧，如果用的是GPT分区，我们要懂得AF对应的GUID是什么在GPT分区下，AF是叫做：<code>48465300-0000-11AA-AA11-00306543ECAC</code>。是不是很长，很晕，没办法，GUID就是这样，那么怎么修改呢?，运行CMD(管理员)，输入 <code>diskpart</code>，稍等一会，再输入<code>list disk</code>，你会发现CMD窗口列出了你当前的所有硬盘，这时候要清楚自己的Mac安装盘在哪个硬盘，以第0个硬盘做例子，我们输入，<code>select disk 0</code>选择了第0个 也就是开头的那个磁盘，接下来列出磁盘上的分区，输入<code>list partition</code>，这时候会显示该磁盘上的所有分区，接下来仔细辨别自己的OS安装盘是哪个分区 可以看大小辨别，比如第5个分区，我们输入 <code>select partition 5</code>。好了选定分区了，接下来，也是最关键的一步，输入 <code>set id=48465300-0000-11AA-AA11-00306543ECAC</code>。等待提示，完成以后关闭窗口，再用DiskGennius看，就会发现，本来在DiskGennius下改不了ID的分区已经变成了 Mac OS X的分区 Diskpart是一个强大的工具，建议每一个刚学习安装OS X的新手认真去学习。</p>
+<p>这里说法当然是比较不严谨，数学上简单的线性，一元或多元回归的知识可以在概率论与数理统计课本中进行学习。《概率论与数理统计》，浙江大学，第九章，P244。</p>
 </blockquote>
-<p>　　搞定分区之后就可以在OSX下用磁盘工具将刚才的分区抹掉，然后就变成mac专用的磁盘了。我这里遇到一个问题：因为EFI文件分区小于<code>300M</code>，无法进行抹掉操作。又没办法从后面的分区分出空间给到ESP分区，最后只能在第一个大分区前面又分出来<code>300M</code>的空间，将之前小的那个ESP分区拷贝到新的ESP分区里面，这样引导文件就都存在，然后把那小的分区删掉就好了。</p>
+<p>举个例子，比如预测PM2.5.</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f0l1hi0j20oe04gwf0.jpg" alt=""></p>
+<p>输入就是之前每一天的PM2.5数值，输出是明天的PM2.5，是个标量。<br>具体做法：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f1e0somj211y0ag3zn.jpg" alt=""></p>
+<h3 id="Classification（分类）"><a href="#Classification（分类）" class="headerlink" title="Classification（分类）"></a>Classification（分类）</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f2vi19lj20z00l8dgm.jpg" alt=""></p>
+<p>分类比较容易理解，比如二元分类或者多元分类。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f3jd278j20xo0j8jsp.jpg" alt=""></p>
+<h4 id="Binary-Classification（二元分类）"><a href="#Binary-Classification（二元分类）" class="headerlink" title="Binary Classification（二元分类）"></a>Binary Classification（二元分类）</h4><p>比如垃圾邮件过滤，就是要找到一个Function，输入为一封邮件，输出是二元的，是或者不是垃圾邮件。训练集就是很多封邮件，每一封邮件知道它是否是垃圾邮件，让Function进行学习。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f49759tj20zq0jwgy4.jpg" alt=""></p>
+<h4 id="Multi-class-Classification（多元分类）"><a href="#Multi-class-Classification（多元分类）" class="headerlink" title="Multi-class Classification（多元分类）"></a>Multi-class Classification（多元分类）</h4><p>多元分类；例如下面的新闻分类系统，找一个Function，输入就是新闻的内容，输出则是新闻的类型（政治，经济，体育等等）</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f4uqylgj21160nawt0.jpg" alt=""></p>
+<h4 id="Deep-Learning（深度学习）"><a href="#Deep-Learning（深度学习）" class="headerlink" title="Deep Learning（深度学习）"></a>Deep Learning（深度学习）</h4><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5g8hvdj20qs0jeq49.jpg" alt=""></p>
+<p>上面讲过，机器学习的第一个步骤就是确定一个函数集，可以选择Linear Model（线性模型），但是 Linear Model 比较有限。更多的则是 Non-lilnear Model（非线性模型）。比如深度学习就是 Non-lilnear Model 。</p>
+<p>举个例子，比如图像识别：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5zur6pj211g0lik15.jpg" alt=""></p>
+<p>这里举例深度学习中的一种，Convolutional Neural Network（CNN，卷积神经网络），输入就是很多的图像，输出为图像的类型，这里将每个对象都当作一个类别。训练集就是很多张图片，并告诉机器每张图片对应的是什么类型。深度学习的Function非常复杂。</p>
+<p>再举一个例子，下围棋：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f6o89p0j211e08on2j.jpg" alt=""></p>
+<p>输入就是黑白子在19<em>19棋盘上的位置，输出就是下一步应该下在哪里。这也就是一个选择题，可能的选项有19</em>19个。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f781j5vj212s0cwdpw.jpg" alt=""></p>
+<p>训练集就是一堆棋谱，每一步是怎么走的。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f7s2pkfj210e0dmjx5.jpg" alt=""></p>
+<h3 id="Supervised-Learning（有监督学习）"><a href="#Supervised-Learning（有监督学习）" class="headerlink" title="Supervised Learning（有监督学习）"></a>Supervised Learning（有监督学习）</h3><p>Non-lilnear Model 不只Deep Learning，后面还会接触到SVM，decision tree等。<br>上面提到这些我们都叫做Supervised Learning（有监督学习），所谓 Supervised Learning 就是说训练集的输入和输出对于目标函数是成对的，目标函数看到一个输入，就应该对应有一个输出。也把这样的输出叫做 label。<br>见到说需要 Labelled data 的情况，就是指我们要告诉机器看到一个输入，要有一个输出。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f8g4v9sj21040o241r.jpg" alt=""></p>
+<p>其他的比如还有Semi-supervised Learning（半监督学习）</p>
+<h3 id="Semi-supervised-Learning（半监督学习）"><a href="#Semi-supervised-Learning（半监督学习）" class="headerlink" title="Semi-supervised Learning（半监督学习）"></a>Semi-supervised Learning（半监督学习）</h3><p>比如图像识别一些猫和狗，Labelled data 就是训练集中每个图片知道它对应的是什么类型。而Unlabelled data 就是不知道图片对应的类型。这种其实也是可以让机器学习的比较好的，后面也会介绍。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9310jsj20z20jytki.jpg" alt=""></p>
+<h3 id="Transfer-Learning（迁移学习）"><a href="#Transfer-Learning（迁移学习）" class="headerlink" title="Transfer Learning（迁移学习）"></a>Transfer Learning（迁移学习）</h3><p>举例说一下迁移学习：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9xlbl6j21040mawum.jpg" alt=""></p>
+<p>比如有 Labelled data ，但我们还有一些labelled 或者 unlabelled 数据，这些数据和 Labelled data 中识别猫和狗都没有关系，但它也是怎么帮助Labelled data 更好的识别。这就是 Transfer Learning 要做的事情。</p>
+<h3 id="Unsupervised-Learning（无监督学习）"><a href="#Unsupervised-Learning（无监督学习）" class="headerlink" title="Unsupervised Learning（无监督学习）"></a>Unsupervised Learning（无监督学习）</h3><p>举一个Unsupervised Learning 的例子：让机器阅读非常多的文章，然后机器就可以学习单词的含义。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0fahrm70j21040lk7ll.jpg" alt=""></p>
+<p>这个Unsupervised Learning 的例子中，训练集只有输入（很多的文章），没有输出。假设通过Neural Network（神经网络）学习之后，给一个单词，就可以输出一个向量。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g0n0om7j21d40t41ki.jpg" alt=""></p>
+<p>再举一个例子：比如想要让机器绘制一下自己的内心世界。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g196w8zj210i0k61kx.jpg" alt=""></p>
+<p>具体说就是给机器一堆数字，他就能自己绘制一张图片，此时训练集只有输出（很多的图片），没有输入。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g1tadjsj21do0syb29.jpg" alt=""></p>
+<h3 id="Structured-Learning（结构化学习）"><a href="#Structured-Learning（结构化学习）" class="headerlink" title="Structured Learning（结构化学习）"></a>Structured Learning（结构化学习）</h3><p>比如看下面例子：第一个是语音识别，假设我们想要找的function是输入一段语音，然后输出语音的文字。如果把世界上不同的句子当作一个类别，这样是没有办法穷举所有类型的，所以这种超越分类的问题，就需要另外一套完整的思想来解决。<br>还有例子就是机器翻译，将中文翻译成英文，也是没有办法穷举所有的句子。再或者人脸识别，没有办法穷举所有人脸框。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2cnb63j20zu0s8tjh.jpg" alt=""></p>
+<h3 id="Reinforcement-Learning（增强学习）"><a href="#Reinforcement-Learning（增强学习）" class="headerlink" title="Reinforcement Learning（增强学习）"></a>Reinforcement Learning（增强学习）</h3><p>举个Reinforcement Learning 的例子：AlphaGo。<br>举例来比较 Supervised 和 Reinforcement：比如学习对话，Supervised 训练集每句话，都有对应的输出；但是Reinforcement就只是不断的对话，机器只能知道它做的好或者不好，没有其他更多的信息。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2x9gqrj212i0q044l.jpg" alt=""></p>
+<p>再举一个围棋的例子，比如 Supervised 情况就是机器看到一个棋局，告诉它下一步应该走什么。Reinforcement 的情况就是走了很多步，输了或者赢了，就是知道一个结果。AlphaGo 就是两个都用到了，先看棋谱学习，但是棋谱的数量是有限的，然后再进行增强型学习。所以 AlphaGo 第一轮和世界高手对局时还捉襟见肘，第二轮就基本横扫了。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g3h5048j21340l27cv.jpg" alt=""></p>
+<h2 id="理解Learning-Map颜色的意义"><a href="#理解Learning-Map颜色的意义" class="headerlink" title="理解Learning Map颜色的意义"></a>理解Learning Map颜色的意义</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0g40v56nj211y0s8wil.jpg" alt=""></p>
+<p>蓝色的都是代表Scenario（方案），红色部分指的是你要找的function的样子，可以在Semi-supervised Learning 的情况下做红色的task，也可以在 Transfer Learning下做红色task，就是右上角的4个虽然是小方块，但是 Supervised Learning 里面的 task 都可以在其他蓝色 scenario 中做。绿色的部分就是方法或者说模型，绿色的内容虽然写在 Classification 里面，但是可以放在 Regression 或者 Structured Learning 中。</p>
 
       
     </div>
@@ -354,13 +427,13 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></p>
+        <p><span>本文标题:</span><a href="/post/20170326ML01Introduction/">机器学习入门系列01，Introduction 简介</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
-        <p><span>发布时间:</span>2016-04-16, 18:50:12</p>
-        <p><span>最后更新:</span>2017-02-16, 16:39:23</p>
+        <p><span>发布时间:</span>2017-03-26, 22:58:55</p>
+        <p><span>最后更新:</span>2017-03-26, 22:59:54</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/post/20160416DiskFormatForHFS/" title="【渔】NTFS转HFS">http://yoferzhang.com/post/20160416DiskFormatForHFS/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160416DiskFormatForHFS/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/post/20170326ML01Introduction/" title="机器学习入门系列01，Introduction 简介">http://yoferzhang.com/post/20170326ML01Introduction/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170326ML01Introduction/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -372,16 +445,10 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/post/20160417MallocCallocRelloc/">
-                    【C语言】malloc,calloc,relloc异同示例
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/post/20160415MarkdownSyntax/">
-                    【渔】Markdown语法（看这张图就够了）
+                <a href="/post/20170306DeepLearningRegression/">
+                    【测试】只是为了测试数学公式
                 </a>
             </div>
         
@@ -393,7 +460,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#我们将要学习什么东东？"><span class="toc-number">1.</span> <span class="toc-text">我们将要学习什么东东？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是机器学习？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是机器学习？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习-approx-寻找一个函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">机器学习 $\approx$ 寻找一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Framework-框架"><span class="toc-number">1.1.2.</span> <span class="toc-text">Framework 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体都学习哪些知识（Learning-Map）"><span class="toc-number">1.2.</span> <span class="toc-text">整体都学习哪些知识（Learning Map）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Regression（回归）是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">Regression（回归）是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification（分类）"><span class="toc-number">1.2.2.</span> <span class="toc-text">Classification（分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Classification（二元分类）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Binary Classification（二元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-class-Classification（多元分类）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Multi-class Classification（多元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deep-Learning（深度学习）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Deep Learning（深度学习）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supervised-Learning（有监督学习）"><span class="toc-number">1.2.3.</span> <span class="toc-text">Supervised Learning（有监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semi-supervised-Learning（半监督学习）"><span class="toc-number">1.2.4.</span> <span class="toc-text">Semi-supervised Learning（半监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Learning（迁移学习）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Transfer Learning（迁移学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsupervised-Learning（无监督学习）"><span class="toc-number">1.2.6.</span> <span class="toc-text">Unsupervised Learning（无监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structured-Learning（结构化学习）"><span class="toc-number">1.2.7.</span> <span class="toc-text">Structured Learning（结构化学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reinforcement-Learning（增强学习）"><span class="toc-number">1.2.8.</span> <span class="toc-text">Reinforcement Learning（增强学习）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Learning-Map颜色的意义"><span class="toc-number">1.3.</span> <span class="toc-text">理解Learning Map颜色的意义</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -429,7 +496,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"【渔】NTFS转HFS　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"机器学习入门系列01，Introduction 简介　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -445,7 +512,7 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160416DiskFormatForHFS/" data-title="【渔】NTFS转HFS" data-url="http://yoferzhang.com/post/20160416DiskFormatForHFS/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20170326ML01Introduction/" data-title="机器学习入门系列01，Introduction 简介" data-url="http://yoferzhang.com/post/20170326ML01Introduction/"></div>
     <script>
         var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
         var loadComment = function(){
@@ -468,15 +535,13 @@ fatal: failed to read object 0419b2704f64367e58aa621e7e0c457276bc9d48:Interrupte
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/post/20160417MallocCallocRelloc/" title="上一篇: 【C语言】malloc,calloc,relloc异同示例">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/post/20160415MarkdownSyntax/" title="下一篇: 【渔】Markdown语法（看这张图就够了）">
+            <a href="/post/20170306DeepLearningRegression/" title="下一篇: 【测试】只是为了测试数学公式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
