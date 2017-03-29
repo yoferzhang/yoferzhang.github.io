@@ -15,20 +15,24 @@
 
 
 
-<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
 
-为什么要先进行案例研究？没有比较好的数学基础，直接接触深度学习会非常抽象，所以这里我们先通过一个预测 Pokemon Go 的 Combat P">
+为什么要先进行案例研究">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习入门系列02，Regression 回归：案例研究">
 <meta property="og:url" content="http://yoferzhang.com/post/20170326ML02Regression/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
 
-为什么要先进行案例研究？没有比较好的数学基础，直接接触深度学习会非常抽象，所以这里我们先通过一个预测 Pokemon Go 的 Combat P">
+为什么要先进行案例研究">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mf7rxiij20xo0hgn53.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mfqcewwj211i0jiwhn.jpg">
@@ -53,14 +57,16 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mspg7tjj213k0sgdkf.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mt6esluj213c0m6788.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mtp38ryj212g0smte8.jpg">
-<meta property="og:updated_time" content="2017-03-26T15:47:32.000Z">
+<meta property="og:updated_time" content="2017-03-27T02:51:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习入门系列02，Regression 回归：案例研究">
-<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
 
-为什么要先进行案例研究？没有比较好的数学基础，直接接触深度学习会非常抽象，所以这里我们先通过一个预测 Pokemon Go 的 Combat P">
+为什么要先进行案例研究">
 <meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -343,7 +349,10 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66577532" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66577532</a></p>
 </blockquote>
@@ -481,7 +490,7 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577
         <p><span>本文标题:</span><a href="/post/20170326ML02Regression/">机器学习入门系列02，Regression 回归：案例研究</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
         <p><span>发布时间:</span>2017-03-26, 23:02:44</p>
-        <p><span>最后更新:</span>2017-03-26, 23:47:32</p>
+        <p><span>最后更新:</span>2017-03-27, 10:51:45</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/post/20170326ML02Regression/" title="机器学习入门系列02，Regression 回归：案例研究">http://yoferzhang.com/post/20170326ML02Regression/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170326ML02Regression/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

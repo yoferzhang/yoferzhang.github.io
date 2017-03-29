@@ -15,28 +15,24 @@
 
 
 
-<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
 
-回顾第二篇中神奇宝贝的例子：
-
-可以看出越复杂的model 再测试集上的性能并不是越好
-这篇要讨论的就是 error 来自什么地方？
-error">
+回顾第二篇中神奇宝贝的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
 <meta property="og:url" content="http://yoferzhang.com/post/20170327ML03BiasAndVariance/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
 
-回顾第二篇中神奇宝贝的例子：
-
-可以看出越复杂的model 再测试集上的性能并不是越好
-这篇要讨论的就是 error 来自什么地方？
-error">
+回顾第二篇中神奇宝贝的">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg">
@@ -56,18 +52,16 @@ error">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg">
-<meta property="og:updated_time" content="2017-03-26T16:10:43.000Z">
+<meta property="og:updated_time" content="2017-03-29T01:13:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
-<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
 
-回顾第二篇中神奇宝贝的例子：
-
-可以看出越复杂的model 再测试集上的性能并不是越好
-这篇要讨论的就是 error 来自什么地方？
-error">
+回顾第二篇中神奇宝贝的">
 <meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -350,12 +344,16 @@ error">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
 </blockquote>
 <h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>第二篇中神奇宝贝的例子：</p>
 <p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg" alt=""></p>
+<a id="more"></a>
 <p>可以看出越复杂的model 再测试集上的性能并不是越好</p>
 <p>这篇要讨论的就是 error 来自什么地方？</p>
 <p>error主要的来源有两个，bias（偏差） 和 variance（方差）</p>
@@ -453,7 +451,7 @@ error">
         <p><span>本文标题:</span><a href="/post/20170327ML03BiasAndVariance/">机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
         <p><span>发布时间:</span>2017-03-27, 00:00:33</p>
-        <p><span>最后更新:</span>2017-03-27, 00:10:43</p>
+        <p><span>最后更新:</span>2017-03-29, 09:13:32</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/post/20170327ML03BiasAndVariance/" title="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">http://yoferzhang.com/post/20170327ML03BiasAndVariance/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170327ML03BiasAndVariance/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

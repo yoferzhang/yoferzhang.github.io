@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoferzhang.com/post/20170327ML04GradientDescent/</loc>
-    <lastmod>2017-03-26T16:38:41.000Z</lastmod>
+    <lastmod>2017-03-29T01:13:40.000Z</lastmod>
     <data>
         <display>
         <title>机器学习入门系列04，Gradient Descent（梯度下降法）</title>
@@ -30,7 +30,7 @@
     
   <url>
     <loc>http://yoferzhang.com/post/20170327ML03BiasAndVariance/</loc>
-    <lastmod>2017-03-26T16:10:43.000Z</lastmod>
+    <lastmod>2017-03-29T01:13:32.000Z</lastmod>
     <data>
         <display>
         <title>机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</title>
@@ -54,33 +54,8 @@
 
     
   <url>
-    <loc>http://yoferzhang.com/post/20170326ML02Regression/</loc>
-    <lastmod>2017-03-26T15:47:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习入门系列02，Regression 回归：案例研究</title>
-        <pubTime>2017-03-26T15:02:44.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>深度学习</tag>
-         
-        <tag>梯度下降法</tag>
-         
-        <tag>损失函数</tag>
-         
-        <tag>回归</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoferzhang.com/post/20170326ML01Introduction/</loc>
-    <lastmod>2017-03-26T14:59:54.000Z</lastmod>
+    <lastmod>2017-03-28T16:55:20.000Z</lastmod>
     <data>
         <display>
         <title>机器学习入门系列01，Introduction 简介</title>
@@ -95,6 +70,31 @@
         <tag>AlphaGo</tag>
          
         <tag>线性回归</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoferzhang.com/post/20170326ML02Regression/</loc>
+    <lastmod>2017-03-27T02:51:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习入门系列02，Regression 回归：案例研究</title>
+        <pubTime>2017-03-26T15:02:44.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>深度学习</tag>
+         
+        <tag>梯度下降法</tag>
+         
+        <tag>损失函数</tag>
+         
+        <tag>回归</tag>
          
          
            

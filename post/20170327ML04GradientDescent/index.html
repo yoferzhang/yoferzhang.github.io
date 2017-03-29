@@ -15,20 +15,24 @@
 
 
 
-<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
 
-什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+什么是Gradient">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习入门系列04，Gradient Descent（梯度下降法）">
 <meta property="og:url" content="http://yoferzhang.com/post/20170327ML04GradientDescent/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
 
-什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+什么是Gradient">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p768yjij212g0msgps.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p7olqw1j212k0mqjvn.jpg">
@@ -52,14 +56,16 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pghquu2j211y0n4wid.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pgz0bohj213e0nswjd.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0phhfnifj21200s0qet.jpg">
-<meta property="og:updated_time" content="2017-03-26T16:38:41.000Z">
+<meta property="og:updated_time" content="2017-03-29T01:13:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习入门系列04，Gradient Descent（梯度下降法）">
-<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632699
 
-什么是Gradient Descent（梯度下降法）？在第二篇文章中有介绍到梯度下降法的做法，传送门：机器学习入门系列02，Regression">
+什么是Gradient">
 <meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -342,7 +348,10 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66632699" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66632699</a></p>
 </blockquote>
@@ -354,8 +363,9 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632
 <blockquote>
 <p>这里的parameters是复数，即 $\theta$ 指代一堆参数，比如上篇说到的 $w$ 和 $b$。</p>
 </blockquote>
+<a id="more"></a>
 <p>我们要找一组参数 $\theta$ ，让损失函数越小越好，这个问题可以用梯度下降法解决：</p>
-<p>假设 $\theta$ 有里面有两个参数 ${\theta<em>{1}, \theta</em>{2}}$</p>
+<p>假设 $\theta$ 有里面有两个参数 $${\theta<em>{1}, \theta</em>{2}}$$</p>
 <p>随机选取初始值 </p>
 <p>$$<br>\theta^{0} = \left[ \begin{matrix} \theta^{0}<em>{1}\ \theta^{0}</em>{2} \end{matrix} \right]<br>$$</p>
 <p>这里可能某个平台不支持矩阵输入，看下图就好。</p>
@@ -493,7 +503,7 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66632
         <p><span>本文标题:</span><a href="/post/20170327ML04GradientDescent/">机器学习入门系列04，Gradient Descent（梯度下降法）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
         <p><span>发布时间:</span>2017-03-27, 00:28:14</p>
-        <p><span>最后更新:</span>2017-03-27, 00:38:41</p>
+        <p><span>最后更新:</span>2017-03-29, 09:13:40</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/post/20170327ML04GradientDescent/" title="机器学习入门系列04，Gradient Descent（梯度下降法）">http://yoferzhang.com/post/20170327ML04GradientDescent/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170327ML04GradientDescent/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

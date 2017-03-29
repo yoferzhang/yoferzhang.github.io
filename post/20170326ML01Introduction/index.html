@@ -15,20 +15,24 @@
 
 
 
-<meta name="description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
+我们将要学习什么东东？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习入门系列01，Introduction 简介">
 <meta property="og:url" content="http://yoferzhang.com/post/20170326ML01Introduction/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
+我们将要学习什么东东？">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg">
@@ -59,14 +63,16 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2x9gqrj212i0q044l.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g3h5048j21340l27cv.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0g40v56nj211y0s8wil.jpg">
-<meta property="og:updated_time" content="2017-03-26T14:59:54.000Z">
+<meta property="og:updated_time" content="2017-03-28T16:55:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习入门系列01，Introduction 简介">
-<meta name="twitter:description" content="先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
 
 CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478149
 
-我们将要学习什么东东？什么是机器学习？ 有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”">
+我们将要学习什么东东？">
 <meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -349,14 +355,17 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66478149" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66478149</a></p>
 </blockquote>
 <h1 id="我们将要学习什么东东？"><a href="#我们将要学习什么东东？" class="headerlink" title="我们将要学习什么东东？"></a>我们将要学习什么东东？</h1><h2 id="什么是机器学习？"><a href="#什么是机器学习？" class="headerlink" title="什么是机器学习？"></a>什么是机器学习？</h2><p> <img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg" alt=""><br>有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”</p>
 <a id="more"></a>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg" alt=""><br>有右边这样非常大的图片数据集，写程序来进行学习，然后可以识别左边这样图，识别为正确的物种。</p>
-<h3 id="机器学习-approx-寻找一个函数"><a href="#机器学习-approx-寻找一个函数" class="headerlink" title="机器学习 $\approx$ 寻找一个函数"></a>机器学习 $\approx$ 寻找一个函数</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg" alt=""></p>
+<h3 id="机器学习-approx-寻找一个函数"><a href="#机器学习-approx-寻找一个函数" class="headerlink" title="机器学习  (\approx) 寻找一个函数"></a>机器学习  (\approx) 寻找一个函数</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg" alt=""></p>
 <h3 id="Framework-框架"><a href="#Framework-框架" class="headerlink" title="Framework 框架"></a>Framework 框架</h3><ul>
 <li>Image Recognition 图像识别</li>
 </ul>
@@ -430,7 +439,7 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478
         <p><span>本文标题:</span><a href="/post/20170326ML01Introduction/">机器学习入门系列01，Introduction 简介</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
         <p><span>发布时间:</span>2017-03-26, 22:58:55</p>
-        <p><span>最后更新:</span>2017-03-26, 22:59:54</p>
+        <p><span>最后更新:</span>2017-03-29, 00:55:20</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/post/20170326ML01Introduction/" title="机器学习入门系列01，Introduction 简介">http://yoferzhang.com/post/20170326ML01Introduction/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170326ML01Introduction/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -466,7 +475,7 @@ CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66478
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#我们将要学习什么东东？"><span class="toc-number">1.</span> <span class="toc-text">我们将要学习什么东东？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是机器学习？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是机器学习？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习-approx-寻找一个函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">机器学习 $\approx$ 寻找一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Framework-框架"><span class="toc-number">1.1.2.</span> <span class="toc-text">Framework 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体都学习哪些知识（Learning-Map）"><span class="toc-number">1.2.</span> <span class="toc-text">整体都学习哪些知识（Learning Map）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Regression（回归）是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">Regression（回归）是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification（分类）"><span class="toc-number">1.2.2.</span> <span class="toc-text">Classification（分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Classification（二元分类）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Binary Classification（二元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-class-Classification（多元分类）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Multi-class Classification（多元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deep-Learning（深度学习）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Deep Learning（深度学习）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supervised-Learning（有监督学习）"><span class="toc-number">1.2.3.</span> <span class="toc-text">Supervised Learning（有监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semi-supervised-Learning（半监督学习）"><span class="toc-number">1.2.4.</span> <span class="toc-text">Semi-supervised Learning（半监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Learning（迁移学习）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Transfer Learning（迁移学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsupervised-Learning（无监督学习）"><span class="toc-number">1.2.6.</span> <span class="toc-text">Unsupervised Learning（无监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structured-Learning（结构化学习）"><span class="toc-number">1.2.7.</span> <span class="toc-text">Structured Learning（结构化学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reinforcement-Learning（增强学习）"><span class="toc-number">1.2.8.</span> <span class="toc-text">Reinforcement Learning（增强学习）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Learning-Map颜色的意义"><span class="toc-number">1.3.</span> <span class="toc-text">理解Learning Map颜色的意义</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#我们将要学习什么东东？"><span class="toc-number">1.</span> <span class="toc-text">我们将要学习什么东东？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是机器学习？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是机器学习？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习-approx-寻找一个函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">机器学习  (\approx) 寻找一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Framework-框架"><span class="toc-number">1.1.2.</span> <span class="toc-text">Framework 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体都学习哪些知识（Learning-Map）"><span class="toc-number">1.2.</span> <span class="toc-text">整体都学习哪些知识（Learning Map）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Regression（回归）是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">Regression（回归）是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification（分类）"><span class="toc-number">1.2.2.</span> <span class="toc-text">Classification（分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Classification（二元分类）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Binary Classification（二元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-class-Classification（多元分类）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Multi-class Classification（多元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deep-Learning（深度学习）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Deep Learning（深度学习）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supervised-Learning（有监督学习）"><span class="toc-number">1.2.3.</span> <span class="toc-text">Supervised Learning（有监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semi-supervised-Learning（半监督学习）"><span class="toc-number">1.2.4.</span> <span class="toc-text">Semi-supervised Learning（半监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Learning（迁移学习）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Transfer Learning（迁移学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsupervised-Learning（无监督学习）"><span class="toc-number">1.2.6.</span> <span class="toc-text">Unsupervised Learning（无监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structured-Learning（结构化学习）"><span class="toc-number">1.2.7.</span> <span class="toc-text">Structured Learning（结构化学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reinforcement-Learning（增强学习）"><span class="toc-number">1.2.8.</span> <span class="toc-text">Reinforcement Learning（增强学习）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Learning-Map颜色的意义"><span class="toc-number">1.3.</span> <span class="toc-text">理解Learning Map颜色的意义</span></a></li></ol></li></ol>
         
     </div>
     <style>

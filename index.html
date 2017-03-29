@@ -299,9 +299,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+              <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
-<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66632699" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66632699</a></p>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66632699">http://blog.csdn.net/zyq522376829/article/details/66632699</a></p>
 </blockquote>
 <h1 id="什么是Gradient-Descent（梯度下降法）？"><a href="#什么是Gradient-Descent（梯度下降法）？" class="headerlink" title="什么是Gradient Descent（梯度下降法）？"></a>什么是Gradient Descent（梯度下降法）？</h1><p>在第二篇文章中有介绍到梯度下降法的做法，传送门：<a href="地址地址地址">机器学习入门系列02，Regression 回归：案例研究</a></p>
 <h2 id="Review-梯度下降法"><a href="#Review-梯度下降法" class="headerlink" title="Review: 梯度下降法"></a>Review: 梯度下降法</h2><p>在回归问题的第三步中，需要解决下面的最优化问题：</p>
@@ -311,135 +314,7 @@
 <blockquote>
 <p>这里的parameters是复数，即 $\theta$ 指代一堆参数，比如上篇说到的 $w$ 和 $b$。</p>
 </blockquote>
-<p>我们要找一组参数 $\theta$ ，让损失函数越小越好，这个问题可以用梯度下降法解决：</p>
-<p>假设 $\theta$ 有里面有两个参数 ${\theta<em>{1}, \theta</em>{2}}$</p>
-<p>随机选取初始值 </p>
-<p>$$<br>\theta^{0} = \left[ \begin{matrix} \theta^{0}<em>{1}\ \theta^{0}</em>{2} \end{matrix} \right]<br>$$</p>
-<p>这里可能某个平台不支持矩阵输入，看下图就好。</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0p6ppb7dj20z20ck76o.jpg" alt=""></p>
-<p>然后分别计算初始点处，两个参数对 $L$ 的偏微分，然后 $\theta^{0}$ 减掉 $\eta$ 乘上偏微分的值，得到一组新的参数。同理反复进行这样的计算。黄色部分为简洁的写法，$\nabla L(\theta)$即为<strong>梯度</strong>。</p>
-<blockquote>
-<p>$\eta$叫做Learning rates（学习速率）</p>
-</blockquote>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p768yjij212g0msgps.jpg" alt=""></p>
-<p>上图举例将梯度下降法的计算过程进行可视化。</p>
-<h1 id="Tip1：调整-learning-rates（学习速率）"><a href="#Tip1：调整-learning-rates（学习速率）" class="headerlink" title="Tip1：调整 learning rates（学习速率）"></a>Tip1：调整 learning rates（学习速率）</h1><h2 id="小心翼翼地调整-learning-rate"><a href="#小心翼翼地调整-learning-rate" class="headerlink" title="小心翼翼地调整 learning rate"></a>小心翼翼地调整 learning rate</h2><p>举例：</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p7olqw1j212k0mqjvn.jpg" alt=""></p>
-<p>上图左边黑色为损失函数的曲线，假设从左边最高点开始，如果 learning rate 调整的刚刚好，比如红色的线，就能顺利找到最低点。如果  learning rate 调整的太小，比如蓝色的线，就会走的太慢，虽然这种情况给足够多的时间也可以找到最低点，实际情况可能会等不及出结果。如果  learning rate 调整的有点大，比如绿色的线，就会在上面震荡，走不下去，永远无法到达最低点。还有可能非常大，比如黄色的线，直接就飞出去了，update参数的时候只会发现损失函数越更新越大。</p>
-<p>虽然这样的可视化可以很直观观察，但可视化也只是能在参数是一维或者二维的时候进行，更高维的情况已经无法可视化了。</p>
-<p>解决方法就是上图右边的方案，将参数改变对损失函数的影响进行可视化。比如 learning rate 太小（蓝色的线），损失函数下降的非常慢；learning rate 太大（绿色的线），损失函数下降很快，但马上就卡住不下降了；learning rate特别大（黄色的线），损失函数就飞出去了；红色的就是差不多刚好，可以得到一个好的结果。</p>
-<h2 id="自适应-learning-rate"><a href="#自适应-learning-rate" class="headerlink" title="自适应 learning rate"></a>自适应 learning rate</h2><p>举一个简单的思想：随着次数的增加，通过一些因子来减少 learning rate</p>
-<ul>
-<li>通常刚开始，初始点会距离最低点比较远，所以使用大一点的 learning rate</li>
-<li>update好几次参数之后呢，比较靠近最低点了，此时减少 learning rate</li>
-<li>比如 $\eta^{t} = \eta / \sqrt{t+1}$，$t$ 是次数。随着次数的增加，$\eta^{t}$ 减小</li>
-</ul>
-<p>但 learning rate 不能是 one-size-fits-all ，不同的参数需要不同的 learning rate</p>
-<h2 id="Adagrad-算法"><a href="#Adagrad-算法" class="headerlink" title="Adagrad 算法"></a>Adagrad 算法</h2><h3 id="Adagrad-是什么？"><a href="#Adagrad-是什么？" class="headerlink" title="Adagrad 是什么？"></a>Adagrad 是什么？</h3><p>每个参数的学习率都把它除上之前微分的均方根。解释：</p>
-<p>普通的梯度下降为：</p>
-<p>$$<br>w^{t + 1} \leftarrow w^{t} - \eta^{t} g^{t}<br>$$</p>
-<p>$$<br>\eta^{t} = \frac{\eta}{\sqrt{t+1}}<br>$$</p>
-<p>$w$ 是一个参数</p>
-<p>Adagrad 可以做的更好：</p>
-<p>$$<br>w^{t+1} \leftarrow w^{t} - \frac{\eta^{t}}{\sigma} g^{t}<br>$$</p>
-<p>$$<br>g^{t} = \frac{\partial L(\theta^{t})}{\partial w}<br>$$</p>
-<p>$\sigma^{t}$:之前参数的所有微分的均方根，对于每个参数都是不一样的。</p>
-<h3 id="Adagrad举例"><a href="#Adagrad举例" class="headerlink" title="Adagrad举例"></a>Adagrad举例</h3><p>下图是一个参数的更新过程</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8iqqphj212a0n241f.jpg" alt=""></p>
-<p>将 Adagrad 的式子进行化简：</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0p8x3ggkj20x00hsac3.jpg" alt=""></p>
-<h3 id="Adagrad-存在的矛盾？"><a href="#Adagrad-存在的矛盾？" class="headerlink" title="Adagrad 存在的矛盾？"></a>Adagrad 存在的矛盾？</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9awbcij21080ikmzo.jpg" alt=""></p>
-<p>在 Adagrad 中，当梯度越大的时候，步伐应该越大，但下面分母又导致当梯度越大的时候，步伐会越小。</p>
-<p>下图是一个直观的解释：</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0p9pq9l1j210a0kmmzx.jpg" alt=""></p>
-<p>下面给一个正式的解释：</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pa69l64j212s0ng42l.jpg" alt=""></p>
-<p>比如初始点在 $x<em>{0}$，最低点为 $-\frac{b}{2a}$，最佳的步伐就是 $x</em>{0}$ 到最低点之间的距离 $| x<em>{0} + \frac{b}{2a} |$，也可以写成 $\frac{| 2ax</em>{0} + b|}{2a}$。而刚好 $ |2ax<em>{0} + b|$ 就是方程绝对值在$x</em>{0}$这一点的微分。</p>
-<p>这样可以认为如果算出来的微分越大，则距离最低点越远。而且最好的步伐和微分的大小成正比。所以如果踏出去的步伐和微分成正比，它可能是比较好的。</p>
-<p>结论1-1：梯度越大，就跟最低点的距离越远。</p>
-<p>这个结论在多个参数的时候就不一定成立了。</p>
-<h3 id="多参数下结论不一定成立"><a href="#多参数下结论不一定成立" class="headerlink" title="多参数下结论不一定成立"></a>多参数下结论不一定成立</h3><p><strong>对比不同的参数</strong></p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pakwyxsj213i0kik9e.jpg" alt=""></p>
-<p>上图左边是两个参数的损失函数，颜色代表损失函数的值。如果只考虑参数 $w<em>{1}$，就像图中蓝色的线，得到右边上图结果；如果只考虑参数 $w</em>{2}$，就像图中绿色的线，得到右边下图的结果。确实对于a和b，结论1-1是成立的，同理c和b也成立。但是如果对比a和c，就不成立了，c比a大，但c距离最低点是比较近的。</p>
-<p>所以结论1-1是在没有考虑跨参数对比的情况下，才能成立的。所以还不完善。</p>
-<p>之前说到的最佳距离$\frac{| 2ax_{0} + b|}{2a}$，还有个分母 $2a$ 。对function进行二次微分刚好可以得到：</p>
-<p>$$<br>\frac{\partial^{2}y}{\partial x^{2}} = 2a<br>$$</p>
-<p>所以最好的步伐应该是：</p>
-<p>$$<br>\frac{一次微分}{二次微分}<br>$$</p>
-<p>即不止和一次微分成正比，还和二次微分成反比。最好的step应该考虑到二次微分：</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pb38dvnj212e0lu4d7.jpg" alt=""></p>
-<h3 id="Adagrad-进一步的解释"><a href="#Adagrad-进一步的解释" class="headerlink" title="Adagrad 进一步的解释"></a>Adagrad 进一步的解释</h3><p>再回到之前的 Adagrad</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pbh8oqtj21200s00xi.jpg" alt=""></p>
-<p>对于$\sqrt{\sum^{t}_{i=0} (g^{i})^{2} }$ 就是希望再尽可能不增加过多运算的情况下模拟二次微分。（如果计算二次微分，在实际情况中可能会增加很多的时间消耗）</p>
-<h1 id="Tip2：Stochastic-Gradient-Descent（随机梯度下降法）"><a href="#Tip2：Stochastic-Gradient-Descent（随机梯度下降法）" class="headerlink" title="Tip2：Stochastic Gradient Descent（随机梯度下降法）"></a>Tip2：Stochastic Gradient Descent（随机梯度下降法）</h1><p>之前的梯度下降：</p>
-<p>$$<br>L =\sum<em>{n} \left( \hat{y}^{n} - (b + \sum w</em>{i} x^{n}_{i})   \right)^{2}<br>$$</p>
-<p>$$<br>\theta^{i} = \theta^{i -1} - \eta \nabla L(\theta^{i -1})<br>$$</p>
-<p>而Stochastic Gradient Descent（更快）：</p>
-<p>损失函数不需要处理训练集所有的数据，选取一个例子 $x^{n}$</p>
-<p>$$<br>L^{n} = \left( \hat{y}^{n} - (b + \sum w<em>{i} x^{n}</em>{i}   \right)^{2}<br>$$</p>
-<p>$$<br>\theta^{i} = \theta^{i -1} - \eta \nabla L^{n}(\theta^{i -1})<br>$$</p>
-<p>此时不需要像之前那样对所有的数据进行处理，只需要计算某一个例子的损失函数$L^{n}$，就可以赶紧update 梯度。</p>
-<p>对比：</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pc5kle1j212g0nq48s.jpg" alt=""></p>
-<p>常规梯度下降法走一步要处理到所有二十个examples，但Stochastic 此时已经走了二十步（没处理一个example就更新）</p>
-<h1 id="Tip3：Feature-Scaling（特征缩放）"><a href="#Tip3：Feature-Scaling（特征缩放）" class="headerlink" title="Tip3：Feature Scaling（特征缩放）"></a>Tip3：Feature Scaling（特征缩放）</h1><p>比如有个function：</p>
-<p>$$<br>y = b + w<em>{1}x</em>{1} + w<em>{2}x</em>{2}<br>$$</p>
-<p>两个输入的分布的范围很不一样，建议把他们的范围缩放，使得不同输入的范围是一样的。</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pcmc0lcj20zk0iuq8m.jpg" alt=""></p>
-<h2 id="为什么要这样做？"><a href="#为什么要这样做？" class="headerlink" title="为什么要这样做？"></a>为什么要这样做？</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pd1h0xtj213c0m00x5.jpg" alt=""></p>
-<p>上图左边是$x<em>{1}$的scale比 $x</em>{2}$要小很多，所以当$w<em>{1}$ 和 $w</em>{2}$做同样的变化时，$w<em>{1}$对y的变化影响是比较小的，$x</em>{2}$对y的变化影响是比较大的。</p>
-<p>坐标系中是两个参数的error surface（现在考虑左边蓝色），因为$w<em>{1}$对y的变化影响比较小，所以$w</em>{1}$对损失函数的影响比较小，$w<em>{1}$对损失函数有比较小的微分，所以$w</em>{1}$方向上是比较平滑的。同理$x<em>{2}$对y的影响比较大，所以$x</em>{2}$对损失函数的影响比较大，所以在$x_{2}$方向有比较尖的峡谷。</p>
-<p>上图右边是两个参数scaling比较接近，右边的绿色图就比较接近圆形。</p>
-<p>对于左边的情况，上面讲过这种狭长的情形不过不用Adagrad的话是比较难处理的，两个方向上需要不同的学习率，同一组学习率会搞不定它。而右边情形更新参数就会变得比较容易。左边的梯度下降并不是向着最低点方向走的，而是顺着等高线切线法线方向走的。但绿色就可以向着圆心（最低点）走，这样做参数更新也是比较有效率。</p>
-<h2 id="怎么做-scaling？"><a href="#怎么做-scaling？" class="headerlink" title="怎么做 scaling？"></a>怎么做 scaling？</h2><p>方法非常多，这里举例一种常见的做法：</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdgqdzwj212q0kqn0q.jpg" alt=""></p>
-<p>上图每一列都是一个例子，里面都有一组feature。</p>
-<p>对每一个维度$i$（绿色框）都计算平均数，记做$m<em>{i}$；还要计算标准差，记做$\sigma</em>{i}$。</p>
-<p>然后用第r个例子中的第i个输入，减掉平均数$m<em>{i}$，然后除以标准差$\sigma</em>{i}$，得到的结果是所有的维数都是0，所有的方差都是1</p>
-<h1 id="梯度下降的理论基础"><a href="#梯度下降的理论基础" class="headerlink" title="梯度下降的理论基础"></a>梯度下降的理论基础</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当用梯度下降解决问题：</p>
-<p>$$<br>\theta^{*} = \arg \min_{\theta} L(\theta)<br>$$</p>
-<p>每次更新参数 $\theta$，都得到一个新的 $\theta$，它都使得损失函数更小。即：</p>
-<p>$$<br>L(\theta^{0}) &gt; L(\theta^{1}) &gt; L(\theta^{2})&gt;\cdots<br>$$</p>
-<p>上述结论正确吗？</p>
-<p>结论是不正确的。。。</p>
-<h1 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h1><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pdwqnqzj212a0mingb.jpg" alt=""></p>
-<p>比如在$\theta^{0}$处，可以在一个小范围的圆圈内找到损失函数细小的$\theta^{1}$，不断的这样去寻找。</p>
-<p>接下来就是如果在小圆圈内快速的找到最小值？</p>
-<h2 id="Taylor-Series（泰勒展开式）"><a href="#Taylor-Series（泰勒展开式）" class="headerlink" title="Taylor Series（泰勒展开式）"></a>Taylor Series（泰勒展开式）</h2><p>先介绍一下泰勒展开式</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>若$h(x)$在$x = x_{0}$点的某个领域内有无限阶导数（即无限可微分，infinitely differentiable），那么在此领域内有：</p>
-<p>$$<br>h(x) = \sum^{\infty}<em>{k = 0} \frac{h^{k}(x</em>{0})}{k!} (x - x_{0})^{k}<br>$$</p>
-<p>$$<br>=h(x<em>{0}) + h’(x</em>{0})(x - x<em>{0}) + \frac{h’’(x</em>{0})}{2!}(x - x_{0})^2 + \cdots  \qquad  (1-1)<br>$$</p>
-<p>当$x$很接近$x<em>{0}$时，有$h(x) \approx h(x</em>{0}) + h’(x<em>{0})(x - x</em>{0})$</p>
-<p>式1-1就是函数$h(x)$在$x = x_{0}$点附近关于$x$的幂函数展开式，也叫<strong>泰勒展开式</strong>。</p>
-<p>举例：</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0perzpcgj212g0t0qho.jpg" alt=""></p>
-<p>图中3条蓝色线是把前3项作图，橙色线是 $sin(x)$。</p>
-<h3 id="多变量泰勒展开式"><a href="#多变量泰勒展开式" class="headerlink" title="多变量泰勒展开式"></a>多变量泰勒展开式</h3><p>下面是两个变量的泰勒展开式</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0pf85k6hj212s0jsdic.jpg" alt=""></p>
-<h2 id="利用泰勒展开式简化"><a href="#利用泰勒展开式简化" class="headerlink" title="利用泰勒展开式简化"></a>利用泰勒展开式简化</h2><p>回到之前如何快速在圆圈内找到最小值。基于泰勒展开式，在$(a,b)$ 点的红色圆圈范围内，可以将损失函数用泰勒展开式进行简化：</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pfmfsbvj21240j4amj.jpg" alt=""></p>
-<p>将问题进而简化为下图：</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pg12er4j212e0nyk53.jpg" alt=""></p>
-<p>不考虑s的话，可以看出剩下的部分就是两个向量$(\Delta \theta<em>{1}, \Delta \theta</em>{2})$ 和 $(u, v)$的内积，那怎样让它最小，就是和向量 $(u, v)$ 方向相反的向量</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0pghquu2j211y0n4wid.jpg" alt=""></p>
-<p>然后将u和v带入。</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0pgz0bohj213e0nswjd.jpg" alt=""></p>
-<p>$$<br>L(\theta) \approx s + u(\theta<em>{1} - a) + v(\theta</em>{2} - b)    (1-2)<br>$$</p>
-<p>发现最后的式子就是梯度下降的式子。但这里用这种方法找到这个式子有个前提，泰勒展开式给的损失函数的估算值是要足够精确的，而这需要红色的圈圈足够小（也就是学习率足够小）来保证。所以理论上每次更新参数都想要损失函数减小的话，即保证式1-2 成立的话，就需要学习率足够足够小才可以。</p>
-<p>所以实际中，当更新参数的时候，如果学习率没有设好，是有可能式1-2是不成立的，所以导致做梯度下降的时候，损失函数没有越来越小。</p>
-<blockquote>
-<p>式1-2只考虑了泰勒展开式的一次项，如果考虑到二次项（比如牛顿法），在实际中不是特别好，会涉及到二次微分等，多很多的运算，性价比不好。</p>
-</blockquote>
-<h1 id="梯度下降的限制"><a href="#梯度下降的限制" class="headerlink" title="梯度下降的限制"></a>梯度下降的限制</h1><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0phhfnifj21200s0qet.jpg" alt=""></p>
-<ul>
-<li>容易陷入局部极值</li>
-<li>还有可能卡在不是极值，但微分值是0的地方</li>
-<li>还有可能实际中只是当微分值小于某一个数值就停下来了，但这里只是比较平缓，并不是极值点</li>
-</ul>
-<blockquote>
-<p>新博客地址：<a href="http://yoferzhang.com/post/20170327ML04GradientDescent">http://yoferzhang.com/post/20170327ML04GradientDescent</a></p>
-</blockquote>
-
+          
       
     </div>
     
@@ -452,6 +327,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Adagrad/">Adagrad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习率/">学习率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/泰勒展开式/">泰勒展开式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/post/20170327ML04GradientDescent/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -498,99 +377,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+              <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
-<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
 </blockquote>
 <h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>第二篇中神奇宝贝的例子：</p>
 <p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg" alt=""></p>
-<p>可以看出越复杂的model 再测试集上的性能并不是越好</p>
-<p>这篇要讨论的就是 error 来自什么地方？</p>
-<p>error主要的来源有两个，bias（偏差） 和 variance（方差）</p>
-<h1 id="估测"><a href="#估测" class="headerlink" title="估测"></a>估测</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg" alt=""></p>
-<p>假设上图为神奇宝贝cp值的真正方程，当然这只有Niantic（制作《Pokemon Go》的游戏公司）知道。从训练集中可以找到真实方程$\hat{f}$ 的近似方程 $f^{*}$。</p>
-<h2 id="估测bias-和-variance"><a href="#估测bias-和-variance" class="headerlink" title="估测bias 和 variance"></a>估测bias 和 variance</h2><h3 id="估测变量-x-的平均值"><a href="#估测变量-x-的平均值" class="headerlink" title="估测变量 $x$ 的平均值"></a>估测变量 $x$ 的平均值</h3><ul>
-<li>假设$x$的平均值为 $\mu$，方差为 $\sigma^{2}$</li>
-</ul>
-<p>估测平均值怎么做呢？</p>
-<ul>
-<li>首先拿到N个样品点：${x^{1}, x^{2}, \ldots, x^{N}}$</li>
-<li>计算平均值得到$m$, $m = \frac{1}{N} \sum_{n} x^{n} \neq \mu$</li>
-</ul>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg" alt=""></p>
-<p>但是如果计算很多组的m ，然后求m的期望</p>
-<p>$$<br>E[m] = E[\frac{1}{N} \sum<em>{n} x^{n}] = \frac{1}{N}\sum</em>{n}E[x^{n}] = \mu<br>$$</p>
-<p>这个估计呢是无偏估计（unbiased）。</p>
-<p>然后m分布对于 $\mu$ 的离散程度（方差）：</p>
-<p>$$<br>Var[m] = \frac{\sigma^{2}}{N}<br>$$</p>
-<p>这主要取决于N，下图可看出N越小越离散</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg" alt=""></p>
-<h3 id="估测变量-x-的方差"><a href="#估测变量-x-的方差" class="headerlink" title="估测变量 $x$ 的方差"></a>估测变量 $x$ 的方差</h3><p>首先用刚才的方法估测m，</p>
-<p>$$<br>m = \frac{1}{N} \sum_{n} x^{n} \neq \mu<br>$$</p>
-<p>然后再做下面计算：</p>
-<p>$$<br>s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}<br>$$</p>
-<p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg" alt=""></p>
-<p>这个估计是有偏估计（biased）,</p>
-<p>求 $s^{2}$的期望值：</p>
-<p>$$<br>E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}<br>$$</p>
-<p>用靶心来说明一下bias和variance的影响</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg" alt=""></p>
-<p>靶心为真正的方程 $\hat{f}$ ，深蓝色点为$f^{<em>}$ ，是实验求得的方程。求$f^{</em>}$的期望值$\bar{f} = E[f^{*}]$，即图中浅蓝色的点。</p>
-<p>$\bar{f}$ 和 $\hat{f}$之间的距离就是误差 bias，而$\bar{f}$ 和 $f^{*}$ 之间的距离就是误差 variance。4幅图的对比观察两个误差的影响。</p>
-<p>bias就是射击时瞄准的误差，本来应该是瞄准靶心，但bias就造成瞄准准心的误差；而variance就是虽然瞄准在 $\bar{f}$，但是射不准，总是射在 $\bar{f}$ 的周围。</p>
-<h2 id="为什么会有很多的-f"><a href="#为什么会有很多的-f" class="headerlink" title="为什么会有很多的 $f^{*}$?"></a>为什么会有很多的 $f^{*}$?</h2><p>讨论系列02中的案例：这里假设是在平行宇宙中，抓了不同的神奇宝贝</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg" alt=""></p>
-<p>用同一个model，在不同的训练集中找到的 $f^{*}$就是不一样的</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg" alt=""></p>
-<p>这就像在靶心上射击，进行了很多组（一组多次）。现在需要知道它的散布是怎样的，将100个宇宙中的model画出来</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg" alt=""></p>
-<p>不同的数据集之前什么都有可能发生—||</p>
-<h3 id="考虑不同model的variance"><a href="#考虑不同model的variance" class="headerlink" title="考虑不同model的variance"></a>考虑不同model的variance</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg" alt=""></p>
-<p>一次model的variance就比较小的，也就是是比较集中，离散程度较小。而5次model 的 variance就比较大，同理散布比较广，离散程度较大。</p>
-<p>所以用比较简单的model，variance是比较小的（就像射击的时候每次的时候，每次射击的设置都集中在一个比较小的区域内）。如果用了复杂的model，variance就很大，散布比较开。</p>
-<p>这也是因为简单的model受到不同训练集的影响是比较小的。</p>
-<h3 id="考虑不同model的-bias"><a href="#考虑不同model的-bias" class="headerlink" title="考虑不同model的 bias"></a>考虑不同model的 bias</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg" alt=""></p>
-<p>这里没办法知道真正的 $\hat{f}$，所以假设图中的那条黑色曲线为真正的 $\hat{f}$</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg" alt=""></p>
-<p>结果可视化，一次平均的 $\bar{f}$没有5次的好，虽然5次的整体结果离散程度很高。</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg" alt=""></p>
-<p>一次model的bias比较大，而复杂的5次model，bias就比较小。</p>
-<p>直观的解释：简单的model函数集的space比较小，所以可能space里面就没有包含靶心，肯定射不中。而复杂的model函数集的space比较大，可能就包含的靶心，只是没有办法找到确切的靶心在哪，但足够多的，就可能得到真正的 $\bar{f}$。</p>
-<h3 id="bias-v-s-variance"><a href="#bias-v-s-variance" class="headerlink" title="bias v.s. variance"></a>bias v.s. variance</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg" alt=""></p>
-<p>将系列02中的误差拆分为bias何variance。简单model（左边）是bias比较大造成的error，这种情况叫做 <strong>Underfitting（欠拟合）</strong>，而复杂model（右边）是variance过大造成的error，这种情况叫做<strong>Overfitting（过拟合）</strong>。</p>
-<h1 id="怎么判断？"><a href="#怎么判断？" class="headerlink" title="怎么判断？"></a>怎么判断？</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg" alt=""></p>
-<ul>
-<li>如果model没有很好的fit训练集，就是bias过大，也就是Underfitting</li>
-<li>如果model很好的fit训练集，即再训练集上得到很小的error，但在测试集上得到大的error，这意味着model可能是variance比较大，就是Overfitting。</li>
-</ul>
-<p>对于Underfitting和Overfitting，是用不同的方式来处理的</p>
-<h3 id="bias大，Underfitting"><a href="#bias大，Underfitting" class="headerlink" title="bias大，Underfitting"></a>bias大，Underfitting</h3><p>此时应该重新设计model。因为之前的函数集里面可能根本没有包含$\hat{f}$。可以：</p>
-<ul>
-<li>将更多的feature加进去，比如考虑高度重量，或者HP值等等。</li>
-<li>或者考虑更多次幂、更复杂的model。</li>
-</ul>
-<p>如果此时强行再收集更多的data去训练，这是没有什么帮助的，因为设计的函数集本身就不好，再找更多的训练集也不会更好。</p>
-<h3 id="variance大，Overfitting"><a href="#variance大，Overfitting" class="headerlink" title="variance大，Overfitting"></a>variance大，Overfitting</h3><p>简单粗暴的方法：More data</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg" alt=""></p>
-<p>但是很多时候不一定能做到收集更多的data。可以针对对问题的理解对数据集做调整（Regularization）。比如识别手写数字的时候，偏转角度的数据集不够，那就将正常的数据集左转15度，右转15度，类似这样的处理。</p>
-<h1 id="选择model"><a href="#选择model" class="headerlink" title="选择model"></a>选择model</h1><ul>
-<li>现在在bias和variance之间就需要一个权衡</li>
-<li>想选择的model，可以平衡bias和variance产生的error，使得总error最小</li>
-<li>但是下面这件事最好不要做：</li>
-</ul>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg" alt=""></p>
-<p>用训练集训练不同的model，然后在测试集上比较error，model3的error比较小，就认为model3好。但实际上这只是你手上的测试集，真正完整的测试集并没有。比如在已有的测试集上error是0.5，但有条件收集到更多的测试集后通常得到的error都是大于0.5的。</p>
-<h2 id="Cross-Validation（交叉验证）"><a href="#Cross-Validation（交叉验证）" class="headerlink" title="Cross Validation（交叉验证）"></a>Cross Validation（交叉验证）</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg" alt=""></p>
-<p>图中public的测试集是已有的，private是没有的，不知道的。Cross Validation 就是将训练集再分为两部分，一部分作为训练集，一部分作为验证集。用训练集训练model，然后再验证集上比较，确实出最好的model之后（比如model3），再用全部的训练集训练model3，然后再用public的测试集进行测试，此时一般得到的error都是大一些的。不过此时会比较想再回去调一下参数，调整model，让在public的测试集上更好，但不太推荐这样。（心里难受啊，大学数模的时候就回去调，来回痛苦折腾）</p>
-<p>上述方法可能会担心将训练集拆分的时候分的效果比较差怎么办，可以用下面的方法。</p>
-<h2 id="N-fold-Cross-Validation（N-折交叉验证）"><a href="#N-fold-Cross-Validation（N-折交叉验证）" class="headerlink" title="N-fold Cross Validation（N-折交叉验证）"></a>N-fold Cross Validation（N-折交叉验证）</h2><p>将训练集分成N份，比如分成3份。</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg" alt=""></p>
-<p>比如在三份中训练结果Average Error是model1最好，再用全部训练集训练model1。（貌似数模也干过，当年都是莫名其妙的分，想想当年数模的时候都根本来不及看是为什么，就是一股脑上去做00oo00）</p>
-<blockquote>
-<p>新博客地址：<a href="http://yoferzhang.com/post/20170327ML03BiasAndVariance">http://yoferzhang.com/post/20170327ML03BiasAndVariance</a></p>
-</blockquote>
-
+          
       
     </div>
     
@@ -603,6 +399,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/交叉检验/">交叉检验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方差/">方差</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无偏估计/">无偏估计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/post/20170327ML03BiasAndVariance/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -649,7 +449,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+              <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66577532">http://blog.csdn.net/zyq522376829/article/details/66577532</a></p>
 </blockquote>
@@ -717,7 +520,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+              <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
 <blockquote>
 <p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66478149">http://blog.csdn.net/zyq522376829/article/details/66478149</a></p>
 </blockquote>
