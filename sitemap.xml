@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
+    
+    <lastmod>2017-04-07T00:49:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoferzhang.com/post/20170326ML01Introduction/</loc>
     
     <lastmod>2017-04-04T14:42:28.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoferzhang.com/post/20170306DeepLearningRegression/</loc>
     
     <lastmod>2017-03-20T15:55:36.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
-    
-    <lastmod>2017-03-20T15:38:07.000Z</lastmod>
     
   </url>
   
