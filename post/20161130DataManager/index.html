@@ -1,0 +1,759 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
+<meta property="og:url" content="http://yoferzhang.com/post/20161130DataManager/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74owj17vsj21380hsq5y.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74oxc6bmuj20qg10079r.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faae0jjuq4j210v0aegob.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faaeyb9e4gj213i03bmxw.jpg">
+<meta property="og:updated_time" content="2017-02-09T08:02:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20161130DataManager/" title="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3" itemprop="url">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-30T13:02:30.000Z" itemprop="datePublished"> 发表于 2016-11-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用沙盒"><span class="toc-number">1.</span> <span class="toc-text">应用沙盒</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用沙盒结构分析"><span class="toc-number">1.1.</span> <span class="toc-text">应用沙盒结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用沙盒目录的常见获取方式"><span class="toc-number">1.2.</span> <span class="toc-text">应用沙盒目录的常见获取方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性列表"><span class="toc-number">2.</span> <span class="toc-text">属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性列表-归档NSDictionary"><span class="toc-number">2.1.</span> <span class="toc-text">属性列表-归档NSDictionary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取属性列表，恢复NSDictionary对象"><span class="toc-number">2.2.</span> <span class="toc-text">读取属性列表，恢复NSDictionary对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性列表-NSDictionary的存储和读取过程"><span class="toc-number">2.3.</span> <span class="toc-text">属性列表-NSDictionary的存储和读取过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#偏好设置"><span class="toc-number">3.</span> <span class="toc-text">偏好设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSKeyedArchiver"><span class="toc-number">4.</span> <span class="toc-text">NSKeyedArchiver</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSKeyedArchiver-归档NSArray"><span class="toc-number">4.1.</span> <span class="toc-text">NSKeyedArchiver-归档NSArray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSKeyedArchiver-归档Person对象（Person-h）"><span class="toc-number">4.2.</span> <span class="toc-text">NSKeyedArchiver-归档Person对象（Person.h）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归档对象的注意"><span class="toc-number">4.3.</span> <span class="toc-text">归档对象的注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSData"><span class="toc-number">4.4.</span> <span class="toc-text">NSData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSData-归档2个Person对象到同一文件中"><span class="toc-number">4.5.</span> <span class="toc-text">NSData-归档2个Person对象到同一文件中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用归档实现深复制"><span class="toc-number">4.6.</span> <span class="toc-text">利用归档实现深复制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLite3"><span class="toc-number">5.</span> <span class="toc-text">SQLite3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建、打开、关闭数据库"><span class="toc-number">5.1.</span> <span class="toc-text">创建、打开、关闭数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行不返回数据的SQL语句"><span class="toc-number">5.2.</span> <span class="toc-text">执行不返回数据的SQL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#带占位符插入数据"><span class="toc-number">5.3.</span> <span class="toc-text">带占位符插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询数据"><span class="toc-number">5.4.</span> <span class="toc-text">查询数据</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="应用沙盒"><a href="#应用沙盒" class="headerlink" title="应用沙盒"></a>应用沙盒</h2><p>每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒</p>
+<a id="more"></a>
+<p>应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）</p>
+<p><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg" alt=""></p>
+<p>模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)<br>/Users/apple/Library/Application Support/iPhone Simulator/6.0/Applications</p>
+<p>在使用Xcode5的时候，模拟器中的app可以在电脑如下路径找到：</p>
+<p>/Users/用户名/Library/Application Support/iPhone Simulator/系统版本号/Applications</p>
+<p>而在Xcode6环境下，存放位置已经发生了变化。</p>
+<p>调查发现，新的路径变成了/Users/{YOUR NAME}/Library/Developer/CoreSimulator/Devices/设备型号/data/Containers</p>
+<p>其中设备型号是用uuid表示的，可以用如下命令获取它们之间的对应关系(stackoverflow)：<code>xcrun simctl list</code><br>再往下，app和本地文件已经分开放了：app在Bundle/Application下；本地文件在Data/Application下<br>每个目录下都是一堆uuid命名的文件夹，很难区分。</p>
+<p>找的时候可以通过在app运行时打印bundle路径和NSHomeDirectory()发现具体路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">➜  Devices xcrun simctl list</span><br><span class="line">== Device Types ==</span><br><span class="line">iPhone 4s (com.apple.CoreSimulator.SimDeviceType.iPhone-4s)</span><br><span class="line">iPhone 5 (com.apple.CoreSimulator.SimDeviceType.iPhone-5)</span><br><span class="line">iPhone 5s (com.apple.CoreSimulator.SimDeviceType.iPhone-5s)</span><br><span class="line">iPhone 6 (com.apple.CoreSimulator.SimDeviceType.iPhone-6)</span><br><span class="line">iPhone 6 Plus (com.apple.CoreSimulator.SimDeviceType.iPhone-6-Plus)</span><br><span class="line">iPhone 6s (com.apple.CoreSimulator.SimDeviceType.iPhone-6s)</span><br><span class="line">iPhone 6s Plus (com.apple.CoreSimulator.SimDeviceType.iPhone-6s-Plus)</span><br><span class="line">iPad 2 (com.apple.CoreSimulator.SimDeviceType.iPad-2)</span><br><span class="line">iPad Retina (com.apple.CoreSimulator.SimDeviceType.iPad-Retina)</span><br><span class="line">iPad Air (com.apple.CoreSimulator.SimDeviceType.iPad-Air)</span><br><span class="line">iPad Air 2 (com.apple.CoreSimulator.SimDeviceType.iPad-Air-2)</span><br><span class="line">iPad Pro (com.apple.CoreSimulator.SimDeviceType.iPad-Pro)</span><br><span class="line">Apple TV 1080p (com.apple.CoreSimulator.SimDeviceType.Apple-TV-1080p)</span><br><span class="line">Apple Watch - 38mm (com.apple.CoreSimulator.SimDeviceType.Apple-Watch-38mm)</span><br><span class="line">Apple Watch - 42mm (com.apple.CoreSimulator.SimDeviceType.Apple-Watch-42mm)</span><br><span class="line">== Runtimes ==</span><br><span class="line">iOS 9.0 (9.0 - 13A344) (com.apple.CoreSimulator.SimRuntime.iOS-9-0)</span><br><span class="line">iOS 9.1 (9.1 - 13B143) (com.apple.CoreSimulator.SimRuntime.iOS-9-1)</span><br><span class="line">iOS 9.2 (9.2 - 13C75) (com.apple.CoreSimulator.SimRuntime.iOS-9-2)</span><br><span class="line">iOS 9.3 (9.3 - 13E230) (com.apple.CoreSimulator.SimRuntime.iOS-9-3)</span><br><span class="line">tvOS 9.2 (9.2 - 13Y227) (com.apple.CoreSimulator.SimRuntime.tvOS-9-2)</span><br><span class="line">watchOS 2.2 (2.2 - 13V143) (com.apple.CoreSimulator.SimRuntime.watchOS-2-2)</span><br><span class="line">== Devices ==</span><br><span class="line">-- iOS 9.0 --</span><br><span class="line">    iPhone 4s (41931634-624C-4AB8-8652-9EFA6E816379) (Shutdown)</span><br><span class="line">    iPhone 5 (3A03D3D9-35BC-4AFC-8D3A-AA729DFA4417) (Shutdown)</span><br><span class="line">    iPhone 5s (9091604E-CB39-4089-B594-336212024A21) (Shutdown)</span><br><span class="line">    iPhone 6 (CB81F1ED-3B3F-407A-BF58-E5E932D253E2) (Shutdown)</span><br><span class="line">    iPhone 6 Plus (F166EB11-39BB-4EFA-87E3-0ADD79849409) (Shutdown)</span><br><span class="line">    iPhone 6s (F6487BC7-400C-4A91-A950-2A18B9558DC3) (Shutdown)</span><br><span class="line">    iPhone 6s Plus (1E17B5B9-9765-4306-A646-3253620178AE) (Shutdown)</span><br><span class="line">    iPad 2 (5C4751E6-1CA2-418C-891F-3C450C91DCE7) (Shutdown)</span><br><span class="line">    iPad Retina (14F984F6-3E7E-4BB3-A6F8-3EF337058DCF) (Shutdown)</span><br><span class="line">    iPad Air (C492DDAF-7CE3-45D3-9734-9EB221DF8EC3) (Shutdown)</span><br><span class="line">    iPad Air 2 (4136305D-8F47-4CD4-BED3-B274162E4223) (Shutdown)</span><br><span class="line">-- iOS 9.1 --</span><br><span class="line">    iPhone 4s (20F804F4-3551-4975-8FAD-99B387FA7101) (Shutdown)</span><br><span class="line">    iPhone 5 (DF220FF8-4AD7-486D-9701-3DC532BF3190) (Shutdown)</span><br><span class="line">    iPhone 5s (89EC0AF7-2799-47C5-8CA6-26D978153FAE) (Shutdown)</span><br><span class="line">    iPhone 6 (873A48E8-DF55-46AA-9895-D723BFD65262) (Shutdown)</span><br><span class="line">    iPhone 6 Plus (2AC4B279-5B83-4EB3-BB6F-511FFBE8602E) (Shutdown)</span><br><span class="line">    iPhone 6s (86F1DE4C-B407-457C-B170-82FEE1FBA1DD) (Shutdown)</span><br><span class="line">    iPhone 6s Plus (AFA83ACE-0FE5-4814-81EB-189100A2D8B3) (Shutdown)</span><br><span class="line">    iPad 2 (33CE0EA4-F9AF-43FA-A5AE-8784ABB6DBB8) (Shutdown)</span><br><span class="line">    iPad Retina (EFA3EEE6-DBBB-424C-A1EB-988FE40C6E01) (Shutdown)</span><br><span class="line">    iPad Air (05398825-A9A4-41F2-8E91-DD1651E27C4C) (Shutdown)</span><br><span class="line">    iPad Air 2 (2F805563-E2E5-4708-A846-CBFB8F23BB98) (Shutdown)</span><br><span class="line">    iPad Pro (D2A724F2-BDEB-4D2E-AF83-3CD1A2DF929A) (Shutdown)</span><br><span class="line">-- iOS 9.2 --</span><br><span class="line">    iPhone 4s (FFB2BDB2-B759-4F40-A396-A38A43D946E5) (Shutdown)</span><br><span class="line">    iPhone 5 (A60C4213-F011-4DBA-8E94-CCD8214E7B04) (Shutdown)</span><br><span class="line">    iPhone 5s (6A6F57A5-1057-4187-B034-AB085349DF6B) (Shutdown)</span><br><span class="line">    iPhone 6 (F9B18CA1-0D31-4077-9F4B-B94C195E0E67) (Shutdown)</span><br><span class="line">    iPhone 6 Plus (B9D38A37-C004-485B-83A9-C442AA92D644) (Shutdown)</span><br><span class="line">    iPhone 6s (9F8EB146-B2A2-4F1F-84CC-32D33E0A7187) (Shutdown)</span><br><span class="line">    iPhone 6s Plus (E09E8DE5-F60C-4F30-9144-B45A7DF9ED98) (Shutdown)</span><br><span class="line">    iPad 2 (92EE4298-E5FD-4408-93EF-554AF18EE12D) (Shutdown)</span><br><span class="line">    iPad Retina (B1DD1D12-F67A-4EC4-9833-1B6989BB8A45) (Shutdown)</span><br><span class="line">    iPad Air (3F1980FD-3C5B-43CF-834C-B4869B9A89C8) (Shutdown)</span><br><span class="line">    iPad Air 2 (42802305-9282-4A19-9B3B-5EBA3163B6EF) (Shutdown)</span><br><span class="line">    iPad Pro (02A937DA-694D-40DE-B1EE-604D8F46AD8F) (Shutdown)</span><br><span class="line">-- iOS 9.3 --</span><br><span class="line">    iPhone 4s (BDE69A93-B858-4B5A-AB3F-CAD796FCC045) (Shutdown)</span><br><span class="line">    iPhone 5 (A95F5000-7E2A-455E-B847-9212722A4136) (Shutdown)</span><br><span class="line">    iPhone 5s (E5D555C0-C723-4338-BFCF-B5E2E669FE54) (Shutdown)</span><br><span class="line">    iPhone 6 (9226B68B-5702-4953-947B-0E655FADDE12) (Shutdown)</span><br><span class="line">    iPhone 6 Plus (C4E60731-2679-4237-8E24-AC9512DF9E9E) (Shutdown)</span><br><span class="line">    iPhone 6s (6F7F28DE-CE2A-40DE-B91B-203EA774B275) (Booted)</span><br><span class="line">    iPhone 6s Plus (115B2F18-065F-490B-9EAB-9C63B0BDE1CF) (Shutdown)</span><br><span class="line">    iPad 2 (EF2F1963-B398-45E8-A609-170F0F09E6AA) (Shutdown)</span><br><span class="line">    iPad Retina (0F830533-9A66-46EE-B0F8-388E12E41FCF) (Shutdown)</span><br><span class="line">    iPad Air (04ED9886-705E-4E63-9322-6EF1E04D2578) (Shutdown)</span><br><span class="line">    iPad Air 2 (816C1B6D-6F7F-4A41-A952-A84BFECE6230) (Shutdown)</span><br><span class="line">    iPad Pro (ECD0C28F-28CE-4CAB-A7C3-F31F7D4A3146) (Shutdown)</span><br><span class="line">-- tvOS 9.2 --</span><br><span class="line">    Apple TV 1080p (8129655F-4134-4998-A2C9-0461C28FDF00) (Shutdown)</span><br><span class="line">-- watchOS 2.2 --</span><br><span class="line">    Apple Watch - 42mm (2B69FD3C-1DBC-41AC-82BA-B8A4215E09C4) (Shutdown)</span><br><span class="line">-- Unavailable: com.apple.CoreSimulator.SimRuntime.iOS-10-0 --</span><br><span class="line">    iPhone 5 (DF66161D-F762-44FB-BF8B-EE8FDECFD203) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone 5s (00F328A8-5704-4C88-A128-5D310C51B476) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone 6 (A83359F2-41E9-4FDB-971A-1022811451BE) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone 6 Plus (A824AD89-D1CE-4E04-AD73-0E0C333238C2) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone 6s (14B59EAE-E267-4CF9-90CF-65F1153E8B51) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone 6s Plus (CC3124B7-500A-470D-B5DB-F330F5B173E1) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPad Retina (2550E4C9-54B2-4AC1-BD64-8C21595B2FFA) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPad Air (B8CD31CA-1690-4F7E-BABA-087AC4C1E894) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPad Air 2 (7F6E412B-CC71-4E92-A542-10AB7CEE0440) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPad Pro (12.9 inch) (693C487D-BBDC-4ED6-A0B5-43832111CA89) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPad Pro (9.7 inch) (580B7423-99CD-411A-AD11-8C7906C44279) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    iPhone SE (7482B157-12B7-4713-9BF7-F4C7083EC1B5) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">-- Unavailable: com.apple.CoreSimulator.SimRuntime.tvOS-10-0 --</span><br><span class="line">    Apple TV 1080p (F9A62967-74C3-49DE-8A35-979531501889) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">-- Unavailable: com.apple.CoreSimulator.SimRuntime.watchOS-3-0 --</span><br><span class="line">    Apple Watch - 38mm (CFD06DDD-5ED7-4C2E-AD2D-180959274F4E) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">    Apple Watch - 42mm (835B5691-599C-4A5E-919F-04F68991042F) (Shutdown) (unavailable, runtime profile not found)</span><br><span class="line">== Device Pairs ==</span><br><span class="line">B136137E-9B10-4427-9706-59FBD01359E1 (active, disconnected)</span><br><span class="line">    Watch: Apple Watch - 42mm (2B69FD3C-1DBC-41AC-82BA-B8A4215E09C4) (Shutdown)</span><br><span class="line">    Phone: iPhone 6s Plus (115B2F18-065F-490B-9EAB-9C63B0BDE1CF) (Shutdown)</span><br><span class="line">07105DA6-F4F3-4FF4-8945-4A1E0A1B97AE (unavailable)</span><br><span class="line">    Watch: Apple Watch - 38mm (CFD06DDD-5ED7-4C2E-AD2D-180959274F4E) (Shutdown)</span><br><span class="line">    Phone: iPhone 6 (A83359F2-41E9-4FDB-971A-1022811451BE) (Shutdown)</span><br><span class="line">E142260B-6DF1-4B45-8389-E108F0F79652 (unavailable)</span><br><span class="line">    Watch: Apple Watch - 42mm (835B5691-599C-4A5E-919F-04F68991042F) (Shutdown)</span><br><span class="line">    Phone: iPhone 6 Plus (A824AD89-D1CE-4E04-AD73-0E0C333238C2) (Shutdown)</span><br></pre></td></tr></table></figure>
+<h3 id="应用沙盒结构分析"><a href="#应用沙盒结构分析" class="headerlink" title="应用沙盒结构分析"></a>应用沙盒结构分析</h3><ul>
+<li>应用程序包：(上图中的Layer)包含了所有的资源文件和可执行文件</li>
+<li>Documents：保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录</li>
+<li>tmp：保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时不会备份该目录</li>
+<li>Library/Caches：保存应用运行时生成的需要持久化的数据，iTunes同步设备时不会备份该目录。一般存储体积大、不需要备份的非重要数据</li>
+<li>Library/Preference：保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息。iTunes同步设备时会备份该目录</li>
+</ul>
+<h3 id="应用沙盒目录的常见获取方式"><a href="#应用沙盒目录的常见获取方式" class="headerlink" title="应用沙盒目录的常见获取方式"></a>应用沙盒目录的常见获取方式</h3><ul>
+<li>沙盒根目录</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *home = <span class="built_in">NSHomeDirectory</span>();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Documents：(2种方式)</p>
+</li>
+<li><p>利用沙盒根目录拼接”Documents”字符串</p>
+</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *home = <span class="built_in">NSHomeDirectory</span>();</span><br><span class="line"><span class="built_in">NSString</span> *documents = [home stringByAppendingPathComponent:<span class="string">@"Documents"</span>];</span><br><span class="line"><span class="comment">// 不建议采用，因为新版本的操作系统可能会修改目录名</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>利用NSSearchPathForDirectoriesInDomains函数</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NSUserDomainMask 代表从用户文件夹下找</span></span><br><span class="line"><span class="comment">// YES 代表展开路径中的波浪字符“~”</span></span><br><span class="line"><span class="built_in">NSArray</span> *array =  <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">NO</span>);</span><br><span class="line"><span class="comment">// 在iOS中，只有一个目录跟传入的参数匹配，所以这个集合里面只有一个元素</span></span><br><span class="line"><span class="built_in">NSString</span> *documents = [array objectAtIndex:<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<p>tem 目录</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *tmp = <span class="built_in">NSTemporaryDirectory</span>();</span><br></pre></td></tr></table></figure>
+<p>Library/Caches：(跟Documents类似的2种方法)</p>
+<ul>
+<li>利用沙盒根目录拼接”Caches”字符串</li>
+<li>利用NSSearchPathForDirectoriesInDomains函数(将函数的第2个参数改为：NSCachesDirectory即可)</li>
+</ul>
+<p>Library/Preference：通过NSUserDefaults类存取该目录下的设置信息</p>
+<h2 id="属性列表"><a href="#属性列表" class="headerlink" title="属性列表"></a>属性列表</h2><ul>
+<li>属性列表是一种XML格式的文件，拓展名为plist</li>
+<li>如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，就可以使用<code>writeToFile:atomically:</code>方法直接将对象写到属性列表文件中</li>
+</ul>
+<h3 id="属性列表-归档NSDictionary"><a href="#属性列表-归档NSDictionary" class="headerlink" title="属性列表-归档NSDictionary"></a>属性列表-归档NSDictionary</h3><p>将一个NSDictionary对象归档到一个plist属性列表中</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将数据封装成字典</span></span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *dict = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">[dict setObject:<span class="string">@"小明"</span> forKey:<span class="string">@"name"</span>];</span><br><span class="line">[dict setObject:<span class="string">@"15013141314"</span> forKey:<span class="string">@"phone"</span>];</span><br><span class="line">[dict setObject:<span class="string">@"27"</span> forKey:<span class="string">@"age"</span>];</span><br><span class="line"><span class="comment">// 将字典持久化到Documents/stu.plist文件中</span></span><br><span class="line">[dict writeToFile:path atomically:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+<p>写入结果</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>age<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>27<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>name<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>phone<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>15013141314<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="读取属性列表，恢复NSDictionary对象"><a href="#读取属性列表，恢复NSDictionary对象" class="headerlink" title="读取属性列表，恢复NSDictionary对象"></a>读取属性列表，恢复NSDictionary对象</h3><p>读取属性列表，恢复NSDictionary对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取Documents/stu.plist的内容，实例化NSDictionary</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *dict = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"name:%@"</span>, [dict objectForKey:<span class="string">@"name"</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"phone:%@"</span>, [dict objectForKey:<span class="string">@"phone"</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"age:%@"</span>, [dict objectForKey:<span class="string">@"age"</span>]);</span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-24</span> <span class="number">09</span>:<span class="number">47</span>:<span class="number">42.626</span> PersonalContacts02[<span class="number">2225</span>:<span class="number">169033</span>] name:小明</span><br><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-24</span> <span class="number">09</span>:<span class="number">47</span>:<span class="number">42.626</span> PersonalContacts02[<span class="number">2225</span>:<span class="number">169033</span>] phone:<span class="number">15013141314</span></span><br><span class="line"><span class="number">2016</span><span class="number">-08</span><span class="number">-24</span> <span class="number">09</span>:<span class="number">47</span>:<span class="number">42.626</span> PersonalContacts02[<span class="number">2225</span>:<span class="number">169033</span>] age:<span class="number">27</span></span><br></pre></td></tr></table></figure>
+<h3 id="属性列表-NSDictionary的存储和读取过程"><a href="#属性列表-NSDictionary的存储和读取过程" class="headerlink" title="属性列表-NSDictionary的存储和读取过程"></a>属性列表-NSDictionary的存储和读取过程</h3><p><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg" alt=""></p>
+<h2 id="偏好设置"><a href="#偏好设置" class="headerlink" title="偏好设置"></a>偏好设置</h2><ul>
+<li>很多iOS应用都支持偏好设置，比如保存用户名、密码、字体大小等设置，iOS提供了一套标准的解决方案来为应用加入偏好设置功能</li>
+<li>每个应用都有个NSUserDefaults实例，通过它来存取偏好设置</li>
+<li>比如，保存用户名、字体大小、是否自动登录</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line">[defaults setObject:<span class="string">@"yoferzhang"</span> forKey:<span class="string">@"username"</span>];</span><br><span class="line">[defaults setFloat:<span class="number">18.0</span>f forKey:<span class="string">@"text_size"</span>];</span><br><span class="line">[defaults setBool:<span class="literal">YES</span> forKey:<span class="string">@"auto_login"</span>];</span><br></pre></td></tr></table></figure>
+<p>读取上次保存的设置</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line"><span class="built_in">NSString</span> *username = [defaults stringForKey:<span class="string">@"username"</span>];</span><br><span class="line"><span class="keyword">float</span> textSize = [defaults floatForKey:<span class="string">@"text_size"</span>];</span><br><span class="line"><span class="built_in">BOOL</span> autoLogin = [defaults boolForKey:<span class="string">@"auto_login"</span>];</span><br></pre></td></tr></table></figure>
+<p>注意：UserDefaults设置数据时，不是立即写入，而是根据时间戳定时地把缓存中的数据写入本地磁盘。所以调用了set方法之后数据有可能还没有写入磁盘应用程序就终止了。出现以上问题，可以通过调用synchornize方法强制写入</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[defaults synchornize];</span><br></pre></td></tr></table></figure>
+<h2 id="NSKeyedArchiver"><a href="#NSKeyedArchiver" class="headerlink" title="NSKeyedArchiver"></a>NSKeyedArchiver</h2><p>如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，可以直接用NSKeyedArchiver进行归档和恢复</p>
+<p>不是所有的对象都可以直接用这种方法进行归档，只有遵守了NSCoding协议的对象才可以<br>NSCoding协议有2个方法：</p>
+<ul>
+<li><code>encodeWithCoder:</code></li>
+</ul>
+<p>每次归档对象时，都会调用这个方法。一般在这个方法里面指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey:方法归档实例变量</p>
+<ul>
+<li><code>initWithCoder:</code></li>
+</ul>
+<p>每次从文件中恢复(解码)对象时，都会调用这个方法。一般在这个方法里面指定如何解码文件中的数据为对象的实例变量，可以使用decodeObject:forKey方法解码实例变量</p>
+<h3 id="NSKeyedArchiver-归档NSArray"><a href="#NSKeyedArchiver-归档NSArray" class="headerlink" title="NSKeyedArchiver-归档NSArray"></a>NSKeyedArchiver-归档NSArray</h3><p>归档一个NSArray对象到Documents/array.archive</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"a"</span>,<span class="string">@"b"</span>,<span class="literal">nil</span>];</span><br><span class="line">[<span class="built_in">NSKeyedArchiver</span> archiveRootObject:array toFile:path];</span><br></pre></td></tr></table></figure>
+<p>恢复(解码)NSArray对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithFile:path];</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg" alt=""></p>
+<h3 id="NSKeyedArchiver-归档Person对象（Person-h）"><a href="#NSKeyedArchiver-归档Person对象（Person-h）" class="headerlink" title="NSKeyedArchiver-归档Person对象（Person.h）"></a>NSKeyedArchiver-归档Person对象（Person.h）</h3><p>Person对象（Person.h）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCoding</span>&gt;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">float</span> height;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Person对象（Person.m）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)encodeWithCoder:(<span class="built_in">NSCoder</span> *)encoder &#123;</span><br><span class="line">    [encoder encodeObject:<span class="keyword">self</span>.name forKey:<span class="string">@"name"</span>];</span><br><span class="line">    [encoder encodeInt:<span class="keyword">self</span>.age forKey:<span class="string">@"age"</span>];</span><br><span class="line">    [encoder encodeFloat:<span class="keyword">self</span>.height forKey:<span class="string">@"height"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithCoder:(<span class="built_in">NSCoder</span> *)decoder &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = [decoder decodeObjectForKey:<span class="string">@"name"</span>];</span><br><span class="line">    <span class="keyword">self</span>.age = [decoder decodeIntForKey:<span class="string">@"age"</span>];</span><br><span class="line">    <span class="keyword">self</span>.height = [decoder decodeFloatForKey:<span class="string">@"height"</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>归档Person对象（编码和解码）</p>
+<ul>
+<li>归档(编码)</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array =  <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</span><br><span class="line"><span class="built_in">NSString</span> *documents = [array objectAtIndex:<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSString</span> *filePath = [documents stringByAppendingPathComponent:<span class="string">@"data.plist"</span>];</span><br><span class="line">Person *person = [[Person alloc] init];</span><br><span class="line">person.name = <span class="string">@"yoferzhang"</span>;</span><br><span class="line">person.age = <span class="number">27</span>;</span><br><span class="line">person.height = <span class="number">1.83</span>f;</span><br><span class="line">[<span class="built_in">NSKeyedArchiver</span> archiveRootObject:person toFile:filePath];</span><br></pre></td></tr></table></figure>
+<p>data.plist</p>
+<p><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74owj17vsj21380hsq5y.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74oxc6bmuj20qg10079r.jpg" alt=""></p>
+<ul>
+<li>恢复(解码)</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person *person = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithFile:path];</span><br></pre></td></tr></table></figure>
+<h3 id="归档对象的注意"><a href="#归档对象的注意" class="headerlink" title="归档对象的注意"></a>归档对象的注意</h3><p>如果父类也遵守了NSCoding协议，请注意：</p>
+<p>应该在encodeWithCoder:方法中加上一句</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">super</span> encodeWithCode:encode];</span><br></pre></td></tr></table></figure>
+<p>确保继承的实例变量也能被编码，即也能被归档</p>
+<p>应该在initWithCoder:方法中加上一句</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span> = [<span class="keyword">super</span> initWithCoder:decoder];</span><br></pre></td></tr></table></figure>
+<p>确保继承的实例变量也能被解码，即也能被恢复</p>
+<h3 id="NSData"><a href="#NSData" class="headerlink" title="NSData"></a>NSData</h3><ul>
+<li>使用<code>archiveRootObject:toFile:</code>方法可以将一个对象直接写入到一个文件中，但有时候可能想将多个对象写入到同一个文件中，那么就要使用<code>NSData</code>来进行归档对象</li>
+<li>NSData可以为一些数据提供临时存储空间，以便随后写入文件，或者存放从磁盘读取的文件内容。可以使用<code>[NSMutableData data]</code>创建可变数据空间</li>
+</ul>
+<p><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faae0jjuq4j210v0aegob.jpg" alt=""></p>
+<h3 id="NSData-归档2个Person对象到同一文件中"><a href="#NSData-归档2个Person对象到同一文件中" class="headerlink" title="NSData-归档2个Person对象到同一文件中"></a>NSData-归档2个Person对象到同一文件中</h3><ul>
+<li>归档（编码）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新建一块可变数据区</span></span><br><span class="line"><span class="built_in">NSMutableData</span> *data = [<span class="built_in">NSMutableData</span> data];</span><br><span class="line"><span class="comment">// 将数据区连接到一个NSKeyedArchiver对象</span></span><br><span class="line"><span class="built_in">NSKeyedArchiver</span> *archiver = [[[<span class="built_in">NSKeyedArchiver</span> alloc] initForWritingWithMutableData:data] autorelease];</span><br><span class="line"><span class="comment">// 开始存档对象，存档的数据都会存储到NSMutableData中</span></span><br><span class="line">[archiver encodeObject:person1 forKey:<span class="string">@"person1"</span>];</span><br><span class="line">[archiver encodeObject:person2 forKey:<span class="string">@"person2"</span>];</span><br><span class="line"><span class="comment">// 存档完毕(一定要调用这个方法)</span></span><br><span class="line">[archiver finishEncoding];</span><br><span class="line"><span class="comment">// 将存档的数据写入文件</span></span><br><span class="line">[data writeToFile:path atomically:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>恢复（解码）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件中读取数据</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfFile:path];</span><br><span class="line"><span class="comment">// 根据数据，解析成一个NSKeyedUnarchiver对象</span></span><br><span class="line"><span class="built_in">NSKeyedUnarchiver</span> *unarchiver = [[<span class="built_in">NSKeyedUnarchiver</span> alloc] initForReadingWithData:data];</span><br><span class="line">Person *person1 = [unarchiver decodeObjectForKey:<span class="string">@"person1"</span>];</span><br><span class="line">Person *person2 = [unarchiver decodeObjectForKey:<span class="string">@"person2"</span>];</span><br><span class="line"><span class="comment">// 恢复完毕</span></span><br><span class="line">[unarchiver finishDecoding];</span><br></pre></td></tr></table></figure>
+<h3 id="利用归档实现深复制"><a href="#利用归档实现深复制" class="headerlink" title="利用归档实现深复制"></a>利用归档实现深复制</h3><p>比如对一个Person对象进行深复制</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 临时存储person1的数据</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSKeyedArchiver</span> archivedDataWithRootObject:person1];</span><br><span class="line"><span class="comment">// 解析data，生成一个新的Person对象</span></span><br><span class="line">Student *person2 = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:data];</span><br><span class="line"><span class="comment">// 分别打印内存地址</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"person1:0x%x"</span>, person1); <span class="comment">// person1:0x7177a60</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"person2:0x%x"</span>, person2); <span class="comment">// person2:0x7177cf0</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faaeyb9e4gj213i03bmxw.jpg" alt=""></p>
+<h2 id="SQLite3"><a href="#SQLite3" class="headerlink" title="SQLite3"></a>SQLite3</h2><ul>
+<li>SQLite3是一款开源的嵌入式关系型数据库，可移植性好、易使用、内存开销小</li>
+<li>SQLite3是无类型的，意味着你可以保存任何类型的数据到任意表的任意字段中。比如下列的创表语句是合法的：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table t_person(name, age);</span><br><span class="line">为了保证可读性，建议还是把字段类型加上：</span><br><span class="line">create table t_person(name text, age integer);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SQLite3常用的5种数据类型：text、integer、float、boolean、blob</li>
+<li>在iOS中使用SQLite3，首先要添加库文件libsqlite3.dylib和导入主头文件</li>
+</ul>
+<h3 id="创建、打开、关闭数据库"><a href="#创建、打开、关闭数据库" class="headerlink" title="创建、打开、关闭数据库"></a>创建、打开、关闭数据库</h3><ul>
+<li>创建或打开数据库</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// path为：~/Documents/person.db</span></span><br><span class="line">sqlite3 *db;</span><br><span class="line"><span class="keyword">int</span> result = sqlite3_open([path UTF8String], &amp;db);</span><br></pre></td></tr></table></figure>
+<p>代码解析：</p>
+<ul>
+<li>sqlite3_open()将根据文件路径打开数据库，如果不存在，则会创建一个新的数据库。如果result等于常量SQLITE_OK，则表示成功打开数据库</li>
+<li>sqlite3 *db：一个打开的数据库实例</li>
+<li>数据库文件的路径必须以C字符串(而非NSString)传入</li>
+</ul>
+<p>关闭数据库：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3_close(db);</span><br></pre></td></tr></table></figure>
+<h3 id="执行不返回数据的SQL语句"><a href="#执行不返回数据的SQL语句" class="headerlink" title="执行不返回数据的SQL语句"></a>执行不返回数据的SQL语句</h3><p>执行创表语句</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *errorMsg;  <span class="comment">// 用来存储错误信息</span></span><br><span class="line"><span class="keyword">char</span> *sql = <span class="string">"create table if not exists t_person(id integer primary key autoincrement, name text, age integer);"</span>;</span><br><span class="line"><span class="keyword">int</span> result = sqlite3_exec(db, sql, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;errorMsg);</span><br></pre></td></tr></table></figure>
+<p>代码解析：</p>
+<ul>
+<li><code>sqlite3_exec()</code>可以执行任何SQL语句，比如创表、更新、插入和删除操作。但是一般不用它执行查询语句，因为它不会返回查询到的数据</li>
+<li><code>sqlite3_exec()</code>还可以执行的语句：</li>
+</ul>
+<ol>
+<li>开启事务：begin transaction;</li>
+<li>回滚事务：rollback;</li>
+<li>提交事务：commit;</li>
+</ol>
+<h3 id="带占位符插入数据"><a href="#带占位符插入数据" class="headerlink" title="带占位符插入数据"></a>带占位符插入数据</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *sql = <span class="string">"insert into t_person(name, age) values(?, ?);"</span>;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_prepare_v2(db, sql, <span class="number">-1</span>, &amp;stmt, <span class="literal">NULL</span>) == SQLITE_OK) &#123;</span><br><span class="line">    sqlite3_bind_text(stmt, <span class="number">1</span>, <span class="string">"母鸡"</span>, <span class="number">-1</span>, <span class="literal">NULL</span>);</span><br><span class="line">    sqlite3_bind_int(stmt, <span class="number">2</span>, <span class="number">27</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_step(stmt) != SQLITE_DONE) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"插入数据错误"</span>);</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt);</span><br></pre></td></tr></table></figure>
+<p><code>sqlite3_prepare_v2()</code>返回值等于<code>SQLITE_OK</code>，说明SQL语句已经准备成功，没有语法问题</p>
+<p><code>sqlite3_bind_text():</code>大部分绑定函数都只有3个参数</p>
+<ol>
+<li>第1个参数是sqlite3_stmt *类型</li>
+<li>第2个参数指占位符的位置，第一个占位符的位置是1，不是0</li>
+<li>第3个参数指占位符要绑定的值</li>
+<li>第4个参数指在第3个参数中所传递数据的长度，对于C字符串，可以传递-1代替字符串的长度</li>
+<li>第5个参数是一个可选的函数回调，一般用于在语句执行后完成内存清理工作</li>
+</ol>
+<p><code>sqlite_step():</code>执行SQL语句，返回<code>SQLITE_DONE</code>代表成功执行完毕</p>
+<p>sqlite_finalize():销毁sqlite3_stmt *对象</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *sql = <span class="string">"select id,name,age from t_person;"</span>;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_prepare_v2(db, sql, <span class="number">-1</span>, &amp;stmt, <span class="literal">NULL</span>) == SQLITE_OK) &#123;</span><br><span class="line">    <span class="keyword">while</span> (sqlite3_step(stmt) == SQLITE_ROW) &#123;</span><br><span class="line">        <span class="keyword">int</span> _<span class="keyword">id</span> = sqlite3_column_int(stmt, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">char</span> *_name = (<span class="keyword">char</span> *)sqlite3_column_text(stmt, <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">NSString</span> *name = [<span class="built_in">NSString</span> stringWithUTF8String:_name];</span><br><span class="line">        <span class="keyword">int</span> _age = sqlite3_column_int(stmt, <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"id=%i, name=%@, age=%i"</span>, _<span class="keyword">id</span>, name, _age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt)</span><br></pre></td></tr></table></figure>
+<p><code>sqlite3_step()</code>返回<code>SQLITE_ROW</code>代表遍历到一条新记录</p>
+<p><code>sqlite3_column_*()</code>用于获取每个字段对应的值，第2个参数是字段的索引，从0开始</p>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/53414136" target="_blank" rel="external">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20161130DataManager/" data-title="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20170116ViewControllerProgrammingGuide/" title="【iOS】为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【iOS】为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20161109TableViewPG/"  title="【iOS】Table View Programming Guide for iOS">
+ <strong>下一篇：</strong><br/> 
+ <span>【iOS】Table View Programming Guide for iOS
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20161130DataManager/" data-title="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3" data-url="http://yoferzhang.com/post/20161130DataManager/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用沙盒"><span class="toc-number">1.</span> <span class="toc-text">应用沙盒</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用沙盒结构分析"><span class="toc-number">1.1.</span> <span class="toc-text">应用沙盒结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用沙盒目录的常见获取方式"><span class="toc-number">1.2.</span> <span class="toc-text">应用沙盒目录的常见获取方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性列表"><span class="toc-number">2.</span> <span class="toc-text">属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性列表-归档NSDictionary"><span class="toc-number">2.1.</span> <span class="toc-text">属性列表-归档NSDictionary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取属性列表，恢复NSDictionary对象"><span class="toc-number">2.2.</span> <span class="toc-text">读取属性列表，恢复NSDictionary对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性列表-NSDictionary的存储和读取过程"><span class="toc-number">2.3.</span> <span class="toc-text">属性列表-NSDictionary的存储和读取过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#偏好设置"><span class="toc-number">3.</span> <span class="toc-text">偏好设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSKeyedArchiver"><span class="toc-number">4.</span> <span class="toc-text">NSKeyedArchiver</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSKeyedArchiver-归档NSArray"><span class="toc-number">4.1.</span> <span class="toc-text">NSKeyedArchiver-归档NSArray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSKeyedArchiver-归档Person对象（Person-h）"><span class="toc-number">4.2.</span> <span class="toc-text">NSKeyedArchiver-归档Person对象（Person.h）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归档对象的注意"><span class="toc-number">4.3.</span> <span class="toc-text">归档对象的注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSData"><span class="toc-number">4.4.</span> <span class="toc-text">NSData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSData-归档2个Person对象到同一文件中"><span class="toc-number">4.5.</span> <span class="toc-text">NSData-归档2个Person对象到同一文件中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用归档实现深复制"><span class="toc-number">4.6.</span> <span class="toc-text">利用归档实现深复制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLite3"><span class="toc-number">5.</span> <span class="toc-text">SQLite3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建、打开、关闭数据库"><span class="toc-number">5.1.</span> <span class="toc-text">创建、打开、关闭数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行不返回数据的SQL语句"><span class="toc-number">5.2.</span> <span class="toc-text">执行不返回数据的SQL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#带占位符插入数据"><span class="toc-number">5.3.</span> <span class="toc-text">带占位符插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询数据"><span class="toc-number">5.4.</span> <span class="toc-text">查询数据</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/快速记忆/" title="快速记忆">快速记忆<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
