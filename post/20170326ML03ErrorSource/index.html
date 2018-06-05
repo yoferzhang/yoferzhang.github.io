@@ -1,0 +1,705 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance） | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+<meta property="og:url" content="http://yoferzhang.com/post/20170326ML03ErrorSource/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg">
+<meta property="og:updated_time" content="2018-06-05T12:57:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+<meta name="twitter:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20170326ML03ErrorSource/" title="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）" itemprop="url">【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-27T14:58:55.000Z" itemprop="datePublished"> 发表于 2017-03-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回顾"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#估测"><span class="toc-number">2.</span> <span class="toc-text">估测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#估测bias-和-variance"><span class="toc-number">2.1.</span> <span class="toc-text">估测bias 和 variance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的平均值"><span class="toc-number">2.1.1.</span> <span class="toc-text">估测变量 $x$ 的平均值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的方差"><span class="toc-number">2.1.2.</span> <span class="toc-text">估测变量 $x$ 的方差</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么会有很多的-f"><span class="toc-number">2.2.</span> <span class="toc-text">为什么会有很多的 $f^{*}$?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的variance"><span class="toc-number">2.2.1.</span> <span class="toc-text">考虑不同model的variance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的-bias"><span class="toc-number">2.2.2.</span> <span class="toc-text">考虑不同model的 bias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bias-v-s-variance"><span class="toc-number">2.2.3.</span> <span class="toc-text">bias v.s. variance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么判断？"><span class="toc-number">3.</span> <span class="toc-text">怎么判断？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">3.1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bias大，Underfitting"><span class="toc-number">3.1.1.</span> <span class="toc-text">bias大，Underfitting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variance大，Overfitting"><span class="toc-number">3.1.2.</span> <span class="toc-text">variance大，Overfitting</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择model"><span class="toc-number">4.</span> <span class="toc-text">选择model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Validation（交叉验证）"><span class="toc-number">4.1.</span> <span class="toc-text">Cross Validation（交叉验证）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#N-fold-Cross-Validation（N-折交叉验证）"><span class="toc-number">4.2.</span> <span class="toc-text">N-fold Cross Validation（N-折交叉验证）</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>Gitbook传送门：<a href="https://yoferzhang.gitbooks.io/machinelearningstudy/content/" target="_blank" rel="external">https://yoferzhang.gitbooks.io/machinelearningstudy/content/</a></p>
+<blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<blockquote>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
+</blockquote>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>第二篇中神奇宝贝的例子：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg" alt=""></p>
+<a id="more"></a>
+<p>可以看出越复杂的model 再测试集上的性能并不是越好</p>
+<p>这篇要讨论的就是 error 来自什么地方？</p>
+<p>error主要的来源有两个，bias（偏差） 和 variance（方差）</p>
+<h1 id="估测"><a href="#估测" class="headerlink" title="估测"></a>估测</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg" alt=""></p>
+<p>假设上图为神奇宝贝cp值的真正方程，当然这只有Niantic（制作《Pokemon Go》的游戏公司）知道。从训练集中可以找到真实方程$\hat{f}$ 的近似方程 $f^{*}$。</p>
+<h2 id="估测bias-和-variance"><a href="#估测bias-和-variance" class="headerlink" title="估测bias 和 variance"></a>估测bias 和 variance</h2><h3 id="估测变量-x-的平均值"><a href="#估测变量-x-的平均值" class="headerlink" title="估测变量 $x$ 的平均值"></a>估测变量 $x$ 的平均值</h3><ul>
+<li>假设$x$的平均值为 $\mu$，方差为 $\sigma^{2}$</li>
+</ul>
+<p>估测平均值怎么做呢？</p>
+<ul>
+<li>首先拿到N个样品点：${x^{1}, x^{2}, \ldots, x^{N}}$</li>
+<li>计算平均值得到$m$, $m = \frac{1}{N} \sum_{n} x^{n} \neq \mu$</li>
+</ul>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg" alt=""></p>
+<p>但是如果计算很多组的m ，然后求m的期望</p>
+<p>$$<br>E[m] = E[\frac{1}{N} \sum<em>{n} x^{n}] = \frac{1}{N}\sum</em>{n}E[x^{n}] = \mu<br>$$</p>
+<p>这个估计呢是无偏估计（unbiased）。</p>
+<p>然后m分布对于 $\mu$ 的离散程度（方差）：</p>
+<p>$$<br>Var[m] = \frac{\sigma^{2}}{N}<br>$$</p>
+<p>这主要取决于N，下图可看出N越小越离散</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg" alt=""></p>
+<h3 id="估测变量-x-的方差"><a href="#估测变量-x-的方差" class="headerlink" title="估测变量 $x$ 的方差"></a>估测变量 $x$ 的方差</h3><p>首先用刚才的方法估测m，</p>
+<p>$$<br>m = \frac{1}{N} \sum_{n} x^{n} \neq \mu<br>$$</p>
+<p>然后再做下面计算：</p>
+<p>$$<br>s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}<br>$$</p>
+<p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg" alt=""></p>
+<p>这个估计是有偏估计（biased）,</p>
+<p>求 $s^{2}$的期望值：</p>
+<p>$$<br>E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}<br>$$</p>
+<p>用靶心来说明一下bias和variance的影响</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg" alt=""></p>
+<p>靶心为真正的方程 $\hat{f}$ ，深蓝色点为$f^{<em>}$ ，是实验求得的方程。求$f^{</em>}$的期望值$\bar{f} = E[f^{*}]$，即图中浅蓝色的点。</p>
+<p>$\bar{f}$ 和 $\hat{f}$之间的距离就是误差 bias，而$\bar{f}$ 和 $f^{*}$ 之间的距离就是误差 variance。4幅图的对比观察两个误差的影响。</p>
+<p>bias就是射击时瞄准的误差，本来应该是瞄准靶心，但bias就造成瞄准准心的误差；而variance就是虽然瞄准在 $\bar{f}$，但是射不准，总是射在 $\bar{f}$ 的周围。</p>
+<h2 id="为什么会有很多的-f"><a href="#为什么会有很多的-f" class="headerlink" title="为什么会有很多的 $f^{*}$?"></a>为什么会有很多的 $f^{*}$?</h2><p>讨论系列02中的案例：这里假设是在平行宇宙中，抓了不同的神奇宝贝</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg" alt=""></p>
+<p>用同一个model，在不同的训练集中找到的 $f^{*}$就是不一样的</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg" alt=""></p>
+<p>这就像在靶心上射击，进行了很多组（一组多次）。现在需要知道它的散布是怎样的，将100个宇宙中的model画出来</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg" alt=""></p>
+<p>不同的数据集之前什么都有可能发生—||</p>
+<h3 id="考虑不同model的variance"><a href="#考虑不同model的variance" class="headerlink" title="考虑不同model的variance"></a>考虑不同model的variance</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg" alt=""></p>
+<p>一次model的variance就比较小的，也就是是比较集中，离散程度较小。而5次model 的 variance就比较大，同理散布比较广，离散程度较大。</p>
+<p>所以用比较简单的model，variance是比较小的（就像射击的时候每次的时候，每次射击的设置都集中在一个比较小的区域内）。如果用了复杂的model，variance就很大，散布比较开。</p>
+<p>这也是因为简单的model受到不同训练集的影响是比较小的。</p>
+<h3 id="考虑不同model的-bias"><a href="#考虑不同model的-bias" class="headerlink" title="考虑不同model的 bias"></a>考虑不同model的 bias</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg" alt=""></p>
+<p>这里没办法知道真正的 $\hat{f}$，所以假设图中的那条黑色曲线为真正的 $\hat{f}$</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg" alt=""></p>
+<p>结果可视化，一次平均的 $\bar{f}$没有5次的好，虽然5次的整体结果离散程度很高。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg" alt=""></p>
+<p>一次model的bias比较大，而复杂的5次model，bias就比较小。</p>
+<p>直观的解释：简单的model函数集的space比较小，所以可能space里面就没有包含靶心，肯定射不中。而复杂的model函数集的space比较大，可能就包含的靶心，只是没有办法找到确切的靶心在哪，但足够多的，就可能得到真正的 $\bar{f}$。</p>
+<h3 id="bias-v-s-variance"><a href="#bias-v-s-variance" class="headerlink" title="bias v.s. variance"></a>bias v.s. variance</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg" alt=""></p>
+<p>将系列02中的误差拆分为bias何variance。简单model（左边）是bias比较大造成的error，这种情况叫做 <strong>Underfitting（欠拟合）</strong>，而复杂model（右边）是variance过大造成的error，这种情况叫做<strong>Overfitting（过拟合）</strong>。</p>
+<h1 id="怎么判断？"><a href="#怎么判断？" class="headerlink" title="怎么判断？"></a>怎么判断？</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg" alt=""></p>
+<ul>
+<li>如果model没有很好的fit训练集，就是bias过大，也就是Underfitting</li>
+<li>如果model很好的fit训练集，即再训练集上得到很小的error，但在测试集上得到大的error，这意味着model可能是variance比较大，就是Overfitting。</li>
+</ul>
+<p>对于Underfitting和Overfitting，是用不同的方式来处理的</p>
+<h3 id="bias大，Underfitting"><a href="#bias大，Underfitting" class="headerlink" title="bias大，Underfitting"></a>bias大，Underfitting</h3><p>此时应该重新设计model。因为之前的函数集里面可能根本没有包含$\hat{f}$。可以：</p>
+<ul>
+<li>将更多的feature加进去，比如考虑高度重量，或者HP值等等。</li>
+<li>或者考虑更多次幂、更复杂的model。</li>
+</ul>
+<p>如果此时强行再收集更多的data去训练，这是没有什么帮助的，因为设计的函数集本身就不好，再找更多的训练集也不会更好。</p>
+<h3 id="variance大，Overfitting"><a href="#variance大，Overfitting" class="headerlink" title="variance大，Overfitting"></a>variance大，Overfitting</h3><p>简单粗暴的方法：More data</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg" alt=""></p>
+<p>但是很多时候不一定能做到收集更多的data。可以针对对问题的理解对数据集做调整（Regularization）。比如识别手写数字的时候，偏转角度的数据集不够，那就将正常的数据集左转15度，右转15度，类似这样的处理。</p>
+<h1 id="选择model"><a href="#选择model" class="headerlink" title="选择model"></a>选择model</h1><ul>
+<li>现在在bias和variance之间就需要一个权衡</li>
+<li>想选择的model，可以平衡bias和variance产生的error，使得总error最小</li>
+<li>但是下面这件事最好不要做：</li>
+</ul>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg" alt=""></p>
+<p>用训练集训练不同的model，然后在测试集上比较error，model3的error比较小，就认为model3好。但实际上这只是你手上的测试集，真正完整的测试集并没有。比如在已有的测试集上error是0.5，但有条件收集到更多的测试集后通常得到的error都是大于0.5的。</p>
+<h2 id="Cross-Validation（交叉验证）"><a href="#Cross-Validation（交叉验证）" class="headerlink" title="Cross Validation（交叉验证）"></a>Cross Validation（交叉验证）</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg" alt=""></p>
+<p>图中public的测试集是已有的，private是没有的，不知道的。Cross Validation 就是将训练集再分为两部分，一部分作为训练集，一部分作为验证集。用训练集训练model，然后再验证集上比较，确实出最好的model之后（比如model3），再用全部的训练集训练model3，然后再用public的测试集进行测试，此时一般得到的error都是大一些的。不过此时会比较想再回去调一下参数，调整model，让在public的测试集上更好，但不太推荐这样。（心里难受啊，大学数模的时候就回去调，来回痛苦折腾）</p>
+<p>上述方法可能会担心将训练集拆分的时候分的效果比较差怎么办，可以用下面的方法。</p>
+<h2 id="N-fold-Cross-Validation（N-折交叉验证）"><a href="#N-fold-Cross-Validation（N-折交叉验证）" class="headerlink" title="N-fold Cross Validation（N-折交叉验证）"></a>N-fold Cross Validation（N-折交叉验证）</h2><p>将训练集分成N份，比如分成3份。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg" alt=""></p>
+<p>比如在三份中训练结果Average Error是model1最好，再用全部训练集训练model1。（貌似数模也干过，当年都是莫名其妙的分，想想当年数模的时候都根本来不及看是为什么，就是一股脑上去做00oo00）</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/AI/">AI</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/机器学习/">机器学习</a><a href="/tags/深度学习/">深度学习</a><a href="/tags/分类/">分类</a><a href="/tags/AlphaGo/">AlphaGo</a><a href="/tags/线性回归/">线性回归</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20170326ML03ErrorSource/" data-title="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance） | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20170326ML04GradientDescent/" title="【AI】机器学习入门系列04，Gradient Descent（梯度下降法）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【AI】机器学习入门系列04，Gradient Descent（梯度下降法）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20170326ML02Regression/"  title="【AI】机器学习入门系列01，Introduction 简介">
+ <strong>下一篇：</strong><br/> 
+ <span>【AI】机器学习入门系列01，Introduction 简介
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20170326ML03ErrorSource/" data-title="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）" data-url="http://yoferzhang.com/post/20170326ML03ErrorSource/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回顾"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#估测"><span class="toc-number">2.</span> <span class="toc-text">估测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#估测bias-和-variance"><span class="toc-number">2.1.</span> <span class="toc-text">估测bias 和 variance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的平均值"><span class="toc-number">2.1.1.</span> <span class="toc-text">估测变量 $x$ 的平均值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的方差"><span class="toc-number">2.1.2.</span> <span class="toc-text">估测变量 $x$ 的方差</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么会有很多的-f"><span class="toc-number">2.2.</span> <span class="toc-text">为什么会有很多的 $f^{*}$?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的variance"><span class="toc-number">2.2.1.</span> <span class="toc-text">考虑不同model的variance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的-bias"><span class="toc-number">2.2.2.</span> <span class="toc-text">考虑不同model的 bias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bias-v-s-variance"><span class="toc-number">2.2.3.</span> <span class="toc-text">bias v.s. variance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么判断？"><span class="toc-number">3.</span> <span class="toc-text">怎么判断？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">3.1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bias大，Underfitting"><span class="toc-number">3.1.1.</span> <span class="toc-text">bias大，Underfitting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variance大，Overfitting"><span class="toc-number">3.1.2.</span> <span class="toc-text">variance大，Overfitting</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择model"><span class="toc-number">4.</span> <span class="toc-text">选择model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Validation（交叉验证）"><span class="toc-number">4.1.</span> <span class="toc-text">Cross Validation（交叉验证）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#N-fold-Cross-Validation（N-折交叉验证）"><span class="toc-number">4.2.</span> <span class="toc-text">N-fold Cross Validation（N-折交叉验证）</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
