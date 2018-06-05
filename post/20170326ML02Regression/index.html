@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
+
+为什么要先进行案例研究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习入门系列02，Regression 回归：案例研究">
+<meta property="og:url" content="http://yoferzhang.com/post/20170326ML02Regression/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
+
+为什么要先进行案例研究">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mf7rxiij20xo0hgn53.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mfqcewwj211i0jiwhn.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mg9bqyyj210o0o678o.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mgsxi8wj212i0ocjwj.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0mh9cr4mj21220najwa.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mhq93m2j210c0lg0w5.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mi9ztuvj20y80maqnz.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mir5gsdj212c0lo7qj.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0mmwc0tgj212m0l4tck.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mnf5r0uj212o0lmn22.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mnwbr3gj21360tgn32.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0moh17mgj213g0tsgs2.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0moxjsx4j21380to44a.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mpebvrmj213c0twjx7.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mpwdlv6j212y0soafr.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mqdlyzij212o0m6adw.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mqsw1iuj20y40ms7ff.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mr9qf2mj20yo0joq51.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mrpzq6hj21bm0u0qof.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0ms6u00hj21020t6gs0.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mspg7tjj213k0sgdkf.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mt6esluj213c0m6788.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mtp38ryj212g0smte8.jpg">
+<meta property="og:updated_time" content="2017-03-27T02:51:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习入门系列02，Regression 回归：案例研究">
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66577532
+
+为什么要先进行案例研究">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>机器学习入门系列02，Regression 回归：案例研究 | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Adagrad/">Adagrad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HFS/">HFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTFS/">NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/calloc/">calloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jacman/">jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/malloc/">malloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc/">oc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/relloc/">relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交叉检验/">交叉检验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存四区/">内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类/">分类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回归/">回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大脑/">大脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习率/">学习率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆/">快速记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/损失函数/">损失函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方差/">方差</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无偏估计/">无偏估计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泰勒展开式/">泰勒展开式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄/">番茄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式/">磁盘格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比/">科比</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性回归/">线性回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构体，内存，对齐/">结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/联想/">联想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/肌肉/">肌肉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/腾讯/">腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/艾宾浩斯/">艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语/">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书/">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Amor Fati</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20170326ML02Regression" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20170326ML02Regression/" class="article-date">
+      <time datetime="2017-03-26T15:02:44.000Z" itemprop="datePublished">2017-03-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习入门系列02，Regression 回归：案例研究
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回归/">回归</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/损失函数/">损失函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<blockquote>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66577532" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66577532</a></p>
+</blockquote>
+<h1 id="为什么要先进行案例研究？"><a href="#为什么要先进行案例研究？" class="headerlink" title="为什么要先进行案例研究？"></a>为什么要先进行案例研究？</h1><p>没有比较好的数学基础，直接接触深度学习会非常抽象，所以这里我们先通过一个预测 Pokemon Go 的 Combat Power (CP) 值的案例，打开深度学习的大门。<br><a id="more"></a></p>
+<h1 id="Regression-（回归）"><a href="#Regression-（回归）" class="headerlink" title="Regression （回归）"></a>Regression （回归）</h1><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg" alt=""></p>
+<h2 id="应用举例（预测Pokemon-Go-进化后的战斗力）"><a href="#应用举例（预测Pokemon-Go-进化后的战斗力）" class="headerlink" title="应用举例（预测Pokemon Go 进化后的战斗力）"></a>应用举例（预测Pokemon Go 进化后的战斗力）</h2><p>比如估计一只神奇宝贝进化后的 CP 值（战斗力）。<br>下面是一只妙蛙种子，可以进化为妙蛙草，现在的CP值是14，我们想估计进化后的CP值是多少；进化需要糖果，好处就是如果它进化后CP值不满意，那就不用浪费糖果来进化它了，可以选择性价比高的神奇宝贝。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mf7rxiij20xo0hgn53.jpg" alt=""></p>
+<p>输入用了一些不同的 $x$ 来代表不同的属性，比如战斗力用 $x<em>{cp}$ 来表示，物种 $x</em>{s}$ 来表示…<br>输出就是进化后的CP值</p>
+<h3 id="三个步骤"><a href="#三个步骤" class="headerlink" title="三个步骤"></a>三个步骤</h3><p>上一篇提到了机器学习的三个步骤：<br>Step1.确定一组函数（Model）。<br>Step2.将训练集对函数集进行训练。<br>Step3.挑选出“最好”的函数 $f^{<em>}$<br>然后就可以使用 $f^{</em>}$ 来对新的测试集进行检测。</p>
+<h3 id="Step1-Model"><a href="#Step1-Model" class="headerlink" title="Step1: Model"></a>Step1: Model</h3><p>这个model 应该长什么样子呢，先写一个简单的：我们可以认为进化后的CP值 $y$ 等于进化前的CP值 $x_{cp}$ 乘以一个参数 $w$ 再加上一个参数 $b$ 。</p>
+<p>$$<br>y = b + w \cdot x_{cp}   \qquad (1-1)<br>$$</p>
+<p>$w$ 和 $b$ 是参数，可以是任何数值。</p>
+<p>可以有<br>$$<br>f<em>{1}: y = 10.0 + 9.0 \cdot x</em>{cp}<br>$$</p>
+<p>$$<br>f<em>{2}: y = 9.8 + 9.2 \cdot x</em>{cp}<br>$$</p>
+<p>$$<br>f<em>{3}: y = -0.8 -1.2 \cdot x</em>{cp}<br>$$</p>
+<p>这个函数集中可以有无限多的 function。所以我们用 $y = b + w \cdot x<em>{cp} $ 代表这些 function 所成的集合。还有比如上面的 $f</em>{3}$ ，明显是不正确的，因为CP值有个条件都是正的，那乘以 $-1.2$ 就变成负的了，所以我们接着就要根据训练集来找到，这个 function set 里面，哪个是合理的 function。</p>
+<p>我们将式1-1 称作 Linear model， Linear model 形式为：</p>
+<p>$$<br>y = b + \sum w<em>{i}x</em>{i}<br>$$</p>
+<p>$x<em>{i}$ 就是神奇宝贝的各种不同的属性，身高、体重等等，我们将这些称之为 “feature（特征）”；$w</em>{i}$ 称为 weight（权重），b 称为 bias（偏差）。</p>
+<h3 id="Step2-方程的好坏"><a href="#Step2-方程的好坏" class="headerlink" title="Step2: 方程的好坏"></a>Step2: 方程的好坏</h3><p>现在就需要搜集训练集，这里的数据集是 Supervised 的，所以需要 function 的输入和输出（数值），举例抓了一只杰尼龟，进化前的CP值为612，用 $x^{1}$ 代表这只杰尼龟进化前的CP值，即用上标标示一个完整对象的编号；进化后的CP值为 979，用 $\hat{y}^{1}$ 表示进化后的CP值，用 hat（字母头顶的上尖符号）来表示这是一个正确的值，是实际观察到function该有的输出。</p>
+<p>下面我们来看真正的数据集（来源 Source: <a href="https://www.openintro.org/stat/data/?data=pokemon" target="_blank" rel="external">https://www.openintro.org/stat/data/?data=pokemon</a>）</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mfqcewwj211i0jiwhn.jpg" alt=""></p>
+<p>来看10只神奇宝贝的真实数据，$x$ 轴代表进化前的CP值，$y$ 轴代表进化后的CP值。</p>
+<p>有了训练集，为了评价 function 的好坏，我们需要定义一个新的函数，称为 <strong>Loss function (损失函数)</strong>，定义如下：</p>
+<p>Loss function $L$ :</p>
+<p>input: a function, output: how bad it is</p>
+<p>Loss function是比较特别的函数，是函数的函数，因为它的输入是一个函数，而输出是表示输入的函数有多不好。 可以写成下面这种形式：</p>
+<p>$$<br>L(f) = L(w, b)<br>$$</p>
+<p>损失函数是由一组参数 w和b决定的，所以可以说损失函数是在衡量一组参数的好坏。</p>
+<p>这里用比较常见的定义形式：</p>
+<p>$$<br>L(f) = L(w, b) =\sum<em>{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x</em>{cp}^{n})\right)^{2} \qquad   (1-2)<br>$$</p>
+<p>将实际的数值 $\hat{y}^{n}$ 减去 估测的数值 $b + w\cdot x_{cp}^{n}$，然后再给平方，就是 Estimation error（估测误差，总偏差）；最后将估测误差加起来就是我们定义的损失函数。</p>
+<p>这里不取各个偏差的代数和$\sum<em>{n=1}^{10}\hat{y}^{n} -(b + w\cdot x</em>{cp}^{n})$ 作为总偏差，这是因为这些偏差（$\hat{y}^{i} -(b + w\cdot x_{cp}^{i})$）本身有正有负，如果简单地取它们的代数和，就可能互相抵消，这是虽然偏差的代数和很小，却不能保证各个偏差都很小。所以按照式1-2，是这些偏差的平方和最小，就可以保证每一个偏差都很小。</p>
+<p>为了更加直观，来对损失函数进行作图：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mg9bqyyj210o0o678o.jpg" alt=""></p>
+<p>图上每个点都代表一个方程，比如红色的那个点代表 $y=-180-2\cdot x_{cp}$ 。颜色代表用这个点的方程得到的损失函数有多不好，颜色越偏红色，代表数值越大，越偏蓝色蓝色，代表方程越好。最好的方程就是图中叉叉标记的点。</p>
+<h3 id="Step3：最好的方程"><a href="#Step3：最好的方程" class="headerlink" title="Step3：最好的方程"></a>Step3：最好的方程</h3><p>定好了损失函数，可以衡量每一个方程的好坏，接下来需要从函数集中挑选一个最好的方程。将这个过程数学化：</p>
+<p>$$<br>f^{*}=\arg \min_{f} L(f)<br>$$</p>
+<p>$$<br>w^{<em>},b^{</em>} = \arg \min<em>{w,b} L(w,b)=\arg \min</em>{w,b} \sum<em>{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x</em>{cp}^{n})\right)^{2} \qquad  (1-3)<br>$$</p>
+<p>由于这里举例的特殊性，对于式1-3，直接使用最小二乘法即可解出最优的 w 和 b，使得总偏差最小。</p>
+<blockquote>
+<p>简单说一下<strong>最小二乘法</strong>，对于二元函数 $f(x,y)$，函数的极值点必为 $\frac{\partial f}{\partial x}$ 及$\frac{\partial f}{\partial y}$ 同时为零或至少有一个偏导数不存在的点；这是极值的必要条件。用这个极值条件可以解出w 和 b。（详情请参阅《数学分析，第三版下册，欧阳光中 等编》第十五章，第一节）</p>
+</blockquote>
+<p>但这里会使用另外一种做法，<strong>Gradient Descent（最速下降法）</strong>，最速下降法不光能解决式1-3 这一种问题；实际上只要 $L$ 是可微分的，都可以用最速下降法来处理。</p>
+<h3 id="Gradient-Descent（梯度下降法）"><a href="#Gradient-Descent（梯度下降法）" class="headerlink" title="Gradient Descent（梯度下降法）"></a>Gradient Descent（梯度下降法）</h3><p>简单来看一下梯度下降法的做法。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mgsxi8wj212i0ocjwj.jpg" alt=""></p>
+<p>考虑只有一个参数 $w$ 的损失函数，随机的选取一个初始点，计算 $w = w^{0}$ 时 $L$ 对 $w$ 的微分，然后顺着切线下降的方向更改 $w$ 的值（因为这里是求极小值），即斜率为负，增加$w$ ；斜率为正，减小$w$ .</p>
+<p>那么每次更改 $w$ ，更改多大，用 $\eta \frac{\mathrm{d}L}{\mathrm{d}w} |_{w=w^{0}}$ 表示，$\eta$ 被称为“learning rate”学习速率。</p>
+<p>由于这里斜率是负的，所以是 $w^{0} - \eta \frac{\mathrm{d}L}{\mathrm{d}w} |_{w=w^{0}}$ ，得到 $w^{1}$；接着就是重复上述步骤。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0mh9cr4mj21220najwa.jpg" alt=""></p>
+<p>直到找到一个点，这个点的斜率为0。但是例子中的情况会比较疑惑，这样的方法很可能找到的只是局部极值，并不是全局极值，但这是由于我们例子的原因，针对回归问题来说，是不存在局部极值的，只有全局极值。所以这个方法还是可以使用。</p>
+<p>下面来看看两个参数的问题。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mhq93m2j210c0lg0w5.jpg" alt=""></p>
+<p>两个参数的区别就是每次需要对两个参数求偏微分，然后同理更新参数的值。</p>
+<blockquote>
+<p>关于梯度可以参阅《数学分析，第三版下册，欧阳光中 等编》，第十四章第六节。也可以大概看看<a href="http://baike.baidu.com/link?url=zcPz3cjP_TPVZOHaLK49CD8CBSRJgD2ZyJ8fq9FOlqB6zX1NHw5p5ilA-CDTc87ujD3waWQygEnhPL7ERofrbI7AhRWLMDKTCtLXjbhFvve" target="_blank" rel="external">百度百科</a>又或者<a href="https://en.wikipedia.org/wiki/Gradient" target="_blank" rel="external">wikipedia</a></p>
+</blockquote>
+<p>将上述做法可视化：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mi9ztuvj20y80maqnz.jpg" alt=""></p>
+<p>同理梯度下降的缺陷如下图：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mir5gsdj212c0lo7qj.jpg" alt=""></p>
+<p>可能只是找到了局部极值，但是对于线性回归，可以保证所选取的损失函数式1-2是 convex（凸的，即只存在唯一极值）。上图右边就是损失函数的等高线图，可以看出是一圈一圈向内减小的。</p>
+<h2 id="结果怎么样呢？"><a href="#结果怎么样呢？" class="headerlink" title="结果怎么样呢？"></a>结果怎么样呢？</h2><p>将求出的结果绘图如下</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0mmwc0tgj212m0l4tck.jpg" alt=""></p>
+<p>可以计算出训练集上的偏差绝对值之和为 31.9</p>
+<p>但真正关心的并不是在训练集上的偏差，而是Generalization的情况，就是需要在新的数据集（测试集）上来计算偏差。如下图：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mnf5r0uj212o0lmn22.jpg" alt=""></p>
+<p>使用十个新的神奇宝贝的数据作为测试集计算出偏差绝对值之和为35.</p>
+<p>接下来考虑是否能够做的更好，可能并不只是简单的直线，考虑其他model的情况：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mnwbr3gj21360tgn32.jpg" alt=""></p>
+<p>比如重新设计一个model，多一个二次项，来求出参数，得到Average Error为15.4，在训练集上看起来更好了。在测试集上得出的Average Error是18.4，确实是更好的Model。</p>
+<p>再考虑三次项：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0moh17mgj213g0tsgs2.jpg" alt=""></p>
+<p>得到的结果看起来和二次项时候的结果差别不大，稍微好一点点。也可以看到$w_{3}$已经非常小了，说明三次项影响已经不大了。</p>
+<p>再考虑四次项：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0moxjsx4j21380to44a.jpg" alt=""></p>
+<p>此时在训练集上可以做的更好，但是测试集的结果变差了。</p>
+<p>再考虑五次项：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mpebvrmj213c0twjx7.jpg" alt=""></p>
+<p>可以看到测试集的结果非常差。</p>
+<h2 id="Overfitting（过拟合，过度学习）"><a href="#Overfitting（过拟合，过度学习）" class="headerlink" title="Overfitting（过拟合，过度学习）"></a>Overfitting（过拟合，过度学习）</h2><p>将训练集上的Average Error变化进行作图：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mpwdlv6j212y0soafr.jpg" alt=""></p>
+<p>可以看到训练集上的 Average Error 逐渐变小。</p>
+<p>上面的那些model，高次项是包含低次项的function。理论上确实次幂越高越复杂的方程，可以让训练集的结果越低。但加上测试集的结果：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mqdlyzij212o0m6adw.jpg" alt=""></p>
+<p>观察得出结果：虽然越复杂的model可以在训练集上得到更好的结果，但越复杂的model并不一定在测试集上有好的结果。这个结论叫做“<strong>Overfitting（过拟合）</strong>”。</p>
+<p>如果此时要选model的话，最好的选择就是三次项式子的model。</p>
+<blockquote>
+<p>实际生活中典型的学驾照，学驾照的时候在驾校的训练集上人们可以做的很好，但上路之后真正的测试集就完全无法驾驭。这里只是举个训练集很好，而测试集结果很差的例子^_^</p>
+</blockquote>
+<h2 id="如果数据更多会怎样？"><a href="#如果数据更多会怎样？" class="headerlink" title="如果数据更多会怎样？"></a>如果数据更多会怎样？</h2><p>考虑60只神奇宝贝的数据</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mqsw1iuj20y40ms7ff.jpg" alt=""></p>
+<p>可以看出物种也是一个关键性的因素，只考虑进化前的CP值是太局限的，刚才的model就设计的不太好。</p>
+<p>新的model如下</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mr9qf2mj20yo0joq51.jpg" alt=""></p>
+<p>将这个model写成linear model的形式：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mrpzq6hj21bm0u0qof.jpg" alt=""></p>
+<p>来看做出来的结果：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0ms6u00hj21020t6gs0.jpg" alt=""></p>
+<p>不同种类的神奇宝贝用的参数不同，用颜色区分。此时model在训练集上可以做的更好，在测试集上的结果也是比之前的18.1更好。</p>
+<h2 id="还有其他因素的影响吗？"><a href="#还有其他因素的影响吗？" class="headerlink" title="还有其他因素的影响吗？"></a>还有其他因素的影响吗？</h2><p>比如对身高，体重，生命值进行绘图：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mspg7tjj213k0sgdkf.jpg" alt=""></p>
+<p>重新设计model：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mt6esluj213c0m6788.jpg" alt=""></p>
+<p>考虑上生命值（$x<em>{hp}$）、高度（$x</em>{h}$）、重量（$x_{w}$）</p>
+<p>这么复杂的model，理论上训练集上可以得到更好的结果，实际为1.9，确实是更低。但是测试集的结果就过拟合了。</p>
+<h2 id="Regularization（正则化）"><a href="#Regularization（正则化）" class="headerlink" title="Regularization（正则化）"></a>Regularization（正则化）</h2><p>对于上面那么多参数结果并不理想的情况，这里进行正则化处理，将之前的损失函数进行修改：</p>
+<p>$$<br>y = b + \sum w<em>{i}x</em>{i}  \qquad  (1-4)<br>$$</p>
+<p>$$<br>L(f) = L(w, b) =\sum<em>{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x</em>{cp}^{n})\right)^{2} + \lambda \sum (w_{i})^{2} \qquad   (1-5)<br>$$</p>
+<p>式1-5 中多加了一项： $\lambda \sum (w<em>{i})^{2}$ ，结论是$w</em>{i}$越小，则方程（式1-4）就越好。还可以说当 $w_{i}$ 越小，则方程越平滑。</p>
+<p>平滑的意思是当输入变化时，输出对输入的变化不敏感。比如式1-5 中输入增加了 $\Delta x<em>{i}$ 则输入就增加了 $w</em>{i}\Delta x<em>{i}$ ，可以看出当$w</em>{i}$越小，输出变化越不明显。还比如测试集的输入有一些噪音数据，越平滑的方程就会受到更小的影响。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mtp38ryj212g0smte8.jpg" alt=""></p>
+<p>上图是对 $\lambda$进行调整得出的结果。当 $\lambda$ 越大的时候， $\lambda \sum (w_{i})^{2}$ 这一项的影响力越大，所以当$\lambda$  越大的时候，方程越平滑。</p>
+<p>训练集上得到的结果是：当 $\lambda$ 越大的时候，在训练集上得到的Error 是越大的。这是合理的现象，因为当 $\lambda$ 越大的时候，就越倾向于考虑 $w$ 本身值，减少考虑error。但是测试集上得到的error 是先减小又增大的。这里喜欢比较平滑的function，因为上面讲到对于噪音数据有很好的鲁棒性，所以开始增加 $\lambda$ 的时候性能是越来越好；但是又不喜欢太平滑的function，最平滑的function就是一条水平线了，那就相当于什么都没有做，所以太平滑的function又会得到糟糕的结果。</p>
+<p> 所以最后这件事情就是找到最合适的 $\lambda$ ，此时带进式1-5 求出$b$ 和 $w_{i}$，得到的function就是最优的function。</p>
+<blockquote>
+<p>对于Regularization 的时候，多加的一项：$\lambda \sum (w_{i})^{2}$，并没有考虑 $b$ ，是因为期望得到平滑的function，但bias这项并不影响平滑程度，它只是将function上下移动，跟function的平滑程度是没有关系的。</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><strong>Pokemon</strong>：原始的CP值极大程度的决定了进化后的CP值，但可能还有其他的一些因素。</li>
+<li><strong>Gradient descent</strong>：梯度下降的做法；后面会讲到它的理论依据和要点。</li>
+<li><strong>Overfitting</strong>和<strong>Regularization</strong>：过拟合和正则化，主要介绍了表象；后面会讲到更多这方面的理论</li>
+</ul>
+<blockquote>
+<p>新博客地址：<a href="http://yoferzhang.com/post/20170326ML02Regression">http://yoferzhang.com/post/20170326ML02Regression</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20170326ML02Regression/">机器学习入门系列02，Regression 回归：案例研究</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2017-03-26, 23:02:44</p>
+        <p><span>最后更新:</span>2017-03-27, 10:51:45</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20170326ML02Regression/" title="机器学习入门系列02，Regression 回归：案例研究">http://yoferzhang.com/post/20170326ML02Regression/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170326ML02Regression/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20170327ML03BiasAndVariance/">
+                    机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20170326ML01Introduction/">
+                    机器学习入门系列01，Introduction 简介
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要先进行案例研究？"><span class="toc-number">1.</span> <span class="toc-text">为什么要先进行案例研究？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Regression-（回归）"><span class="toc-number">2.</span> <span class="toc-text">Regression （回归）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用举例（预测Pokemon-Go-进化后的战斗力）"><span class="toc-number">2.1.</span> <span class="toc-text">应用举例（预测Pokemon Go 进化后的战斗力）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三个步骤"><span class="toc-number">2.1.1.</span> <span class="toc-text">三个步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1-Model"><span class="toc-number">2.1.2.</span> <span class="toc-text">Step1: Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step2-方程的好坏"><span class="toc-number">2.1.3.</span> <span class="toc-text">Step2: 方程的好坏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step3：最好的方程"><span class="toc-number">2.1.4.</span> <span class="toc-text">Step3：最好的方程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradient-Descent（梯度下降法）"><span class="toc-number">2.1.5.</span> <span class="toc-text">Gradient Descent（梯度下降法）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结果怎么样呢？"><span class="toc-number">2.2.</span> <span class="toc-text">结果怎么样呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overfitting（过拟合，过度学习）"><span class="toc-number">2.3.</span> <span class="toc-text">Overfitting（过拟合，过度学习）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如果数据更多会怎样？"><span class="toc-number">2.4.</span> <span class="toc-text">如果数据更多会怎样？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#还有其他因素的影响吗？"><span class="toc-number">2.5.</span> <span class="toc-text">还有其他因素的影响吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regularization（正则化）"><span class="toc-number">2.6.</span> <span class="toc-text">Regularization（正则化）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"机器学习入门系列02，Regression 回归：案例研究　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20170326ML02Regression/" data-title="机器学习入门系列02，Regression 回归：案例研究" data-url="http://yoferzhang.com/post/20170326ML02Regression/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20170327ML03BiasAndVariance/" title="上一篇: 机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20170326ML01Introduction/" title="下一篇: 机器学习入门系列01，Introduction 简介">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML04GradientDescent/">机器学习入门系列04，Gradient Descent（梯度下降法）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML03BiasAndVariance/">机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML02Regression/">机器学习入门系列02，Regression 回归：案例研究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML01Introduction/">机器学习入门系列01，Introduction 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170306DeepLearningRegression/">【测试】只是为了测试数学公式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170216FitnessDiary/">【健身】健身记录；健身课表；健身心得</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

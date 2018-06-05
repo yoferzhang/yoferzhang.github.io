@@ -1,17 +1,26 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  
-    <title>UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS | YoferZhang 的博客</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Yofer Zhang">
-    
 
+<<<<<<< HEAD
     
     <meta name="description" content="IBAction:1&amp;gt; 能保证方法可以连线2&amp;gt; 相当于void
+=======
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="IBAction:1&amp;gt; 能保证方法可以连线2&amp;gt; 相当于void
+>>>>>>> origin/master
 IBOutlet:1&amp;gt; 能保证属性可以连线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS">
@@ -47,90 +56,284 @@ IBOutlet:1&amp;gt; 能保证属性可以连线">
 <meta name="twitter:description" content="IBAction:1&amp;gt; 能保证方法可以连线2&amp;gt; 相当于void
 IBOutlet:1&amp;gt; 能保证属性可以连线">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6te2zpp0jj219y0t0amz.jpg">
-<meta name="twitter:creator" content="@LuciferZhangyq">
-<link rel="publisher" href="110295955443575724222">
 
-    
-    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/faviconr.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
-				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/index">索引 | Index</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">关于 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoferzhang.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HFS/">HFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTFS/">NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/calloc/">calloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jacman/">jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/malloc/">malloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc/">oc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/relloc/">relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存四区/">内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类/">分类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大脑/">大脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆/">快速记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄/">番茄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式/">磁盘格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比/">科比</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性回归/">线性回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构体，内存，对齐/">结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/联想/">联想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/肌肉/">肌肉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/腾讯/">腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/艾宾浩斯/">艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语/">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书/">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Amor Fati</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20160814UIBase" class="article article-type-post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+    <div class="article-meta">
+      <a href="/post/20160814UIBase/" class="article-date">
+      <time datetime="2016-08-14T08:52:37.000Z" itemprop="datePublished">2016-08-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
-      <a href="/post/20160814UIBase/" title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS" itemprop="url">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-14T08:52:37.000Z" itemprop="datePublished"> 发表于 2016-08-14</time>
+      <input type="hidden" class="isFancy" />
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何修改控件状态"><span class="toc-number">1.</span> <span class="toc-text">如何修改控件状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见属性"><span class="toc-number">2.</span> <span class="toc-text">UIView的常见属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见方法"><span class="toc-number">3.</span> <span class="toc-text">UIView的常见方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码创建按钮"><span class="toc-number">4.</span> <span class="toc-text">代码创建按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton的状态"><span class="toc-number">4.1.</span> <span class="toc-text">UIButton的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现简单动画"><span class="toc-number">4.2.</span> <span class="toc-text">实现简单动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改控件的位置和尺寸"><span class="toc-number">4.3.</span> <span class="toc-text">修改控件的位置和尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform属性"><span class="toc-number">4.4.</span> <span class="toc-text">transform属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见类型"><span class="toc-number">4.5.</span> <span class="toc-text">常见类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton和UIImageView"><span class="toc-number">4.6.</span> <span class="toc-text">UIButton和UIImageView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSArray和NSDictionary的使用"><span class="toc-number">4.7.</span> <span class="toc-text">NSArray和NSDictionary的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Plist文件"><span class="toc-number">4.8.</span> <span class="toc-text">什么是Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析Plist文件"><span class="toc-number">4.9.</span> <span class="toc-text">解析Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBundle"><span class="toc-number">4.10.</span> <span class="toc-text">NSBundle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#汤姆猫"><span class="toc-number">5.</span> <span class="toc-text">汤姆猫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#苹果API常用英语名词"><span class="toc-number">6.</span> <span class="toc-text">苹果API常用英语名词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用模型取代字典的好处"><span class="toc-number">7.</span> <span class="toc-text">用模型取代字典的好处</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字典转模型"><span class="toc-number">7.1.</span> <span class="toc-text">字典转模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instancetype"><span class="toc-number">7.2.</span> <span class="toc-text">instancetype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xib文件的使用"><span class="toc-number">7.3.</span> <span class="toc-text">Xib文件的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIScrollView"><span class="toc-number">8.</span> <span class="toc-text">UIScrollView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的基本使用"><span class="toc-number">8.1.</span> <span class="toc-text">UIScrollView的基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView无法滚动的解决办法"><span class="toc-number">8.2.</span> <span class="toc-text">UIScrollView无法滚动的解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView和控制器"><span class="toc-number">8.3.</span> <span class="toc-text">UIScrollView和控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的常见属性"><span class="toc-number">8.4.</span> <span class="toc-text">UIScrollView的常见属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的代理（delegate）"><span class="toc-number">8.5.</span> <span class="toc-text">UIScrollView的代理（delegate）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容缩放"><span class="toc-number">8.6.</span> <span class="toc-text">内容缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的缩放原理"><span class="toc-number">8.7.</span> <span class="toc-text">UIScrollView的缩放原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩放实现步骤"><span class="toc-number">8.8.</span> <span class="toc-text">缩放实现步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分页"><span class="toc-number">8.9.</span> <span class="toc-text">分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSTimer"><span class="toc-number">8.10.</span> <span class="toc-text">NSTimer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableView"><span class="toc-number">9.</span> <span class="toc-text">UITableView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何展示数据"><span class="toc-number">9.1.</span> <span class="toc-text">如何展示数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITableViewDataSource协议"><span class="toc-number">9.2.</span> <span class="toc-text">UITableViewDataSource协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tableView展示数据的过程"><span class="toc-number">9.3.</span> <span class="toc-text">tableView展示数据的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cell简介"><span class="toc-number">10.</span> <span class="toc-text">Cell简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用原理"><span class="toc-number">10.1.</span> <span class="toc-text">Cell的重用原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用代码"><span class="toc-number">10.2.</span> <span class="toc-text">Cell的重用代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用xib封装一个view的步骤"><span class="toc-number">10.3.</span> <span class="toc-text">使用xib封装一个view的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过代码自定义cell-cell的高度不一致"><span class="toc-number">10.4.</span> <span class="toc-text">通过代码自定义cell(cell的高度不一致)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delegate的使用场合"><span class="toc-number">11.</span> <span class="toc-text">Delegate的使用场合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用delegate的步骤"><span class="toc-number">11.1.</span> <span class="toc-text">使用delegate的步骤</span></a></li></ol></li></ol>
-		
-		</div>
-		
-		<p>IBAction:<br>1&gt; 能保证方法可以连线<br>2&gt; 相当于void</p>
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>IBAction:<br>1&gt; 能保证方法可以连线<br>2&gt; 相当于void</p>
 <p>IBOutlet:<br>1&gt; 能保证属性可以连线</p>
 <a id="more"></a>
 <p>下面列举一些在开发中可能用得上的UI控件</p>
@@ -642,80 +845,29 @@ IBOutlet:1&amp;gt; 能保证属性可以连线">
 <blockquote>
 <p>新博客文章地址：<a href="http://yoferzhang.com/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52215125" target="_blank" rel="external">UIButton,UIScrollView,UITableView常见属性,使用案例</a></p>
 </blockquote>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://yoferzhang.com/post/20160814UIBase/" data-title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/post/20160816ViewControllerProgrammingGuide/" title="【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
-  <strong>上一篇：</strong><br/>
-  <span>
-  【iOS】视图控制器编程指南View Controller Programming Guide for iOS</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/post/20160814NSFoundationTran/"  title="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
- <strong>下一篇：</strong><br/> 
- <span>集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20160814UIBase/" data-title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS" data-url="http://yoferzhang.com/post/20160814UIBase/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何修改控件状态"><span class="toc-number">1.</span> <span class="toc-text">如何修改控件状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见属性"><span class="toc-number">2.</span> <span class="toc-text">UIView的常见属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见方法"><span class="toc-number">3.</span> <span class="toc-text">UIView的常见方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码创建按钮"><span class="toc-number">4.</span> <span class="toc-text">代码创建按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton的状态"><span class="toc-number">4.1.</span> <span class="toc-text">UIButton的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现简单动画"><span class="toc-number">4.2.</span> <span class="toc-text">实现简单动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改控件的位置和尺寸"><span class="toc-number">4.3.</span> <span class="toc-text">修改控件的位置和尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform属性"><span class="toc-number">4.4.</span> <span class="toc-text">transform属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见类型"><span class="toc-number">4.5.</span> <span class="toc-text">常见类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton和UIImageView"><span class="toc-number">4.6.</span> <span class="toc-text">UIButton和UIImageView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSArray和NSDictionary的使用"><span class="toc-number">4.7.</span> <span class="toc-text">NSArray和NSDictionary的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Plist文件"><span class="toc-number">4.8.</span> <span class="toc-text">什么是Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析Plist文件"><span class="toc-number">4.9.</span> <span class="toc-text">解析Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBundle"><span class="toc-number">4.10.</span> <span class="toc-text">NSBundle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#汤姆猫"><span class="toc-number">5.</span> <span class="toc-text">汤姆猫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#苹果API常用英语名词"><span class="toc-number">6.</span> <span class="toc-text">苹果API常用英语名词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用模型取代字典的好处"><span class="toc-number">7.</span> <span class="toc-text">用模型取代字典的好处</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字典转模型"><span class="toc-number">7.1.</span> <span class="toc-text">字典转模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instancetype"><span class="toc-number">7.2.</span> <span class="toc-text">instancetype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xib文件的使用"><span class="toc-number">7.3.</span> <span class="toc-text">Xib文件的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIScrollView"><span class="toc-number">8.</span> <span class="toc-text">UIScrollView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的基本使用"><span class="toc-number">8.1.</span> <span class="toc-text">UIScrollView的基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView无法滚动的解决办法"><span class="toc-number">8.2.</span> <span class="toc-text">UIScrollView无法滚动的解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView和控制器"><span class="toc-number">8.3.</span> <span class="toc-text">UIScrollView和控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的常见属性"><span class="toc-number">8.4.</span> <span class="toc-text">UIScrollView的常见属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的代理（delegate）"><span class="toc-number">8.5.</span> <span class="toc-text">UIScrollView的代理（delegate）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容缩放"><span class="toc-number">8.6.</span> <span class="toc-text">内容缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的缩放原理"><span class="toc-number">8.7.</span> <span class="toc-text">UIScrollView的缩放原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩放实现步骤"><span class="toc-number">8.8.</span> <span class="toc-text">缩放实现步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分页"><span class="toc-number">8.9.</span> <span class="toc-text">分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSTimer"><span class="toc-number">8.10.</span> <span class="toc-text">NSTimer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableView"><span class="toc-number">9.</span> <span class="toc-text">UITableView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何展示数据"><span class="toc-number">9.1.</span> <span class="toc-text">如何展示数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITableViewDataSource协议"><span class="toc-number">9.2.</span> <span class="toc-text">UITableViewDataSource协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tableView展示数据的过程"><span class="toc-number">9.3.</span> <span class="toc-text">tableView展示数据的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cell简介"><span class="toc-number">10.</span> <span class="toc-text">Cell简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用原理"><span class="toc-number">10.1.</span> <span class="toc-text">Cell的重用原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用代码"><span class="toc-number">10.2.</span> <span class="toc-text">Cell的重用代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用xib封装一个view的步骤"><span class="toc-number">10.3.</span> <span class="toc-text">使用xib封装一个view的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过代码自定义cell-cell的高度不一致"><span class="toc-number">10.4.</span> <span class="toc-text">通过代码自定义cell(cell的高度不一致)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delegate的使用场合"><span class="toc-number">11.</span> <span class="toc-text">Delegate的使用场合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用delegate的步骤"><span class="toc-number">11.1.</span> <span class="toc-text">使用delegate的步骤</span></a></li></ol></li></ol>
- 
+      
+    </div>
+    
   </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
   
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2016-08-14, 16:52:37</p>
+        <p><span>最后更新:</span>2017-02-09, 13:27:39</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20160814UIBase/" title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS">http://yoferzhang.com/post/20160814UIBase/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20160814UIBase/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
-
-
+<<<<<<< HEAD
   
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
@@ -755,46 +907,37 @@ IBOutlet:1&amp;gt; 能保证属性可以连线">
 		
 		</ul>
 </div>
+=======
+>>>>>>> origin/master
 
 
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+    <nav id="article-nav">
         
-          <li>
-            
-            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
-            
-          </li>
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20160816ViewControllerProgrammingGuide/">
+                    【iOS】视图控制器编程指南View Controller Programming Guide for iOS
+                </a>
+            </div>
         
-          <li>
-            
-            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
-            
-          </li>
         
-          <li>
-            
-            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
-            
-          </li>
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20160814NSFoundationTran/">
+                    集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS
+                </a>
+            </div>
         
-          <li>
-            
-            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
-            
-          </li>
-        
-    </ul>
-</div>
+    </nav>
 
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
+  
+</article>
 
-</aside>
-</div>
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何修改控件状态"><span class="toc-number">1.</span> <span class="toc-text">如何修改控件状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见属性"><span class="toc-number">2.</span> <span class="toc-text">UIView的常见属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView的常见方法"><span class="toc-number">3.</span> <span class="toc-text">UIView的常见方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码创建按钮"><span class="toc-number">4.</span> <span class="toc-text">代码创建按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton的状态"><span class="toc-number">4.1.</span> <span class="toc-text">UIButton的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现简单动画"><span class="toc-number">4.2.</span> <span class="toc-text">实现简单动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改控件的位置和尺寸"><span class="toc-number">4.3.</span> <span class="toc-text">修改控件的位置和尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform属性"><span class="toc-number">4.4.</span> <span class="toc-text">transform属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见类型"><span class="toc-number">4.5.</span> <span class="toc-text">常见类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIButton和UIImageView"><span class="toc-number">4.6.</span> <span class="toc-text">UIButton和UIImageView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSArray和NSDictionary的使用"><span class="toc-number">4.7.</span> <span class="toc-text">NSArray和NSDictionary的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Plist文件"><span class="toc-number">4.8.</span> <span class="toc-text">什么是Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析Plist文件"><span class="toc-number">4.9.</span> <span class="toc-text">解析Plist文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBundle"><span class="toc-number">4.10.</span> <span class="toc-text">NSBundle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#汤姆猫"><span class="toc-number">5.</span> <span class="toc-text">汤姆猫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#苹果API常用英语名词"><span class="toc-number">6.</span> <span class="toc-text">苹果API常用英语名词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用模型取代字典的好处"><span class="toc-number">7.</span> <span class="toc-text">用模型取代字典的好处</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字典转模型"><span class="toc-number">7.1.</span> <span class="toc-text">字典转模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instancetype"><span class="toc-number">7.2.</span> <span class="toc-text">instancetype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xib文件的使用"><span class="toc-number">7.3.</span> <span class="toc-text">Xib文件的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIScrollView"><span class="toc-number">8.</span> <span class="toc-text">UIScrollView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的基本使用"><span class="toc-number">8.1.</span> <span class="toc-text">UIScrollView的基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView无法滚动的解决办法"><span class="toc-number">8.2.</span> <span class="toc-text">UIScrollView无法滚动的解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView和控制器"><span class="toc-number">8.3.</span> <span class="toc-text">UIScrollView和控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的常见属性"><span class="toc-number">8.4.</span> <span class="toc-text">UIScrollView的常见属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的代理（delegate）"><span class="toc-number">8.5.</span> <span class="toc-text">UIScrollView的代理（delegate）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容缩放"><span class="toc-number">8.6.</span> <span class="toc-text">内容缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIScrollView的缩放原理"><span class="toc-number">8.7.</span> <span class="toc-text">UIScrollView的缩放原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩放实现步骤"><span class="toc-number">8.8.</span> <span class="toc-text">缩放实现步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分页"><span class="toc-number">8.9.</span> <span class="toc-text">分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSTimer"><span class="toc-number">8.10.</span> <span class="toc-text">NSTimer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableView"><span class="toc-number">9.</span> <span class="toc-text">UITableView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何展示数据"><span class="toc-number">9.1.</span> <span class="toc-text">如何展示数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UITableViewDataSource协议"><span class="toc-number">9.2.</span> <span class="toc-text">UITableViewDataSource协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tableView展示数据的过程"><span class="toc-number">9.3.</span> <span class="toc-text">tableView展示数据的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cell简介"><span class="toc-number">10.</span> <span class="toc-text">Cell简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用原理"><span class="toc-number">10.1.</span> <span class="toc-text">Cell的重用原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cell的重用代码"><span class="toc-number">10.2.</span> <span class="toc-text">Cell的重用代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用xib封装一个view的步骤"><span class="toc-number">10.3.</span> <span class="toc-text">使用xib封装一个view的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过代码自定义cell-cell的高度不一致"><span class="toc-number">10.4.</span> <span class="toc-text">通过代码自定义cell(cell的高度不一致)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delegate的使用场合"><span class="toc-number">11.</span> <span class="toc-text">Delegate的使用场合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用delegate的步骤"><span class="toc-number">11.1.</span> <span class="toc-text">使用delegate的步骤</span></a></li></ol></li></ol>
+        
     </div>
+<<<<<<< HEAD
     <footer><div id="footer" >
 	
 	<div class="line">
@@ -891,188 +1034,191 @@ $(document).ready(function(){
         getSize();
         if (myWidth >= 1024) {
           c.click();
+=======
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+>>>>>>> origin/master
         }
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20160814UIBase/" data-title="UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS" data-url="http://yoferzhang.com/post/20160814UIBase/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
         
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20160816ViewControllerProgrammingGuide/" title="上一篇: 【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20160814NSFoundationTran/" title="下一篇: 集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML01Introduction/">机器学习入门系列</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170306DeepLearningRegression/">【测试】只是为了测试数学公式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170216FitnessDiary/">【健身】健身记录；健身课表；健身心得</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
-  });
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"yoferzhang"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//yoferzhang.github.io/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-83435219-1', 'yoferzhang.com');  
-ga('send', 'pageview');
-</script>
-
-
-
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
 </script>
 
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
 </html>

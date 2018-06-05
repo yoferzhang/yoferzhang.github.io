@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Yofer Zhang" />
+
+
+
+<meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
+
+回顾第二篇中神奇宝贝的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+<meta property="og:url" content="http://yoferzhang.com/post/20170327ML03BiasAndVariance/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
+
+回顾第二篇中神奇宝贝的">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg">
+<meta property="og:updated_time" content="2017-03-29T01:13:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址：http://blog.csdn.net/zyq522376829/article/details/66611368
+
+回顾第二篇中神奇宝贝的">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance） | YoferZhang 的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/Image/author.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Yofer Zhang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Adagrad/">Adagrad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HFS/">HFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTFS/">NTFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/calloc/">calloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jacman/">jacman</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/malloc/">malloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oc/">oc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/relloc/">relloc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交叉检验/">交叉检验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存四区/">内存四区</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分类/">分类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回归/">回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大脑/">大脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习率/">学习率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心得/">心得</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速记忆/">快速记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/损失函数/">损失函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数字记忆/">数字记忆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方差/">方差</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无偏估计/">无偏估计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梯度下降法/">梯度下降法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泰勒展开式/">泰勒展开式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/番茄/">番茄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘格式/">磁盘格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科比/">科比</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纸牌/">纸牌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性回归/">线性回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构体，内存，对齐/">结构体，内存，对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/联想/">联想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/肌肉/">肌肉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/腾讯/">腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/艾宾浩斯/">艾宾浩斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语/">英语</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法/">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书/">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔，测试/">随笔，测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Amor Fati</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/Image/author.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Yofer Zhang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yoferzhang@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/yoferzhang" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/yoferzhang/" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/zyq522376829/" title="豆瓣"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/zyq522376829" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20170327ML03BiasAndVariance" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/20170327ML03BiasAndVariance/" class="article-date">
+      <time datetime="2017-03-26T16:00:33.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/交叉检验/">交叉检验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方差/">方差</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无偏估计/">无偏估计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<blockquote>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
+</blockquote>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>第二篇中神奇宝贝的例子：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg" alt=""></p>
+<a id="more"></a>
+<p>可以看出越复杂的model 再测试集上的性能并不是越好</p>
+<p>这篇要讨论的就是 error 来自什么地方？</p>
+<p>error主要的来源有两个，bias（偏差） 和 variance（方差）</p>
+<h1 id="估测"><a href="#估测" class="headerlink" title="估测"></a>估测</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg" alt=""></p>
+<p>假设上图为神奇宝贝cp值的真正方程，当然这只有Niantic（制作《Pokemon Go》的游戏公司）知道。从训练集中可以找到真实方程$\hat{f}$ 的近似方程 $f^{*}$。</p>
+<h2 id="估测bias-和-variance"><a href="#估测bias-和-variance" class="headerlink" title="估测bias 和 variance"></a>估测bias 和 variance</h2><h3 id="估测变量-x-的平均值"><a href="#估测变量-x-的平均值" class="headerlink" title="估测变量 $x$ 的平均值"></a>估测变量 $x$ 的平均值</h3><ul>
+<li>假设$x$的平均值为 $\mu$，方差为 $\sigma^{2}$</li>
+</ul>
+<p>估测平均值怎么做呢？</p>
+<ul>
+<li>首先拿到N个样品点：${x^{1}, x^{2}, \ldots, x^{N}}$</li>
+<li>计算平均值得到$m$, $m = \frac{1}{N} \sum_{n} x^{n} \neq \mu$</li>
+</ul>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg" alt=""></p>
+<p>但是如果计算很多组的m ，然后求m的期望</p>
+<p>$$<br>E[m] = E[\frac{1}{N} \sum<em>{n} x^{n}] = \frac{1}{N}\sum</em>{n}E[x^{n}] = \mu<br>$$</p>
+<p>这个估计呢是无偏估计（unbiased）。</p>
+<p>然后m分布对于 $\mu$ 的离散程度（方差）：</p>
+<p>$$<br>Var[m] = \frac{\sigma^{2}}{N}<br>$$</p>
+<p>这主要取决于N，下图可看出N越小越离散</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg" alt=""></p>
+<h3 id="估测变量-x-的方差"><a href="#估测变量-x-的方差" class="headerlink" title="估测变量 $x$ 的方差"></a>估测变量 $x$ 的方差</h3><p>首先用刚才的方法估测m，</p>
+<p>$$<br>m = \frac{1}{N} \sum_{n} x^{n} \neq \mu<br>$$</p>
+<p>然后再做下面计算：</p>
+<p>$$<br>s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}<br>$$</p>
+<p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg" alt=""></p>
+<p>这个估计是有偏估计（biased）,</p>
+<p>求 $s^{2}$的期望值：</p>
+<p>$$<br>E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}<br>$$</p>
+<p>用靶心来说明一下bias和variance的影响</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg" alt=""></p>
+<p>靶心为真正的方程 $\hat{f}$ ，深蓝色点为$f^{<em>}$ ，是实验求得的方程。求$f^{</em>}$的期望值$\bar{f} = E[f^{*}]$，即图中浅蓝色的点。</p>
+<p>$\bar{f}$ 和 $\hat{f}$之间的距离就是误差 bias，而$\bar{f}$ 和 $f^{*}$ 之间的距离就是误差 variance。4幅图的对比观察两个误差的影响。</p>
+<p>bias就是射击时瞄准的误差，本来应该是瞄准靶心，但bias就造成瞄准准心的误差；而variance就是虽然瞄准在 $\bar{f}$，但是射不准，总是射在 $\bar{f}$ 的周围。</p>
+<h2 id="为什么会有很多的-f"><a href="#为什么会有很多的-f" class="headerlink" title="为什么会有很多的 $f^{*}$?"></a>为什么会有很多的 $f^{*}$?</h2><p>讨论系列02中的案例：这里假设是在平行宇宙中，抓了不同的神奇宝贝</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg" alt=""></p>
+<p>用同一个model，在不同的训练集中找到的 $f^{*}$就是不一样的</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg" alt=""></p>
+<p>这就像在靶心上射击，进行了很多组（一组多次）。现在需要知道它的散布是怎样的，将100个宇宙中的model画出来</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg" alt=""></p>
+<p>不同的数据集之前什么都有可能发生—||</p>
+<h3 id="考虑不同model的variance"><a href="#考虑不同model的variance" class="headerlink" title="考虑不同model的variance"></a>考虑不同model的variance</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg" alt=""></p>
+<p>一次model的variance就比较小的，也就是是比较集中，离散程度较小。而5次model 的 variance就比较大，同理散布比较广，离散程度较大。</p>
+<p>所以用比较简单的model，variance是比较小的（就像射击的时候每次的时候，每次射击的设置都集中在一个比较小的区域内）。如果用了复杂的model，variance就很大，散布比较开。</p>
+<p>这也是因为简单的model受到不同训练集的影响是比较小的。</p>
+<h3 id="考虑不同model的-bias"><a href="#考虑不同model的-bias" class="headerlink" title="考虑不同model的 bias"></a>考虑不同model的 bias</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg" alt=""></p>
+<p>这里没办法知道真正的 $\hat{f}$，所以假设图中的那条黑色曲线为真正的 $\hat{f}$</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg" alt=""></p>
+<p>结果可视化，一次平均的 $\bar{f}$没有5次的好，虽然5次的整体结果离散程度很高。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg" alt=""></p>
+<p>一次model的bias比较大，而复杂的5次model，bias就比较小。</p>
+<p>直观的解释：简单的model函数集的space比较小，所以可能space里面就没有包含靶心，肯定射不中。而复杂的model函数集的space比较大，可能就包含的靶心，只是没有办法找到确切的靶心在哪，但足够多的，就可能得到真正的 $\bar{f}$。</p>
+<h3 id="bias-v-s-variance"><a href="#bias-v-s-variance" class="headerlink" title="bias v.s. variance"></a>bias v.s. variance</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg" alt=""></p>
+<p>将系列02中的误差拆分为bias何variance。简单model（左边）是bias比较大造成的error，这种情况叫做 <strong>Underfitting（欠拟合）</strong>，而复杂model（右边）是variance过大造成的error，这种情况叫做<strong>Overfitting（过拟合）</strong>。</p>
+<h1 id="怎么判断？"><a href="#怎么判断？" class="headerlink" title="怎么判断？"></a>怎么判断？</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg" alt=""></p>
+<ul>
+<li>如果model没有很好的fit训练集，就是bias过大，也就是Underfitting</li>
+<li>如果model很好的fit训练集，即再训练集上得到很小的error，但在测试集上得到大的error，这意味着model可能是variance比较大，就是Overfitting。</li>
+</ul>
+<p>对于Underfitting和Overfitting，是用不同的方式来处理的</p>
+<h3 id="bias大，Underfitting"><a href="#bias大，Underfitting" class="headerlink" title="bias大，Underfitting"></a>bias大，Underfitting</h3><p>此时应该重新设计model。因为之前的函数集里面可能根本没有包含$\hat{f}$。可以：</p>
+<ul>
+<li>将更多的feature加进去，比如考虑高度重量，或者HP值等等。</li>
+<li>或者考虑更多次幂、更复杂的model。</li>
+</ul>
+<p>如果此时强行再收集更多的data去训练，这是没有什么帮助的，因为设计的函数集本身就不好，再找更多的训练集也不会更好。</p>
+<h3 id="variance大，Overfitting"><a href="#variance大，Overfitting" class="headerlink" title="variance大，Overfitting"></a>variance大，Overfitting</h3><p>简单粗暴的方法：More data</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg" alt=""></p>
+<p>但是很多时候不一定能做到收集更多的data。可以针对对问题的理解对数据集做调整（Regularization）。比如识别手写数字的时候，偏转角度的数据集不够，那就将正常的数据集左转15度，右转15度，类似这样的处理。</p>
+<h1 id="选择model"><a href="#选择model" class="headerlink" title="选择model"></a>选择model</h1><ul>
+<li>现在在bias和variance之间就需要一个权衡</li>
+<li>想选择的model，可以平衡bias和variance产生的error，使得总error最小</li>
+<li>但是下面这件事最好不要做：</li>
+</ul>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg" alt=""></p>
+<p>用训练集训练不同的model，然后在测试集上比较error，model3的error比较小，就认为model3好。但实际上这只是你手上的测试集，真正完整的测试集并没有。比如在已有的测试集上error是0.5，但有条件收集到更多的测试集后通常得到的error都是大于0.5的。</p>
+<h2 id="Cross-Validation（交叉验证）"><a href="#Cross-Validation（交叉验证）" class="headerlink" title="Cross Validation（交叉验证）"></a>Cross Validation（交叉验证）</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg" alt=""></p>
+<p>图中public的测试集是已有的，private是没有的，不知道的。Cross Validation 就是将训练集再分为两部分，一部分作为训练集，一部分作为验证集。用训练集训练model，然后再验证集上比较，确实出最好的model之后（比如model3），再用全部的训练集训练model3，然后再用public的测试集进行测试，此时一般得到的error都是大一些的。不过此时会比较想再回去调一下参数，调整model，让在public的测试集上更好，但不太推荐这样。（心里难受啊，大学数模的时候就回去调，来回痛苦折腾）</p>
+<p>上述方法可能会担心将训练集拆分的时候分的效果比较差怎么办，可以用下面的方法。</p>
+<h2 id="N-fold-Cross-Validation（N-折交叉验证）"><a href="#N-fold-Cross-Validation（N-折交叉验证）" class="headerlink" title="N-fold Cross Validation（N-折交叉验证）"></a>N-fold Cross Validation（N-折交叉验证）</h2><p>将训练集分成N份，比如分成3份。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg" alt=""></p>
+<p>比如在三份中训练结果Average Error是model1最好，再用全部训练集训练model1。（貌似数模也干过，当年都是莫名其妙的分，想想当年数模的时候都根本来不及看是为什么，就是一股脑上去做00oo00）</p>
+<blockquote>
+<p>新博客地址：<a href="http://yoferzhang.com/post/20170327ML03BiasAndVariance">http://yoferzhang.com/post/20170327ML03BiasAndVariance</a></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/20170327ML03BiasAndVariance/">机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Yofer Zhang</a></p>
+        <p><span>发布时间:</span>2017-03-27, 00:00:33</p>
+        <p><span>最后更新:</span>2017-03-29, 09:13:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/20170327ML03BiasAndVariance/" title="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">http://yoferzhang.com/post/20170327ML03BiasAndVariance/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoferzhang.com/post/20170327ML03BiasAndVariance/　　作者: Yofer Zhang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20170327ML04GradientDescent/">
+                    机器学习入门系列04，Gradient Descent（梯度下降法）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/20170326ML02Regression/">
+                    机器学习入门系列02，Regression 回归：案例研究
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回顾"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#估测"><span class="toc-number">2.</span> <span class="toc-text">估测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#估测bias-和-variance"><span class="toc-number">2.1.</span> <span class="toc-text">估测bias 和 variance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的平均值"><span class="toc-number">2.1.1.</span> <span class="toc-text">估测变量 $x$ 的平均值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#估测变量-x-的方差"><span class="toc-number">2.1.2.</span> <span class="toc-text">估测变量 $x$ 的方差</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么会有很多的-f"><span class="toc-number">2.2.</span> <span class="toc-text">为什么会有很多的 $f^{*}$?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的variance"><span class="toc-number">2.2.1.</span> <span class="toc-text">考虑不同model的variance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#考虑不同model的-bias"><span class="toc-number">2.2.2.</span> <span class="toc-text">考虑不同model的 bias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bias-v-s-variance"><span class="toc-number">2.2.3.</span> <span class="toc-text">bias v.s. variance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么判断？"><span class="toc-number">3.</span> <span class="toc-text">怎么判断？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">3.1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bias大，Underfitting"><span class="toc-number">3.1.1.</span> <span class="toc-text">bias大，Underfitting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variance大，Overfitting"><span class="toc-number">3.1.2.</span> <span class="toc-text">variance大，Overfitting</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择model"><span class="toc-number">4.</span> <span class="toc-text">选择model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Validation（交叉验证）"><span class="toc-number">4.1.</span> <span class="toc-text">Cross Validation（交叉验证）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#N-fold-Cross-Validation（N-折交叉验证）"><span class="toc-number">4.2.</span> <span class="toc-text">N-fold Cross Validation（N-折交叉验证）</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）　| YoferZhang 的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="post/20170327ML03BiasAndVariance/" data-title="机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）" data-url="http://yoferzhang.com/post/20170327ML03BiasAndVariance/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"http://yoferzhang.duoshuo.com"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20170327ML04GradientDescent/" title="上一篇: 机器学习入门系列04，Gradient Descent（梯度下降法）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/20170326ML02Regression/" title="下一篇: 机器学习入门系列02，Regression 回归：案例研究">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML04GradientDescent/">机器学习入门系列04，Gradient Descent（梯度下降法）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170327ML03BiasAndVariance/">机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML02Regression/">机器学习入门系列02，Regression 回归：案例研究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170326ML01Introduction/">机器学习入门系列01，Introduction 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170306DeepLearningRegression/">【测试】只是为了测试数学公式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170216FitnessDiary/">【健身】健身记录；健身课表；健身心得</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20170116ViewControllerProgrammingGuide/">为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161109TableViewPG/">Table View Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20161024LLDBQuickStartGuide/">【iOS】LLDB调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160926Cocos2dxViewAnimation/">【iOS】Cocos2dx封装为view方便做3D动画效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160918ReplayKit/">【iOS】ReplayKit库，iOS原生直播神器</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160909ErrorLibpngErrorUnhandledCritical/">【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160905CoreAnimationProgrammingGuide/">【iOS】Core Animation Programming Guide 核心动画编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160902ViewProgrammingGuide/">【iOS】View Programming Guide for iOS 视图编程指南</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160831KVO/">【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160830ConcurrencyProgrammingGuide/">【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160825property/">【iOS】property属性的weak,strong,copy,assign</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160824Contacts/">【iOS】私人通讯录Demo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160823Cocoapods/">Cocoapods 安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821UIKitClasses/">UIKit继承结构</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ControllerManager/">【iOS】iOS控制器管理,代码,xib,Storyboard,Segue</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160821ApplicationStart/">【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160817XcodePlug/">【iOS】Xcode插件管理工具Alcatraz,常用插件介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816NotificationSum/">【iOS】Notification通知,通知中心,发布通知,通知代理对比</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160816ViewControllerProgrammingGuide/">【iOS】视图控制器编程指南View Controller Programming Guide for iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814UIBase/">UIButton,UIScrollView,UITableView常见属性,使用案例 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSFoundationTran/">集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSSetSum/">NSSet 集合创建,获取,遍历,可变集合的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSDictionarySum/">NSDictionary字典创建,获取,遍历,可变字典的删除 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160814NSArraySum/">NSArray/NSMutableArray创建,获取,遍历,排序 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NSStringSum/">NSString的获取,判断,转换,重组,文件读写 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813FoundationSum/">iOS 结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813PropertySynthesize/">iOS - @property 和 @synthesize 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813DescriptionMethod/">description 方法 和 SEL - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813NatureOfClass/">Class 类的本质 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813CategorySum/">Category 分类、类别 总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160813ProtocolSum/">Protocol 协议总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812BlockSum/">Block编程总结 - iOS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160812ARCSum/">Automatic Reference Counting (ARC) 总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagementSum/">Objective-C内存管理[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160811OCMemoryManagement/">Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)[iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/">AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation06Export/">AVFoundation Programming Guide(官方文档翻译6)Export - 输出</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation05StillAndVideoMediaCapture/">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation04Editing/">AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation03Playback/">AVFoundation Programming Guide(官方文档翻译3)Playback - 播放</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation02UsingAssets/">AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160803AVFoundation01Introduction/">AVFoundation Programming Guide(官方文档翻译1)About AVFoundation - AVFoundation概述</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160724AVFoundation/">AVFoundation Programming Guide(官方文档翻译)完整版中英对照</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160426Matchismo/">【iOS】Stanford iOS7 Assignment - Matchismo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160420ObjectiveCProgrammingNote/">【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160419StructMemory/">【C语言】结构体内存对齐模式</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417CMemory/">【C语言】C语言内存四区 - 概念与代码示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160417MallocCallocRelloc/">【C语言】malloc,calloc,relloc异同示例</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160416DiskFormatForHFS/">【渔】NTFS转HFS</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415MarkdownSyntax/">【渔】Markdown语法（看这张图就够了）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160415WebsiteRecommend/">【渔】网站推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160414KobeLeave/">【随笔】2016年4月14日 Kobe Bryant完美谢幕</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160408FirstHackintosh/">【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160329NumberCodeTable/">【快速记忆】数字编码表</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160328SuperMemoryBackground/">【快速记忆】快速记忆背景</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadIndex/">【读书笔记】最近读书的目录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160325ReadNotePomodoro/">【读书笔记】番茄工作法图解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160323buildBlog01/">【建立博客】使用Github和Hexo搭建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322essay002/">【随笔】原文名：鹅场offer已Get，下周签约，终于能静下心来总结总结</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20160322readNotes001/">【读书笔记】把你的英语用起来</a></li><li class="post-list-item"><a class="post-list-link" href="/post/hexo-post/">模板</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Yofer Zhang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

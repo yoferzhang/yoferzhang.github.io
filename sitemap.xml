@@ -2,72 +2,485 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoferzhang.com/post/20160329NumberCodeTable/</loc>
+    <loc>http://yoferzhang.com/post/20170216FitnessDiary/</loc>
     
-    <lastmod>2016-03-29T10:39:44.528Z</lastmod>
+    <lastmod>2017-04-07T00:49:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20170326ML01Introduction/</loc>
+    
+    <lastmod>2017-04-04T14:42:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20170306DeepLearningRegression/</loc>
+    
+    <lastmod>2017-03-20T15:55:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/</loc>
+    
+    <lastmod>2017-02-16T08:40:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/</loc>
+    
+    <lastmod>2017-02-16T08:39:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160419StructMemory/</loc>
+    
+    <lastmod>2017-02-16T08:39:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160417MallocCallocRelloc/</loc>
+    
+    <lastmod>2017-02-16T08:39:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160417CMemory/</loc>
+    
+    <lastmod>2017-02-16T08:39:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160416DiskFormatForHFS/</loc>
+    
+    <lastmod>2017-02-16T08:39:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160415MarkdownSyntax/</loc>
+    
+    <lastmod>2017-02-16T08:39:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160414KobeLeave/</loc>
+    
+    <lastmod>2017-02-16T08:39:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160408FirstHackintosh/</loc>
+    
+    <lastmod>2017-02-16T08:38:56.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoferzhang.com/post/20160328SuperMemoryBackground/</loc>
     
-    <lastmod>2016-03-28T06:14:19.362Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/about/index.html</loc>
-    
-    <lastmod>2016-03-28T01:41:49.028Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
-    
-    <lastmod>2016-03-28T01:15:28.967Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/index/index.html</loc>
-    
-    <lastmod>2016-03-27T07:53:43.475Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
-    
-    <lastmod>2016-03-27T04:04:17.603Z</lastmod>
+    <lastmod>2017-02-16T08:38:46.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoferzhang.com/post/20160325ReadNotePomodoro/</loc>
     
-    <lastmod>2016-03-25T13:19:19.784Z</lastmod>
+    <lastmod>2017-02-16T08:38:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoferzhang.com/post/20160325ReadIndex/</loc>
+    <loc>http://yoferzhang.com/post/20160323buildBlog01/</loc>
     
-    <lastmod>2016-03-25T13:13:09.817Z</lastmod>
+    <lastmod>2017-02-16T08:38:28.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoferzhang.com/post/20160322readNotes001/</loc>
     
-    <lastmod>2016-03-25T06:12:41.799Z</lastmod>
+    <lastmod>2017-02-16T08:38:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160322essay002/</loc>
+    
+    <lastmod>2017-02-16T08:38:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/tags/index.html</loc>
+    
+    <lastmod>2017-02-10T02:08:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20161130DataManager/</loc>
+    
+    <lastmod>2017-02-09T08:02:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160426Matchismo/</loc>
+    
+    <lastmod>2017-02-09T05:33:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160724AVFoundation/</loc>
+    
+    <lastmod>2017-02-09T05:33:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation01Introduction/</loc>
+    
+    <lastmod>2017-02-09T05:32:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/</loc>
+    
+    <lastmod>2017-02-09T05:31:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation03Playback/</loc>
+    
+    <lastmod>2017-02-09T05:31:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation04Editing/</loc>
+    
+    <lastmod>2017-02-09T05:30:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/</loc>
+    
+    <lastmod>2017-02-09T05:30:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160803AVFoundation06Export/</loc>
+    
+    <lastmod>2017-02-09T05:30:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160810AboutHTTPLiveStream/</loc>
+    
+    <lastmod>2017-02-09T05:30:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160811OCMemoryManagement/</loc>
+    
+    <lastmod>2017-02-09T05:29:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160811OCMemoryManagementSum/</loc>
+    
+    <lastmod>2017-02-09T05:29:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160812ARCSum/</loc>
+    
+    <lastmod>2017-02-09T05:29:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160812BlockSum/</loc>
+    
+    <lastmod>2017-02-09T05:29:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813CategorySum/</loc>
+    
+    <lastmod>2017-02-09T05:29:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813DescriptionMethod/</loc>
+    
+    <lastmod>2017-02-09T05:28:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813FoundationSum/</loc>
+    
+    <lastmod>2017-02-09T05:28:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813NatureOfClass/</loc>
+    
+    <lastmod>2017-02-09T05:28:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813NSStringSum/</loc>
+    
+    <lastmod>2017-02-09T05:28:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813PropertySynthesize/</loc>
+    
+    <lastmod>2017-02-09T05:28:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160813ProtocolSum/</loc>
+    
+    <lastmod>2017-02-09T05:28:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSArraySum/</loc>
+    
+    <lastmod>2017-02-09T05:28:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSDictionarySum/</loc>
+    
+    <lastmod>2017-02-09T05:28:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSFoundationTran/</loc>
+    
+    <lastmod>2017-02-09T05:27:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160814NSSetSum/</loc>
+    
+    <lastmod>2017-02-09T05:27:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160814UIBase/</loc>
+    
+    <lastmod>2017-02-09T05:27:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160816NotificationSum/</loc>
+    
+    <lastmod>2017-02-09T05:27:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160816ViewControllerProgrammingGuide/</loc>
+    
+    <lastmod>2017-02-09T05:27:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160817XcodePlug/</loc>
+    
+    <lastmod>2017-02-09T05:26:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160821ApplicationStart/</loc>
+    
+    <lastmod>2017-02-09T05:26:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160821ControllerManager/</loc>
+    
+    <lastmod>2017-02-09T05:25:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160824Contacts/</loc>
+    
+    <lastmod>2017-02-09T05:25:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160830ConcurrencyProgrammingGuide/</loc>
+    
+    <lastmod>2017-02-09T05:24:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160831KVO/</loc>
+    
+    <lastmod>2017-02-09T05:24:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160902ViewProgrammingGuide/</loc>
+    
+    <lastmod>2017-02-09T05:24:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160905CoreAnimationProgrammingGuide/</loc>
+    
+    <lastmod>2017-02-09T05:23:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160909ErrorLibpngErrorUnhandledCritical/</loc>
+    
+    <lastmod>2017-02-09T05:22:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160918ReplayKit/</loc>
+    
+    <lastmod>2017-02-09T05:22:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160926Cocos2dxViewAnimation/</loc>
+    
+    <lastmod>2017-02-09T05:21:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20161024LLDBQuickStartGuide/</loc>
+    
+    <lastmod>2017-02-09T05:21:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20161109TableViewPG/</loc>
+    
+    <lastmod>2017-02-09T05:20:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20170116ViewControllerProgrammingGuide/</loc>
+    
+    <lastmod>2017-02-09T04:49:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoferzhang.com/post/hexo-post/</loc>
     
-    <lastmod>2016-03-22T12:25:54.343Z</lastmod>
+    <lastmod>2016-10-31T06:49:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/index/index.html</loc>
+    
+    <lastmod>2016-09-08T09:16:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160825property/</loc>
+    
+    <lastmod>2016-08-25T08:56:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160823Cocoapods/</loc>
+    
+    <lastmod>2016-08-23T03:46:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160821UIKitClasses/</loc>
+    
+    <lastmod>2016-08-21T13:44:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/about/index.html</loc>
+    
+    <lastmod>2016-08-21T12:26:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160325ReadIndex/</loc>
+    
+    <lastmod>2016-04-20T09:03:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160415WebsiteRecommend/</loc>
+    
+    <lastmod>2016-04-15T14:25:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoferzhang.com/post/20160329NumberCodeTable/</loc>
+    
+    <lastmod>2016-04-15T14:25:24.000Z</lastmod>
     
   </url>
   
