@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>20171123CocoaDesignPatterns | YoferZhang 的博客</title>
+    <title>Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Yofer Zhang">
@@ -14,7 +14,7 @@
     <meta name="description" content="Cocoa设计模式Cocoa环境的许多架构和机制都能够有效地使用设计模式：抽象设计可以解决特定环境中的重复问题。 本文描述了Cocoa中设计模式的主要实现，主要关注模型(Model) - 视图(View) - 控制器(Controller)和对象建模。 本章的主要目的是让您更深入地了解Cocoa的设计模式，并鼓励您在自己的软件项目中利用这些模式。
 什么是设计模式？设计模式是设计的模板，它可以在特定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20171123CocoaDesignPatterns">
+<meta property="og:title" content="Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns">
 <meta property="og:url" content="http://yoferzhang.com/post/20171123CocoaDesignPatterns/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="Cocoa设计模式Cocoa环境的许多架构和机制都能够有效地使用设计模式：抽象设计可以解决特定环境中的重复问题。 本文描述了Cocoa中设计模式的主要实现，主要关注模型(Model) - 视图(View) - 控制器(Controller)和对象建模。 本章的主要目的是让您更深入地了解Cocoa的设计模式，并鼓励您在自己的软件项目中利用这些模式。
@@ -24,9 +24,9 @@
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1flza69f87hj20au04fq2y.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1flza6ohnmqj20ct0ae404.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1flza769pqnj20dz0cewg1.jpg">
-<meta property="og:updated_time" content="2017-11-30T07:07:22.000Z">
+<meta property="og:updated_time" content="2018-06-05T11:57:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20171123CocoaDesignPatterns">
+<meta name="twitter:title" content="Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns">
 <meta name="twitter:description" content="Cocoa设计模式Cocoa环境的许多架构和机制都能够有效地使用设计模式：抽象设计可以解决特定环境中的重复问题。 本文描述了Cocoa中设计模式的主要实现，主要关注模型(Model) - 视图(View) - 控制器(Controller)和对象建模。 本章的主要目的是让您更深入地了解Cocoa的设计模式，并鼓励您在自己的软件项目中利用这些模式。
 什么是设计模式？设计模式是设计的模板，它可以在特定">
 <meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1flza4lb8wxg20fw05zt8m.gif">
@@ -65,8 +65,6 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/index">主页 | Home</a></li>
-					
 						<li><a href="/index">索引 | Index</a></li>
 					
 						<li><a href="/archives">归档 | Archives</a></li>
@@ -93,7 +91,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/20171123CocoaDesignPatterns/" title="20171123CocoaDesignPatterns" itemprop="url">20171123CocoaDesignPatterns</a>
+      <a href="/post/20171123CocoaDesignPatterns/" title="Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns" itemprop="url">Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns</a>
   </h1>
   <p class="article-author">By
        
@@ -274,6 +272,16 @@
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/设计模式/">设计模式</a><a href="/tags/cocoa/">cocoa</a>
+  </div>
 
 </div>
 
@@ -281,7 +289,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoferzhang.com/post/20171123CocoaDesignPatterns/" data-title="20171123CocoaDesignPatterns | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  <div data-url="http://yoferzhang.com/post/20171123CocoaDesignPatterns/" data-title="Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -315,7 +323,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/20171123CocoaDesignPatterns/" data-title="20171123CocoaDesignPatterns" data-url="http://yoferzhang.com/post/20171123CocoaDesignPatterns/"></div>
+	<div class="ds-thread" data-thread-key="post/20171123CocoaDesignPatterns/" data-title="Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns" data-url="http://yoferzhang.com/post/20171123CocoaDesignPatterns/"></div>
 </section>
 
 
@@ -349,11 +357,15 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
 		  
 		
 		  
@@ -370,6 +382,14 @@
 		
 		  
 			<li><a href="/categories/渔/" title="渔">渔<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>1</sup></a></li>
 		  
 		
 		  
