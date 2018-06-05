@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d8wwxxoij20b704bq35.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d93mqed2j20dp0773z0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d9dlm0vyj209b04z74e.jpg">
-<meta property="og:updated_time" content="2016-09-01T11:43:41.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:24:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译">
 <meta name="twitter:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
@@ -124,6 +124,7 @@
 <p>Important: In order to understand key-value observing, you must first understand key-value coding.</p>
 <p>重要：了解键值观察之前，首先要理解键值编程 (<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i" target="_blank" rel="external">key-value coding</a>)</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="1-1-At-a-Glance-概括"><a href="#1-1-At-a-Glance-概括" class="headerlink" title="1.1 At a Glance - 概括"></a>1.1 At a Glance - 概括</h2><p>Key-value observing provides a mechanism that allows objects to be notified of changes to specific properties of other objects. It is particularly useful for communication between model and controller layers in an application. (In OS X, the controller layer binding technology relies heavily on key-value observing.) A controller object typically observes properties of model objects, and a view object observes properties of model objects through a controller. In addition, however, a model object may observe other model objects (usually to determine when a dependent value changes) or even itself (again to determine when a dependent value changes).</p>
 <p>You can observe properties including simple attributes, to-one relationships, and to-many relationships. Observers of to-many relationships are informed of the type of change made—as well as which objects are involved in the change.</p>
 <p>There are three steps to setting up an observer of a property. Understanding these three steps provides a clear illustration of how KVO works.</p>
@@ -395,15 +396,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/健身/" title="健身">健身<sup>1</sup></a></li>
 		  
 		
 		  
@@ -517,7 +518,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
 		

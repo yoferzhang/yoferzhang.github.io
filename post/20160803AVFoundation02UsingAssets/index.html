@@ -11,56 +11,20 @@
     
 
     
-    <meta name="description" content="这
-是
-目
-录
-的
-分
-割
-线
-再
-多
-一
-点
-新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video">
+    <meta name="description" content="新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
-<meta property="og:description" content="这
-是
-目
-录
-的
-分
-割
-线
-再
-多
-一
-点
-新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video">
+<meta property="og:description" content="新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6f7bsp7lbj20oo04u74b.jpg">
-<meta property="og:updated_time" content="2016-08-07T11:43:17.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:31:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译2)Using Assets - 使用Assets">
-<meta name="twitter:description" content="这
-是
-目
-录
-的
-分
-割
-线
-再
-多
-一
-点
-新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video">
+<meta name="twitter:description" content="新博客：完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6f7bsp7lbj20oo04u74b.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
@@ -146,18 +110,6 @@
 		</div>
 		
 		<blockquote>
-<p>这</p>
-<p>是</p>
-<p>目</p>
-<p>录</p>
-<p>的</p>
-<p>分</p>
-<p>割</p>
-<p>线</p>
-<p>再</p>
-<p>多</p>
-<p>一</p>
-<p>点</p>
 <p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
 <p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
 <p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394" target="_blank" rel="external">AVFoundation Programming Guide</a></p>
@@ -167,6 +119,7 @@
 </blockquote>
 <h1 id="Using-Assets-使用Assets"><a href="#Using-Assets-使用Assets" class="headerlink" title="Using Assets - 使用Assets"></a>Using Assets - 使用Assets</h1><p>Assets can come from a file or from media in the user’s iPod library or Photo library. When you create an asset object all the information that you might want to retrieve for that item is not immediately available. Once you have a movie asset, you can extract still images from it, transcode it to another format, or trim the contents.</p>
 <p><code>Assets</code> 可以来自文件或者媒体用户的iPod库、图片库。当你创建一个 <code>asset</code> 对象时，所有你可能想要检索该项目的信息不是立即可用的。一旦你有了一个电影 <code>asset</code> ，你可以从里面提取静态图像，转换到另一个格式，或者对内容就行修剪。</p>
+<a id="more"></a>
 <h2 id="Creating-an-Asset-Object-创建一个Asset对象"><a href="#Creating-an-Asset-Object-创建一个Asset对象" class="headerlink" title="Creating an Asset Object - 创建一个Asset对象"></a>Creating an Asset Object - 创建一个Asset对象</h2><p>To create an asset to represent any resource that you can identify using a URL, you use <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVURLAsset_Class/index.html#//apple_ref/occ/cl/AVURLAsset" target="_blank" rel="external">AVURLAsset</a>. The simplest case is creating an asset from a file:</p>
 <p>为了创建一个 <code>asset</code> ，去代表任何你能用一个 <code>URL</code> 识别的资源，你可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVURLAsset_Class/index.html#//apple_ref/occ/cl/AVURLAsset" target="_blank" rel="external">AVURLAsset</a> .最简单的情况是从一个文件创建一个 <code>asset</code> 。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURL</span> *url = &lt;<span class="meta">#A URL that identifies an audiovisual asset such as a movie file#&gt;;</span></span><br><span class="line"><span class="built_in">AVURLAsset</span> *anAsset = [[<span class="built_in">AVURLAsset</span> alloc] initWithURL:url options:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
@@ -343,15 +296,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/健身/" title="健身">健身<sup>1</sup></a></li>
 		  
 		
 		  
@@ -465,7 +418,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
 		

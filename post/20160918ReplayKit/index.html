@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f805jduzhvj20ku112jsf.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f8066cxc9eg20dc08uqv7.gif">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7xzlp5yiij212i0j4q8w.jpg">
-<meta property="og:updated_time" content="2016-09-21T02:41:34.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:22:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】ReplayKit库，iOS原生直播神器">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -130,6 +130,7 @@
 <li><a href="https://developer.apple.com/videos/play/wwdc2016/601/" target="_blank" rel="external">Go Live with ReplayKit - WWDC 2016</a></li>
 <li><a href="https://developer.apple.com/reference/replaykit" target="_blank" rel="external">ReplayKit API Reference</a></li>
 </ul>
+<a id="more"></a>
 <h2 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h2><h3 id="弹出可以接收广播的服务列表"><a href="#弹出可以接收广播的服务列表" class="headerlink" title="弹出可以接收广播的服务列表"></a>弹出可以接收广播的服务列表</h3><p>新建工程，然后加入ReplayKit.frameword</p>
 <p>添加一个按钮，然后按钮点击事件弹出广播服务的列表：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)displayServiceViewController:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">    [RPBroadcastActivityViewController loadBroadcastActivityViewControllerWithHandler:^(RPBroadcastActivityViewController * _Nullable broadcastActivityViewController, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        broadcastActivityViewController.delegate = <span class="keyword">self</span>;</span><br><span class="line">        [<span class="keyword">self</span> presentViewController:broadcastActivityViewController animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -186,10 +187,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/20160922Cocos2dxNote/" title="【iOS】Cocos2dx">
+ <a href="/post/20160926Cocos2dxViewAnimation/" title="【iOS】Cocos2dx封装为view方便做3D动画效果">
   <strong>上一篇：</strong><br/>
   <span>
-  【iOS】Cocos2dx</span>
+  【iOS】Cocos2dx封装为view方便做3D动画效果</span>
 </a>
 </div>
 
@@ -240,15 +241,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/健身/" title="健身">健身<sup>1</sup></a></li>
 		  
 		
 		  
@@ -362,7 +363,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
 		

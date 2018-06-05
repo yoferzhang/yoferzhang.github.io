@@ -13,20 +13,14 @@
     
     <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
 <meta property="og:url" content="http://yoferzhang.com/post/20161130DataManager/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74okr7dclj21wq0jwdpa.jpg">
@@ -34,15 +28,12 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74oxc6bmuj20qg10079r.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faae0jjuq4j210v0aegob.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faaeyb9e4gj213i03bmxw.jpg">
-<meta property="og:updated_time" content="2016-11-30T13:34:34.000Z">
+<meta property="og:updated_time" content="2017-02-09T08:02:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
 
-应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒
-应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）
-
-模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)/Users/apple/Library/Application S">
+应用沙盒每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
@@ -131,6 +122,7 @@
 <p>版权声明：本文为博主原创，如需转载请注明出处。</p>
 </blockquote>
 <h2 id="应用沙盒"><a href="#应用沙盒" class="headerlink" title="应用沙盒"></a>应用沙盒</h2><p>每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒</p>
+<a id="more"></a>
 <p>应用沙盒的文件系统目录，如下图所示（假设应用的名称叫Layer）</p>
 <p><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74k2pntm4j20ck08v0uc.jpg" alt=""></p>
 <p>模拟器应用沙盒的根路径在: (apple是用户名, 6.0是模拟器版本)<br>/Users/apple/Library/Application Support/iPhone Simulator/6.0/Applications</p>
@@ -240,19 +232,19 @@
 <h3 id="NSData-归档2个Person对象到同一文件中"><a href="#NSData-归档2个Person对象到同一文件中" class="headerlink" title="NSData-归档2个Person对象到同一文件中"></a>NSData-归档2个Person对象到同一文件中</h3><ul>
 <li>归档（编码）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 新建一块可变数据区</span><br><span class="line">NSMutableData *data = [NSMutableData data];</span><br><span class="line">// 将数据区连接到一个NSKeyedArchiver对象</span><br><span class="line">NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];</span><br><span class="line">// 开始存档对象，存档的数据都会存储到NSMutableData中</span><br><span class="line">[archiver encodeObject:person1 forKey:@&quot;person1&quot;];</span><br><span class="line">[archiver encodeObject:person2 forKey:@&quot;person2&quot;];</span><br><span class="line">// 存档完毕(一定要调用这个方法)</span><br><span class="line">[archiver finishEncoding];</span><br><span class="line">// 将存档的数据写入文件</span><br><span class="line">[data writeToFile:path atomically:YES];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新建一块可变数据区</span></span><br><span class="line"><span class="built_in">NSMutableData</span> *data = [<span class="built_in">NSMutableData</span> data];</span><br><span class="line"><span class="comment">// 将数据区连接到一个NSKeyedArchiver对象</span></span><br><span class="line"><span class="built_in">NSKeyedArchiver</span> *archiver = [[[<span class="built_in">NSKeyedArchiver</span> alloc] initForWritingWithMutableData:data] autorelease];</span><br><span class="line"><span class="comment">// 开始存档对象，存档的数据都会存储到NSMutableData中</span></span><br><span class="line">[archiver encodeObject:person1 forKey:<span class="string">@"person1"</span>];</span><br><span class="line">[archiver encodeObject:person2 forKey:<span class="string">@"person2"</span>];</span><br><span class="line"><span class="comment">// 存档完毕(一定要调用这个方法)</span></span><br><span class="line">[archiver finishEncoding];</span><br><span class="line"><span class="comment">// 将存档的数据写入文件</span></span><br><span class="line">[data writeToFile:path atomically:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>恢复（解码）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 从文件中读取数据</span><br><span class="line">NSData *data = [NSData dataWithContentsOfFile:path];</span><br><span class="line">// 根据数据，解析成一个NSKeyedUnarchiver对象</span><br><span class="line">NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];</span><br><span class="line">Person *person1 = [unarchiver decodeObjectForKey:@&quot;person1&quot;];</span><br><span class="line">Person *person2 = [unarchiver decodeObjectForKey:@&quot;person2&quot;];</span><br><span class="line">// 恢复完毕</span><br><span class="line">[unarchiver finishDecoding];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件中读取数据</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfFile:path];</span><br><span class="line"><span class="comment">// 根据数据，解析成一个NSKeyedUnarchiver对象</span></span><br><span class="line"><span class="built_in">NSKeyedUnarchiver</span> *unarchiver = [[<span class="built_in">NSKeyedUnarchiver</span> alloc] initForReadingWithData:data];</span><br><span class="line">Person *person1 = [unarchiver decodeObjectForKey:<span class="string">@"person1"</span>];</span><br><span class="line">Person *person2 = [unarchiver decodeObjectForKey:<span class="string">@"person2"</span>];</span><br><span class="line"><span class="comment">// 恢复完毕</span></span><br><span class="line">[unarchiver finishDecoding];</span><br></pre></td></tr></table></figure>
 <h3 id="利用归档实现深复制"><a href="#利用归档实现深复制" class="headerlink" title="利用归档实现深复制"></a>利用归档实现深复制</h3><p>比如对一个Person对象进行深复制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 临时存储person1的数据</span><br><span class="line">NSData *data = [NSKeyedArchiver archivedDataWithRootObject:person1];</span><br><span class="line">// 解析data，生成一个新的Person对象</span><br><span class="line">Student *person2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];</span><br><span class="line">// 分别打印内存地址</span><br><span class="line">NSLog(@&quot;person1:0x%x&quot;, person1); // person1:0x7177a60</span><br><span class="line">NSLog(@&quot;person2:0x%x&quot;, person2); // person2:0x7177cf0</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 临时存储person1的数据</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSKeyedArchiver</span> archivedDataWithRootObject:person1];</span><br><span class="line"><span class="comment">// 解析data，生成一个新的Person对象</span></span><br><span class="line">Student *person2 = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:data];</span><br><span class="line"><span class="comment">// 分别打印内存地址</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"person1:0x%x"</span>, person1); <span class="comment">// person1:0x7177a60</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"person2:0x%x"</span>, person2); <span class="comment">// person2:0x7177cf0</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1faaeyb9e4gj213i03bmxw.jpg" alt=""></p>
 <h2 id="SQLite3"><a href="#SQLite3" class="headerlink" title="SQLite3"></a>SQLite3</h2><ul>
 <li>SQLite3是一款开源的嵌入式关系型数据库，可移植性好、易使用、内存开销小</li>
 <li>SQLite3是无类型的，意味着你可以保存任何类型的数据到任意表的任意字段中。比如下列的创表语句是合法的：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table t_person(name, age);</span><br><span class="line">为了保证可读性，建议还是把字段类型加上：</span><br><span class="line">create table t_person(name text, age integer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table t_person(name, age);</span><br><span class="line">为了保证可读性，建议还是把字段类型加上：</span><br><span class="line">create table t_person(name text, age integer);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>SQLite3常用的5种数据类型：text、integer、float、boolean、blob</li>
 <li>在iOS中使用SQLite3，首先要添加库文件libsqlite3.dylib和导入主头文件</li>
@@ -260,7 +252,7 @@
 <h3 id="创建、打开、关闭数据库"><a href="#创建、打开、关闭数据库" class="headerlink" title="创建、打开、关闭数据库"></a>创建、打开、关闭数据库</h3><ul>
 <li>创建或打开数据库</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// path为：~/Documents/person.db</span><br><span class="line">sqlite3 *db;</span><br><span class="line">int result = sqlite3_open([path UTF8String], &amp;db);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// path为：~/Documents/person.db</span></span><br><span class="line">sqlite3 *db;</span><br><span class="line"><span class="keyword">int</span> result = sqlite3_open([path UTF8String], &amp;db);</span><br></pre></td></tr></table></figure>
 <p>代码解析：</p>
 <ul>
 <li>sqlite3_open()将根据文件路径打开数据库，如果不存在，则会创建一个新的数据库。如果result等于常量SQLITE_OK，则表示成功打开数据库</li>
@@ -268,9 +260,9 @@
 <li>数据库文件的路径必须以C字符串(而非NSString)传入</li>
 </ul>
 <p>关闭数据库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3_close(db);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3_close(db);</span><br></pre></td></tr></table></figure>
 <h3 id="执行不返回数据的SQL语句"><a href="#执行不返回数据的SQL语句" class="headerlink" title="执行不返回数据的SQL语句"></a>执行不返回数据的SQL语句</h3><p>执行创表语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char *errorMsg;  // 用来存储错误信息</span><br><span class="line">char *sql = &quot;create table if not exists t_person(id integer primary key autoincrement, name text, age integer);&quot;;</span><br><span class="line">int result = sqlite3_exec(db, sql, NULL, NULL, &amp;errorMsg);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *errorMsg;  <span class="comment">// 用来存储错误信息</span></span><br><span class="line"><span class="keyword">char</span> *sql = <span class="string">"create table if not exists t_person(id integer primary key autoincrement, name text, age integer);"</span>;</span><br><span class="line"><span class="keyword">int</span> result = sqlite3_exec(db, sql, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;errorMsg);</span><br></pre></td></tr></table></figure>
 <p>代码解析：</p>
 <ul>
 <li><code>sqlite3_exec()</code>可以执行任何SQL语句，比如创表、更新、插入和删除操作。但是一般不用它执行查询语句，因为它不会返回查询到的数据</li>
@@ -281,7 +273,7 @@
 <li>回滚事务：rollback;</li>
 <li>提交事务：commit;</li>
 </ol>
-<h3 id="带占位符插入数据"><a href="#带占位符插入数据" class="headerlink" title="带占位符插入数据"></a>带占位符插入数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">char *sql = &quot;insert into t_person(name, age) values(?, ?);&quot;;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line">if (sqlite3_prepare_v2(db, sql, -1, &amp;stmt, NULL) == SQLITE_OK) &#123;</span><br><span class="line">    sqlite3_bind_text(stmt, 1, &quot;母鸡&quot;, -1, NULL);</span><br><span class="line">    sqlite3_bind_int(stmt, 2, 27);</span><br><span class="line">&#125;</span><br><span class="line">if (sqlite3_step(stmt) != SQLITE_DONE) &#123;</span><br><span class="line">    NSLog(@&quot;插入数据错误&quot;);</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt);</span><br></pre></td></tr></table></figure>
+<h3 id="带占位符插入数据"><a href="#带占位符插入数据" class="headerlink" title="带占位符插入数据"></a>带占位符插入数据</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *sql = <span class="string">"insert into t_person(name, age) values(?, ?);"</span>;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_prepare_v2(db, sql, <span class="number">-1</span>, &amp;stmt, <span class="literal">NULL</span>) == SQLITE_OK) &#123;</span><br><span class="line">    sqlite3_bind_text(stmt, <span class="number">1</span>, <span class="string">"母鸡"</span>, <span class="number">-1</span>, <span class="literal">NULL</span>);</span><br><span class="line">    sqlite3_bind_int(stmt, <span class="number">2</span>, <span class="number">27</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_step(stmt) != SQLITE_DONE) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"插入数据错误"</span>);</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt);</span><br></pre></td></tr></table></figure>
 <p><code>sqlite3_prepare_v2()</code>返回值等于<code>SQLITE_OK</code>，说明SQL语句已经准备成功，没有语法问题</p>
 <p><code>sqlite3_bind_text():</code>大部分绑定函数都只有3个参数</p>
 <ol>
@@ -293,11 +285,11 @@
 </ol>
 <p><code>sqlite_step():</code>执行SQL语句，返回<code>SQLITE_DONE</code>代表成功执行完毕</p>
 <p>sqlite_finalize():销毁sqlite3_stmt *对象</p>
-<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">char *sql = &quot;select id,name,age from t_person;&quot;;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line">if (sqlite3_prepare_v2(db, sql, -1, &amp;stmt, NULL) == SQLITE_OK) &#123;</span><br><span class="line">    while (sqlite3_step(stmt) == SQLITE_ROW) &#123;</span><br><span class="line">        int _id = sqlite3_column_int(stmt, 0);</span><br><span class="line">        char *_name = (char *)sqlite3_column_text(stmt, 1);</span><br><span class="line">        NSString *name = [NSString stringWithUTF8String:_name];</span><br><span class="line">        int _age = sqlite3_column_int(stmt, 2);</span><br><span class="line">        NSLog(@&quot;id=%i, name=%@, age=%i&quot;, _id, name, _age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt)</span><br></pre></td></tr></table></figure>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *sql = <span class="string">"select id,name,age from t_person;"</span>;</span><br><span class="line">sqlite3_stmt *stmt;</span><br><span class="line"><span class="keyword">if</span> (sqlite3_prepare_v2(db, sql, <span class="number">-1</span>, &amp;stmt, <span class="literal">NULL</span>) == SQLITE_OK) &#123;</span><br><span class="line">    <span class="keyword">while</span> (sqlite3_step(stmt) == SQLITE_ROW) &#123;</span><br><span class="line">        <span class="keyword">int</span> _<span class="keyword">id</span> = sqlite3_column_int(stmt, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">char</span> *_name = (<span class="keyword">char</span> *)sqlite3_column_text(stmt, <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">NSString</span> *name = [<span class="built_in">NSString</span> stringWithUTF8String:_name];</span><br><span class="line">        <span class="keyword">int</span> _age = sqlite3_column_int(stmt, <span class="number">2</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"id=%i, name=%@, age=%i"</span>, _<span class="keyword">id</span>, name, _age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sqlite3_finalize(stmt)</span><br></pre></td></tr></table></figure>
 <p><code>sqlite3_step()</code>返回<code>SQLITE_ROW</code>代表遍历到一条新记录</p>
 <p><code>sqlite3_column_*()</code>用于获取每个字段对应的值，第2个参数是字段的索引，从0开始</p>
 <blockquote>
-<p>新博客文章地址：<a href=""></a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/53414136" target="_blank" rel="external">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></p>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20161130DataManager/">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/53414136" target="_blank" rel="external">【iOS】iOS数据存储,应用沙盒,XML,Preference,NSKeyedArchiver归档,SQLite3</a></p>
 </blockquote>
   
 	</div>
@@ -329,6 +321,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/20170116ViewControllerProgrammingGuide/" title="为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？">
+  <strong>上一篇：</strong><br/>
+  <span>
+  为什么要在viewDidLoad 中加载view，在viewWillAppear:中对view进行layout？</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/post/20161109TableViewPG/"  title="Table View Programming Guide for iOS">
@@ -376,15 +376,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/健身/" title="健身">健身<sup>1</sup></a></li>
 		  
 		
 		  
@@ -498,7 +498,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
 		

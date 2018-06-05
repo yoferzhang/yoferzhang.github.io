@@ -23,7 +23,7 @@ NSDict">
 
 NSArray 转换成 NSMutableArray123NSArray * array = @[@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];NSLog(@&quot;muarray %@&quot;,muArray);
 NSDict">
-<meta property="og:updated_time" content="2016-08-14T07:51:04.000Z">
+<meta property="og:updated_time" content="2017-02-09T05:27:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate - iOS">
 <meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
@@ -118,6 +118,7 @@ NSDict">
 </blockquote>
 <h2 id="NSArray-转换成-NSMutableArray"><a href="#NSArray-转换成-NSMutableArray" class="headerlink" title="NSArray 转换成 NSMutableArray"></a>NSArray 转换成 NSMutableArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"><span class="built_in">NSMutableArray</span> * muArray = [<span class="built_in">NSMutableArray</span> arrayWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muarray %@"</span>,muArray);</span><br></pre></td></tr></table></figure>
 <h2 id="NSDictonary-转换成-NSMutableDictionary"><a href="#NSDictonary-转换成-NSMutableDictionary" class="headerlink" title="NSDictonary 转换成 NSMutableDictionary"></a>NSDictonary 转换成 NSMutableDictionary</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</span><br><span class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [<span class="built_in">NSMutableDictionary</span> dictionaryWithDictionary:dic];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mudic %@ "</span>,muDic);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="NSset-转换成-NSMutableSet"><a href="#NSset-转换成-NSMutableSet" class="headerlink" title="NSset 转换成 NSMutableSet"></a>NSset 转换成 NSMutableSet</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSSet</span> * set = [[<span class="built_in">NSSet</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSMutableSet</span> *muSet = [<span class="built_in">NSMutableSet</span> setWithSet:set];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet %@"</span>,muSet);</span><br></pre></td></tr></table></figure>
 <h2 id="NSArray-转换成NSSet"><a href="#NSArray-转换成NSSet" class="headerlink" title="NSArray 转换成NSSet"></a>NSArray 转换成NSSet</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableSet</span> * muSet2 = [<span class="built_in">NSMutableSet</span> setWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muSet2 %@"</span>,muSet2);</span><br></pre></td></tr></table></figure>
 <h2 id="NSDictionary-转化成-NSArray"><a href="#NSDictionary-转化成-NSArray" class="headerlink" title="NSDictionary 转化成 NSArray"></a>NSDictionary 转化成 NSArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * allkeys = [dic allKeys];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"allkeys %@"</span>,allkeys);</span><br><span class="line"><span class="built_in">NSArray</span> * allValues = [dic allValues];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"allValues %@"</span>,allValues);</span><br></pre></td></tr></table></figure>
@@ -219,15 +220,15 @@ NSDict">
 		<ul>
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>46</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>45</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/健身/" title="健身">健身<sup>1</sup></a></li>
 		  
 		
 		  
@@ -341,7 +342,7 @@ NSDict">
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
 		
