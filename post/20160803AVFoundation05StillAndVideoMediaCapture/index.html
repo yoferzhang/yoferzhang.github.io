@@ -1,0 +1,983 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="新博客文章地址：
+完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。">
+<meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="新博客文章地址：
+完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gmf843fwj20vi0n9jsb.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gvmy61otj20ma0msdfz.jpg">
+<meta property="og:updated_time" content="2017-02-16T08:40:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。">
+<meta name="twitter:description" content="新博客文章地址：
+完整版 - AVFoundation Programming Guide
+分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160803AVFoundation05StillAndVideoMediaCapture/" title="AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。" itemprop="url">AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-03T07:06:53.000Z" itemprop="datePublished"> 发表于 2016-08-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Still-and-Video-Media-Capture-静态视频媒体捕获。"><span class="toc-number">1.</span> <span class="toc-text">Still and Video Media Capture - 静态视频媒体捕获。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><span class="toc-number">1.1.</span> <span class="toc-text">Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Session-配置会话"><span class="toc-number">1.1.1.</span> <span class="toc-text">Configuring a Session - 配置会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Monitoring-Capture-Session-State-监视捕获会话状态"><span class="toc-number">1.1.2.</span> <span class="toc-text">Monitoring Capture Session State - 监视捕获会话状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#An-AVCaptureDevice-Object-Represents-an-Input-Device-一个-AVCaptureDevice-对象代表一个输入设备"><span class="toc-number">1.2.</span> <span class="toc-text">An AVCaptureDevice Object Represents an Input Device - 一个 AVCaptureDevice 对象代表一个输入设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Characteristics-设备特点"><span class="toc-number">1.2.1.</span> <span class="toc-text">Device Characteristics - 设备特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Capture-Settings"><span class="toc-number">1.2.2.</span> <span class="toc-text">Device Capture Settings</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Focus-Modes-聚焦模式"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Focus Modes - 聚焦模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exposure-Modes-曝光模式"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Exposure Modes - 曝光模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flash-Modes-闪光模式"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Flash Modes - 闪光模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Torch-Mode-手电筒模式"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Torch Mode - 手电筒模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-Stabilization-视频稳定性"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Video Stabilization - 视频稳定性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#White-Balance-白平衡"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">White Balance - 白平衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Setting-Device-Orientation-设置设备方向"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">Setting Device Orientation - 设置设备方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Device-配置设备"><span class="toc-number">1.2.3.</span> <span class="toc-text">Configuring a Device - 配置设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Switching-Between-Devices-切换装置"><span class="toc-number">1.2.4.</span> <span class="toc-text">Switching Between Devices - 切换装置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Capture-Inputs-to-Add-a-Capture-Device-to-a-Session-使用捕获输入将捕获设备添加到会话中"><span class="toc-number">1.3.</span> <span class="toc-text">Use Capture Inputs to Add a Capture Device to a Session - 使用捕获输入将捕获设备添加到会话中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Capture-Outputs-to-Get-Output-from-a-Session-使用捕获输出从会话得到输出"><span class="toc-number">1.4.</span> <span class="toc-text">Use Capture Outputs to Get Output from a Session - 使用捕获输出从会话得到输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Saving-to-a-Movie-File-保存电影文件"><span class="toc-number">1.4.1.</span> <span class="toc-text">Saving to a Movie File - 保存电影文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Starting-a-Recording-开始记录"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Starting a Recording - 开始记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ensuring-That-the-File-Was-Written-Successfully-确保文件被成功写入"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">Ensuring That the File Was Written Successfully - 确保文件被成功写入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Metadata-to-a-File-将元数据添加到文件中"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">Adding Metadata to a File - 将元数据添加到文件中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Processing-Frames-of-Video-处理视频的帧"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">Processing Frames of Video - 处理视频的帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance-Considerations-for-Processing-Video-处理视频的性能考虑"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">Performance Considerations for Processing Video - 处理视频的性能考虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Capturing-Still-Images-捕获静止图像"><span class="toc-number">1.4.2.</span> <span class="toc-text">Capturing Still Images - 捕获静止图像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pixel-and-Encoding-Formats-像素和编码格式"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Pixel and Encoding Formats - 像素和编码格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Capturing-an-Image-捕获图像"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Capturing an Image - 捕获图像</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Showing-the-User-What’s-Being-Recorded-显示用户正在被记录什么"><span class="toc-number">1.5.</span> <span class="toc-text">Showing the User What’s Being Recorded - 显示用户正在被记录什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Video-Preview-视频预览"><span class="toc-number">1.5.1.</span> <span class="toc-text">Video Preview - 视频预览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-Gravity-Modes-视屏重力模式"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Video Gravity Modes - 视屏重力模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-“Tap-to-Focus”-with-a-Preview-使用“点击焦点”预览"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Using “Tap to Focus” with a Preview - 使用“点击焦点”预览</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Showing-Audio-Levels-显示音频等级"><span class="toc-number">1.5.2.</span> <span class="toc-text">Showing Audio Levels - 显示音频等级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting-It-All-Together-Capturing-Video-Frames-as-UIImage-Objects-总而言之：捕获视频帧用作-UIImage-对象"><span class="toc-number">1.6.</span> <span class="toc-text">Putting It All Together: Capturing Video Frames as UIImage Objects - 总而言之：捕获视频帧用作 UIImage 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-a-Capture-Session-创建和配置捕获会话"><span class="toc-number">1.6.1.</span> <span class="toc-text">Create and Configure a Capture Session - 创建和配置捕获会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-the-Device-and-Device-Input-创建和配置设备记忆设备输入"><span class="toc-number">1.6.2.</span> <span class="toc-text">Create and Configure the Device and Device Input - 创建和配置设备记忆设备输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-the-Video-Data-Output-创建和配置视频数据输出"><span class="toc-number">1.6.3.</span> <span class="toc-text">Create and Configure the Video Data Output - 创建和配置视频数据输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implement-the-Sample-Buffer-Delegate-Method-实现示例缓冲代理方法"><span class="toc-number">1.6.4.</span> <span class="toc-text">Implement the Sample Buffer Delegate Method - 实现示例缓冲代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Starting-and-Stopping-Recording-启动和停止录制"><span class="toc-number">1.6.5.</span> <span class="toc-text">Starting and Stopping Recording - 启动和停止录制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#High-Frame-Rate-Video-Capture-高帧速率视频捕获"><span class="toc-number">1.7.</span> <span class="toc-text">High Frame Rate Video Capture - 高帧速率视频捕获</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Playback-播放"><span class="toc-number">1.7.1.</span> <span class="toc-text">Playback - 播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Editing-编辑"><span class="toc-number">1.7.2.</span> <span class="toc-text">Editing - 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Export-出口"><span class="toc-number">1.7.3.</span> <span class="toc-text">Export - 出口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recording-录制"><span class="toc-number">1.7.4.</span> <span class="toc-text">Recording - 录制</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>新博客文章地址：</p>
+<p>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394" target="_blank" rel="external">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>– 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>– 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>– 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>– 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
+</blockquote>
+<h1 id="Still-and-Video-Media-Capture-静态视频媒体捕获。"><a href="#Still-and-Video-Media-Capture-静态视频媒体捕获。" class="headerlink" title="Still and Video Media Capture - 静态视频媒体捕获。"></a>Still and Video Media Capture - 静态视频媒体捕获。</h1><p>To manage the capture from a device such as a camera or microphone, you assemble objects to represent inputs and outputs, and use an instance of AVCaptureSession to coordinate the data flow between them. Minimally you need:</p>
+<ul>
+<li>An instance of AVCaptureDevice to represent the input device, such as a camera or microphone</li>
+<li>An instance of a concrete subclass of AVCaptureInput to configure the ports from the input device</li>
+<li>An instance of a concrete subclass of AVCaptureOutput to manage the output to a movie file or still image</li>
+<li>An instance of AVCaptureSession to coordinate the data flow from the input to the output</li>
+</ul>
+<p>从一个设备，例如照相机或者麦克风管理捕获，组合对象来表示输入和输出，并使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 的实例来协调它们之间的数据流。你需要最低限度的了解：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/cl/AVCaptureDevice" target="_blank" rel="external">AVCaptureDevice</a> 的实例表示输入设备，比如照相机或麦克风</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a> 的具体子类的实例从输入设备配置端口</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureOutput" target="_blank" rel="external">AVCaptureOutput</a> 的具体子类的实例来管理输出一个电影文件或者静态图像</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 的实例从输入到输出协调数据流</li>
+</ul>
+<p>To show the user a preview of what the camera is recording, you can use an instance of AVCaptureVideoPreviewLayer (a subclass of CALayer).</p>
+<p>You can configure multiple inputs and outputs, coordinated by a single session, as shown in Figure 4-1</p>
+<p>为了向用户展示照相机之前记录的预览，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoPreviewLayer" target="_blank" rel="external">AVCaptureVideoPreviewLayer</a> 的实例（<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/index.html#//apple_ref/occ/cl/CALayer" target="_blank" rel="external">CALayer</a> 的一个子类）</p>
+<p>可以配置多个输入和输出，由一个单独的会话协调。如图4-1所示：</p>
+<center><br>    <img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6gm15jfy4j20ug0h9753.jpg" alt="Figure 4-1  A single session can configure multiple inputs and outputs"><br></center>
+
+<p>For many applications, this is as much detail as you need. For some operations, however, (if you want to monitor the power levels in an audio channel, for example) you need to consider how the various ports of an input device are represented and how those ports are connected to the output.</p>
+<p>对于大多数程序，这有尽可能多的你需要知道的细节。然而对于某些操作（例如如果你想监视音频信道中的功率水平），需要考虑输入设备的各种端口如何表示，以及这些端口是如何连接到输出的。</p>
+<p>A connection between a capture input and a capture output in a capture session is represented by an AVCaptureConnection object. Capture inputs (instances of AVCaptureInput) have one or more input ports (instances of AVCaptureInputPort). Capture outputs (instances of AVCaptureOutput) can accept data from one or more sources (for example, an AVCaptureMovieFileOutput object accepts both video and audio data).</p>
+<p>捕获输入和捕获输出的会话之间的连接表现为 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/cl/AVCaptureConnection" target="_blank" rel="external">AVCaptureConnection</a> 对象。捕获输入（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a>的实例）有一个或多个输入端口（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInputPort_Class/index.html#//apple_ref/occ/cl/AVCaptureInputPort" target="_blank" rel="external">AVCaptureInputPort</a>的实例）。捕获输出（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureOutput" target="_blank" rel="external">AVCaptureOutput</a>的实例）可以从一个或多个资源接受数据（例如，<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureMovieFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureMovieFileOutput" target="_blank" rel="external">AVCaptureMovieFileOutput</a> 对象接受音频和视频数据）。</p>
+<p>When you add an input or an output to a session, the session forms connections between all the compatible capture inputs’ ports and capture outputs, as shown in Figure 4-2. A connection between a capture input and a capture output is represented by an AVCaptureConnection object.</p>
+<p>当给会话添加一个输入或者一个输出时，会话构成了所有可兼容的捕获输入端口和捕获输出端口的连接，如图4-2所示。捕获输入与捕获输出之间的连接是由 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/cl/AVCaptureConnection" target="_blank" rel="external">AVCaptureConnection</a> 对象表示。</p>
+<center><br>    <img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gmf843fwj20vi0n9jsb.jpg" alt="Figure 4-2  AVCaptureConnection represents a connection between an input and output"><br></center>
+
+<p>You can use a capture connection to enable or disable the flow of data from a given input or to a given output. You can also use a connection to monitor the average and peak power levels in an audio channel.</p>
+<p>可以使用捕获连接来启用或者禁用给定输入或给定输出的数据流。也可以使用连接来监视音频信道中的平均和峰值功率水平。</p>
+<blockquote>
+<p>Note: Media capture does not support simultaneous capture of both the front-facing and back-facing cameras on iOS devices.</p>
+<p>注意：媒体捕获不支持iOS设备上的前置摄像头和后置摄像头的同时捕捉。</p>
+</blockquote>
+<h2 id="Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><a href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流" class="headerlink" title="Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流"></a>Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</h2><p>An AVCaptureSession object is the central coordinating object you use to manage data capture. You use an instance to coordinate the flow of data from AV input devices to outputs. You add the capture devices and outputs you want to the session, then start data flow by sending the session a startRunning message, and stop the data flow by sending a stopRunning message.</p>
+<p><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 对象是你用来管理数据捕获的中央协调对象。使用一个实例来协调从 <code>AV</code> 输入设备到输出的数据流。添加捕获设备并且输出你想要的会话，然后发送一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/startRunning" target="_blank" rel="external">startRunning</a> 消息启动数据流，发送 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/stopRunning" target="_blank" rel="external">stopRunning</a> 消息来停止数据流。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *session = [[<span class="built_in">AVCaptureSession</span> alloc] init];</span><br><span class="line"><span class="comment">// Add inputs and outputs.</span></span><br><span class="line">[session startRunning];</span><br></pre></td></tr></table></figure>
+<h3 id="Configuring-a-Session-配置会话"><a href="#Configuring-a-Session-配置会话" class="headerlink" title="Configuring a Session - 配置会话"></a>Configuring a Session - 配置会话</h3><p>You use a preset on the session to specify the image quality and resolution you want. A preset is a constant that identifies one of a number of possible configurations; in some cases the actual configuration is device-specific:</p>
+<p>使用会话上的 <code>preset</code> 来指定图像的质量和分辨率。预设是一个常数，确定了一部分可能的配置中的一个；在某些情况下，设计的配置是设备特有的：</p>
+<p>| Symbol | Resolution | Comments |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetHigh" target="_blank" rel="external">AVCaptureSessionPresetHigh</a> | High | Highest recording quality.This varies per device.|<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetMedium" target="_blank" rel="external">AVCaptureSessionPresetMedium</a> | Medium | Suitable for Wi-Fi sharing.The actual values may change.|<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetLow" target="_blank" rel="external">AVCaptureSessionPresetLow</a> | Low | Suitable for 3G sharing.The actual values may change. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPreset640x480" target="_blank" rel="external">AVCaptureSessionPreset640x480</a> | 640x480 | VGA |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPreset1280x720" target="_blank" rel="external">AVCaptureSessionPreset1280x720</a> | 1280x720 | 720p HD. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionPresetPhoto" target="_blank" rel="external">AVCaptureSessionPresetPhoto</a> | Photo | Full photo resolution.This is not supported for video output. |</p>
+<p>If you want to set a media frame size-specific configuration, you should check whether it is supported before setting it, as follows:</p>
+<p>如果要设置媒体帧特定大小的配置，应该在设置之前检查是否支持被设定，如下所示：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([session canSetSessionPreset:<span class="built_in">AVCaptureSessionPreset1280x720</span>]) &#123;</span><br><span class="line">    session.sessionPreset = <span class="built_in">AVCaptureSessionPreset1280x720</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Handle the failure.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If you need to adjust session parameters at a more granular level than is possible with a preset, or you’d like to make changes to a running session, you surround your changes with the beginConfiguration and commitConfiguration methods. The beginConfiguration and commitConfiguration methods ensure that devices changes occur as a group, minimizing visibility or inconsistency of state. After calling beginConfiguration, you can add or remove outputs, alter the sessionPreset property, or configure individual capture input or output properties. No changes are actually made until you invoke commitConfiguration, at which time they are applied together.</p>
+<p>如果需要比预设情况，更加精细的水平调整会话参数，或者想给一个正在运行的会话做些改变，用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/beginConfiguration" target="_blank" rel="external">beginConfiguration</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/commitConfiguration" target="_blank" rel="external">commitConfiguration</a> 方法。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/beginConfiguration" target="_blank" rel="external">beginConfiguration</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/commitConfiguration" target="_blank" rel="external">commitConfiguration</a> 方法确保设备作为一个群体在变化，降低状态的清晰度或者不协调性。调用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/beginConfiguration" target="_blank" rel="external">beginConfiguration</a> 之后，可以添加或者移除输出，改变 <code>sessionPreset</code> 属性，或者单独配置捕获输入或输出属性。在你调用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/commitConfiguration" target="_blank" rel="external">commitConfiguration</a> 之前实际上是没有变化的，调用的时候它们才被应用到一起。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[session beginConfiguration];</span><br><span class="line"><span class="comment">// Remove an existing capture device.</span></span><br><span class="line"><span class="comment">// Add a new capture device.</span></span><br><span class="line"><span class="comment">// Reset the preset.</span></span><br><span class="line">[session commitConfiguration];</span><br></pre></td></tr></table></figure>
+<h3 id="Monitoring-Capture-Session-State-监视捕获会话状态"><a href="#Monitoring-Capture-Session-State-监视捕获会话状态" class="headerlink" title="Monitoring Capture Session State - 监视捕获会话状态"></a>Monitoring Capture Session State - 监视捕获会话状态</h3><p>A capture session posts notifications that you can observe to be notified, for example, when it starts or stops running, or when it is interrupted. You can register to receive an AVCaptureSessionRuntimeErrorNotification if a runtime error occurs. You can also interrogate the session’s running property to find out if it is running, and its interrupted property to find out if it is interrupted. Additionally, both the running and interrupted properties are key-value observing compliant and the notifications are posted on the main thread.</p>
+<p>捕获会话发出你能观察并被通知到的 <code>notifications</code>，例如，当它开始或者停止运行，或者当它被中断。你可以注册，如果发生了运行阶段的错误，可以接收 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/data/AVCaptureSessionRuntimeErrorNotification" target="_blank" rel="external">AVCaptureSessionRuntimeErrorNotification</a> 。也可以询问会话的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/isRunning" target="_blank" rel="external">running</a> 属性去发现它正在运行的状态，并且它的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instp/AVCaptureSession/interrupted" target="_blank" rel="external">interrupted</a> 属性可以找到它是否被中断了。此外， <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/isRunning" target="_blank" rel="external">running</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instp/AVCaptureSession/interrupted" target="_blank" rel="external">interrupted</a> 属性是遵从<code>key-value observing</code> ，并且在通知都是在主线程上发布的。</p>
+<h2 id="An-AVCaptureDevice-Object-Represents-an-Input-Device-一个-AVCaptureDevice-对象代表一个输入设备"><a href="#An-AVCaptureDevice-Object-Represents-an-Input-Device-一个-AVCaptureDevice-对象代表一个输入设备" class="headerlink" title="An AVCaptureDevice Object Represents an Input Device - 一个 AVCaptureDevice 对象代表一个输入设备"></a>An AVCaptureDevice Object Represents an Input Device - 一个 <code>AVCaptureDevice</code> 对象代表一个输入设备</h2><p>An AVCaptureDevice object abstracts a physical capture device that provides input data (such as audio or video) to an AVCaptureSession object. There is one object for each input device, for example, two video inputs—one for the front-facing the camera, one for the back-facing camera—and one audio input for the microphone.</p>
+<p>一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/cl/AVCaptureDevice" target="_blank" rel="external">AVCaptureDevice</a> 对象抽象出物理捕获设备，提供了输入数据(比如音频或者视频)给 <code>AVCaptureSession</code> 对象。例如每个输入设备都有一个对象，两个视频输入，一个用于前置摄像头，一个用于后置摄像头，一个用于麦克风的音频输入。</p>
+<p>You can find out which capture devices are currently available using the AVCaptureDevice class methods devices and devicesWithMediaType:. And, if necessary, you can find out what features an iPhone, iPad, or iPod offers (see Device Capture Settings). The list of available devices may change, though. Current input devices may become unavailable (if they’re used by another application), and new input devices may become available, (if they’re relinquished by another application). You should register to receive AVCaptureDeviceWasConnectedNotification and AVCaptureDeviceWasDisconnectedNotification notifications to be alerted when the list of available devices changes.</p>
+<p>使用 <code>AVCaptureDevice</code> 类方法 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/clm/AVCaptureDevice/devices" target="_blank" rel="external">devices</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/clm/AVCaptureDevice/devicesWithMediaType:" target="_blank" rel="external">devicesWithMediaType:</a> 可以找出哪一个捕获设备当前是可用的。而且如果有必要，可以找出 <code>iPhone</code>，<code>iPad</code> 或者 <code>iPod</code> 提供了什么功能（详情看：<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW18" target="_blank" rel="external">Device Capture Settings</a>）。虽然可用设备的列表可能会改变。当前输入设备可能会变得不可用（如果他们被另一个应用程序使用），新的输入设备可能成为可用的，（如果他们被另一个应用程序让出）。应该注册，当可用设备列表改变时接收 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/data/AVCaptureDeviceWasConnectedNotification" target="_blank" rel="external">AVCaptureDeviceWasConnectedNotification</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/data/AVCaptureDeviceWasDisconnectedNotification" target="_blank" rel="external">AVCaptureDeviceWasDisconnectedNotification</a> 通知。</p>
+<p>You add an input device to a capture session using a capture input (see Use Capture Inputs to Add a Capture Device to a Session).</p>
+<p>使用捕获输入将输入设备添加到捕获会话中（详情请看：<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW6" target="_blank" rel="external">Use Capture Inputs to Add a Capture Device to a Session</a>）</p>
+<h3 id="Device-Characteristics-设备特点"><a href="#Device-Characteristics-设备特点" class="headerlink" title="Device Characteristics - 设备特点"></a>Device Characteristics - 设备特点</h3><p>You can ask a device about its different characteristics. You can also test whether it provides a particular media type or supports a given capture session preset using hasMediaType: and supportsAVCaptureSessionPreset: respectively. To provide information to the user, you can find out the position of the capture device (whether it is on the front or the back of the unit being tested), and its localized name. This may be useful if you want to present a list of capture devices to allow the user to choose one.</p>
+<p>你可以问一个有关设备的不同特征。你也可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/hasMediaType:" target="_blank" rel="external">hasMediaType:</a> 测试它是否提供了一个特定的媒体类型，或者使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/supportsAVCaptureSessionPreset:" target="_blank" rel="external">supportsAVCaptureSessionPreset:</a> 支持一个给定捕捉会话的预设状态。为了给用户提供信息，可以找到捕捉设备的位置（无论它是在正被测试单元的前面还是后面），以及本地化名称。这是很有用的，如果你想提出一个捕获设备的列表，让用户选择一个。</p>
+<p>Figure 4-3 shows the positions of the back-facing (AVCaptureDevicePositionBack) and front-facing (AVCaptureDevicePositionFront) cameras.</p>
+<p>图4-3显示了后置摄像头（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureDevicePositionBack" target="_blank" rel="external">AVCaptureDevicePositionBack</a>）和前置摄像头（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureDevicePositionFront" target="_blank" rel="external">AVCaptureDevicePositionFront</a>）的位置。</p>
+<blockquote>
+<p>Note: Media capture does not support simultaneous capture of both the front-facing and back-facing cameras on iOS devices.</p>
+<p>注意：媒体捕获在iOS设备上不支持前置摄像头和后置摄像头同时捕捉。</p>
+</blockquote>
+<center><br>    <img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6gvmy61otj20ma0msdfz.jpg" alt="Figure 4-3  iOS device front and back facing camera positions"><br></center>
+
+<p>The following code example iterates over all the available devices and logs their name—and for video devices, their position—on the unit.</p>
+<p>下面的代码示例遍历了所有可用的设备并且记录了它们的名字，视频设备，在装置上的位置。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *devices = [<span class="built_in">AVCaptureDevice</span> devices];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">AVCaptureDevice</span> *device <span class="keyword">in</span> devices) &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Device name: %@"</span>, [device localizedName]);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> ([device hasMediaType:<span class="built_in">AVMediaTypeVideo</span>]) &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> ([device position] == <span class="built_in">AVCaptureDevicePositionBack</span>) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Device position : back"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Device position : front"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In addition, you can find out the device’s model ID and its unique ID.</p>
+<p>此外，你可以找到该设备的 <code>model ID</code> 和它的 <code>unique ID</code>。</p>
+<h3 id="Device-Capture-Settings"><a href="#Device-Capture-Settings" class="headerlink" title="Device Capture Settings"></a>Device Capture Settings</h3><p>Different devices have different capabilities; for example, some may support different focus or flash modes; some may support focus on a point of interest.</p>
+<p>例如不同设备有不同的功能，一些可能支持不同的聚焦或者闪光模式；一些可能会支持聚焦在一个兴趣点。</p>
+<p>The following code fragment shows how you can find video input devices that have a torch mode and support a given capture session preset:</p>
+<p>下面的代码片段展示了如何找到有一个 <code>torch</code> 模式的视频输入设备，并且支持一个捕捉会话预设。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *devices = [<span class="built_in">AVCaptureDevice</span> devicesWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"><span class="built_in">NSMutableArray</span> *torchDevices = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">AVCaptureDevice</span> *device <span class="keyword">in</span> devices) &#123;</span><br><span class="line">    [<span class="keyword">if</span> ([device hasTorch] &amp;&amp;</span><br><span class="line">         [device supports<span class="built_in">AVCaptureSessionPreset</span>:<span class="built_in">AVCaptureSessionPreset640x480</span>]) &#123;</span><br><span class="line">        [torchDevices addObject:device];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If you find multiple devices that meet your criteria, you might let the user choose which one they want to use. To display a description of a device to the user, you can use its localizedName property.</p>
+<p>如果找到多个设备满足标准，你可能会让用户选择一个他们想使用的。给用户显示一个设备的描述，可以使用它的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/localizedName" target="_blank" rel="external">localizedName</a> 属性。</p>
+<p>You use the various different features in similar ways. There are constants to specify a particular mode, and you can ask a device whether it supports a particular mode. In several cases, you can observe a property to be notified when a feature is changing. In all cases, you should lock the device before changing the mode of a particular feature, as described in Configuring a Device.</p>
+<p>用类似的方法使用各种不同的功能。有常量来指定一个特定的模式，也可以问设备是否支持特定的模式。在一些情况下，当功能改变的时候可以观察到要通知的属性。在所有情况下，你应该改变特定功能的模式之前锁定设备，如在设备配置中描述。</p>
+<blockquote>
+<p>Note: Focus point of interest and exposure point of interest are mutually exclusive, as are focus mode and exposure mode.</p>
+<p>注意：兴趣的焦点和兴趣的曝光点是相互排斥的，因为是聚焦模式和曝光模式。</p>
+</blockquote>
+<h4 id="Focus-Modes-聚焦模式"><a href="#Focus-Modes-聚焦模式" class="headerlink" title="Focus Modes - 聚焦模式"></a>Focus Modes - 聚焦模式</h4><p>There are three focus modes:</p>
+<ul>
+<li>AVCaptureFocusModeLocked: The focal position is fixed.<br>This is useful when you want to allow the user to compose a scene then lock the focus.</li>
+<li>AVCaptureFocusModeAutoFocus: The camera does a single scan focus then reverts to locked.<br>This is suitable for a situation where you want to select a particular item on which to focus and then maintain focus on that item even if it is not the center of the scene.</li>
+<li>AVCaptureFocusModeContinuousAutoFocus: The camera continuously autofocuses as needed.</li>
+</ul>
+<p>有3个聚焦模式：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFocusModeLocked" target="_blank" rel="external">AVCaptureFocusModeLocked</a> ：焦点的位置是固定的。<br>这是很有用的，当你想让用户组成一个场景，然后锁定焦点。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFocusModeAutoFocus" target="_blank" rel="external">AVCaptureFocusModeAutoFocus</a> ：照相机做一次扫描聚焦，然后将焦点锁定。<br>这适合于，你想要选择一个特定的项目，即使它不是现场的中心，但可以专注于该项目的焦点。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFocusModeContinuousAutoFocus" target="_blank" rel="external">AVCaptureFocusModeContinuousAutoFocus</a> 相机需要不断的自动对焦。</li>
+</ul>
+<p>You use the isFocusModeSupported: method to determine whether a device supports a given focus mode, then set the mode using the focusMode property.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isFocusModeSupported:" target="_blank" rel="external">isFocusModeSupported:</a> 方法来决定设备是否支持给定的聚焦模式，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/focusMode" target="_blank" rel="external">focusMode</a>  属性设置模式。</p>
+<p>In addition, a device may support a focus point of interest. You test for support using focusPointOfInterestSupported. If it’s supported, you set the focal point using focusPointOfInterest. You pass a CGPoint where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right in landscape mode with the home button on the right—this applies even if the device is in portrait mode.</p>
+<p>此外，设备可能支持一个兴趣焦点。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/focusPointOfInterestSupported" target="_blank" rel="external">focusPointOfInterestSupported</a> 进行支持测试。如果支持，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/focusPointOfInterest" target="_blank" rel="external">focusPointOfInterest</a> 设置焦点。传一个 <code>CGPoing</code>，横向模式下（就是 <code>home</code> 键在右边）图片的左上角是 <code>{0, 0}</code>，右下角是 <code>{1, 1}</code>， – 即使设备是纵向模式也适用。</p>
+<p>You can use the adjustingFocus property to determine whether a device is currently focusing. You can observe the property using key-value observing to be notified when a device starts and stops focusing.</p>
+<p>你可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isAdjustingFocus" target="_blank" rel="external">adjustingFocus</a> 属性来确定设备是否正在聚焦。当设备开始、停止聚焦时可以使用 <code>key-value observing</code> 观察，接收通知。</p>
+<p>If you change the focus mode settings, you can return them to the default configuration as follows:</p>
+<p>如果改变聚焦模式设置，可以将其返回到默认配置，如下所示：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([currentDevice isFocusModeSupported:<span class="built_in">AVCaptureFocusModeContinuousAutoFocus</span>]) &#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> autofocusPoint = <span class="built_in">CGPointMake</span>(<span class="number">0.5</span>f, <span class="number">0.5</span>f);</span><br><span class="line">    [currentDevice setFocusPointOfInterest:autofocusPoint];</span><br><span class="line">    [currentDevice setFocusMode:<span class="built_in">AVCaptureFocusModeContinuousAutoFocus</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Exposure-Modes-曝光模式"><a href="#Exposure-Modes-曝光模式" class="headerlink" title="Exposure Modes - 曝光模式"></a>Exposure Modes - 曝光模式</h4><p>There are two exposure modes:</p>
+<ul>
+<li>AVCaptureExposureModeContinuousAutoExposure: The device automatically adjusts the exposure level as needed.</li>
+<li>AVCaptureExposureModeLocked: The exposure level is fixed at its current level.</li>
+</ul>
+<p>You use the isExposureModeSupported: method to determine whether a device supports a given exposure mode, then set the mode using the exposureMode property.</p>
+<p>有两种曝光模式：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/Reference/Reference.html#//apple_ref/doc/c_ref/AVCaptureExposureModeContinuousAutoExposure" target="_blank" rel="external">AVCaptureExposureModeContinuousAutoExposure</a> ：设备根据需要自动调整曝光等级。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureExposureModeLocked" target="_blank" rel="external">AVCaptureExposureModeLocked</a> ：曝光等级固定在当前等级。</li>
+</ul>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isExposureModeSupported:" target="_blank" rel="external">isExposureModeSupported:</a>  方法来确定设备是否支持给定的曝光模式，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/exposureMode" target="_blank" rel="external">exposureMode</a> 属性设置模式。</p>
+<p>In addition, a device may support an exposure point of interest. You test for support using exposurePointOfInterestSupported. If it’s supported, you set the exposure point using exposurePointOfInterest. You pass a CGPoint where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right in landscape mode with the home button on the right—this applies even if the device is in portrait mode.</p>
+<p>此外，一个设备支持一个曝光点。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/exposurePointOfInterestSupported" target="_blank" rel="external">exposurePointOfInterestSupported</a> 测试支持。如果支持，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/exposurePointOfInterest" target="_blank" rel="external">exposurePointOfInterest</a> 设置曝光点。传一个 <code>CGPoing</code>，横向模式下（就是 <code>home</code> 键在右边）图片的左上角是 <code>{0, 0}</code>，右下角是 <code>{1, 1}</code>， – 即使设备是纵向模式也适用。</p>
+<p>You can use the adjustingExposure property to determine whether a device is currently changing its exposure setting. You can observe the property using key-value observing to be notified when a device starts and stops changing its exposure setting.</p>
+<p>可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isAdjustingExposure" target="_blank" rel="external">adjustingExposure</a> 属性来确定设备当前是否改变它的聚焦设置。当设备开始、停止聚焦时可以使用 <code>key-value observing</code> 观察，接收通知。</p>
+<p>If you change the exposure settings, you can return them to the default configuration as follows:</p>
+<p>如果改变曝光设置，可以将其返回到默认配置，如下所示：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([currentDevice isExposureModeSupported:<span class="built_in">AVCaptureExposureModeContinuousAutoExposure</span>]) &#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> exposurePoint = <span class="built_in">CGPointMake</span>(<span class="number">0.5</span>f, <span class="number">0.5</span>f);</span><br><span class="line">    [currentDevice setExposurePointOfInterest:exposurePoint];</span><br><span class="line">    [currentDevice setExposureMode:<span class="built_in">AVCaptureExposureModeContinuousAutoExposure</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Flash-Modes-闪光模式"><a href="#Flash-Modes-闪光模式" class="headerlink" title="Flash Modes - 闪光模式"></a>Flash Modes - 闪光模式</h4><p>There are three flash modes:</p>
+<ul>
+<li>AVCaptureFlashModeOff: The flash will never fire.</li>
+<li>AVCaptureFlashModeOn: The flash will always fire.</li>
+<li>AVCaptureFlashModeAuto: The flash will fire dependent on the ambient light conditions.</li>
+</ul>
+<p>You use hasFlash to determine whether a device has a flash. If that method returns YES, you then use the isFlashModeSupported: method, passing the desired mode to determine whether a device supports a given flash mode, then set the mode using the flashMode property.</p>
+<p>有3种闪光模式：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFlashModeOff" target="_blank" rel="external">AVCaptureFlashModeOff</a> ：闪光灯不会闪。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFlashModeOn" target="_blank" rel="external">AVCaptureFlashModeOn</a> ：闪光灯总是会闪。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureFlashModeAuto" target="_blank" rel="external">AVCaptureFlashModeAuto</a> ：闪光灯取决去周围的光感环境。</li>
+</ul>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/hasFlash" target="_blank" rel="external">hasFlash</a> 来确定设备是否有闪光灯。如果这个方法返回 <code>YES</code> ，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isFlashModeSupported:" target="_blank" rel="external">isFlashModeSupported:</a> 方法确定设备是否支持给定的闪光模式，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/flashMode" target="_blank" rel="external">flashMode</a>  属性设置模式。</p>
+<h4 id="Torch-Mode-手电筒模式"><a href="#Torch-Mode-手电筒模式" class="headerlink" title="Torch Mode - 手电筒模式"></a>Torch Mode - 手电筒模式</h4><p>In torch mode, the flash is continuously enabled at a low power to illuminate a video capture. There are three torch modes:</p>
+<ul>
+<li>AVCaptureTorchModeOff: The torch is always off.</li>
+<li>AVCaptureTorchModeOn: The torch is always on.</li>
+<li>AVCaptureTorchModeAuto: The torch is automatically switched on and off as needed.</li>
+</ul>
+<p>You use hasTorch to determine whether a device has a flash. You use the isTorchModeSupported: method to determine whether a device supports a given flash mode, then set the mode using the torchMode property.</p>
+<p>For devices with a torch, the torch only turns on if the device is associated with a running capture session.</p>
+<p>在手电筒模式下，闪光灯在一个低功率下一直开启，以照亮对视频捕获。有3个手电筒模式：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureTorchModeOff" target="_blank" rel="external">AVCaptureTorchModeOff</a> ：总是关闭。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureTorchModeOn" target="_blank" rel="external">AVCaptureTorchModeOn</a> ：总是打开。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureTorchModeAuto" target="_blank" rel="external">AVCaptureTorchModeAuto</a> ：闪光灯根据需要自动开关。</li>
+</ul>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/hasTorch" target="_blank" rel="external">hasTorch</a> 来确定设备是否有闪光灯。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isTorchModeSupported:" target="_blank" rel="external">isTorchModeSupported:</a> 方法来确定设备是否支持给定的闪光模式，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/torchMode" target="_blank" rel="external">torchMode</a> 属性来设置模式。</p>
+<p>对于一个有手电筒的设备，只有当该设备与一个运行时捕捉会话关联时，才能打开手电筒。</p>
+<h4 id="Video-Stabilization-视频稳定性"><a href="#Video-Stabilization-视频稳定性" class="headerlink" title="Video Stabilization - 视频稳定性"></a>Video Stabilization - 视频稳定性</h4><p>Cinematic video stabilization is available for connections that operate on video, depending on the specific device hardware. Even so, not all source formats and video resolutions are supported.</p>
+<p>Enabling cinematic video stabilization may also introduce additional latency into the video capture pipeline. To detect when video stabilization is in use, use the videoStabilizationEnabled property. The enablesVideoStabilizationWhenAvailable property allows an application to automatically enable video stabilization if it is supported by the camera. By default automatic stabilization is disabled due to the above limitations.</p>
+<p>电影视频的稳定化可用于连接视频上的操作，这取决于具体的硬件。尽管如此，不是所有的源格式和视频分辨率都被支持。</p>
+<p>使用电影视频稳定化也可能会对视频采集管道引起额外的延迟。正在使用视频稳定化时，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/instp/AVCaptureConnection/videoStabilizationEnabled" target="_blank" rel="external">videoStabilizationEnabled</a> 属性可以检测。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/instp/AVCaptureConnection/enablesVideoStabilizationWhenAvailable" target="_blank" rel="external">enablesVideoStabilizationWhenAvailable</a> 属性允许应用程序自动使视频稳定化可用，如果它是被摄像头支持的话。由于以上限制，默认自动稳定化是禁用的。</p>
+<h4 id="White-Balance-白平衡"><a href="#White-Balance-白平衡" class="headerlink" title="White Balance - 白平衡"></a>White Balance - 白平衡</h4><p>There are two white balance modes:</p>
+<ul>
+<li>AVCaptureWhiteBalanceModeLocked: The white balance mode is fixed.</li>
+<li>AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance: The camera continuously adjusts the white balance as needed.</li>
+</ul>
+<p>You use the isWhiteBalanceModeSupported: method to determine whether a device supports a given white balance mode, then set the mode using the whiteBalanceMode property.</p>
+<p>You can use the adjustingWhiteBalance property to determine whether a device is currently changing its white balance setting. You can observe the property using key-value observing to be notified when a device starts and stops changing its white balance setting.</p>
+<p>有两个白平衡模式：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureWhiteBalanceModeLocked" target="_blank" rel="external">AVCaptureWhiteBalanceModeLocked</a> ：白平衡模式是固定的。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/c/econst/AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance" target="_blank" rel="external">AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance</a> ：相机需要不断调整白平衡。</li>
+</ul>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/isWhiteBalanceModeSupported:" target="_blank" rel="external">isWhiteBalanceModeSupported:</a> ：方法来确定设备是否支持给定的白平衡模式，然后使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/whiteBalanceMode" target="_blank" rel="external">whiteBalanceMode</a> 属性设置模式。</p>
+<p>可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instp/AVCaptureDevice/adjustingWhiteBalance" target="_blank" rel="external">adjustingWhiteBalance</a> 属性来确定设备是否正在改变白平衡设置。当设备开始或者停止改变它的白平衡设置时，可以使用 <code>key-value observing</code> 观察属性，接收通知。</p>
+<h4 id="Setting-Device-Orientation-设置设备方向"><a href="#Setting-Device-Orientation-设置设备方向" class="headerlink" title="Setting Device Orientation - 设置设备方向"></a>Setting Device Orientation - 设置设备方向</h4><p>You set the desired orientation on a AVCaptureConnection to specify how you want the images oriented in the AVCaptureOutput (AVCaptureMovieFileOutput, AVCaptureStillImageOutput and AVCaptureVideoDataOutput) for the connection.</p>
+<p>Use the AVCaptureConnectionsupportsVideoOrientation property to determine whether the device supports changing the orientation of the video, and the videoOrientation property to specify how you want the images oriented in the output port. Listing 4-1 shows how to set the orientation for a AVCaptureConnection to AVCaptureVideoOrientationLandscapeLeft:</p>
+<p>在 <code>AVCaptureConnection</code> 设置期望的方向，来指定你想要的图像在 <code>AVCaptureOutput</code> （<code>AVCaptureMovieFileOutput</code>， <code>AVCaptureStillImageOutput</code>, <code>AVCaptureVideoDataOutput</code>）中的方向，为了连接。</p>
+<p>使用 <code>AVCaptureConnectionsupportsVideoOrientation</code> 属性来确定设备是否支持改变视频的方向，<code>videoOrientation</code> 属性指定你想要的图像在输出端口的方向。列表4-1显示了如何设置方向，为 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/cl/AVCaptureConnection" target="_blank" rel="external">AVCaptureConnection</a> 设置 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/c/econst/AVCaptureVideoOrientationLandscapeLeft" target="_blank" rel="external">AVCaptureVideoOrientationLandscapeLeft</a> 。</p>
+<p>Listing 4-1  Setting the orientation of a capture connection</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureConnection</span> *captureConnection = &lt;<span class="meta">#A capture connection#&gt;;</span></span><br><span class="line"><span class="keyword">if</span> ([captureConnection isVideoOrientationSupported])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">AVCaptureVideoOrientation</span> orientation = <span class="built_in">AVCaptureVideoOrientationLandscapeLeft</span>;</span><br><span class="line">    [captureConnection setVideoOrientation:orientation];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Configuring-a-Device-配置设备"><a href="#Configuring-a-Device-配置设备" class="headerlink" title="Configuring a Device - 配置设备"></a>Configuring a Device - 配置设备</h3><p>To set capture properties on a device, you must first acquire a lock on the device using lockForConfiguration:. This avoids making changes that may be incompatible with settings in other applications. The following code fragment illustrates how to approach changing the focus mode on a device by first determining whether the mode is supported, then attempting to lock the device for reconfiguration. The focus mode is changed only if the lock is obtained, and the lock is released immediately afterward.</p>
+<p>在设备上设置捕获属性，必须先使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/instm/AVCaptureDevice/lockForConfiguration:" target="_blank" rel="external">lockForConfiguration:</a> 获得设备锁。这样就避免了在其他应用程序中可能与设置不兼容的更改。下面的代码段演示了首先如何通过确定模式是否被支持的方式改变一个设备上的焦点模式，然后视图锁定设备重新配置。只有当锁被获取到，焦点模式才会被改变，并且锁被释放后立即锁定。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([device isFocusModeSupported:<span class="built_in">AVCaptureFocusModeLocked</span>]) &#123;</span><br><span class="line">    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> ([device lockForConfiguration:&amp;error]) &#123;</span><br><span class="line">        device.focusMode = <span class="built_in">AVCaptureFocusModeLocked</span>;</span><br><span class="line">        [device unlockForConfiguration];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Respond to the failure as appropriate.</span></span><br></pre></td></tr></table></figure>
+<p>You should hold the device lock only if you need the settable device properties to remain unchanged. Holding the device lock unnecessarily may degrade capture quality in other applications sharing the device.</p>
+<p>只有在需要设置设备属性保持不变的时候才应该使设备锁保持。没必要的保持设备所，可能会在其他应用程序共享设备时降低捕获质量。</p>
+<h3 id="Switching-Between-Devices-切换装置"><a href="#Switching-Between-Devices-切换装置" class="headerlink" title="Switching Between Devices - 切换装置"></a>Switching Between Devices - 切换装置</h3><p>Sometimes you may want to allow users to switch between input devices—for example, switching from using the front-facing to to the back-facing camera. To avoid pauses or stuttering, you can reconfigure a session while it is running, however you should use beginConfiguration and commitConfiguration to bracket your configuration changes:</p>
+<p>有时，你可能想允许用户在输入设备之间进行切换，比如使用前置摄像头到后置摄像头的切换。为了避免暂停或者卡顿，可以在运行时配置一个会话，但是你应该使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/beginConfiguration" target="_blank" rel="external">beginConfiguration</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/commitConfiguration" target="_blank" rel="external">commitConfiguration</a> 支持你的配置改变：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *session = &lt;<span class="meta">#A capture session#&gt;;</span></span><br><span class="line">[session beginConfiguration];</span><br><span class="line"> </span><br><span class="line">[session removeInput:frontFacingCameraDeviceInput];</span><br><span class="line">[session addInput:backFacingCameraDeviceInput];</span><br><span class="line"> </span><br><span class="line">[session commitConfiguration];</span><br></pre></td></tr></table></figure>
+<p>When the outermost commitConfiguration is invoked, all the changes are made together. This ensures a smooth transition.</p>
+<p>当最外面的 <code>commitConfiguration</code> 被调用，所有的改变都是一起做的。这保证了平稳过渡。</p>
+<h2 id="Use-Capture-Inputs-to-Add-a-Capture-Device-to-a-Session-使用捕获输入将捕获设备添加到会话中"><a href="#Use-Capture-Inputs-to-Add-a-Capture-Device-to-a-Session-使用捕获输入将捕获设备添加到会话中" class="headerlink" title="Use Capture Inputs to Add a Capture Device to a Session - 使用捕获输入将捕获设备添加到会话中"></a>Use Capture Inputs to Add a Capture Device to a Session - 使用捕获输入将捕获设备添加到会话中</h2><p>To add a capture device to a capture session, you use an instance of AVCaptureDeviceInput (a concrete subclass of the abstract AVCaptureInput class). The capture device input manages the device’s ports.</p>
+<p>添加一个捕获装置到捕获会话中，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDeviceInput_Class/index.html#//apple_ref/occ/cl/AVCaptureDeviceInput" target="_blank" rel="external">AVCaptureDeviceInput</a> (<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a> 抽象类的具体子类)的实例。捕获设备输入管理设备的端口。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="built_in">AVCaptureDeviceInput</span> *input =</span><br><span class="line">        [<span class="built_in">AVCaptureDeviceInput</span> deviceInputWithDevice:device error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (!input) &#123;</span><br><span class="line">    <span class="comment">// Handle the error appropriately.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You add inputs to a session using addInput:. If appropriate, you can check whether a capture input is compatible with an existing session using canAddInput:.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/addInput:" target="_blank" rel="external">addInput:</a> 给会话添加一个输入。如果合适的话，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/canAddInput:" target="_blank" rel="external">canAddInput:</a> 检查是否有输入捕获与现有会话是兼容的。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *captureSession = &lt;<span class="meta">#Get a capture session#&gt;;</span></span><br><span class="line"><span class="built_in">AVCaptureDeviceInput</span> *captureDeviceInput = &lt;<span class="meta">#Get a capture device input#&gt;;</span></span><br><span class="line"><span class="keyword">if</span> ([captureSession canAddInput:captureDeviceInput]) &#123;</span><br><span class="line">    [captureSession addInput:captureDeviceInput];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Handle the failure.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>See Configuring a Session for more details on how you might reconfigure a running session.</p>
+<p>An AVCaptureInput vends one or more streams of media data. For example, input devices can provide both audio and video data. Each media stream provided by an input is represented by an AVCaptureInputPort object. A capture session uses an AVCaptureConnection object to define the mapping between a set of AVCaptureInputPort objects and a single AVCaptureOutput.</p>
+<p>有关如果配置一个正在运行的会话，更多细节请查看 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW16" target="_blank" rel="external">Configuring a Session</a> .</p>
+<p><code>AVCaptureInput</code> 声明一个或者多个媒体数据流。例如，输入设备可以提供音频和视频数据。输入提供的每个媒体流都被一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInputPort_Class/index.html#//apple_ref/occ/cl/AVCaptureInputPort" target="_blank" rel="external">AVCaptureInputPort</a> 所表示。一个捕获会话使用 <code>AVCaptureConnection</code> 对象来定义一个 一组 <code>AVCaptureInputPort</code> 对象和一个 <code>AVCaptureOutput</code> 之间的映射。</p>
+<h2 id="Use-Capture-Outputs-to-Get-Output-from-a-Session-使用捕获输出从会话得到输出"><a href="#Use-Capture-Outputs-to-Get-Output-from-a-Session-使用捕获输出从会话得到输出" class="headerlink" title="Use Capture Outputs to Get Output from a Session - 使用捕获输出从会话得到输出"></a>Use Capture Outputs to Get Output from a Session - 使用捕获输出从会话得到输出</h2><p>To get output from a capture session, you add one or more outputs. An output is an instance of a concrete subclass of AVCaptureOutput. You use:</p>
+<ul>
+<li>AVCaptureMovieFileOutput to output to a movie file</li>
+<li>AVCaptureVideoDataOutput if you want to process frames from the video being captured, for example, - to create your own custom view layer</li>
+<li>AVCaptureAudioDataOutput if you want to process the audio data being captured</li>
+<li>AVCaptureStillImageOutput if you want to capture still images with accompanying metadata</li>
+</ul>
+<p>You add outputs to a capture session using addOutput:. You check whether a capture output is compatible with an existing session using canAddOutput:. You can add and remove outputs as required while the session is running.</p>
+<p>要从捕获会话得到输出，可以添加一个或多个输出。一个输出是 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureOutput" target="_blank" rel="external">AVCaptureOutput</a> 的具体子类的实例。下面几种使用：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureMovieFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureMovieFileOutput" target="_blank" rel="external">AVCaptureMovieFileOutput</a> 输出电影文件</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 如果你想处理被捕获视频的帧，例如，创建自己的自定义 <code>view layer</code>。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureAudioDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureAudioDataOutput" target="_blank" rel="external">AVCaptureAudioDataOutput</a> 如果你想处理被捕获的音频数据。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureStillImageOutput" target="_blank" rel="external">AVCaptureStillImageOutput</a> 如果你想捕获有元数据的静态图像。</li>
+</ul>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/addOutput:" target="_blank" rel="external">addOutput:</a> 把输出添加到捕获会话中。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/canAddOutput:" target="_blank" rel="external">canAddOutput:</a> 检查是否一个捕获输出与现有的会话是兼容的。可以在会话正在运行的时候添加和删除所需的输出。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *captureSession = &lt;<span class="meta">#Get a capture session#&gt;;</span></span><br><span class="line"><span class="built_in">AVCaptureMovieFileOutput</span> *movieOutput = &lt;<span class="meta">#Create and configure a movie output#&gt;;</span></span><br><span class="line"><span class="keyword">if</span> ([captureSession canAddOutput:movieOutput]) &#123;</span><br><span class="line">    [captureSession addOutput:movieOutput];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Handle the failure.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Saving-to-a-Movie-File-保存电影文件"><a href="#Saving-to-a-Movie-File-保存电影文件" class="headerlink" title="Saving to a Movie File - 保存电影文件"></a>Saving to a Movie File - 保存电影文件</h3><p>You save movie data to a file using an AVCaptureMovieFileOutput object. (AVCaptureMovieFileOutput is a concrete subclass of AVCaptureFileOutput, which defines much of the basic behavior.) You can configure various aspects of the movie file output, such as the maximum duration of a recording, or its maximum file size. You can also prohibit recording if there is less than a given amount of disk space left.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureMovieFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureMovieFileOutput" target="_blank" rel="external">AVCaptureMovieFileOutput</a> 对象保存电影数据到文件中。（<code>AVCaptureMovieFileOutput</code> 是 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureFileOutput" target="_blank" rel="external">AVCaptureFileOutput</a> 的具体子类，定义了大量的基本行为。）可以电影文件输出的各个方面，如记录的最大时间，或它的最大文件的大小。也可以禁止记录，如果有小于给定磁盘空间的数量。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureMovieFileOutput</span> *aMovieFileOutput = [[<span class="built_in">AVCaptureMovieFileOutput</span> alloc] init];</span><br><span class="line">CMTime maxDuration = &lt;<span class="meta">#Create a CMTime to represent the maximum duration#&gt;;</span></span><br><span class="line">aMovieFileOutput.maxRecordedDuration = maxDuration;</span><br><span class="line">aMovieFileOutput.minFreeDiskSpaceLimit = &lt;<span class="meta">#An appropriate minimum given the quality of the movie format and the duration#&gt;;</span></span><br></pre></td></tr></table></figure>
+<p>The resolution and bit rate for the output depend on the capture session’s sessionPreset. The video encoding is typically H.264 and audio encoding is typically AAC. The actual values vary by device.</p>
+<p>输出的分辨率和比特率取决于捕获会话的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/sessionPreset" target="_blank" rel="external">sessionPreset</a> 。视频编码通常是 <code>H.264</code> ，音频编码通常是 <code>AAC</code> 。实际值因设备而异。</p>
+<h4 id="Starting-a-Recording-开始记录"><a href="#Starting-a-Recording-开始记录" class="headerlink" title="Starting a Recording - 开始记录"></a>Starting a Recording - 开始记录</h4><p>You start recording a QuickTime movie using startRecordingToOutputFileURL:recordingDelegate:. You need to supply a file-based URL and a delegate. The URL must not identify an existing file, because the movie file output does not overwrite existing resources. You must also have permission to write to the specified location. The delegate must conform to the AVCaptureFileOutputRecordingDelegate protocol, and must implement the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: method.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureFileOutput/startRecordingToOutputFileURL:recordingDelegate:" target="_blank" rel="external">startRecordingToOutputFileURL:recordingDelegate:</a> 开始记录一个 <code>QuickTime</code> 电影。需要提供一个基于 <code>URL</code> 和 <code>delegate</code> 的文件。<code>URL</code> 决不能指向一个已经存在的文件，因为电影文件输出不会覆盖存在的资源。你还必须有权限能写入指定的位置。 <code>delegate</code> 必须符合 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutputRecordingDelegate_Protocol/index.html#//apple_ref/occ/intf/AVCaptureFileOutputRecordingDelegate" target="_blank" rel="external">AVCaptureFileOutputRecordingDelegate</a> 协议，并且必须实现 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutputRecordingDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureFileOutputRecordingDelegate/captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:" target="_blank" rel="external">captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:</a> 方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureMovieFileOutput</span> *aMovieFileOutput = &lt;<span class="meta">#Get a movie file output#&gt;;</span></span><br><span class="line"><span class="built_in">NSURL</span> *fileURL = &lt;<span class="meta">#A file URL that identifies the output location#&gt;;</span></span><br><span class="line">[aMovieFileOutput startRecordingToOutputFileURL:fileURL recordingDelegate:&lt;<span class="meta">#The delegate#&gt;];</span></span><br></pre></td></tr></table></figure>
+<p>In the implementation of captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:, the delegate might write the resulting movie to the Camera Roll album. It should also check for any errors that might have occurred.</p>
+<p>在 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutputRecordingDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureFileOutputRecordingDelegate/captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:" target="_blank" rel="external">captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:</a> 的实现中，代理可以将结果电影写入到相机胶卷专辑中。它也应该可能发生的任何错误。</p>
+<h4 id="Ensuring-That-the-File-Was-Written-Successfully-确保文件被成功写入"><a href="#Ensuring-That-the-File-Was-Written-Successfully-确保文件被成功写入" class="headerlink" title="Ensuring That the File Was Written Successfully - 确保文件被成功写入"></a>Ensuring That the File Was Written Successfully - 确保文件被成功写入</h4><p>To determine whether the file was saved successfully, in the implementation of captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: you check not only the error but also the value of the AVErrorRecordingSuccessfullyFinishedKey in the error’s user info dictionary:</p>
+<p>为了确定文件是否成功被写入，在 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureFileOutputRecordingDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureFileOutputRecordingDelegate/captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:" target="_blank" rel="external">captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:</a> 的实现中，不仅要检查错误，还要在错误的用户信息字典中，检查 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/data/AVErrorRecordingSuccessfullyFinishedKey" target="_blank" rel="external">AVErrorRecordingSuccessfullyFinishedKey</a> 的值。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureFileOutput</span> *)captureOutput</span><br><span class="line">        didFinishRecordingToOutputFileAtURL:(<span class="built_in">NSURL</span> *)outputFileURL</span><br><span class="line">        fromConnections:(<span class="built_in">NSArray</span> *)connections</span><br><span class="line">        error:(<span class="built_in">NSError</span> *)error &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">BOOL</span> recordedSuccessfully = <span class="literal">YES</span>;</span><br><span class="line">    <span class="keyword">if</span> ([error code] != noErr) &#123;</span><br><span class="line">        <span class="comment">// A problem occurred: Find out if the recording was successful.</span></span><br><span class="line">        <span class="keyword">id</span> value = [[error userInfo] objectForKey:<span class="built_in">AVErrorRecordingSuccessfullyFinishedKey</span>];</span><br><span class="line">        <span class="keyword">if</span> (value) &#123;</span><br><span class="line">            recordedSuccessfully = [value boolValue];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Continue as appropriate...</span></span><br></pre></td></tr></table></figure>
+<p>You should check the value of the AVErrorRecordingSuccessfullyFinishedKeykey in the user info dictionary of the error, because the file might have been saved successfully, even though you got an error. The error might indicate that one of your recording constraints was reached—for example, AVErrorMaximumDurationReached or AVErrorMaximumFileSizeReached. Other reasons the recording might stop are:</p>
+<p>The disk is full—AVErrorDiskFull<br>The recording device was disconnected—AVErrorDeviceWasDisconnected<br>The session was interrupted (for example, a phone call was received)—AVErrorSessionWasInterrupted</p>
+<p>应该在用户的错误信息字典中检查 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/data/AVErrorRecordingSuccessfullyFinishedKey" target="_blank" rel="external">AVErrorRecordingSuccessfullyFinishedKeykey</a> 的值，因为即使得到了一个错误信息，文件可能已经被成功保存了。这种错误可能表明你的一个记录约束被延迟了，例如 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/econst/AVErrorMaximumDurationReached" target="_blank" rel="external">AVErrorMaximumDurationReached</a> 或者 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/econst/AVErrorMaximumFileSizeReached" target="_blank" rel="external">AVErrorMaximumFileSizeReached</a> 。记录可能停止的其他原因是：</p>
+<ul>
+<li>磁盘已满 – <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/econst/AVErrorDiskFull" target="_blank" rel="external">AVErrorDiskFull</a></li>
+<li>记录设备被断开连接 – <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/econst/AVErrorDeviceWasDisconnected" target="_blank" rel="external">AVErrorDeviceWasDisconnected</a></li>
+<li>会话被中断（例如，接收到一个电话） – <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_ErrorConstants/index.html#//apple_ref/c/econst/AVErrorSessionWasInterrupted" target="_blank" rel="external">AVErrorSessionWasInterrupted</a></li>
+</ul>
+<h4 id="Adding-Metadata-to-a-File-将元数据添加到文件中"><a href="#Adding-Metadata-to-a-File-将元数据添加到文件中" class="headerlink" title="Adding Metadata to a File - 将元数据添加到文件中"></a>Adding Metadata to a File - 将元数据添加到文件中</h4><p>You can set metadata for the movie file at any time, even while recording. This is useful for situations where the information is not available when the recording starts, as may be the case with location information. Metadata for a file output is represented by an array of AVMetadataItem objects; you use an instance of its mutable subclass, AVMutableMetadataItem, to create metadata of your own.</p>
+<p>可以在任何时间设置电影文件的元数据，即使在记录的时候。这是有用的，当记录开始，信息室不可用的，因为可能是位置信息的情况下。一个输出文件的元数据是由 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataItem_Class/index.html#//apple_ref/occ/cl/AVMetadataItem" target="_blank" rel="external">AVMetadataItem</a> 对象的数组表示；使用其可变子类(<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableMetadataItem_Class/index.html#//apple_ref/occ/cl/AVMutableMetadataItem" target="_blank" rel="external">AVMutableMetadataItem</a>)的实例，去创建属于你自己的元数据。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureMovieFileOutput</span> *aMovieFileOutput = &lt;<span class="meta">#Get a movie file output#&gt;;</span></span><br><span class="line"><span class="built_in">NSArray</span> *existingMetadataArray = aMovieFileOutput.metadata;</span><br><span class="line"><span class="built_in">NSMutableArray</span> *newMetadataArray = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">if</span> (existingMetadataArray) &#123;</span><br><span class="line">    newMetadataArray = [existingMetadataArray mutableCopy];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    newMetadataArray = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">AVMutableMetadataItem</span> *item = [[<span class="built_in">AVMutableMetadataItem</span> alloc] init];</span><br><span class="line">item.keySpace = <span class="built_in">AVMetadataKeySpaceCommon</span>;</span><br><span class="line">item.key = <span class="built_in">AVMetadataCommonKeyLocation</span>;</span><br><span class="line"> </span><br><span class="line">CLLocation *location - &lt;<span class="meta">#The location to set#&gt;;</span></span><br><span class="line">item.value = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%+08.4lf%+09.4lf/"</span></span><br><span class="line">    location.coordinate.latitude, location.coordinate.longitude];</span><br><span class="line"> </span><br><span class="line">[newMetadataArray addObject:item];</span><br><span class="line"> </span><br><span class="line">aMovieFileOutput.metadata = newMetadataArray;</span><br></pre></td></tr></table></figure>
+<h4 id="Processing-Frames-of-Video-处理视频的帧"><a href="#Processing-Frames-of-Video-处理视频的帧" class="headerlink" title="Processing Frames of Video - 处理视频的帧"></a>Processing Frames of Video - 处理视频的帧</h4><p>An AVCaptureVideoDataOutput object uses delegation to vend video frames. You set the delegate using setSampleBufferDelegate:queue:. In addition to setting the delegate, you specify a serial queue on which they delegate methods are invoked. You must use a serial queue to ensure that frames are delivered to the delegate in the proper order. You can use the queue to modify the priority given to delivering and processing the video frames. See SquareCam for a sample implementation.</p>
+<p>一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 对象使用委托来声明视频帧。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/setSampleBufferDelegate:queue:" target="_blank" rel="external">setSampleBufferDelegate:queue:</a> 设置代理。除了设置代理，还要制定一个调用它们代理方法的串行队列。必须使用一个串行队列以确保帧以适当的顺序传递给代理。可以使用队列来修改给定传输的优先级和处理视频帧的优先级。查看 <a href="https://developer.apple.com/library/ios/samplecode/SquareCam/Introduction/Intro.html#//apple_ref/doc/uid/DTS40011190" target="_blank" rel="external">SquareCam</a> 有一个简单的实现。</p>
+<p>The frames are presented in the delegate method, captureOutput:didOutputSampleBuffer:fromConnection:, as instances of the CMSampleBufferRef opaque type (see Representations of Media). By default, the buffers are emitted in the camera’s most efficient format. You can use the videoSettings property to specify a custom output format. The video settings property is a dictionary; currently, the only supported key is kCVPixelBufferPixelFormatTypeKey. The recommended pixel formats are returned by the availableVideoCVPixelFormatTypes property , and the availableVideoCodecTypes property returns the supported values. Both Core Graphics and OpenGL work well with the BGRA format:</p>
+<p>在代理方法中（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutputSampleBufferDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput:didOutputSampleBuffer:fromConnection:" target="_blank" rel="external">captureOutput:didOutputSampleBuffer:fromConnection:</a>，<a href="https://developer.apple.com/library/ios/documentation/CoreMedia/Reference/CMSampleBuffer/index.html#//apple_ref/c/tdef/CMSampleBufferRef" target="_blank" rel="external">CMSampleBufferRef</a> 不透明类型的实例，详情见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/06_MediaRepresentations.html#//apple_ref/doc/uid/TP40010188-CH2-SW16" target="_blank" rel="external">Representations of Media</a>），帧是被露出来的。默认情况下，被放出的缓冲区是相机最有效的格式。可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/videoSettings" target="_blank" rel="external">videoSettings</a> 属性指定自定义输出格式。视频设置属性是一个字典；目前，唯一支持的 <code>key</code> 是 <a href="https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CVPixelBufferRef/index.html#//apple_ref/c/data/kCVPixelBufferPixelFormatTypeKey" target="_blank" rel="external">kCVPixelBufferPixelFormatTypeKey</a>。推荐的像素格式是由 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoDataOutput/availableVideoCVPixelFormatTypes" target="_blank" rel="external">availableVideoCVPixelFormatTypes</a> 属性返回的，并且 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoDataOutput/availableVideoCodecTypes" target="_blank" rel="external">availableVideoCodecTypes</a> 属性返回支持的值。<code>Core Graphics</code> 和 <code>OpenGL</code> 都很好的使用 <code>BGRA</code> 格式：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureVideoDataOutput</span> *videoDataOutput = [<span class="built_in">AVCaptureVideoDataOutput</span> new];</span><br><span class="line"><span class="built_in">NSDictionary</span> *newSettings =</span><br><span class="line">                @&#123; (<span class="built_in">NSString</span> *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) &#125;;</span><br><span class="line">videoDataOutput.videoSettings = newSettings;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">// discard if the data output queue is blocked (as we process the still image</span></span><br><span class="line">[videoDataOutput setAlwaysDiscardsLateVideoFrames:<span class="literal">YES</span>];)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// create a serial dispatch queue used for the sample buffer delegate as well as when a still image is captured</span></span><br><span class="line"><span class="comment">// a serial dispatch queue must be used to guarantee that video frames will be delivered in order</span></span><br><span class="line"><span class="comment">// see the header doc for setSampleBufferDelegate:queue: for more information</span></span><br><span class="line">videoDataOutputQueue = dispatch_queue_create(<span class="string">"VideoDataOutputQueue"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">[videoDataOutput setSampleBufferDelegate:<span class="keyword">self</span> queue:videoDataOutputQueue];</span><br><span class="line"> </span><br><span class="line"><span class="built_in">AVCaptureSession</span> *captureSession = &lt;<span class="meta">#The Capture Session#&gt;;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> ( [captureSession canAddOutput:videoDataOutput] )</span><br><span class="line">     [captureSession addOutput:videoDataOutput];</span><br></pre></td></tr></table></figure>
+<h4 id="Performance-Considerations-for-Processing-Video-处理视频的性能考虑"><a href="#Performance-Considerations-for-Processing-Video-处理视频的性能考虑" class="headerlink" title="Performance Considerations for Processing Video - 处理视频的性能考虑"></a>Performance Considerations for Processing Video - 处理视频的性能考虑</h4><p>You should set the session output to the lowest practical resolution for your application. Setting the output to a higher resolution than necessary wastes processing cycles and needlessly consumes power.</p>
+<p>应该将会话输出设置为应用程序的最低分辨率。设置输出超过必要废物处理周期，达到更高的分辨率，从而不必要消耗功率。</p>
+<p>You must ensure that your implementation of captureOutput:didOutputSampleBuffer:fromConnection: is able to process a sample buffer within the amount of time allotted to a frame. If it takes too long and you hold onto the video frames, AV Foundation stops delivering frames, not only to your delegate but also to other outputs such as a preview layer.</p>
+<p>必须确保 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutputSampleBufferDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput:didOutputSampleBuffer:fromConnection:" target="_blank" rel="external">captureOutput:didOutputSampleBuffer:fromConnection:</a> 的实现，能够处理大量时间内的样品缓冲，分配到一个帧中。如果它需要很久，你要一直抓住视频帧，<code>AV Foundation</code> 会停止给，你的代理，还有其他输出例如 <code>preview layer</code> ，提供帧。</p>
+<p>You can use the capture video data output’s minFrameDuration property to be sure you have enough time to process a frame — at the cost of having a lower frame rate than would otherwise be the case. You might also make sure that the alwaysDiscardsLateVideoFrames property is set to YES (the default). This ensures that any late video frames are dropped rather than handed to you for processing. Alternatively, if you are recording and it doesn’t matter if the output fames are a little late and you would prefer to get all of them, you can set the property value to NO. This does not mean that frames will not be dropped (that is, frames may still be dropped), but that they may not be dropped as early, or as efficiently.</p>
+<p>可以使用捕获视频数据输出的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoDataOutput/minFrameDuration" target="_blank" rel="external">minFrameDuration</a> 属性来确保你有足够时间来处理帧 – 在具有较低的帧速率比其他情况下的成本。也可以确保 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrameshttps://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames" target="_blank" rel="external">alwaysDiscardsLateVideoFrames</a> 属性被设为 <code>YES</code> （默认）。这确保任何后期视频的帧都被丢弃，而不是交给你处理。或者，如果你是记录，更想得到它们全部，不介意输出帧稍微晚一点的话，可以设置该属性的值为 <code>NO</code> 。这并不意味着不会丢失帧（即，帧仍有可能丢失），但它们不可能像之前那样减少，或者说是有点效果的。</p>
+<h3 id="Capturing-Still-Images-捕获静止图像"><a href="#Capturing-Still-Images-捕获静止图像" class="headerlink" title="Capturing Still Images - 捕获静止图像"></a>Capturing Still Images - 捕获静止图像</h3><p>You use an AVCaptureStillImageOutput output if you want to capture still images with accompanying metadata. The resolution of the image depends on the preset for the session, as well as the device.</p>
+<p>如果你想捕获带着元数据的静止图像，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureStillImageOutput" target="_blank" rel="external">AVCaptureStillImageOutput</a> 输出。图像的分辨率取决于会话的预设，以及设备的设置。</p>
+<h4 id="Pixel-and-Encoding-Formats-像素和编码格式"><a href="#Pixel-and-Encoding-Formats-像素和编码格式" class="headerlink" title="Pixel and Encoding Formats - 像素和编码格式"></a>Pixel and Encoding Formats - 像素和编码格式</h4><p>Different devices support different image formats. You can find out what pixel and codec types are supported by a device using availableImageDataCVPixelFormatTypes and availableImageDataCodecTypes respectively. Each method returns an array of the supported values for the specific device. You set the outputSettings dictionary to specify the image format you want, for example:</p>
+<p>不同的设备支持不同的图像格式。使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureStillImageOutput/availableImageDataCVPixelFormatTypes" target="_blank" rel="external">availableImageDataCVPixelFormatTypes</a> 可以找到什么样的像素被支持，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureStillImageOutput/availableImageDataCodecTypes" target="_blank" rel="external">availableImageDataCodecTypes</a> 可以找到什么样的编解码器类型被支持。每一种方法都返回一个特定设备的支持的值的数组。设置 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureStillImageOutput/outputSettings" target="_blank" rel="external">outputSettings</a> 字典来指定你想要的图像格式，例如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureStillImageOutput</span> *stillImageOutput = [[<span class="built_in">AVCaptureStillImageOutput</span> alloc] init];</span><br><span class="line"><span class="built_in">NSDictionary</span> *outputSettings = @&#123; <span class="built_in">AVVideoCodecKey</span> : <span class="built_in">AVVideoCodecJPEG</span>&#125;;</span><br><span class="line">[stillImageOutput setOutputSettings:outputSettings];</span><br></pre></td></tr></table></figure>
+<p>If you want to capture a JPEG image, you should typically not specify your own compression format. Instead, you should let the still image output do the compression for you, since its compression is hardware-accelerated. If you need a data representation of the image, you can use jpegStillImageNSDataRepresentation: to get an NSData object without recompressing the data, even if you modify the image’s metadata.</p>
+<p>如果你想捕获一个 <code>JPEG</code> 图像，通常应该不要指定自己的压缩格式。相反，应该让静态图像输出为你做压缩，因为它的压缩是硬件加速的。如果你需要图像的表示数据，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/clm/AVCaptureStillImageOutput/jpegStillImageNSDataRepresentation:" target="_blank" rel="external">jpegStillImageNSDataRepresentation:</a> 得到未压缩数据的<code>NSDate</code> 对象，即使你修改修改图像的元数据。</p>
+<h4 id="Capturing-an-Image-捕获图像"><a href="#Capturing-an-Image-捕获图像" class="headerlink" title="Capturing an Image - 捕获图像"></a>Capturing an Image - 捕获图像</h4><p>When you want to capture an image, you send the output a captureStillImageAsynchronouslyFromConnection:completionHandler: message. The first argument is the connection you want to use for the capture. You need to look for the connection whose input port is collecting video:</p>
+<p>当你想捕获图像，给输出发送一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureStillImageOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureStillImageOutput/captureStillImageAsynchronouslyFromConnection:completionHandler:" target="_blank" rel="external">captureStillImageAsynchronouslyFromConnection:completionHandler:</a> 消息。第一个参数是用于想要捕获使用的连接。你需要寻找输入端口是收集视频的连接。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureConnection</span> *videoConnection = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">AVCaptureConnection</span> *connection <span class="keyword">in</span> stillImageOutput.connections) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">AVCaptureInputPort</span> *port <span class="keyword">in</span> [connection inputPorts]) &#123;</span><br><span class="line">        <span class="keyword">if</span> ([[port mediaType] isEqual:<span class="built_in">AVMediaTypeVideo</span>] ) &#123;</span><br><span class="line">            videoConnection = connection;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (videoConnection) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The second argument to captureStillImageAsynchronouslyFromConnection:completionHandler: is a block that takes two arguments: a CMSampleBuffer opaque type containing the image data, and an error. The sample buffer itself may contain metadata, such as an EXIF dictionary, as an attachment. You can modify the attachments if you want, but note the optimization for JPEG images discussed in Pixel and Encoding Formats.</p>
+<p><code>captureStillImageAsynchronouslyFromConnection:completionHandler:</code> 的第二个参数是一个 <code>block</code> ，<code>block</code> 有两个参数：一个包含图像数据的 <code>CMSampleBuffer</code> 不透明类型，一个 <code>error</code>。样品缓冲自身可能包含元数据，例如 <code>EXIF</code> 字典作为附件。如果你想的话，可以修改附件，但是注意 <code>JPEG</code> 图像进行像素和编码格式的优化。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:</span><br><span class="line">    ^(CMSampleBufferRef imageSampleBuffer, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        <span class="built_in">CFDictionaryRef</span> exifAttachments =</span><br><span class="line">            CMGetAttachment(imageSampleBuffer, k<span class="built_in">CGImagePropertyExifDictionary</span>, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="keyword">if</span> (exifAttachments) &#123;</span><br><span class="line">            <span class="comment">// Do something with the attachments.</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Continue as appropriate.</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+<h2 id="Showing-the-User-What’s-Being-Recorded-显示用户正在被记录什么"><a href="#Showing-the-User-What’s-Being-Recorded-显示用户正在被记录什么" class="headerlink" title="Showing the User What’s Being Recorded - 显示用户正在被记录什么"></a>Showing the User What’s Being Recorded - 显示用户正在被记录什么</h2><p>You can provide the user with a preview of what’s being recorded by the camera (using a preview layer) or by the microphone (by monitoring the audio channel).</p>
+<p>可以为用户提供一个预览，关于正在被相机(使用 <code>perview layer</code>)记录什么，或者被麦克风(通过监控音频信道)记录什么。</p>
+<h3 id="Video-Preview-视频预览"><a href="#Video-Preview-视频预览" class="headerlink" title="Video Preview - 视频预览"></a>Video Preview - 视频预览</h3><p>You can provide the user with a preview of what’s being recorded using an AVCaptureVideoPreviewLayer object. AVCaptureVideoPreviewLayer is a subclass ofCALayer (see Core Animation Programming Guide. You don’t need any outputs to show the preview.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoPreviewLayer" target="_blank" rel="external"></a> 对象可以给用户提供一个正在被记录的预览。 <code>AVCaptureVideoPreviewLayer</code> 是 <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/index.html#//apple_ref/occ/cl/CALayer" target="_blank" rel="external">CALayer</a> 的子类。（详情见 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514" target="_blank" rel="external">Core Animation Programming Guide</a>），不需要任何输出去显示预览。</p>
+<p>Using the AVCaptureVideoDataOutput class provides the client application with the ability to access the video pixels before they are presented to the user.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 类提供的访问视频像素才呈现给用户的客户端应用程序的能力。</p>
+<p>Unlike a capture output, a video preview layer maintains a strong reference to the session with which it is associated. This is to ensure that the session is not deallocated while the layer is attempting to display video. This is reflected in the way you initialize a preview layer:</p>
+<p>与捕获输出不同的是，视频预览层与它关联的会话有一个强引用。这是为了确保会话还没有被释放，<code>layer</code> 就尝试去显示视频。这反映在，你初始化一个预览层的方式上：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *captureSession = &lt;<span class="meta">#Get a capture session#&gt;;</span></span><br><span class="line"><span class="built_in">CALayer</span> *viewLayer = &lt;<span class="meta">#Get a layer from the view in which you want to present the preview#&gt;;</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">AVCaptureVideoPreviewLayer</span> *captureVideoPreviewLayer = [[<span class="built_in">AVCaptureVideoPreviewLayer</span> alloc] initWithSession:captureSession];</span><br><span class="line">[viewLayer addSublayer:captureVideoPreviewLayer];</span><br></pre></td></tr></table></figure>
+<p>In general, the preview layer behaves like any other CALayer object in the render tree (see Core Animation Programming Guide). You can scale the image and perform transformations, rotations, and so on just as you would any layer. One difference is that you may need to set the layer’s orientation property to specify how it should rotate images coming from the camera. In addition, you can test for device support for video mirroring by querying the supportsVideoMirroring property. You can set the videoMirrored property as required, although when the automaticallyAdjustsVideoMirroring property is set to YES (the default), the mirroring value is automatically set based on the configuration of the session.</p>
+<p>在一般情况下，预览层行为就像渲染树中任何其他 <code>CALayer</code> 对象（见 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514" target="_blank" rel="external">Core Animation Programming Guide</a>）。可以缩放图像和执行转换、旋转等，就像你可以在任何层。一个不同点是，你可能需要设置层的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoPreviewLayer/orientation" target="_blank" rel="external">orientation</a> 属性来指定它应该如何从相机中旋转图像。此外，可以通过查询 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/instp/AVCaptureConnection/supportsVideoMirroring" target="_blank" rel="external">supportsVideoMirroring</a> 属性来测试设备对于视频镜像的支持。可以根据需要设置 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/instp/AVCaptureConnection/videoMirrored" target="_blank" rel="external">videoMirrored</a> 属性，虽然当 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureConnection_Class/index.html#//apple_ref/occ/instp/AVCaptureConnection/automaticallyAdjustsVideoMirroring" target="_blank" rel="external">automaticallyAdjustsVideoMirroring</a> 属性被设置为 <code>YES</code> （默认情况下）， <code>mirroring</code> 值是自动的基于会话配置进行设置。</p>
+<h4 id="Video-Gravity-Modes-视屏重力模式"><a href="#Video-Gravity-Modes-视屏重力模式" class="headerlink" title="Video Gravity Modes - 视屏重力模式"></a>Video Gravity Modes - 视屏重力模式</h4><p>The preview layer supports three gravity modes that you set using videoGravity:</p>
+<ul>
+<li>AVLayerVideoGravityResizeAspect: This preserves the aspect ratio, leaving black bars where the - video does not fill the available screen area.</li>
+<li>AVLayerVideoGravityResizeAspectFill: This preserves the aspect ratio, but fills the available - screen area, cropping the video when necessary.</li>
+<li>AVLayerVideoGravityResize: This simply stretches the video to fill the available screen area, even if doing so distorts the image.</li>
+</ul>
+<p>预览层支持3种重力模式，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoPreviewLayer/videoGravity" target="_blank" rel="external">videoGravity</a> 设置：</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_Constants/index.html#//apple_ref/c/data/AVLayerVideoGravityResizeAspect" target="_blank" rel="external">AVLayerVideoGravityResizeAspect</a>：保持横纵比，视频不能完全填充的地方留出黑色区域。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_Constants/index.html#//apple_ref/c/data/AVLayerVideoGravityResizeAspectFill" target="_blank" rel="external">AVLayerVideoGravityResizeAspectFill</a>：保持横纵比，但填充可用的屏幕区域，必要的时候裁剪视频。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundation_Constants/index.html#//apple_ref/c/data/AVLayerVideoGravityResize" target="_blank" rel="external">AVLayerVideoGravityResize:</a>：只是简单的拉伸视频以填充可用的屏幕区域，即使这样左会扭曲图像。</li>
+</ul>
+<h4 id="Using-“Tap-to-Focus”-with-a-Preview-使用“点击焦点”预览"><a href="#Using-“Tap-to-Focus”-with-a-Preview-使用“点击焦点”预览" class="headerlink" title="Using “Tap to Focus” with a Preview - 使用“点击焦点”预览"></a>Using “Tap to Focus” with a Preview - 使用“点击焦点”预览</h4><p>You need to take care when implementing tap-to-focus in conjunction with a preview layer. You must account for the preview orientation and gravity of the layer, and for the possibility that the preview may be mirrored. See the sample code project AVCam-iOS: Using AVFoundation to Capture Images and Movies for an implementation of this functionality.</p>
+<p>需要注意的是，在实现点击时要注意结合预览层。必须考虑到该层的预览方向和重力，并考虑预览变为镜像显示的可能性。请看示例代码项目：<a href="https://developer.apple.com/library/ios/samplecode/AVCam/Introduction/Intro.html#//apple_ref/doc/uid/DTS40010112" target="_blank" rel="external">AVCam-iOS: Using AVFoundation to Capture Images and Movies</a>，有关这个功能的实现。</p>
+<h3 id="Showing-Audio-Levels-显示音频等级"><a href="#Showing-Audio-Levels-显示音频等级" class="headerlink" title="Showing Audio Levels - 显示音频等级"></a>Showing Audio Levels - 显示音频等级</h3><p>To monitor the average and peak power levels in an audio channel in a capture connection, you use an AVCaptureAudioChannel object. Audio levels are not key-value observable, so you must poll for updated levels as often as you want to update your user interface (for example, 10 times a second).</p>
+<p>在捕获连接中检测音频信道的平均值和峰值功率水平，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureAudioChannel_Class/index.html#//apple_ref/occ/cl/AVCaptureAudioChannel" target="_blank" rel="external">AVCaptureAudioChannel</a> 对象。音频等级不是 <code>key-value</code> 可观察的，所以当你想更新你的用户界面（比如10秒一次），必须调查最新的等级。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureAudioDataOutput</span> *audioDataOutput = &lt;<span class="meta">#Get the audio data output#&gt;;</span></span><br><span class="line"><span class="built_in">NSArray</span> *connections = audioDataOutput.connections;</span><br><span class="line"><span class="keyword">if</span> ([connections count] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// There should be only one connection to an AVCaptureAudioDataOutput.</span></span><br><span class="line">    <span class="built_in">AVCaptureConnection</span> *connection = [connections objectAtIndex:<span class="number">0</span>];</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">NSArray</span> *audioChannels = connection.audioChannels;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">AVCaptureAudioChannel</span> *channel <span class="keyword">in</span> audioChannels) &#123;</span><br><span class="line">        <span class="keyword">float</span> avg = channel.averagePowerLevel;</span><br><span class="line">        <span class="keyword">float</span> peak = channel.peakHoldLevel;</span><br><span class="line">        <span class="comment">// Update the level meter user interface.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Putting-It-All-Together-Capturing-Video-Frames-as-UIImage-Objects-总而言之：捕获视频帧用作-UIImage-对象"><a href="#Putting-It-All-Together-Capturing-Video-Frames-as-UIImage-Objects-总而言之：捕获视频帧用作-UIImage-对象" class="headerlink" title="Putting It All Together: Capturing Video Frames as UIImage Objects - 总而言之：捕获视频帧用作 UIImage 对象"></a>Putting It All Together: Capturing Video Frames as UIImage Objects - 总而言之：捕获视频帧用作 <code>UIImage</code> 对象</h2><p>This brief code example to illustrates how you can capture video and convert the frames you get to UIImage objects. It shows you how to:</p>
+<ul>
+<li>Create an AVCaptureSession object to coordinate the flow of data from an AV input device to an - output</li>
+<li>Find the AVCaptureDevice object for the input type you want</li>
+<li>Create an AVCaptureDeviceInput object for the device</li>
+<li>Create an AVCaptureVideoDataOutput object to produce video frames</li>
+<li>Implement a delegate for the AVCaptureVideoDataOutput object to process video frames</li>
+<li>Implement a function to convert the CMSampleBuffer received by the delegate into a UIImage object</li>
+</ul>
+<p>这个简短的代码示例演示了如何捕捉视频和将帧转化为 <code>UIImage</code> 对象，下面说明方法：</p>
+<ul>
+<li>创建一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 对象去协调从 <code>AV</code> 输入设备到输出设备的数据流。</li>
+<li>找到你想要输入类型的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/cl/AVCaptureDevice" target="_blank" rel="external">AVCaptureDevice</a> 对象。</li>
+<li>为设备创建一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDeviceInput_Class/index.html#//apple_ref/occ/cl/AVCaptureDeviceInput" target="_blank" rel="external">AVCaptureDeviceInput</a> 对象。</li>
+<li>创建一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 去生成视频帧。</li>
+<li>为 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 实现代理去处理视频帧。</li>
+<li>实现一个函数，将从代理收到的 <code>CMSampleBuffer</code> 转换为一个 <code>UIImage</code> 对象。</li>
+</ul>
+<blockquote>
+<p>Note: To focus on the most relevant code, this example omits several aspects of a complete application, including memory management. To use AV Foundation, you are expected to have enough experience with Cocoa to be able to infer the missing pieces.</p>
+<p>注意：关注最相关的代码，这个例子省略了一个完成程序的几部分，包括内存管理。为了使用 <code>AV Foundation</code>，你应该有足够的 <code>Cocoa</code> 经验，有能力推断出丢失的碎片。</p>
+</blockquote>
+<h3 id="Create-and-Configure-a-Capture-Session-创建和配置捕获会话"><a href="#Create-and-Configure-a-Capture-Session-创建和配置捕获会话" class="headerlink" title="Create and Configure a Capture Session - 创建和配置捕获会话"></a>Create and Configure a Capture Session - 创建和配置捕获会话</h3><p>You use an AVCaptureSession object to coordinate the flow of data from an AV input device to an output. Create a session, and configure it to produce medium-resolution video frames.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/cl/AVCaptureSession" target="_blank" rel="external">AVCaptureSession</a> 对象去协调从 <code>AV</code> 输入设备到输出的数据流。创建一个会话，并将其配置产生中等分辨率的视频帧。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureSession</span> *session = [[<span class="built_in">AVCaptureSession</span> alloc] init];</span><br><span class="line">session.sessionPreset = <span class="built_in">AVCaptureSessionPresetMedium</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-and-Configure-the-Device-and-Device-Input-创建和配置设备记忆设备输入"><a href="#Create-and-Configure-the-Device-and-Device-Input-创建和配置设备记忆设备输入" class="headerlink" title="Create and Configure the Device and Device Input - 创建和配置设备记忆设备输入"></a>Create and Configure the Device and Device Input - 创建和配置设备记忆设备输入</h3><p>Capture devices are represented by AVCaptureDevice objects; the class provides methods to retrieve an object for the input type you want. A device has one or more ports, configured using an AVCaptureInput object. Typically, you use the capture input in its default configuration.</p>
+<p>Find a video capture device, then create a device input with the device and add it to the session. If an appropriate device can not be located, then the deviceInputWithDevice:error: method will return an error by reference.</p>
+<p><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDevice_Class/index.html#//apple_ref/occ/cl/AVCaptureDevice" target="_blank" rel="external">AVCaptureDevice</a> 对象表示捕获设备；类提供你想要的输入类型对象的方法。一个设备具有一个或者多个端口，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureInput_Class/index.html#//apple_ref/occ/cl/AVCaptureInput" target="_blank" rel="external">AVCaptureInput</a> 对象配置。通常情况下，在它的默认配置中使用捕获输入。</p>
+<p>找到一个视频捕获设备，然后创建一个带着设备的设备输入，并将其添加到会话中，如果合适的设备无法定位，然后 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDeviceInput_Class/index.html#//apple_ref/occ/clm/AVCaptureDeviceInput/deviceInputWithDevice:error:" target="_blank" rel="external">deviceInputWithDevice:error:</a> 方法将会通过引用返回一个错误。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureDevice</span> *device =</span><br><span class="line">        [<span class="built_in">AVCaptureDevice</span> defaultDeviceWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"> </span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="built_in">AVCaptureDeviceInput</span> *input =</span><br><span class="line">        [<span class="built_in">AVCaptureDeviceInput</span> deviceInputWithDevice:device error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (!input) &#123;</span><br><span class="line">    <span class="comment">// Handle the error appropriately.</span></span><br><span class="line">&#125;</span><br><span class="line">[session addInput:input];</span><br></pre></td></tr></table></figure>
+<h3 id="Create-and-Configure-the-Video-Data-Output-创建和配置视频数据输出"><a href="#Create-and-Configure-the-Video-Data-Output-创建和配置视频数据输出" class="headerlink" title="Create and Configure the Video Data Output - 创建和配置视频数据输出"></a>Create and Configure the Video Data Output - 创建和配置视频数据输出</h3><p>You use an AVCaptureVideoDataOutput object to process uncompressed frames from the video being captured. You typically configure several aspects of an output. For video, for example, you can specify the pixel format using the videoSettings property and cap the frame rate by setting the minFrameDuration property.</p>
+<p>Create and configure an output for video data and add it to the session; cap the frame rate to 15 fps by setting the minFrameDuration property to 1/15 second:</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureVideoDataOutput" target="_blank" rel="external">AVCaptureVideoDataOutput</a> 对象去处理视频捕获过程中未被压缩的帧。通常配置输出的几个方面。例如视频，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/videoSettings" target="_blank" rel="external">videoSettings</a> 属性指定像素格式，通过设置 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoDataOutput/minFrameDuration" target="_blank" rel="external">minFrameDuration</a> 属性覆盖帧速率。</p>
+<p>为视频数据创建和配置输出，并将其添加到会话中；通过设置 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instp/AVCaptureVideoDataOutput/minFrameDuration" target="_blank" rel="external">minFrameDuration</a> 属性为每秒 <code>1/15</code>，将帧速率覆盖为 <code>15 fps</code> 。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">AVCaptureVideoDataOutput</span> *output = [[<span class="built_in">AVCaptureVideoDataOutput</span> alloc] init];</span><br><span class="line">[session addOutput:output];</span><br><span class="line">output.videoSettings =</span><br><span class="line">                @&#123; (<span class="built_in">NSString</span> *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) &#125;;</span><br><span class="line">output.minFrameDuration = CMTimeMake(<span class="number">1</span>, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+<p>The data output object uses delegation to vend the video frames. The delegate must adopt the AVCaptureVideoDataOutputSampleBufferDelegate protocol. When you set the data output’s delegate, you must also provide a queue on which callbacks should be invoked.</p>
+<p>数据输出对象使用委托来声明一个视频帧。代理必须 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutputSampleBufferDelegate_Protocol/index.html#//apple_ref/occ/intf/AVCaptureVideoDataOutputSampleBufferDelegate" target="_blank" rel="external">AVCaptureVideoDataOutputSampleBufferDelegate</a> 协议。当你设置了数据输出的代理，还必须提供一个回调时应该被调用的队列。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"MyQueue"</span>, <span class="literal">NULL</span>);</span><br><span class="line">[output setSampleBufferDelegate:<span class="keyword">self</span> queue:queue];</span><br><span class="line">dispatch_release(queue);</span><br></pre></td></tr></table></figure>
+<p>You use the queue to modify the priority given to delivering and processing the video frames.</p>
+<p>使用队列去修改给定传输和处理视频帧的优先级。</p>
+<h3 id="Implement-the-Sample-Buffer-Delegate-Method-实现示例缓冲代理方法"><a href="#Implement-the-Sample-Buffer-Delegate-Method-实现示例缓冲代理方法" class="headerlink" title="Implement the Sample Buffer Delegate Method - 实现示例缓冲代理方法"></a>Implement the Sample Buffer Delegate Method - 实现示例缓冲代理方法</h3><p>In the delegate class, implement the method (captureOutput:didOutputSampleBuffer:fromConnection:) that is called when a sample buffer is written. The video data output object delivers frames as CMSampleBuffer opaque types, so you need to convert from the CMSampleBuffer opaque type to a UIImage object. The function for this operation is shown in Converting CMSampleBuffer to a UIImage Object.</p>
+<p>在代理类，实现方法（<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureAudioDataOutputSampleBufferDelegate_Protocol/index.html#//apple_ref/occ/intfm/AVCaptureAudioDataOutputSampleBufferDelegate/captureOutput:didOutputSampleBuffer:fromConnection:" target="_blank" rel="external">captureOutput:didOutputSampleBuffer:fromConnection:</a>），当样本缓冲写入时被调用。视频数据输出对象传递了 <code>CMSampleBuffer</code> 不透明类型的帧，所以你需要从 <code>CMSampleBuffer</code> 不透明类型转化为一个 <code>UIImage</code> 对象。这个操作的功能在 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/06_MediaRepresentations.html#//apple_ref/doc/uid/TP40010188-CH2-SW4" target="_blank" rel="external">Converting CMSampleBuffer to a UIImage Object</a> 中展示。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureOutput</span> *)captureOutput</span><br><span class="line">         didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer</span><br><span class="line">         fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">UIImage</span> *image = imageFromSampleBuffer(sampleBuffer);</span><br><span class="line">    <span class="comment">// Add your code here that uses the image.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Remember that the delegate method is invoked on the queue you specified in setSampleBufferDelegate:queue:; if you want to update the user interface, you must invoke any relevant code on the main thread.</p>
+<p>记住，代理方法是在 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoDataOutput_Class/index.html#//apple_ref/occ/instm/AVCaptureVideoDataOutput/setSampleBufferDelegate:queue:" target="_blank" rel="external">setSampleBufferDelegate:queue:</a> 中你指定的队列中调用；如果你想要更新用户界面，必须在主线程上调用任何相关代码。</p>
+<h3 id="Starting-and-Stopping-Recording-启动和停止录制"><a href="#Starting-and-Stopping-Recording-启动和停止录制" class="headerlink" title="Starting and Stopping Recording - 启动和停止录制"></a>Starting and Stopping Recording - 启动和停止录制</h3><p>After configuring the capture session, you should ensure that the camera has permission to record according to the user’s preferences.</p>
+<p>在配置捕获会话后，应该确保相机根据用户的首相选具有录制的权限。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *mediaType = <span class="built_in">AVMediaTypeVideo</span>;</span><br><span class="line"> </span><br><span class="line">[<span class="built_in">AVCaptureDevice</span> requestAccessForMediaType:mediaType completionHandler:^(<span class="built_in">BOOL</span> granted) &#123;</span><br><span class="line">    <span class="keyword">if</span> (granted)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Granted access to mediaType</span></span><br><span class="line">        [<span class="keyword">self</span> setDeviceAuthorized:<span class="literal">YES</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Not granted access to mediaType</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        [[[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="string">@"AVCam!"</span></span><br><span class="line">                                    message:<span class="string">@"AVCam doesn't have permission to use Camera, please change privacy settings"</span></span><br><span class="line">                                   delegate:<span class="keyword">self</span></span><br><span class="line">                          cancelButtonTitle:<span class="string">@"OK"</span></span><br><span class="line">                          otherButtonTitles:<span class="literal">nil</span>] show];</span><br><span class="line">                [<span class="keyword">self</span> setDeviceAuthorized:<span class="literal">NO</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>If the camera session is configured and the user has approved access to the camera (and if required, the microphone), send a startRunning message to start the recording.</p>
+<p>如果相机会话被配置，用户批准访问摄像头（如果需要，麦克风），发送 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/startRunning" target="_blank" rel="external">startRunning</a> 消息开始录制。</p>
+<blockquote>
+<p>Important: The startRunning method is a blocking call which can take some time, therefore you should perform session setup on a serial queue so that the main queue isn’t blocked (which keeps the UI responsive). See AVCam-iOS: Using AVFoundation to Capture Images and Movies for the canonical implementation example.</p>
+<p>重点：<code>startRunning</code> 方法正在阻塞调用时，可能需要一些时间，因此你应该在串行队列执行会话建立，为了主队列不被堵塞（使<code>UI</code>相应）。见 <a href="https://developer.apple.com/library/ios/samplecode/AVCam/Introduction/Intro.html#//apple_ref/doc/uid/DTS40010112" target="_blank" rel="external">AVCam-iOS: Using AVFoundation to Capture Images and Movies</a> ，典型实现的例子。</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[session startRunning];</span><br></pre></td></tr></table></figure>
+<p>To stop recording, you send the session a stopRunning message.</p>
+<p>要停止录制，给会话发送一个 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureSession_Class/index.html#//apple_ref/occ/instm/AVCaptureSession/stopRunning" target="_blank" rel="external">stopRunning</a> 消息。</p>
+<h2 id="High-Frame-Rate-Video-Capture-高帧速率视频捕获"><a href="#High-Frame-Rate-Video-Capture-高帧速率视频捕获" class="headerlink" title="High Frame Rate Video Capture - 高帧速率视频捕获"></a>High Frame Rate Video Capture - 高帧速率视频捕获</h2><p>iOS 7.0 introduces high frame rate video capture support (also referred to as “SloMo” video) on selected hardware. The full AVFoundation framework supports high frame rate content.</p>
+<p>You determine the capture capabilities of a device using the AVCaptureDeviceFormat class. This class has methods that return the supported media types, frame rates, field of view, maximum zoom factor, whether video stabilization is supported, and more.</p>
+<ul>
+<li>Capture supports full 720p (1280 x 720 pixels) resolution at 60 frames per second (fps) including - video stabilization and droppable P-frames (a feature of H264 encoded movies, which allow the - movies to play back smoothly even on slower and older hardware.)</li>
+<li>Playback has enhanced audio support for slow and fast playback, allowing the time pitch of the - audio can be preserved at slower or faster speeds.</li>
+<li>Editing has full support for scaled edits in mutable compositions.</li>
+<li>Export provides two options when supporting 60 fps movies. The variable frame rate, slow or fast motion, can be preserved, or the movie and be converted to an arbitrary slower frame rate such as 30 frames per second.</li>
+</ul>
+<p>The SloPoke sample code demonstrates the AVFoundation support for fast video capture, determining whether hardware supports high frame rate video capture, playback using various rates and time pitch algorithms, and editing (including setting time scales for portions of a composition).</p>
+<p><code>iOS 7</code> 在特定的硬件中，引入了高帧速率的视频捕获支持（也被称为 <code>“SloMo”</code> 视频）。所有的 <code>AVFoundation</code> 框架都支持高帧速率内容。</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureDeviceFormat_Class/index.html#//apple_ref/occ/cl/AVCaptureDeviceFormat" target="_blank" rel="external">AVCaptureDeviceFormat</a> 类确定设备的捕获能力。该类有一个方法，返回支持媒体类型、帧速率、视图因子、最大缩放因子，是否支持视频稳定性等等。</p>
+<ul>
+<li>捕获完全支持每秒60帧的 <code>720p</code> （1280 x 720像素）分辨率，包括视频稳定性和可弃用的帧间编码（ <code>H264</code>编码特征的电影，使得电影甚至在更慢更老的硬件也能很顺畅的播放）</li>
+<li>播放增强了对于慢速和快速播放的音频支持，允许音频的时间间距可以被保存在较慢或者更快的速度。</li>
+<li>编辑已全面支持规模可变的组成编辑。</li>
+<li>当支持<code>60fps</code>电影，出口提供了两种选择。可变的帧速率，缓慢或者快速的移动，可以保存，或者电影可以被转换为一个任意的较慢的帧速率，比如每秒30帧。</li>
+</ul>
+<p><code>SloPoke</code> 示例代码演示了 <code>AVFoundation</code> 支持快速视频捕获，确定硬件是否支持高帧速率视频采集，使用不同速率和时间间距算法播放、编辑（包括设置为一个组件一部分的时间尺度）。</p>
+<h3 id="Playback-播放"><a href="#Playback-播放" class="headerlink" title="Playback - 播放"></a>Playback - 播放</h3><p>An instance of AVPlayer manages most of the playback speed automatically by setting the setRate: method value. The value is used as a multiplier for the playback speed. A value of 1.0 causes normal playback, 0.5 plays back at half speed, 5.0 plays back five times faster than normal, and so on.</p>
+<p><code>AVPlayer</code> 的实例通过设置 <code>setRate:</code> 方法值，自动管理了大部分的播放速度。值被当做播放速度的乘法器使用。值为 <code>1.0</code> 是正常播放，<code>0.5</code> 是播放速度的一半，<code>5.0</code> 表示播放速度是正常速度的5倍，等等。</p>
+<p>The AVPlayerItem object supports the audioTimePitchAlgorithm property. This property allows you to specify how audio is played when the movie is played at various frame rates using the Time Pitch Algorithm Settings constants.</p>
+<p><code>AVPlayerItem</code> 对象支持 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/instp/AVPlayerItem/audioTimePitchAlgorithm" target="_blank" rel="external">audioTimePitchAlgorithm</a> 属性。此属性允许你指定在使用时距算法设置常量播放不同的帧速率的电影时，音频的播放方式。</p>
+<p>The following table shows the supported time pitch algorithms, the quality, whether the algorithm causes the audio to snap to specific frame rates, and the frame rate range that each algorithm supports.</p>
+<p>下表显示了支持的时距算法、质量，该算法是否会导致音频突然跳到特定的帧速率，以及每个算法支持的帧速率范围。</p>
+<p>| Time pitch algorithm | Quality | Snaps to specific frame rate | Rate range |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundationAudioSettings_Constants/index.html#//apple_ref/c/data/AVAudioTimePitchAlgorithmLowQualityZeroLatency" target="_blank" rel="external">AVAudioTimePitchAlgorithmLowQualityZeroLatency</a> | Low quality, suitable for fast-forward, rewind, or low quality voice. | <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/doc/c_ref/YES" target="_blank" rel="external">YES</a> | 0.5, 0.666667, 0.8, 1.0, 1.25, 1.5, 2.0 rates. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundationAudioSettings_Constants/index.html#//apple_ref/c/data/AVAudioTimePitchAlgorithmTimeDomain" target="_blank" rel="external">AVAudioTimePitchAlgorithmTimeDomain</a> | Modest quality, less expensive computationally, suitable for voice. | <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/doc/c_ref/NO" target="_blank" rel="external">NO</a> | 0.5–2x rates. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundationAudioSettings_Constants/index.html#//apple_ref/c/data/AVAudioTimePitchAlgorithmSpectral" target="_blank" rel="external">AVAudioTimePitchAlgorithmSpectral</a> | Highest quality, most expensive computationally, preserves the pitch of the original item. | <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/doc/c_ref/NO" target="_blank" rel="external">NO</a> | 1/32–32 rates. |<br>| <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVFoundationAudioSettings_Constants/index.html#//apple_ref/c/data/AVAudioTimePitchAlgorithmVarispeed" target="_blank" rel="external">AVAudioTimePitchAlgorithmVarispeed</a> | High-quality playback with no pitch correction. | <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/doc/c_ref/NO" target="_blank" rel="external">NO</a> | 1/32–32 rates. |</p>
+<h3 id="Editing-编辑"><a href="#Editing-编辑" class="headerlink" title="Editing - 编辑"></a>Editing - 编辑</h3><p>When editing, you use the AVMutableComposition class to build temporal edits.</p>
+<ul>
+<li>Create a new AVMutableComposition instance using the composition class method.</li>
+<li>Insert your video asset using the insertTimeRange:ofAsset:atTime:error: method.</li>
+<li>Set the time scale of a portion of the composition using scaleTimeRange:toDuration:</li>
+</ul>
+<p>当编辑时，使用 <code>AVMutableComposition</code> 类去建立时间编辑。</p>
+<ul>
+<li>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/clm/AVMutableComposition/composition" target="_blank" rel="external">composition</a> 类方法创建一个新的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/cl/AVMutableComposition" target="_blank" rel="external">AVMutableComposition</a> 实例。</li>
+<li>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/instm/AVMutableComposition/insertTimeRange:ofAsset:atTime:error:" target="_blank" rel="external">insertTimeRange:ofAsset:atTime:error:</a> 方法给视频插入资产。</li>
+<li>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/instm/AVMutableComposition/scaleTimeRange:toDuration:" target="_blank" rel="external">scaleTimeRange:toDuration:</a> 设置组件部分的时间规模。</li>
+</ul>
+<h3 id="Export-出口"><a href="#Export-出口" class="headerlink" title="Export - 出口"></a>Export - 出口</h3><p>Exporting 60 fps video uses the AVAssetExportSession class to export an asset. The content can be exported using two techniques:</p>
+<p>Use the AVAssetExportPresetPassthrough preset to avoid reencoding the movie. It retimes the media with the sections of the media tagged as section 60 fps, section slowed down, or section sped up.</p>
+<p>Use a constant frame rate export for maximum playback compatibility. Set the frameDuration property of the video composition to 30 fps. You can also specify the time pitch by using setting the export session’s audioTimePitchAlgorithm property.</p>
+<p>使用 <code>AVAssetExportSession</code> 类将 <code>60fps</code> 的视频导出到资产。该内容可以使用两种技术导出：</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/c/data/AVAssetExportPresetPassthrough" target="_blank" rel="external">AVAssetExportPresetPassthrough</a> 预设，避免将电影重新编码。它重新定时媒体，将媒体部分标记为 <code>60fps</code> 的部分，缓慢的部分或者加速的部分。</p>
+<p>使用恒定的帧速率导出最大播放兼容性。设置视频组件的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVVideoComposition_Class/index.html#//apple_ref/occ/instm/AVVideoComposition/frameDuration" target="_blank" rel="external">frameDuration</a> 属性为 <code>30fps</code> 。也可以通过设置导出会话的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/instp/AVAssetExportSession/audioTimePitchAlgorithm" target="_blank" rel="external">audioTimePitchAlgorithm</a> 属性指定时间间距。</p>
+<h3 id="Recording-录制"><a href="#Recording-录制" class="headerlink" title="Recording - 录制"></a>Recording - 录制</h3><p>You capture high frame rate video using the AVCaptureMovieFileOutput class, which automatically supports high frame rate recording. It will automatically select the correct H264 pitch level and bit rate.</p>
+<p>To do custom recording, you must use the AVAssetWriter class, which requires some additional setup.</p>
+<p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureMovieFileOutput_Class/index.html#//apple_ref/occ/cl/AVCaptureMovieFileOutput" target="_blank" rel="external">AVCaptureMovieFileOutput</a> 类捕获高帧速率的视频，该类自动支持高帧率录制。它会自动选择正确的 <code>H264</code> 的高音和比特率。</p>
+<p>做定制的录制，必须使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetWriter_Class/index.html#//apple_ref/occ/cl/AVAssetWriter" target="_blank" rel="external">AVAssetWriter</a> 类，这需要一些额外的设置。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assetWriterInput.expectsMediaDataInRealTime=<span class="literal">YES</span>;</span><br></pre></td></tr></table></figure>
+<p>This setting ensures that the capture can keep up with the incoming data.</p>
+<p>此设置确保捕获可以跟上传入的数据。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/" data-title="AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20160803AVFoundation06Export/" title="AVFoundation Programming Guide(官方文档翻译6)Export - 输出">
+  <strong>上一篇：</strong><br/>
+  <span>
+  AVFoundation Programming Guide(官方文档翻译6)Export - 输出</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20160803AVFoundation04Editing/"  title="AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑">
+ <strong>下一篇：</strong><br/> 
+ <span>AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160803AVFoundation05StillAndVideoMediaCapture/" data-title="AVFoundation Programming Guide(官方文档翻译5)Still and Video Media Capture - 静态视频媒体捕获。" data-url="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Still-and-Video-Media-Capture-静态视频媒体捕获。"><span class="toc-number">1.</span> <span class="toc-text">Still and Video Media Capture - 静态视频媒体捕获。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-a-Capture-Session-to-Coordinate-Data-Flow-使用捕捉会话来协调数据流"><span class="toc-number">1.1.</span> <span class="toc-text">Use a Capture Session to Coordinate Data Flow - 使用捕捉会话来协调数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Session-配置会话"><span class="toc-number">1.1.1.</span> <span class="toc-text">Configuring a Session - 配置会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Monitoring-Capture-Session-State-监视捕获会话状态"><span class="toc-number">1.1.2.</span> <span class="toc-text">Monitoring Capture Session State - 监视捕获会话状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#An-AVCaptureDevice-Object-Represents-an-Input-Device-一个-AVCaptureDevice-对象代表一个输入设备"><span class="toc-number">1.2.</span> <span class="toc-text">An AVCaptureDevice Object Represents an Input Device - 一个 AVCaptureDevice 对象代表一个输入设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Characteristics-设备特点"><span class="toc-number">1.2.1.</span> <span class="toc-text">Device Characteristics - 设备特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Capture-Settings"><span class="toc-number">1.2.2.</span> <span class="toc-text">Device Capture Settings</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Focus-Modes-聚焦模式"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Focus Modes - 聚焦模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exposure-Modes-曝光模式"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Exposure Modes - 曝光模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flash-Modes-闪光模式"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Flash Modes - 闪光模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Torch-Mode-手电筒模式"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Torch Mode - 手电筒模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-Stabilization-视频稳定性"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Video Stabilization - 视频稳定性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#White-Balance-白平衡"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">White Balance - 白平衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Setting-Device-Orientation-设置设备方向"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">Setting Device Orientation - 设置设备方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-a-Device-配置设备"><span class="toc-number">1.2.3.</span> <span class="toc-text">Configuring a Device - 配置设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Switching-Between-Devices-切换装置"><span class="toc-number">1.2.4.</span> <span class="toc-text">Switching Between Devices - 切换装置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Capture-Inputs-to-Add-a-Capture-Device-to-a-Session-使用捕获输入将捕获设备添加到会话中"><span class="toc-number">1.3.</span> <span class="toc-text">Use Capture Inputs to Add a Capture Device to a Session - 使用捕获输入将捕获设备添加到会话中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Capture-Outputs-to-Get-Output-from-a-Session-使用捕获输出从会话得到输出"><span class="toc-number">1.4.</span> <span class="toc-text">Use Capture Outputs to Get Output from a Session - 使用捕获输出从会话得到输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Saving-to-a-Movie-File-保存电影文件"><span class="toc-number">1.4.1.</span> <span class="toc-text">Saving to a Movie File - 保存电影文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Starting-a-Recording-开始记录"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Starting a Recording - 开始记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ensuring-That-the-File-Was-Written-Successfully-确保文件被成功写入"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">Ensuring That the File Was Written Successfully - 确保文件被成功写入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-Metadata-to-a-File-将元数据添加到文件中"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">Adding Metadata to a File - 将元数据添加到文件中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Processing-Frames-of-Video-处理视频的帧"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">Processing Frames of Video - 处理视频的帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance-Considerations-for-Processing-Video-处理视频的性能考虑"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">Performance Considerations for Processing Video - 处理视频的性能考虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Capturing-Still-Images-捕获静止图像"><span class="toc-number">1.4.2.</span> <span class="toc-text">Capturing Still Images - 捕获静止图像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pixel-and-Encoding-Formats-像素和编码格式"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Pixel and Encoding Formats - 像素和编码格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Capturing-an-Image-捕获图像"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Capturing an Image - 捕获图像</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Showing-the-User-What’s-Being-Recorded-显示用户正在被记录什么"><span class="toc-number">1.5.</span> <span class="toc-text">Showing the User What’s Being Recorded - 显示用户正在被记录什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Video-Preview-视频预览"><span class="toc-number">1.5.1.</span> <span class="toc-text">Video Preview - 视频预览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Video-Gravity-Modes-视屏重力模式"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Video Gravity Modes - 视屏重力模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-“Tap-to-Focus”-with-a-Preview-使用“点击焦点”预览"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Using “Tap to Focus” with a Preview - 使用“点击焦点”预览</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Showing-Audio-Levels-显示音频等级"><span class="toc-number">1.5.2.</span> <span class="toc-text">Showing Audio Levels - 显示音频等级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting-It-All-Together-Capturing-Video-Frames-as-UIImage-Objects-总而言之：捕获视频帧用作-UIImage-对象"><span class="toc-number">1.6.</span> <span class="toc-text">Putting It All Together: Capturing Video Frames as UIImage Objects - 总而言之：捕获视频帧用作 UIImage 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-a-Capture-Session-创建和配置捕获会话"><span class="toc-number">1.6.1.</span> <span class="toc-text">Create and Configure a Capture Session - 创建和配置捕获会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-the-Device-and-Device-Input-创建和配置设备记忆设备输入"><span class="toc-number">1.6.2.</span> <span class="toc-text">Create and Configure the Device and Device Input - 创建和配置设备记忆设备输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-and-Configure-the-Video-Data-Output-创建和配置视频数据输出"><span class="toc-number">1.6.3.</span> <span class="toc-text">Create and Configure the Video Data Output - 创建和配置视频数据输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implement-the-Sample-Buffer-Delegate-Method-实现示例缓冲代理方法"><span class="toc-number">1.6.4.</span> <span class="toc-text">Implement the Sample Buffer Delegate Method - 实现示例缓冲代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Starting-and-Stopping-Recording-启动和停止录制"><span class="toc-number">1.6.5.</span> <span class="toc-text">Starting and Stopping Recording - 启动和停止录制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#High-Frame-Rate-Video-Capture-高帧速率视频捕获"><span class="toc-number">1.7.</span> <span class="toc-text">High Frame Rate Video Capture - 高帧速率视频捕获</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Playback-播放"><span class="toc-number">1.7.1.</span> <span class="toc-text">Playback - 播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Editing-编辑"><span class="toc-number">1.7.2.</span> <span class="toc-text">Editing - 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Export-出口"><span class="toc-number">1.7.3.</span> <span class="toc-text">Export - 出口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recording-录制"><span class="toc-number">1.7.4.</span> <span class="toc-text">Recording - 录制</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
