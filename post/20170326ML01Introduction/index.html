@@ -1,0 +1,698 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【AI】机器学习入门系列01，Introduction 简介 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【AI】机器学习入门系列01，Introduction 简介">
+<meta property="og:url" content="http://yoferzhang.com/post/20170326ML01Introduction/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0evuvwccj20ng042gn5.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ewlwd1yj20vw0byn3v.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0exn3ri5j21080legwh.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0eyillqbj212k0lythh.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ezk7m7kj210c0qqtcg.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f0l1hi0j20oe04gwf0.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f1e0somj211y0ag3zn.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f2vi19lj20z00l8dgm.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f3jd278j20xo0j8jsp.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f49759tj20zq0jwgy4.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f4uqylgj21160nawt0.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5g8hvdj20qs0jeq49.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5zur6pj211g0lik15.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f6o89p0j211e08on2j.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f781j5vj212s0cwdpw.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f7s2pkfj210e0dmjx5.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f8g4v9sj21040o241r.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9310jsj20z20jytki.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9xlbl6j21040mawum.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0fahrm70j21040lk7ll.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g0n0om7j21d40t41ki.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g196w8zj210i0k61kx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g1tadjsj21do0syb29.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2cnb63j20zu0s8tjh.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2x9gqrj212i0q044l.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g3h5048j21340l27cv.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0g40v56nj211y0s8wil.jpg">
+<meta property="og:updated_time" content="2018-06-05T12:57:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【AI】机器学习入门系列01，Introduction 简介">
+<meta name="twitter:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
+
+引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
+
+CSDN博客文章地址">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20170326ML01Introduction/" title="【AI】机器学习入门系列01，Introduction 简介" itemprop="url">【AI】机器学习入门系列01，Introduction 简介</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-26T14:58:55.000Z" itemprop="datePublished"> 发表于 2017-03-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#我们将要学习什么东东？"><span class="toc-number">1.</span> <span class="toc-text">我们将要学习什么东东？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是机器学习？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是机器学习？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习-approx-寻找一个函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">机器学习 $\approx$ 寻找一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Framework-框架"><span class="toc-number">1.1.2.</span> <span class="toc-text">Framework 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体都学习哪些知识（Learning-Map）"><span class="toc-number">1.2.</span> <span class="toc-text">整体都学习哪些知识（Learning Map）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Regression（回归）是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">Regression（回归）是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification（分类）"><span class="toc-number">1.2.2.</span> <span class="toc-text">Classification（分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Classification（二元分类）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Binary Classification（二元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-class-Classification（多元分类）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Multi-class Classification（多元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deep-Learning（深度学习）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Deep Learning（深度学习）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supervised-Learning（有监督学习）"><span class="toc-number">1.2.3.</span> <span class="toc-text">Supervised Learning（有监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semi-supervised-Learning（半监督学习）"><span class="toc-number">1.2.4.</span> <span class="toc-text">Semi-supervised Learning（半监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Learning（迁移学习）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Transfer Learning（迁移学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsupervised-Learning（无监督学习）"><span class="toc-number">1.2.6.</span> <span class="toc-text">Unsupervised Learning（无监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structured-Learning（结构化学习）"><span class="toc-number">1.2.7.</span> <span class="toc-text">Structured Learning（结构化学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reinforcement-Learning（增强学习）"><span class="toc-number">1.2.8.</span> <span class="toc-text">Reinforcement Learning（增强学习）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Learning-Map颜色的意义"><span class="toc-number">1.3.</span> <span class="toc-text">理解Learning Map颜色的意义</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>Gitbook传送门：<a href="https://yoferzhang.gitbooks.io/machinelearningstudy/content/" target="_blank" rel="external">https://yoferzhang.gitbooks.io/machinelearningstudy/content/</a></p>
+<blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<blockquote>
+<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66478149" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66478149</a></p>
+</blockquote>
+<h1 id="我们将要学习什么东东？"><a href="#我们将要学习什么东东？" class="headerlink" title="我们将要学习什么东东？"></a>我们将要学习什么东东？</h1><h2 id="什么是机器学习？"><a href="#什么是机器学习？" class="headerlink" title="什么是机器学习？"></a>什么是机器学习？</h2><p> <img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0endla38j210e0lsn5o.jpg" alt=""><br>有右边这样非常大的音频数据集，写程序来进行学习，然后可以输出音频“Hello”<br><a id="more"></a></p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0esd0he0j20zw0mc49q.jpg" alt=""><br>有右边这样非常大的图片数据集，写程序来进行学习，然后可以识别左边这样图，识别为正确的物种。</p>
+<h3 id="机器学习-approx-寻找一个函数"><a href="#机器学习-approx-寻找一个函数" class="headerlink" title="机器学习 $\approx$ 寻找一个函数"></a>机器学习 $\approx$ 寻找一个函数</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0euzrz3uj21360lowla.jpg" alt=""></p>
+<h3 id="Framework-框架"><a href="#Framework-框架" class="headerlink" title="Framework 框架"></a>Framework 框架</h3><ul>
+<li>Image Recognition 图像识别</li>
+</ul>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0evuvwccj20ng042gn5.jpg" alt=""></p>
+<p>函数集($f<em>{1},f</em>{2},\ldots $)，通常将一个函数称为Model（模型）</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ewlwd1yj20vw0byn3v.jpg" alt=""></p>
+<p>为了找到最好的函数 $f$ ，将训练集图像放入函数集的输入中，函数集输出识别结果。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0exn3ri5j21080legwh.jpg" alt=""></p>
+<p>下面来看具体步骤</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0eyillqbj212k0lythh.jpg" alt=""></p>
+<p>Step1.确定一组函数（Model），函数集怎么找后面会再介绍。<br>Step2.将训练集对函数集进行训练。<br>Step3.挑选出“最好”的函数 $f^{<em>}$<br>然后就可以使用 $f^{</em>}$ 来对新的测试集进行检测。</p>
+<h2 id="整体都学习哪些知识（Learning-Map）"><a href="#整体都学习哪些知识（Learning-Map）" class="headerlink" title="整体都学习哪些知识（Learning Map）"></a>整体都学习哪些知识（Learning Map）</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ezk7m7kj210c0qqtcg.jpg" alt=""></p>
+<h3 id="Regression（回归）是什么"><a href="#Regression（回归）是什么" class="headerlink" title="Regression（回归）是什么?"></a>Regression（回归）是什么?</h3><p>Regression 意思是，我们要找到这样一个函数 $f$，使得输出为 scalar（标量，数值）</p>
+<blockquote>
+<p>这里说法当然是比较不严谨，数学上简单的线性，一元或多元回归的知识可以在概率论与数理统计课本中进行学习。《概率论与数理统计》，浙江大学，第九章，P244。</p>
+</blockquote>
+<p>举个例子，比如预测PM2.5.</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f0l1hi0j20oe04gwf0.jpg" alt=""></p>
+<p>输入就是之前每一天的PM2.5数值，输出是明天的PM2.5，是个标量。<br>具体做法：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f1e0somj211y0ag3zn.jpg" alt=""></p>
+<h3 id="Classification（分类）"><a href="#Classification（分类）" class="headerlink" title="Classification（分类）"></a>Classification（分类）</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f2vi19lj20z00l8dgm.jpg" alt=""></p>
+<p>分类比较容易理解，比如二元分类或者多元分类。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f3jd278j20xo0j8jsp.jpg" alt=""></p>
+<h4 id="Binary-Classification（二元分类）"><a href="#Binary-Classification（二元分类）" class="headerlink" title="Binary Classification（二元分类）"></a>Binary Classification（二元分类）</h4><p>比如垃圾邮件过滤，就是要找到一个Function，输入为一封邮件，输出是二元的，是或者不是垃圾邮件。训练集就是很多封邮件，每一封邮件知道它是否是垃圾邮件，让Function进行学习。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f49759tj20zq0jwgy4.jpg" alt=""></p>
+<h4 id="Multi-class-Classification（多元分类）"><a href="#Multi-class-Classification（多元分类）" class="headerlink" title="Multi-class Classification（多元分类）"></a>Multi-class Classification（多元分类）</h4><p>多元分类；例如下面的新闻分类系统，找一个Function，输入就是新闻的内容，输出则是新闻的类型（政治，经济，体育等等）</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f4uqylgj21160nawt0.jpg" alt=""></p>
+<h4 id="Deep-Learning（深度学习）"><a href="#Deep-Learning（深度学习）" class="headerlink" title="Deep Learning（深度学习）"></a>Deep Learning（深度学习）</h4><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5g8hvdj20qs0jeq49.jpg" alt=""></p>
+<p>上面讲过，机器学习的第一个步骤就是确定一个函数集，可以选择Linear Model（线性模型），但是 Linear Model 比较有限。更多的则是 Non-lilnear Model（非线性模型）。比如深度学习就是 Non-lilnear Model 。</p>
+<p>举个例子，比如图像识别：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f5zur6pj211g0lik15.jpg" alt=""></p>
+<p>这里举例深度学习中的一种，Convolutional Neural Network（CNN，卷积神经网络），输入就是很多的图像，输出为图像的类型，这里将每个对象都当作一个类别。训练集就是很多张图片，并告诉机器每张图片对应的是什么类型。深度学习的Function非常复杂。</p>
+<p>再举一个例子，下围棋：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0f6o89p0j211e08on2j.jpg" alt=""></p>
+<p>输入就是黑白子在19<em>19棋盘上的位置，输出就是下一步应该下在哪里。这也就是一个选择题，可能的选项有19</em>19个。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f781j5vj212s0cwdpw.jpg" alt=""></p>
+<p>训练集就是一堆棋谱，每一步是怎么走的。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f7s2pkfj210e0dmjx5.jpg" alt=""></p>
+<h3 id="Supervised-Learning（有监督学习）"><a href="#Supervised-Learning（有监督学习）" class="headerlink" title="Supervised Learning（有监督学习）"></a>Supervised Learning（有监督学习）</h3><p>Non-lilnear Model 不只Deep Learning，后面还会接触到SVM，decision tree等。<br>上面提到这些我们都叫做Supervised Learning（有监督学习），所谓 Supervised Learning 就是说训练集的输入和输出对于目标函数是成对的，目标函数看到一个输入，就应该对应有一个输出。也把这样的输出叫做 label。<br>见到说需要 Labelled data 的情况，就是指我们要告诉机器看到一个输入，要有一个输出。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0f8g4v9sj21040o241r.jpg" alt=""></p>
+<p>其他的比如还有Semi-supervised Learning（半监督学习）</p>
+<h3 id="Semi-supervised-Learning（半监督学习）"><a href="#Semi-supervised-Learning（半监督学习）" class="headerlink" title="Semi-supervised Learning（半监督学习）"></a>Semi-supervised Learning（半监督学习）</h3><p>比如图像识别一些猫和狗，Labelled data 就是训练集中每个图片知道它对应的是什么类型。而Unlabelled data 就是不知道图片对应的类型。这种其实也是可以让机器学习的比较好的，后面也会介绍。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9310jsj20z20jytki.jpg" alt=""></p>
+<h3 id="Transfer-Learning（迁移学习）"><a href="#Transfer-Learning（迁移学习）" class="headerlink" title="Transfer Learning（迁移学习）"></a>Transfer Learning（迁移学习）</h3><p>举例说一下迁移学习：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0f9xlbl6j21040mawum.jpg" alt=""></p>
+<p>比如有 Labelled data ，但我们还有一些labelled 或者 unlabelled 数据，这些数据和 Labelled data 中识别猫和狗都没有关系，但它也是怎么帮助Labelled data 更好的识别。这就是 Transfer Learning 要做的事情。</p>
+<h3 id="Unsupervised-Learning（无监督学习）"><a href="#Unsupervised-Learning（无监督学习）" class="headerlink" title="Unsupervised Learning（无监督学习）"></a>Unsupervised Learning（无监督学习）</h3><p>举一个Unsupervised Learning 的例子：让机器阅读非常多的文章，然后机器就可以学习单词的含义。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0fahrm70j21040lk7ll.jpg" alt=""></p>
+<p>这个Unsupervised Learning 的例子中，训练集只有输入（很多的文章），没有输出。假设通过Neural Network（神经网络）学习之后，给一个单词，就可以输出一个向量。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g0n0om7j21d40t41ki.jpg" alt=""></p>
+<p>再举一个例子：比如想要让机器绘制一下自己的内心世界。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g196w8zj210i0k61kx.jpg" alt=""></p>
+<p>具体说就是给机器一堆数字，他就能自己绘制一张图片，此时训练集只有输出（很多的图片），没有输入。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g1tadjsj21do0syb29.jpg" alt=""></p>
+<h3 id="Structured-Learning（结构化学习）"><a href="#Structured-Learning（结构化学习）" class="headerlink" title="Structured Learning（结构化学习）"></a>Structured Learning（结构化学习）</h3><p>比如看下面例子：第一个是语音识别，假设我们想要找的function是输入一段语音，然后输出语音的文字。如果把世界上不同的句子当作一个类别，这样是没有办法穷举所有类型的，所以这种超越分类的问题，就需要另外一套完整的思想来解决。<br>还有例子就是机器翻译，将中文翻译成英文，也是没有办法穷举所有的句子。再或者人脸识别，没有办法穷举所有人脸框。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2cnb63j20zu0s8tjh.jpg" alt=""></p>
+<h3 id="Reinforcement-Learning（增强学习）"><a href="#Reinforcement-Learning（增强学习）" class="headerlink" title="Reinforcement Learning（增强学习）"></a>Reinforcement Learning（增强学习）</h3><p>举个Reinforcement Learning 的例子：AlphaGo。<br>举例来比较 Supervised 和 Reinforcement：比如学习对话，Supervised 训练集每句话，都有对应的输出；但是Reinforcement就只是不断的对话，机器只能知道它做的好或者不好，没有其他更多的信息。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g2x9gqrj212i0q044l.jpg" alt=""></p>
+<p>再举一个围棋的例子，比如 Supervised 情况就是机器看到一个棋局，告诉它下一步应该走什么。Reinforcement 的情况就是走了很多步，输了或者赢了，就是知道一个结果。AlphaGo 就是两个都用到了，先看棋谱学习，但是棋谱的数量是有限的，然后再进行增强型学习。所以 AlphaGo 第一轮和世界高手对局时还捉襟见肘，第二轮就基本横扫了。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0g3h5048j21340l27cv.jpg" alt=""></p>
+<h2 id="理解Learning-Map颜色的意义"><a href="#理解Learning-Map颜色的意义" class="headerlink" title="理解Learning Map颜色的意义"></a>理解Learning Map颜色的意义</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0g40v56nj211y0s8wil.jpg" alt=""></p>
+<p>蓝色的都是代表Scenario（方案），红色部分指的是你要找的function的样子，可以在Semi-supervised Learning 的情况下做红色的task，也可以在 Transfer Learning下做红色task，就是右上角的4个虽然是小方块，但是 Supervised Learning 里面的 task 都可以在其他蓝色 scenario 中做。绿色的部分就是方法或者说模型，绿色的内容虽然写在 Classification 里面，但是可以放在 Regression 或者 Structured Learning 中。</p>
+<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20170326ML01Introduction/">http://yoferzhang.com/post/20170326ML01Introduction/</a><br>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66478149" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66478149</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/AI/">AI</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/机器学习/">机器学习</a><a href="/tags/深度学习/">深度学习</a><a href="/tags/分类/">分类</a><a href="/tags/AlphaGo/">AlphaGo</a><a href="/tags/线性回归/">线性回归</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20170326ML01Introduction/" data-title="【AI】机器学习入门系列01，Introduction 简介 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20170326ML02Regression/" title="【AI】机器学习入门系列02，Regression 回归：案例研究">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【AI】机器学习入门系列02，Regression 回归：案例研究</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20170306DeepLearningRegression/"  title="【测试】只是为了测试数学公式">
+ <strong>下一篇：</strong><br/> 
+ <span>【测试】只是为了测试数学公式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20170326ML01Introduction/" data-title="【AI】机器学习入门系列01，Introduction 简介" data-url="http://yoferzhang.com/post/20170326ML01Introduction/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#我们将要学习什么东东？"><span class="toc-number">1.</span> <span class="toc-text">我们将要学习什么东东？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是机器学习？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是机器学习？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习-approx-寻找一个函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">机器学习 $\approx$ 寻找一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Framework-框架"><span class="toc-number">1.1.2.</span> <span class="toc-text">Framework 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体都学习哪些知识（Learning-Map）"><span class="toc-number">1.2.</span> <span class="toc-text">整体都学习哪些知识（Learning Map）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Regression（回归）是什么"><span class="toc-number">1.2.1.</span> <span class="toc-text">Regression（回归）是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification（分类）"><span class="toc-number">1.2.2.</span> <span class="toc-text">Classification（分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Binary-Classification（二元分类）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Binary Classification（二元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-class-Classification（多元分类）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Multi-class Classification（多元分类）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Deep-Learning（深度学习）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Deep Learning（深度学习）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supervised-Learning（有监督学习）"><span class="toc-number">1.2.3.</span> <span class="toc-text">Supervised Learning（有监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semi-supervised-Learning（半监督学习）"><span class="toc-number">1.2.4.</span> <span class="toc-text">Semi-supervised Learning（半监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Learning（迁移学习）"><span class="toc-number">1.2.5.</span> <span class="toc-text">Transfer Learning（迁移学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsupervised-Learning（无监督学习）"><span class="toc-number">1.2.6.</span> <span class="toc-text">Unsupervised Learning（无监督学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structured-Learning（结构化学习）"><span class="toc-number">1.2.7.</span> <span class="toc-text">Structured Learning（结构化学习）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reinforcement-Learning（增强学习）"><span class="toc-number">1.2.8.</span> <span class="toc-text">Reinforcement Learning（增强学习）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解Learning-Map颜色的意义"><span class="toc-number">1.3.</span> <span class="toc-text">理解Learning Map颜色的意义</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

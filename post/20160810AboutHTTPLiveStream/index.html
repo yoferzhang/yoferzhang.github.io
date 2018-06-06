@@ -1,0 +1,697 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS】About HTTP Live Streaming官方文档翻译 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="新博客文章地址：About HTTP Live Streaming官方文档翻译 [iOS]CSDN文章地址：About HTTP Live Streaming官方文档翻译 [iOS]
+版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - 点击这里
+
+About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】About HTTP Live Streaming官方文档翻译">
+<meta property="og:url" content="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="新博客文章地址：About HTTP Live Streaming官方文档翻译 [iOS]CSDN文章地址：About HTTP Live Streaming官方文档翻译 [iOS]
+版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - 点击这里
+
+About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6oz8i4ekrj21ug0pmtft.jpg">
+<meta property="og:updated_time" content="2018-06-06T02:33:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】About HTTP Live Streaming官方文档翻译">
+<meta name="twitter:description" content="新博客文章地址：About HTTP Live Streaming官方文档翻译 [iOS]CSDN文章地址：About HTTP Live Streaming官方文档翻译 [iOS]
+版权声明：本文为博主原创翻译，如需转载请注明出处。
+苹果源文档地址 - 点击这里
+
+About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160810AboutHTTPLiveStream/" title="【iOS】About HTTP Live Streaming官方文档翻译" itemprop="url">【iOS】About HTTP Live Streaming官方文档翻译</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-10T07:55:15.000Z" itemprop="datePublished"> 发表于 2016-08-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-HTTP-Live-Streaming-HTTP实时流"><span class="toc-number">1.</span> <span class="toc-text">About HTTP Live Streaming - HTTP实时流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-Workflow-HLS-工作流"><span class="toc-number">1.1.</span> <span class="toc-text">HLS Workflow - HLS 工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Segments-媒体片段"><span class="toc-number">1.2.</span> <span class="toc-text">Media Segments - 媒体片段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Playlist-Files-媒体播放列表文件"><span class="toc-number">1.3.</span> <span class="toc-text">Media Playlist Files - 媒体播放列表文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Live-and-Event-Media-Playlists-实时和事件媒体播放列表"><span class="toc-number">1.4.</span> <span class="toc-text">Live and Event Media Playlists - 实时和事件媒体播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VOD-Media-Playlists-VOD媒体播放列表"><span class="toc-number">1.5.</span> <span class="toc-text">VOD Media Playlists - VOD媒体播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Playlists-主播放列表"><span class="toc-number">1.6.</span> <span class="toc-text">Master Playlists - 主播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Publishing-Your-HLS-Streams-发布HLS流"><span class="toc-number">1.7.</span> <span class="toc-text">Publishing Your HLS Streams - 发布HLS流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Features-主要特征"><span class="toc-number">1.8.</span> <span class="toc-text">Key Features - 主要特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Closed-Captions-and-Subtitles-隐藏式字幕和字幕"><span class="toc-number">1.8.1.</span> <span class="toc-text">Closed Captions and Subtitles - 隐藏式字幕和字幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fast-Forward-and-Reverse-Playback-快进和快退播放"><span class="toc-number">1.8.2.</span> <span class="toc-text">Fast Forward and Reverse Playback - 快进和快退播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alternate-Audio-and-Video-Renditions-备用音频和视频副本"><span class="toc-number">1.8.3.</span> <span class="toc-text">Alternate Audio and Video Renditions - 备用音频和视频副本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fallback-with-Stream-Alternates-流交替回退"><span class="toc-number">1.8.4.</span> <span class="toc-text">Fallback with Stream Alternates - 流交替回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Timed-Metadata-定时的元数据"><span class="toc-number">1.8.5.</span> <span class="toc-text">Timed Metadata - 定时的元数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ad-Insertion-广告插入"><span class="toc-number">1.8.6.</span> <span class="toc-text">Ad Insertion - 广告插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Protection-内容保护"><span class="toc-number">1.8.7.</span> <span class="toc-text">Content Protection - 内容保护</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements-for-iOS-Apps-对于iOS应用需求"><span class="toc-number">1.9.</span> <span class="toc-text">Requirements for iOS Apps - 对于iOS应用需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Streams-样品流"><span class="toc-number">1.10.</span> <span class="toc-text">Sample Streams - 样品流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Getting-Started-with-HLS-开始使用HLS"><span class="toc-number">1.11.</span> <span class="toc-text">Getting Started with HLS - 开始使用HLS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-Feature-Release-History-HLS功能发布历史"><span class="toc-number">1.12.</span> <span class="toc-text">HLS Feature Release History - HLS功能发布历史</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52176681" target="_blank" rel="external">About HTTP Live Streaming官方文档翻译 [iOS]</a></p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/AboutHTTPLiveStreaming/about/about.html#//apple_ref/doc/uid/TP40013978" target="_blank" rel="external">点击这里</a></p>
+</blockquote>
+<h1 id="About-HTTP-Live-Streaming-HTTP实时流"><a href="#About-HTTP-Live-Streaming-HTTP实时流" class="headerlink" title="About HTTP Live Streaming - HTTP实时流"></a>About HTTP Live Streaming - HTTP实时流</h1><p>HTTP Live Streaming (HLS) is Apple’s technology for streaming live and on-demand audio/video content to iPhone, iPad, iPod touch, Apple TV, and Mac. Central to HLS is the delivery of content using the HTTP protocol—the same protocol that powers the web. HTTP lets you easily deploy media content in streams using commonplace web servers rather than specialized streaming servers. HLS streams behave like regular web traffic. They work with preexisting caching infrastructure, such as Content Delivery Networks (CDNs), and reliably pass through typical firewalls and routers. HLS adapts to variable network conditions, dynamically adjusting playback to match the available speed of wired and wireless connections.</p>
+<p>HTTP Live Streaming (HLS) 是苹果公司的技术，有关流媒体直播和点播音频/视频内容，支持iPhone, iPad, iPod touch, Apple TV, 和 Mac。内部 对 HLS 内容的传递 使用与HTTP协议相同的协议来处理网络服务。 HTTP可以轻松地使用普通的Web服务器，而不是专门的流媒体服务器 来部署流媒体内容。HLS流行为像常规的网络流量。工作方式为预先缓存基础结构，比如内容分发网络（CDN），以及可靠地通过典型的防火墙和路由器。HLS适应可变的网络状况，动态地调整播放以匹配有线和无线连接的可用速度。</p>
+<a id="more"></a>
+<p>In addition to reliability and ease of deployment, HLS supports important features for the delivery of commercial content: closed captions, fast forward and reverse playback, alternate audio and video, fallback alternatives, timed metadata, ad insertion, and content protection.</p>
+<p>除了可靠性和易于部署，HLS支持广告内容投递的重要特征：字幕，快进和快退播放，备用音频和视频，后备方案，定时元数据，广告插播，和内容保护。</p>
+<p>This document describes key aspects of HLS including the features mentioned above. The full HTTP Live Streaming specification is available as an IETF Internet-Draft at <a href="http://tools.ietf.org/html/draft-pantos-http-live-streaming" target="_blank" rel="external">http://tools.ietf.org/html/draft-pantos-http-live-streaming</a>.</p>
+<p>此文件描述的HLS的主要方面包括上述特征。 完整的HTTP实时流规范可以作为一个IETF互联网草案 <a href="http://tools.ietf.org/html/draft-pantos-http-live-streaming" target="_blank" rel="external">http://tools.ietf.org/html/draft-pantos-http-live-streaming</a></p>
+<h2 id="HLS-Workflow-HLS-工作流"><a href="#HLS-Workflow-HLS-工作流" class="headerlink" title="HLS Workflow - HLS 工作流"></a>HLS Workflow - HLS 工作流</h2><p>In a typical HLS workflow, a video encoder solution that supports HLS receives a live video feed or distribution-ready media file. The encoder creates multiple versions (known as variants) of the audio/video at different bit rates, resolutions, and quality levels. The encoder then segments the variants into a series of small files, called media segments. At the same time, the encoder creates a media playlist file for each variant containing a list of URLs pointing to the variant’s media segments. The encoder also creates a master playlist file, containing a list of the URLs to variant media playlists, and descriptive tags to control the playback behavior of the stream. While producing playlists and segments, the encoder or automated scripts upload the files to a web server or CDN.</p>
+<p>支持HLS视频编码的解决案，接收实时视频流或分发就绪媒体文件。该编码器根据不同的比特率，分辨率和质量水平，创建多个版本（被称为<code>variants</code>）的音频/视频。编码器然后将这些变量段细分成一系列的小文件，称为媒体片段。编码器为每个变体创建一个媒体播放列表文件，包含URL的列表，这些URL指向的媒体片段。编码器还创建了一个主播放列表文件，其中包含的URL列表，指向变种媒体播放列表，并描述性标签来控制流的播放行为。当产生播放列表和段，码器或自动化脚本将文件上传到Web服务器或CDN。</p>
+<p>You provide access to the content by embedding a link to the master playlist file in a web page, or by creating your own custom application that downloads the master playlist file.</p>
+<p>通过在网页嵌入一个链接，指向主播放列表文件，来提供内容的入口。或者创建自己的自定义应用程序，下载主播放列表文件。</p>
+<h2 id="Media-Segments-媒体片段"><a href="#Media-Segments-媒体片段" class="headerlink" title="Media Segments - 媒体片段"></a>Media Segments - 媒体片段</h2><p>An encoder creates media segments by dividing the event data into short MPEG-2 transport stream files (.ts). Typically, the files contain H.264 video or AAC audio with a duration of 5 to 10 seconds each. The encoder lets you set the encoding and duration of the media segments.</p>
+<p>编码器通过将所述事件数据划分为短 <code>MPEG-2</code> 传输流文件（.ts）。通常情况下，该文件包含 <code>H.264</code> 视频和 <code>AAC</code> 音频，每个持续5到10秒。</p>
+<h2 id="Media-Playlist-Files-媒体播放列表文件"><a href="#Media-Playlist-Files-媒体播放列表文件" class="headerlink" title="Media Playlist Files - 媒体播放列表文件"></a>Media Playlist Files - 媒体播放列表文件</h2><p>The encoder creates the media playlists as text files saved in the M3U format (.m3u8). The media playlists contain URLs to the media segments and other information needed for playback. The playlist type—live, event, or video on demand (VOD)—determines how the stream can be navigated.</p>
+<p>编码器创建媒体播放列表，作为文本文件保存在M3U格式（.m3u8 ）。媒体播放列表包含指向媒体片段的 <code>URL</code>，以及其他需要播放的信息。播放列表式的直播，事件，或视频点播（VOD），确定该如何导流。</p>
+<p>Live playlists let viewers perform fast forward and reverse playback within a limited time range. The range advances along the program until the end of the live presentation. Event playlists let a viewer rewind to the beginning of the stream even as it continues to stream live. VOD playlists represent a previously completed program that can be fully navigated from beginning to end.</p>
+<p>实时播放列表，可以让观众进行快速前进，以及在有限的时间内后退。范围沿程序前进，直到直播演示结束。事件播放列表，可以让观众倒带到流的开始，即使它还继续直播。VOD播放列表是先前完成的程序，从开始到结束全都能随时播放。</p>
+<h2 id="Live-and-Event-Media-Playlists-实时和事件媒体播放列表"><a href="#Live-and-Event-Media-Playlists-实时和事件媒体播放列表" class="headerlink" title="Live and Event Media Playlists - 实时和事件媒体播放列表"></a>Live and Event Media Playlists - 实时和事件媒体播放列表</h2><p>Both the live and event types of programs require updates to the media playlists as newly created media segments become available on the server. The encoder adds new media segment references to the end of the playlist and uploads the updated playlist to the server.</p>
+<p>实时类型和事件类型，都需要将媒体播放列表更新为最新创建的媒体片段，变为服务器上可用的。编码器在播放列表的末尾添加了新的媒体片段引用，并上传到服务器的更新列表。</p>
+<p>In a live playlist, as shown in Listing 1, references to older media segments can be removed from the media playlist and discarded, providing a sliding window into a continuous stream.</p>
+<p>在一个播放列表，如清单1所示，旧媒体段的引用可被从媒体播放清单中移除并丢弃，为连续流提供一个滑动窗口。</p>
+<p>Listing 1  A simple live media playlist</p>
+<p>清单1一个简单的媒体直播的播放列表</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#EXTM3U</span></span><br><span class="line"><span class="meta">#EXT-X-VERSION:6</span></span><br><span class="line"><span class="meta">#EXT-X-TARGETDURATION:10</span></span><br><span class="line"><span class="meta">#EXT-X-MEDIA-SEQUENCE:26</span></span><br><span class="line"><span class="meta">#EXTINF:9.901,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment26.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.901,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment27.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.501,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment28.ts</span></span><br></pre></td></tr></table></figure>
+<p>An event playlist, shown in Listing 2, has the same format as the live media playlist above, with the exception of an extra line: #EXT-X-PLAYLIST-TYPE:EVENT. That designation alerts media player that this playlist will behave differently than a live media playlist. Event playlists maintain the references to older media while gaining new references. This process results in an expanding media playlist. This type of playlist allows the players to navigate freely (backward and forward) from the beginning of the program. Because references to all media segments remain in the playlist when the live event ends, event playlists are easily converted to VOD playlists.</p>
+<p>事件的播放列表， 如清单2所示，与上面的直播媒体播放列表具有相同的格式，一行除外：<code>#EXT-X-PLAYLIST-TYPE:EVENT</code>。这标志提醒媒体播放器，该播放列表的行为不同于实时的媒体播放列表。获得新的引用时， 事件的播放列表维持旧的媒体引用。这个过程导致媒体播放列表的不断扩大。这种类型的播放列表的允许用户从节目的开始自由（向前和向后）导航。因为实时事件结束后，所有的媒体段引用保持在播放列表中，事件的播放列表很容易转换成VOD播放列表。</p>
+<p>Listing 2  A simple event media playlist</p>
+<p>清单2一个简单的事件媒体播放列表</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#EXTM3U</span></span><br><span class="line"><span class="meta">#EXT-X-VERSION:6</span></span><br><span class="line"><span class="meta">#EXT-X-TARGETDURATION:10</span></span><br><span class="line"><span class="meta">#EXT-X-MEDIA-SEQUENCE:0</span></span><br><span class="line"><span class="meta">#EXT-X-PLAYLIST-TYPE:EVENT</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment0.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment1.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment2.ts</span></span><br></pre></td></tr></table></figure>
+<h2 id="VOD-Media-Playlists-VOD媒体播放列表"><a href="#VOD-Media-Playlists-VOD媒体播放列表" class="headerlink" title="VOD Media Playlists - VOD媒体播放列表"></a>VOD Media Playlists - VOD媒体播放列表</h2><p>A VOD playlist, shown in Listing 3, contains references to all available media segments for the complete presentation, beginning to end. This kind of playlist allows the player to navigate the entire program. A VOD #EXT-X-ENDLIST tag marks the end of downloadable media segments.</p>
+<p>VOD播放列表，显示在清单3，包含了从开始到结束 完整的呈现所有可用的媒体片段的引用。 这种列表允许用户浏览整个程序。 VOD <code>#EXT-X-ENDLIST</code> 标签标志着下载的媒体段的结束。</p>
+<p>Listing 3  A simple VOD media playlist</p>
+<p>清单3简单的VOD媒体播放列表</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#EXTM3U</span></span><br><span class="line"><span class="meta">#EXT-X-VERSION:6</span></span><br><span class="line"><span class="meta">#EXT-X-TARGETDURATION:10</span></span><br><span class="line"><span class="meta">#EXT-X-MEDIA-SEQUENCE:0</span></span><br><span class="line"><span class="meta">#EXT-X-PLAYLIST-TYPE:VOD</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment0.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment1.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment2.ts</span></span><br><span class="line"><span class="meta">#EXT-X-ENDLIST</span></span><br></pre></td></tr></table></figure>
+<h2 id="Master-Playlists-主播放列表"><a href="#Master-Playlists-主播放列表" class="headerlink" title="Master Playlists - 主播放列表"></a>Master Playlists - 主播放列表</h2><p>The master playlist provides an address for each individual media playlist in the stream. Figure 1 shows this relationship. The master playlist also provides important details such as bandwidth, resolution, and codec. The player uses that information to decide the most appropriate variant for the device and the currently measured, available bandwidth.</p>
+<p>主播放列表为每个单独的媒体播放列表提供了一个地址流。 图1显示了这种关系。主播放列表也提供了重要的细节，如带宽，分辨率和编解码器。 播放器使用该信息来决定设备的最合适的变体和当前测量的，可用的带宽。</p>
+<center><br>    <img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg" alt="图1播放列表的关系"><br></center>
+
+<p>The sample master playlist in Listing 4 shows four variants. The order of the media playlists in the master playlists does not matter, except when you start the stream. The player begins downloading the first variant it can play. If conditions warrant, the player switches to another media playlist midstream.</p>
+<p>清单4中的样本主播放列表显示四个变种。  媒体播放列表在主播放列表的顺序并不重要，当你启动流时除外。 播放器在开始下载第一个变种，它就可以播放了。如果条件允许，播放器切换到另一个媒体播放列表的中游。</p>
+<p>Listing 4  A master playlist file with four available variants</p>
+<p>清单4 有四个变体的一种主播放列表文件</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#EXTM3U</span></span><br><span class="line"><span class="meta">#EXT-X-VERSION:6</span></span><br><span class="line"><span class="meta">#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2855600,CODECS=<span class="meta-string">"avc1.4d001f,mp4a.40.2"</span>,RESOLUTION=960x540</span></span><br><span class="line">live/medium.m3u8</span><br><span class="line"><span class="meta">#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=5605600,CODECS=<span class="meta-string">"avc1.640028,mp4a.40.2"</span>,RESOLUTION=1280x720</span></span><br><span class="line">live/high.m3u8</span><br><span class="line"><span class="meta">#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1755600,CODECS=<span class="meta-string">"avc1.42001f,mp4a.40.2"</span>,RESOLUTION=640x360</span></span><br><span class="line">live/low.m3u8</span><br><span class="line"><span class="meta">#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=545600,CODECS=<span class="meta-string">"avc1.42001e,mp4a.40.2"</span>,RESOLUTION=416x234</span></span><br><span class="line">live/cellular.m3u8</span><br></pre></td></tr></table></figure>
+<p>A player downloads a master playlist only once. However, the number of media playlist downloads vary with the playlist type. For live and event broadcasts, the player downloads the media playlist files after each segment duration because the the playlist may update with new segments or lose older segments as the stream progresses. For VOD, players download media playlists only once.</p>
+<p>播放器只下载主列表一次。 然而，媒体播放列表的下载数随着播放列表类型而变化。对于实时和事件广播，播放器在每个片段时间之后，下载媒体播放文件，因为播放列表可以用新的片段更新或随着流进展丢弃老片段。对于 <code>VOD</code> 下载播放器的播放列表媒体只有一次。</p>
+<h2 id="Publishing-Your-HLS-Streams-发布HLS流"><a href="#Publishing-Your-HLS-Streams-发布HLS流" class="headerlink" title="Publishing Your HLS Streams - 发布HLS流"></a>Publishing Your HLS Streams - 发布HLS流</h2><p>You provide access to your streams by adding a link to the master playlist file in a web page, or by creating your own custom application built with the AV Foundation or Media Player frameworks. See AVFoundation Programming Guide or Media Player Framework Reference.</p>
+<p>给流提供入口的方式有，通过网页中的主文件列表添加一个链接，或用 <code>AV Foundation</code> 或媒体播放器的框架构建自己的自定义应用程序。见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188" target="_blank" rel="external">AVFoundation Programming Guide</a> 或者 <a href="https://developer.apple.com/library/ios/documentation/MediaPlayer/Reference/MediaPlayer_Framework/index.html#//apple_ref/doc/uid/TP40006952" target="_blank" rel="external">Media Player Framework Reference</a></p>
+<h2 id="Key-Features-主要特征"><a href="#Key-Features-主要特征" class="headerlink" title="Key Features - 主要特征"></a>Key Features - 主要特征</h2><p>The HLS technology lets you stream your content through HTTP and enables automatic switching between streams as network conditions change. Those attributes alone make HLS a great solution for media distribution. Additionally, the technology includes features for usability, availability, advertising, and security. You can build the quality with the following extensible solutions.</p>
+<p>该HLS技术，让您通过HTTP流形式传输您的内容，使流在网络条件的变化之间自动切换。这些特性使得HLS媒体分发成为一个很好的解决方案。此外，该技术还包括针对易用性，可用性，广告，安全等特点。你可以用以下的可扩展的解决方案，建立高质量的程序。</p>
+<h3 id="Closed-Captions-and-Subtitles-隐藏式字幕和字幕"><a href="#Closed-Captions-and-Subtitles-隐藏式字幕和字幕" class="headerlink" title="Closed Captions and Subtitles - 隐藏式字幕和字幕"></a>Closed Captions and Subtitles - 隐藏式字幕和字幕</h3><p>HLS supports CEA-608 closed captions embedded in the MPEG-2 transport stream as specified in ATSC A/72. Most encoders automatically include the closed captioning in the media segments as the encoder processes the incoming video. Some encoders also insert closed captioning from a separate closed caption file or segmented QuickTime files that contain closed caption tracks (cclp).</p>
+<p>HLS支持 <code>CEA-608</code> 字幕，嵌入在 <code>MPEG-2</code> 传输流中，在 <code>ATSC A/72</code>中指定。大多数编码器自动包括在媒体段中的字幕 作为编码器处理传入的视频。一些编码器也从一个独立的隐藏式字幕文件，或分段的、包含隐藏式字幕音轨（<code>cclp</code>）的QuickTime文件 插入隐藏式字幕。</p>
+<p>HLS also supports multiple subtitles in WebVTT format. For more information on implementation of WebVTT, see WWDC 2012: What’s New in HLS and WebVTT: The Web Video Text Tracks Format specification.</p>
+<p>HLS还支持 <code>WebVTT</code> 格式的多种字幕。有关 <code>WebVTT</code> 实现的更多信息，请参见 <a href="https://developer.apple.com/videos/wwdc/2012/?include=512#512" target="_blank" rel="external">WWDC 2012: What’s New in HLS</a> 和 <a href="http://dev.w3.org/html5/webvtt/" target="_blank" rel="external">WebVTT: The Web Video Text Tracks Format specification</a></p>
+<h3 id="Fast-Forward-and-Reverse-Playback-快进和快退播放"><a href="#Fast-Forward-and-Reverse-Playback-快进和快退播放" class="headerlink" title="Fast Forward and Reverse Playback - 快进和快退播放"></a>Fast Forward and Reverse Playback - 快进和快退播放</h3><p>HLS supports fast forward and reverse playback through the use of an I-frame playlist. The I-frame playlist points to a byte range within already existing media segments. Fast forward and reverse playback do not need special media segments.</p>
+<p>HLS快进支持并通过使用一个<code>I-frame</code>的播放列表 实现快退播放。<code>I-frame</code> 播放列表指向现有媒体段内的字节范围。快进和快退播放不需要特殊的媒体片段。</p>
+<p>For in-depth information on I-frame playlists, watch WWDC 2012: Effective HLS.</p>
+<p>有关 <code>I-frame</code> 的播放列表的详细信息，看 <a href="https://developer.apple.com/videos/wwdc/2012/?include=502#502" target="_blank" rel="external">WWDC 2012: Effective HLS</a></p>
+<h3 id="Alternate-Audio-and-Video-Renditions-备用音频和视频副本"><a href="#Alternate-Audio-and-Video-Renditions-备用音频和视频副本" class="headerlink" title="Alternate Audio and Video Renditions - 备用音频和视频副本"></a>Alternate Audio and Video Renditions - 备用音频和视频副本</h3><p>HLS master playlists offer multiple audio renditions, a valuable trait for localization. For example, your master playlist may include multiple language soundtracks such as French, German, Spanish, and English. The audio tracks contain unmuxed (signals have not been combined) audio segments. The master playlist file controls the playback.</p>
+<p>HLS主播放列表提供多种音频格式副本，对于本地化非常有用。例如，你的主播放列表可能包括多语言音轨，如法语，德语，西班牙语和英语。 音轨包含 <code>unmuxed</code>（信号未被组合）的音频段。主播放列表文件控制播放。</p>
+<p>HLS also supports multiple video streams; for example, multiple video angles for a sporting event. Again, the master playlist file controls the playback.</p>
+<p>HLS还支持多个视频流; 例如，体育赛事的多角度视频。再次，主播放列表文件控制播放。 </p>
+<p>For more information on alternate media renditions, watch WWDC 2012: Effective HLS.</p>
+<p>有关备用媒体备份的更多信息，请观看 <a href="https://developer.apple.com/videos/wwdc/2012/?include=502#502" target="_blank" rel="external">WWDC 2012: Effective HLS</a></p>
+<h3 id="Fallback-with-Stream-Alternates-流交替回退"><a href="#Fallback-with-Stream-Alternates-流交替回退" class="headerlink" title="Fallback with Stream Alternates - 流交替回退"></a>Fallback with Stream Alternates - 流交替回退</h3><p>Not only do alternate media playlists in your master playlist operate as bandwidth or device alternatives, the alternates also serve as failure fallbacks. If the player cannot reload the media playlist file—due to issues such as 404 errors, server crashing, or a content distributor node problem—the player attempts to switch to another compatible media playlist provided on a different server. Offering multiple media playlists with the same bandwidth, the player switches to an identical playlist, providing consistent stream performance.</p>
+<p>不仅在您的主列表 做交替媒体播放列表操作带宽或设备替换，候补也可作为故障回退。 如果玩家不能重新加载媒体播放列表文件 - 由于比如 <code>404 errors</code> 问题，服务器崩溃或内容分发节点问题 - 播放器试图切换到不同的服务器上的另一个兼容的媒体播放列表。使用相同的带宽提供多个媒体播放列表，播放器切换到相同播放列表，提供一致的数据流性能。</p>
+<h3 id="Timed-Metadata-定时的元数据"><a href="#Timed-Metadata-定时的元数据" class="headerlink" title="Timed Metadata - 定时的元数据"></a>Timed Metadata - 定时的元数据</h3><p>You can add various kinds of metadata to media stream segments. The data offers applications additional information during playback. For example, add the album art, artist’s name, and song title to an audio stream, or add the current batter’s name and statistics to video of a baseball game.</p>
+<p>你可以将各种元数据添加到媒体流段。在播放过程中，数据为应用程序提供更多的信息。例如，专辑封面，艺术家的名字和歌曲标题添加到音频流，或者添加当前击球手的名字和统计棒球比赛的视频。</p>
+<p>You insert the additional data, known as timed metadata, into a media stream at a given time offset. (Optionally, insert timed metadata into all segments after a given time.)</p>
+<p>插入附加的数据，被称为定时元数据，变成了媒体流在给定的时间偏移。（任选地，插入定时元数据到给定的时间之后的所有段）</p>
+<p>For more information on timed metadata, read Timed Metadata for HTTP Live Streaming.</p>
+<p>有关定时元数据的详细信息，请阅读 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/HTTP_Live_Streaming_Metadata_Spec/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010435" target="_blank" rel="external">Timed Metadata for HTTP Live Streaming</a></p>
+<h3 id="Ad-Insertion-广告插入"><a href="#Ad-Insertion-广告插入" class="headerlink" title="Ad Insertion - 广告插入"></a>Ad Insertion - 广告插入</h3><p>HLS facilitates ad insertion through discontinuity markers. The markers within playlists smooth transitions between disparate content.</p>
+<p>HLS通过不连续的标记有利于广告插播。 播放列表中的标记不同的平滑内容之间的转换。</p>
+<p>For more on discontinuities, read Example Playlist Files for use with HTTP Live Streaming.</p>
+<p>欲了解更多有关不连续性的信息，阅读 <a href="https://developer.apple.com/library/ios/technotes/tn2288/_index.html#//apple_ref/doc/uid/DTS40012238" target="_blank" rel="external">Example Playlist Files for use with HTTP Live Streaming</a></p>
+<h3 id="Content-Protection-内容保护"><a href="#Content-Protection-内容保护" class="headerlink" title="Content Protection - 内容保护"></a>Content Protection - 内容保护</h3><p>Media segments can be individually encrypted using sample-level encryption. References to the corresponding key files appear in the playlist file so that the player can retrieve the keys for decryption.</p>
+<p>媒体片段可以用样品级加密进行单独加密。到相应的密钥文件的引用出现在播放列表文件，使得播放器可以检索密钥用于解密。</p>
+<p>HLS supports key exchange with the method of your choice. Static keys, encoder generated keys, and frequently updated keys are just a few of the possibilities.</p>
+<p>HLS支持与您所选择方法的密钥交换。 静态密钥，编码器生成密钥，并且经常更新的密钥只有少数可能性。</p>
+<p>For detail on the sample-level encryption specified for use with HLS, read MPEG-2 Stream Encryption Format for HTTP Live Streaming.</p>
+<p>有关与HLS使用指定的样品级加密的细节，读 <a href="https://translate.googleusercontent.com/translate_c?depth=1&amp;hl=zh-CN&amp;ie=UTF8&amp;prev=_t&amp;rurl=translate.google.com.hk&amp;sl=en&amp;tl=zh-CN&amp;u=https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/HLS_Sample_Encryption/Intro/Intro.html&amp;usg=ALkJrhj0HVgFao0wpvVrhxIisgbZNDE-RQ#//apple_ref/doc/uid/TP40012862" target="_blank" rel="external">MPEG-2 Stream Encryption Format for HTTP Live Streaming</a></p>
+<p>For details on serving keys, see How to securely serve Key files for HTTP Live Streaming with HTTPS.</p>
+<p>有关服务密钥的详细信息，请参阅 <code>How to securely serve Key files for HTTP Live Streaming with HTTPS</code></p>
+<h2 id="Requirements-for-iOS-Apps-对于iOS应用需求"><a href="#Requirements-for-iOS-Apps-对于iOS应用需求" class="headerlink" title="Requirements for iOS Apps - 对于iOS应用需求"></a>Requirements for iOS Apps - 对于iOS应用需求</h2><p>The following requirements apply to iOS apps submitted for distribution in the App Store for use on Apple products. Noncompliant apps may be rejected or removed, at the discretion of Apple.</p>
+<ul>
+<li>If your app delivers video over cellular networks, and the video exceeds either 10 minutes or 5 MB of data in a five-minute period, you must use HLS. You can use - progressive download for smaller clips.</li>
+<li>If your app uses HLS over cellular networks, you must provide at least one stream at 192 Kbps or lower bandwidth. The low-bandwidth stream may be audio-only or audio with a still image.</li>
+</ul>
+<p>以下要求适用于在App Store提交分发上使用苹果产品的iOS应用。苹果公司的决定，不符合要求的应用程序可能会被拒绝或删除。</p>
+<ul>
+<li>如果您的应用程序提供蜂窝网络视频，超过10分钟的视频或者在5分钟以内的 5MB 数据，必须使用HLS。你可以使用渐进式下载更小的片段。</li>
+<li>如果应用程序使用HLS蜂窝网络，则必须在192 Kbps或更低的带宽提供至少一个流。低带宽流可以是仅音频或音频与静止图像。</li>
+</ul>
+<h2 id="Sample-Streams-样品流"><a href="#Sample-Streams-样品流" class="headerlink" title="Sample Streams - 样品流"></a>Sample Streams - 样品流</h2><p>A series of HTTP streams are available for testing on Apple’s developer site. These examples show proper formatting of HTML to embed streams, .m3u8 playlists to index the streams, and .ts media segment files. See the HTTP Live Streaming page.</p>
+<p>一系列的HTTP流可用于苹果的开发者网站的测试。 这些例子显示HTML嵌入数据流格式，<code>.m3u8</code> 播放列表索引流，<code>.ts</code> 媒体段文件。见 <a href="https://developer.apple.com/streaming/" target="_blank" rel="external">HTTP Live Streaming page</a></p>
+<p>Apple provides simplified command-line tools, such as the Media File Segmenter and Media Stream Segmenter, to divide presentations and produce playlist files. Sign in with your developer ID and visit the HTTP Live Streaming page, under “Downloads.”</p>
+<p>苹果提供了简化的命令行工具，如<code>Media File Segmenter</code>和<code>Media Stream Segmenter</code> ，拆分演示和产生的播放列表文件。使用您的开发者ID，访问 <a href="https://developer.apple.com/streaming/" target="_blank" rel="external">HTTP Live Streaming page</a> 在“下载”。</p>
+<p>Use the Apple-provided media stream validator found in these downloaded tools prior to serving your streams, to ensure that they are fully compliant with HLS.</p>
+<p>使用苹果提供的媒体流验证器在这些下载工具发现为你流之前，确保他们完全符合HLS。</p>
+<h2 id="Getting-Started-with-HLS-开始使用HLS"><a href="#Getting-Started-with-HLS-开始使用HLS" class="headerlink" title="Getting Started with HLS - 开始使用HLS"></a>Getting Started with HLS - 开始使用HLS</h2><p>To get started with your own HLS streams, the HTTP Live Streaming Content Guide provides a simple walkthrough of basic stream creation. The guide also explains complex HLS concepts, how to implement advanced features, and requirements for streaming to iOS devices.</p>
+<p>要开始使用自己的HLS流，<code>HTTP Live Streaming Content Guide</code> 提供基本流创建的一个简单演练。该指南还说明了复杂的HLS的概念，如何实现先进的功能，并要求分流到iOS设备。</p>
+<p>Read the HTTP Live Streaming specification for current and definitive technical information.</p>
+<p>阅读 <a href="http://tools.ietf.org/html/draft-pantos-http-live-streaming" target="_blank" rel="external">HTTP Live Streaming specification</a> 这是当前权威的技术资料。</p>
+<h2 id="HLS-Feature-Release-History-HLS功能发布历史"><a href="#HLS-Feature-Release-History-HLS功能发布历史" class="headerlink" title="HLS Feature Release History - HLS功能发布历史"></a>HLS Feature Release History - HLS功能发布历史</h2><center><br>    <img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6oz8i4ekrj21ug0pmtft.jpg" alt=""><br></center>
+
+
+
+
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/" data-title="【iOS】About HTTP Live Streaming官方文档翻译 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20160811OCMemoryManagement/" title="【iOS】Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【iOS】Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20160803AVFoundation07TimeAndMediaRepresentations/"  title="AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示">
+ <strong>下一篇：</strong><br/> 
+ <span>AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160810AboutHTTPLiveStream/" data-title="【iOS】About HTTP Live Streaming官方文档翻译" data-url="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#About-HTTP-Live-Streaming-HTTP实时流"><span class="toc-number">1.</span> <span class="toc-text">About HTTP Live Streaming - HTTP实时流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-Workflow-HLS-工作流"><span class="toc-number">1.1.</span> <span class="toc-text">HLS Workflow - HLS 工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Segments-媒体片段"><span class="toc-number">1.2.</span> <span class="toc-text">Media Segments - 媒体片段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Playlist-Files-媒体播放列表文件"><span class="toc-number">1.3.</span> <span class="toc-text">Media Playlist Files - 媒体播放列表文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Live-and-Event-Media-Playlists-实时和事件媒体播放列表"><span class="toc-number">1.4.</span> <span class="toc-text">Live and Event Media Playlists - 实时和事件媒体播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VOD-Media-Playlists-VOD媒体播放列表"><span class="toc-number">1.5.</span> <span class="toc-text">VOD Media Playlists - VOD媒体播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Playlists-主播放列表"><span class="toc-number">1.6.</span> <span class="toc-text">Master Playlists - 主播放列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Publishing-Your-HLS-Streams-发布HLS流"><span class="toc-number">1.7.</span> <span class="toc-text">Publishing Your HLS Streams - 发布HLS流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Features-主要特征"><span class="toc-number">1.8.</span> <span class="toc-text">Key Features - 主要特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Closed-Captions-and-Subtitles-隐藏式字幕和字幕"><span class="toc-number">1.8.1.</span> <span class="toc-text">Closed Captions and Subtitles - 隐藏式字幕和字幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fast-Forward-and-Reverse-Playback-快进和快退播放"><span class="toc-number">1.8.2.</span> <span class="toc-text">Fast Forward and Reverse Playback - 快进和快退播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alternate-Audio-and-Video-Renditions-备用音频和视频副本"><span class="toc-number">1.8.3.</span> <span class="toc-text">Alternate Audio and Video Renditions - 备用音频和视频副本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fallback-with-Stream-Alternates-流交替回退"><span class="toc-number">1.8.4.</span> <span class="toc-text">Fallback with Stream Alternates - 流交替回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Timed-Metadata-定时的元数据"><span class="toc-number">1.8.5.</span> <span class="toc-text">Timed Metadata - 定时的元数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ad-Insertion-广告插入"><span class="toc-number">1.8.6.</span> <span class="toc-text">Ad Insertion - 广告插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Protection-内容保护"><span class="toc-number">1.8.7.</span> <span class="toc-text">Content Protection - 内容保护</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements-for-iOS-Apps-对于iOS应用需求"><span class="toc-number">1.9.</span> <span class="toc-text">Requirements for iOS Apps - 对于iOS应用需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Streams-样品流"><span class="toc-number">1.10.</span> <span class="toc-text">Sample Streams - 样品流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Getting-Started-with-HLS-开始使用HLS"><span class="toc-number">1.11.</span> <span class="toc-text">Getting Started with HLS - 开始使用HLS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-Feature-Release-History-HLS功能发布历史"><span class="toc-number">1.12.</span> <span class="toc-text">HLS Feature Release History - HLS功能发布历史</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
