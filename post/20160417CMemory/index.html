@@ -1,0 +1,597 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【C语言】C语言内存四区 - 概念与代码示例 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+从我源博客那里搬过来的文章，边复习边搬家。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C语言】C语言内存四区 - 概念与代码示例">
+<meta property="og:url" content="http://yoferzhang.com/post/20160417CMemory/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+从我源博客那里搬过来的文章，边复习边搬家。">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6jw1f3020ta1aej20g70bbglr.jpg">
+<meta property="og:updated_time" content="2017-02-16T08:39:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【C语言】C语言内存四区 - 概念与代码示例">
+<meta name="twitter:description" content="版权声明：本文为博主原创文章，如需转载请注明出处。
+从我源博客那里搬过来的文章，边复习边搬家。">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6jw1f3020ta1aej20g70bbglr.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20160417CMemory/" title="【C语言】C语言内存四区 - 概念与代码示例" itemprop="url">【C语言】C语言内存四区 - 概念与代码示例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-17T14:12:38.000Z" itemprop="datePublished"> 发表于 2016-04-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码区"><span class="toc-number">1.</span> <span class="toc-text">代码区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态区"><span class="toc-number">2.</span> <span class="toc-text">静态区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈区"><span class="toc-number">3.</span> <span class="toc-text">栈区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆区"><span class="toc-number">4.</span> <span class="toc-text">堆区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码示例"><span class="toc-number">5.</span> <span class="toc-text">代码示例</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
+<p>从我源博客那里搬过来的文章，边复习边搬家。</p>
+</blockquote>
+<center><br><img src="http://ww4.sinaimg.cn/large/a9c4d5f6jw1f3020ta1aej20g70bbglr.jpg" alt="内存四区图示"><br></center>
+
+<a id="more"></a>
+<h2 id="代码区"><a href="#代码区" class="headerlink" title="代码区"></a>代码区</h2><p>　　代码区code，程序被操作系统加载到内存的时候，所有的可执行代码都加载到代码区，也叫代码段，这块内存是不可以在运行期间修改的。</p>
+<h2 id="静态区"><a href="#静态区" class="headerlink" title="静态区"></a>静态区</h2><p>　　所有的全局变量以及程序中的静态变量都存储到静态区。</p>
+<h2 id="栈区"><a href="#栈区" class="headerlink" title="栈区"></a>栈区</h2><p>　　栈stack是一种先进后出的内存结构，所有的自动变量，函数的形参都是由编译器自动放出栈中，当一个自动变量超出其作用域时，自动从栈中弹出。对于自动变量，什么时候入栈，什么时候出栈，是不需要程序控制的，由C语言编译器。实现栈不会很大，一般都是以K为单位的。</p>
+<p>　　当栈空间以满，但还往栈内存压变量，这个就叫栈。溢出对于一个32位操作系统，最大管理管理4G内存，其中1G是给操作系统自己用的，剩下的3G都是给用户程序，一个用户程序理论上可以使用3G的内存空间。</p>
+<blockquote>
+<p>注意：C语言中函数参数入栈的顺序是从右往左。</p>
+</blockquote>
+<h2 id="堆区"><a href="#堆区" class="headerlink" title="堆区"></a>堆区</h2><p>　　堆heap和栈一样，也是一种在程序运行过程中可以随时修改的内存区域，但没有栈那样先进后出的顺序。堆是一个大容器，它的容量要远远大于栈，但是在C语言中，堆内存空间的申请和释放需要手动通过代码来完成。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">0</span>; <span class="comment">// 静态区</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="comment">// 形参a，b都在栈区</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, &amp;a, &amp;b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">geta</span><span class="params">()</span> <span class="comment">// 函数的返回值是一个指针</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">100</span>; <span class="comment">// 栈区</span></span><br><span class="line">	return &amp;a;</span><br><span class="line">&#125; <span class="comment">// int a的作用域就是这个&#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p = geta(); <span class="comment">// 这里得到一个临时栈变量的地址，这个地址在函数geta调用完成之后已经无效了</span></span><br><span class="line">	*p = <span class="number">100</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *p);</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> d = <span class="number">0</span>; <span class="comment">// 静态区</span></span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">// 栈区</span></span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d, %d, %d, %d, %d\n"</span>, &amp;a, &amp;b, &amp;c, &amp;d, main);</span><br><span class="line">	test(a, b);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">输出结果</span><br><span class="line">100</span><br><span class="line">2619740, 2619728, 9404720, 9404724, 9376059</span><br><span class="line">2619512, 2619516</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>堆使用注意事项</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">geta</span><span class="params">()</span> <span class="comment">// 错误，不能将一个栈变量的地址通过函数的返回值返回</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">	return &amp;a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">geta1</span><span class="params">()</span> <span class="comment">// 可以通过函数的返回值返回一个堆地址，但记得，一定要free</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p = (int *)<span class="built_in">malloc</span>(sizeof(int)); <span class="comment">// 申请了一个堆空间</span></span><br><span class="line">	return p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">geta2</span><span class="params">()</span> <span class="comment">// 合法的，但是记住这里不能用free</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">// 变量在静态区，程序运行过程中一直存在</span></span><br><span class="line">	return &amp;a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getHeap</span><span class="params">(<span class="keyword">int</span> *p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"p = %p\n"</span>, &amp;p);</span><br><span class="line">	p = (int *)<span class="built_in">malloc</span>(sizeof(int) * <span class="number">10</span>);</span><br><span class="line">&#125; <span class="comment">// getHeap执行完之后，p就消失了，导致他指向的具体堆空间的地址编号也随之消失了</span></span><br><span class="line"><span class="comment">// 这里发生了内存泄漏</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getHeap1</span><span class="params">(<span class="keyword">int</span> **p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	*p = (int *)<span class="built_in">malloc</span>(sizeof(int) * <span class="number">10</span>);</span><br><span class="line">&#125; <span class="comment">// 这里的操作就是正确的</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"p = %p\n"</span>, &amp;p);</span><br><span class="line">	getHeap(p); <span class="comment">// 实参没有任何改变</span></span><br><span class="line">	getHeap1(&amp;p); <span class="comment">// 得到了堆内存的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"p = %d\n"</span>, p);</span><br><span class="line"></span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"p[0] = %d, p[1] = %d\n"</span>, p[<span class="number">0</span>], p[<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">free</span>(p);</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C语言/">C语言</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C语言/">C语言</a><a href="/tags/内存四区/">内存四区</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20160417CMemory/" data-title="【C语言】C语言内存四区 - 概念与代码示例 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20160419StructMemory/" title="【C语言】结构体内存对齐模式">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【C语言】结构体内存对齐模式</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20160417MallocCallocRelloc/"  title="【C语言】malloc,calloc,relloc异同示例">
+ <strong>下一篇：</strong><br/> 
+ <span>【C语言】malloc,calloc,relloc异同示例
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20160417CMemory/" data-title="【C语言】C语言内存四区 - 概念与代码示例" data-url="http://yoferzhang.com/post/20160417CMemory/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码区"><span class="toc-number">1.</span> <span class="toc-text">代码区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态区"><span class="toc-number">2.</span> <span class="toc-text">静态区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈区"><span class="toc-number">3.</span> <span class="toc-text">栈区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆区"><span class="toc-number">4.</span> <span class="toc-text">堆区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码示例"><span class="toc-number">5.</span> <span class="toc-text">代码示例</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>50</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
