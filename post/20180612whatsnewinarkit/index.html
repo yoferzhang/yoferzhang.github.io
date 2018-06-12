@@ -1,0 +1,649 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+使用MultipeerConnectivity框架在附近设备之间传输ARKit世界地图数据以创建AR体验的共享基础。
+Overview
+此示例应用程序演示了两个或更多iOS 12设备的简单共享AR体验。 在探索代码之前，请尝试构建并运行应用，以熟悉它演示的用户体验：
+
+在一台设备上运行应用程序。 您可以查看本地环境，然后点击以在真实世界的表面上放">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience">
+<meta property="og:url" content="http://yoferzhang.com/post/20180612whatsnewinarkit/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+使用MultipeerConnectivity框架在附近设备之间传输ARKit世界地图数据以创建AR体验的共享基础。
+Overview
+此示例应用程序演示了两个或更多iOS 12设备的简单共享AR体验。 在探索代码之前，请尝试构建并运行应用，以熟悉它演示的用户体验：
+
+在一台设备上运行应用程序。 您可以查看本地环境，然后点击以在真实世界的表面上放">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs87agimdbj20xe0hijze.jpg">
+<meta property="og:updated_time" content="2018-06-12T02:55:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+使用MultipeerConnectivity框架在附近设备之间传输ARKit世界地图数据以创建AR体验的共享基础。
+Overview
+此示例应用程序演示了两个或更多iOS 12设备的简单共享AR体验。 在探索代码之前，请尝试构建并运行应用，以熟悉它演示的用户体验：
+
+在一台设备上运行应用程序。 您可以查看本地环境，然后点击以在真实世界的表面上放">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs87agimdbj20xe0hijze.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20180612whatsnewinarkit/" title="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience" itemprop="url">【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2018-06-12T02:54:48.000Z" itemprop="datePublished"> 发表于 2018-06-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行AR会话并放置AR内容"><span class="toc-number">1.1.</span> <span class="toc-text">运行AR会话并放置AR内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接到同样的设备"><span class="toc-number">1.2.</span> <span class="toc-text">连接到同样的设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获并发送AR-World-Map"><span class="toc-number">1.3.</span> <span class="toc-text">捕获并发送AR World Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接收并重新定位到共享地图"><span class="toc-number">1.4.</span> <span class="toc-text">接收并重新定位到共享地图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分享AR内容和用户操作"><span class="toc-number">1.5.</span> <span class="toc-text">分享AR内容和用户操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#See-Also"><span class="toc-number">2.</span> <span class="toc-text">See Also</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AR-World-Sharing-and-Persistence"><span class="toc-number">2.1.</span> <span class="toc-text">AR World Sharing and Persistence</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARWorldMap"><span class="toc-number">2.1.1.</span> <span class="toc-text">ARWorldMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概览"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">概览</span></a></li></ol></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<p>使用MultipeerConnectivity框架在附近设备之间传输ARKit世界地图数据以创建AR体验的共享基础。</p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p><img src="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs87agimdbj20xe0hijze.jpg" alt=""></p>
+<p>此示例应用程序演示了两个或更多iOS 12设备的简单共享AR体验。 在探索代码之前，请尝试构建并运行应用，以熟悉它演示的用户体验：</p>
+<ol>
+<li>在一台设备上运行应用程序。 您可以查看本地环境，然后点击以在真实世界的表面上放置虚拟3D角色。 （再次点击以放置该角色的多个副本。）</li>
+<li>在第二个设备上运行应用程序。 在两个设备屏幕上，一条消息表明它们已自动加入共享会话。</li>
+<li>点击一个设备上的发送世界地图按钮。 确保其他设备位于发送地图之前第一台设备访问的区域，或者具有与周围环境类似的视图。</li>
+<li>另一台设备显示一条消息，指示它已收到地图并正在尝试使用它。 当这个过程成功时，两个设备都会在相同的真实世界位置上显示虚拟内容，并且在任一设备上点击都会将虚拟内容视为可见。</li>
+</ol>
+<p>按照以下步骤查看此应用程序如何使用ARWorldMap类保存和恢复ARKit的空间映射状态，以及MultipeerConnectivity框架在附近设备之间发送世界地图。</p>
+<h2 id="运行AR会话并放置AR内容"><a href="#运行AR会话并放置AR内容" class="headerlink" title="运行AR会话并放置AR内容"></a>运行AR会话并放置AR内容</h2><p>此应用程序扩展了构建ARKit应用程序的基本工作流程。 （有关详细信息，请参阅<a href="https://developer.apple.com/documentation/arkit/building_your_first_ar_experience?language=objc" target="_blank" rel="external">构建您的第一个AR体验</a>。）它定义了启用了平面检测的ARWorldTrackingConfiguration，然后在附加到显示AR体验的ARSCNView的ARSession中运行该配置。</p>
+<p>当UITapGestureRecognizer在屏幕上检测到轻击时，handleSceneTap方法使用ARKit命中测试在真实世界表面上查找3D点，然后放置标记该位置的ARAnchor。 当ARKit调用委托方法ARSCNView时，应用程序会加载ARSCNView的3D模型以显示在锚点的位置。</p>
+<h2 id="连接到同样的设备"><a href="#连接到同样的设备" class="headerlink" title="连接到同样的设备"></a>连接到同样的设备</h2><p>示例MultipeerSession类提供了有关此应用程序使用的MultipeerConnectivity功能的简单抽象。 在主视图控制器创建MultipeerSession实例（应用程序启动时）后，它开始运行MCNearbyServiceAdvertiser以广播设备加入多对等会话的能力，并通过MCNearbyServiceBrowser查找其他设备：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">session = <span class="type">MCSession</span>(peer: myPeerID, securityIdentity: <span class="literal">nil</span>, encryptionPreference: .<span class="keyword">required</span>)</span><br><span class="line">session.delegate = <span class="keyword">self</span></span><br><span class="line"></span><br><span class="line">serviceAdvertiser = <span class="type">MCNearbyServiceAdvertiser</span>(peer: myPeerID, discoveryInfo: <span class="literal">nil</span>, serviceType: <span class="type">MultipeerSession</span>.serviceType)</span><br><span class="line">serviceAdvertiser.delegate = <span class="keyword">self</span></span><br><span class="line">serviceAdvertiser.startAdvertisingPeer()</span><br><span class="line"></span><br><span class="line">serviceBrowser = <span class="type">MCNearbyServiceBrowser</span>(peer: myPeerID, serviceType: <span class="type">MultipeerSession</span>.serviceType)</span><br><span class="line">serviceBrowser.delegate = <span class="keyword">self</span></span><br><span class="line">serviceBrowser.startBrowsingForPeers()</span><br></pre></td></tr></table></figure>
+<p>当MCNearbyServiceBrowser找到另一个设备时，它会调用 <code>browser:foundPeer:withDiscoveryInfo:</code> delegate方法。 要将其他设备邀请到共享会话，请调用browser的 <code>invitePeer:toSession:withContext:timeout:</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">browser</span><span class="params">(<span class="number">_</span> browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?)</span></span> &#123;</span><br><span class="line">    <span class="comment">// Invite the new peer to the session.</span></span><br><span class="line">    browser.invitePeer(peerID, to: session, withContext: <span class="literal">nil</span>, timeout: <span class="number">10</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当其他设备收到该邀请时，MCNearbyServiceAdvertiser将调用 <code>advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:</code> delegate方法。 要接受邀请，请调用所提供的<code>invitationHandler:</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">advertiser</span><span class="params">(<span class="number">_</span> advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping <span class="params">(Bool, MCSession?)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="comment">// Call handler to accept invitation and join the session.</span></span><br><span class="line">    invitationHandler(<span class="literal">true</span>, <span class="keyword">self</span>.session)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重要：此应用会自动加入找到的第一个附近会话。 根据您想要创建的共享AR体验的种类，您可能希望更精确地控制广播，邀请和接受行为。 有关详细信息，请参阅<a href="https://developer.apple.com/documentation/multipeerconnectivity?language=objc" target="_blank" rel="external">MultipeerConnectivity文档</a>。</p>
+</blockquote>
+<p>在多人会议中，所有参与者根据定义都是平等的; 没有将设备明确分离为主机（或服务器或主机）和来宾（或客户机或从机）角色。 但是，您可能希望为您自己的AR体验定义这些角色。 例如，多人游戏设计可能需要服务器角色来仲裁游戏玩法。 如果您需要按角色分隔对等点，则可以选择适合您应用设计的方式。 例如：</p>
+<ul>
+<li>让用户在开始会话之前选择是作为主机还是来宾。 主机使用MCNearbyServiceAdvertiser广播可用性，客人使用MCNearbyServiceBrowser查找要加入的主机。</li>
+<li>以同龄人身份加入会话，然后在同伴之间进行协商以提名主人。 （这种方法对于需要主角色的设计是有帮助的，但也允许同行随时加入或离开。）</li>
+</ul>
+<h2 id="捕获并发送AR-World-Map"><a href="#捕获并发送AR-World-Map" class="headerlink" title="捕获并发送AR World Map"></a>捕获并发送AR World Map</h2><p>ARWorldMap对象包含ARKit用于在真实世界空间中定位用户设备的所有空间映射信息的快照。 将地图可靠地共享到其他设备需要两个关键步骤：找到拍摄地图并捕获和发送地图的好时机。</p>
+<p>ARKit提供了一个worldMappingStatus值，该值指示当前是捕获世界地图的好时机（还是等到ARKit已映射更多本地环境为好）。 该应用使用该值为其“发送世界地图”按钮提供视觉反馈：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> frame.worldMappingStatus &#123;</span><br><span class="line"><span class="keyword">case</span> .notAvailable, .limited:</span><br><span class="line">    sendMapButton.isEnabled = <span class="literal">false</span></span><br><span class="line"><span class="keyword">case</span> .extending:</span><br><span class="line">    sendMapButton.isEnabled = !multipeerSession.connectedPeers.isEmpty</span><br><span class="line"><span class="keyword">case</span> .mapped:</span><br><span class="line">    sendMapButton.isEnabled = !multipeerSession.connectedPeers.isEmpty</span><br><span class="line">&#125;</span><br><span class="line">mappingStatusLabel.text = frame.worldMappingStatus.description</span><br></pre></td></tr></table></figure>
+<p>当用户点击发送世界地图按钮时，应用程序调用 <code>getCurrentWorldMapWithCompletionHandler:</code> 从正在运行的ARSession捕获地图，然后使用NSKeyedArchiver将其序列化为数据对象，并将其发送到多对话会话中的其他设备：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sceneView.session.getCurrentWorldMap &#123; worldMap, error <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> <span class="built_in">map</span> = worldMap</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="built_in">print</span>(<span class="string">"Error: \(error!.localizedDescription)"</span>); <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? <span class="type">NSKeyedArchiver</span>.archivedData(withRootObject: <span class="built_in">map</span>, requiringSecureCoding: <span class="literal">true</span>)</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="built_in">fatalError</span>(<span class="string">"can't encode map"</span>) &#125;</span><br><span class="line">    <span class="keyword">self</span>.multipeerSession.sendToAllPeers(data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接收并重新定位到共享地图"><a href="#接收并重新定位到共享地图" class="headerlink" title="接收并重新定位到共享地图"></a>接收并重新定位到共享地图</h2><p>当设备接收多方会话中另一个参与方发送的数据时，<code>session:didReceiveData:fromPeer:</code> delegate方法提供该数据。 为了使用它，应用程序使用NSKeyedUnarchiver对ARWorldMap对象进行反序列化，然后使用该映射作为 <code>initialWorldMap:</code> 创建并运行一个新的ARWorldTrackingConfiguration</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> unarchived = <span class="keyword">try</span>? <span class="type">NSKeyedUnarchiver</span>.unarchivedObject(of: <span class="type">ARWorldMap</span>.classForKeyedUnarchiver(), from: data),</span><br><span class="line">    <span class="keyword">let</span> worldMap = unarchived <span class="keyword">as</span>? <span class="type">ARWorldMap</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Run the session with the received world map.</span></span><br><span class="line">    <span class="keyword">let</span> configuration = <span class="type">ARWorldTrackingConfiguration</span>()</span><br><span class="line">    configuration.planeDetection = .horizontal</span><br><span class="line">    configuration.initialWorldMap = worldMap</span><br><span class="line">    sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Remember who provided the map for showing UI feedback.</span></span><br><span class="line">    mapProvider = peer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，ARKit尝试重新定位到新的世界地图 - 也就是说，将接收到的空间映射信息与它感知的本地环境进行协调。 为获得最佳效果：</p>
+<ol>
+<li>在共享世界地图之前，彻底扫描发送设备上的本地环境。</li>
+<li>将接收设备放置在发送设备旁边，以便两者都能看到相同的环境视图。</li>
+</ol>
+<h2 id="分享AR内容和用户操作"><a href="#分享AR内容和用户操作" class="headerlink" title="分享AR内容和用户操作"></a>分享AR内容和用户操作</h2><p>共享世界地图也共享所有现有的锚点。 在这个应用程序中，这意味着只要接收设备重新定位到世界地图，它就会显示发送设备在捕获并发送世界地图之前放置的所有3D角色。 但是，录制和传输世界地图并重新定位到世界地图是耗时的，带宽密集型操作，所以当新设备加入会话时，您只应采取一次这些步骤。</p>
+<p>要创建持续的共享增强现实体验，其中每个用户的操作都会影响其他用户可见的增强现实场景，在每个设备重新定位到同一世界地图后，您应该只共享重新创建每个用户操作所需的信息。 例如，在这个应用程序中，用户可以点击在场景中放置一个虚拟3D角色。 该角色是静态的，所以将角色放置在另一个参与设备上需要的只是角色在世界空间中的位置和方向。</p>
+<p>这个应用程序通过在对等点之间共享ARAnchor对象来传递虚拟角色位置。 当一个用户点击场景时，应用程序创建一个锚点并将其添加到本地ARSession，然后使用Data将该ARAnchor序列化并将其发送到多对话会话中的其他设备：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Place an anchor for a virtual character. The model appears in renderer(_:didAdd:for:).</span></span><br><span class="line"><span class="keyword">let</span> anchor = <span class="type">ARAnchor</span>(name: <span class="string">"panda"</span>, transform: hitTestResult.worldTransform)</span><br><span class="line">sceneView.session.add(anchor: anchor)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send the anchor info to peers, so they can place the same content.</span></span><br><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? <span class="type">NSKeyedArchiver</span>.archivedData(withRootObject: anchor, requiringSecureCoding: <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">else</span> &#123; <span class="built_in">fatalError</span>(<span class="string">"can't encode anchor"</span>) &#125;</span><br><span class="line"><span class="keyword">self</span>.multipeerSession.sendToAllPeers(data)</span><br></pre></td></tr></table></figure>
+<p>当其他对等方从多方会话接收数据时，它们会测试该数据是否包含归档的ARAnchor; 如果是的话，他们解码并将其添加到他们的会话：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> unarchived = <span class="keyword">try</span>? <span class="type">NSKeyedUnarchiver</span>.unarchivedObject(of: <span class="type">ARAnchor</span>.classForKeyedUnarchiver(), from: data),</span><br><span class="line">    <span class="keyword">let</span> anchor = unarchived <span class="keyword">as</span>? <span class="type">ARAnchor</span> &#123;</span><br><span class="line">    </span><br><span class="line">    sceneView.session.add(anchor: anchor)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这只是将动态功能添加到共享AR体验中的一种策略 - 其他许多策略都是可能的。 选择一个适合您的应用的用户交互，渲染和网络要求。 例如，用户在AR世界空间投掷投射物的游戏可能会定义具有初始位置和速度等属性的自定义数据类型，然后使用Swift的Codable协议将该信息序列化为通过网络发送的二进制表示形式。</p>
+<h1 id="See-Also"><a href="#See-Also" class="headerlink" title="See Also"></a>See Also</h1><h2 id="AR-World-Sharing-and-Persistence"><a href="#AR-World-Sharing-and-Persistence" class="headerlink" title="AR World Sharing and Persistence"></a>AR World Sharing and Persistence</h2><h3 id="ARWorldMap"><a href="#ARWorldMap" class="headerlink" title="ARWorldMap"></a>ARWorldMap</h3><p>来自世界追踪AR会话的空间映射状态和一组锚。</p>
+<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p>世界地图中的会话状态包括ARKit对用户移动设备的物理空间的了解（ARKit用于确定设备的位置和方向）以及添加到会话中的任何ARAnchor对象（它可以表示检测到的实时空间）世界功能或由您的应用程序放置的虚拟内容）。</p>
+<p>使用 <code>getCurrentWorldMapWithCompletionHandler</code> 之后保存会话的世界地图，可以将其分配给配置的 <code>initialWorldMap</code> 属性，并使用 <code>runWithConfiguration:options:</code> 以相同的空间感知和锚点启动另一个会话。</p>
+<p>通过保存世界地图并使用它们开始新的会话，您的应用可以添加新的AR功能：</p>
+<ul>
+<li>多用户AR体验。通过将归档的ARWorldMap对象发送到附近用户的设备来创建共享参考框架。有了两台设备可以跟踪同一张世界地图，您可以建立一种网络体验，让用户可以看到相同的虚拟内容并与之互动。</li>
+<li>持续的AR体验。应用程序变为不活动状态时保存世界地图，然后在下次应用程序在相同物理环境中启动时恢复它。您可以使用恢复的世界地图中的锚点将相同的虚拟内容放置在保存的会话的相同位置。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AR/">AR</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20180612whatsnewinarkit/" data-title="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20430627booklist/" title="阅读书单">
+  <strong>上一篇：</strong><br/>
+  <span>
+  阅读书单</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20180611kinglear/"  title="【读书感悟】《King Lear》人物关系图">
+ <strong>下一篇：</strong><br/> 
+ <span>【读书感悟】《King Lear》人物关系图
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20180612whatsnewinarkit/" data-title="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience" data-url="http://yoferzhang.com/post/20180612whatsnewinarkit/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行AR会话并放置AR内容"><span class="toc-number">1.1.</span> <span class="toc-text">运行AR会话并放置AR内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接到同样的设备"><span class="toc-number">1.2.</span> <span class="toc-text">连接到同样的设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获并发送AR-World-Map"><span class="toc-number">1.3.</span> <span class="toc-text">捕获并发送AR World Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接收并重新定位到共享地图"><span class="toc-number">1.4.</span> <span class="toc-text">接收并重新定位到共享地图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分享AR内容和用户操作"><span class="toc-number">1.5.</span> <span class="toc-text">分享AR内容和用户操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#See-Also"><span class="toc-number">2.</span> <span class="toc-text">See Also</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AR-World-Sharing-and-Persistence"><span class="toc-number">2.1.</span> <span class="toc-text">AR World Sharing and Persistence</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARWorldMap"><span class="toc-number">2.1.1.</span> <span class="toc-text">ARWorldMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概览"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">概览</span></a></li></ol></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>51</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

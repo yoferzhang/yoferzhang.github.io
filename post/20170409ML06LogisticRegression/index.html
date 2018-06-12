@@ -1,0 +1,708 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【AI】机器学习入门系列06，Logistic Regression逻辑回归 | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推导出函数集的形式为：
+
+将函数集可视化：
+
+图中z写错了，应该是 $z = \sum{i} w{i} x_{i} + b$。这种函数集的分类问题叫做 Logistic Regression（逻辑回归），将它和第二篇讲到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【AI】机器学习入门系列06，Logistic Regression逻辑回归">
+<meta property="og:url" content="http://yoferzhang.com/post/20170409ML06LogisticRegression/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推导出函数集的形式为：
+
+将函数集可视化：
+
+图中z写错了，应该是 $z = \sum{i} w{i} x_{i} + b$。这种函数集的分类问题叫做 Logistic Regression（逻辑回归），将它和第二篇讲到">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegtzgbqkqj20zm0lk77t.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegtzxnktpj213k0lyjuv.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegu0gmykvj213o094gn8.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu1tsbvxj20sm06waad.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu2bunz0j21340sctcu.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu3jn47xj210u0modk3.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu40e5rlj213i0ow78j.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu5y340zj212e0nudk4.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu6e4kgqj212w0no0wo.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegu6ulmxhj212g0o6tcn.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu7cc2owj213q0te79e.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu7u3y64j211o0sgtdx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu8ajigbj20x60kmn7x.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu8si932j21160pqn0v.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu98hriwj20zo0jcgpx.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu9otwf6j212a0kgju6.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegua47345j213a0t0n1c.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegual9vb4j21300p8wio.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegub3mqjcj21280o4acs.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegubnf6lbj210y0n4gp1.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feguc3pfwdj212a0nqwrr.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegucj35y8j211w0n0diz.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegucxcuzzj211k0h4wgg.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegudc72xmj213c0syqh5.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegudsjc2dj21260suh0k.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegue7og8mj21220rw152.jpg">
+<meta property="og:updated_time" content="2018-06-05T12:58:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【AI】机器学习入门系列06，Logistic Regression逻辑回归">
+<meta name="twitter:description" content="引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
+
+Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推导出函数集的形式为：
+
+将函数集可视化：
+
+图中z写错了，应该是 $z = \sum{i} w{i} x_{i} + b$。这种函数集的分类问题叫做 Logistic Regression（逻辑回归），将它和第二篇讲到">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegtzgbqkqj20zm0lk77t.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20170409ML06LogisticRegression/" title="【AI】机器学习入门系列06，Logistic Regression逻辑回归" itemprop="url">【AI】机器学习入门系列06，Logistic Regression逻辑回归</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-09T15:29:18.000Z" itemprop="datePublished"> 发表于 2017-04-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Step1-逻辑回归的函数集"><span class="toc-number">1.</span> <span class="toc-text">Step1 逻辑回归的函数集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step2-定义损失函数"><span class="toc-number">2.</span> <span class="toc-text">Step2 定义损失函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step3-寻找最好的function"><span class="toc-number">3.</span> <span class="toc-text">Step3 寻找最好的function</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么不学线性回归用平方误差？"><span class="toc-number">4.</span> <span class="toc-text">为什么不学线性回归用平方误差？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Discriminative（判别）v-s-Generative（生成）"><span class="toc-number">5.</span> <span class="toc-text">Discriminative（判别）v.s. Generative（生成）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个好玩的例子"><span class="toc-number">5.1.</span> <span class="toc-text">一个好玩的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判别（Discriminative）方法不一定比生成（Generative）方法好"><span class="toc-number">5.2.</span> <span class="toc-text">判别（Discriminative）方法不一定比生成（Generative）方法好</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-class-Classification（多类别分类）"><span class="toc-number">6.</span> <span class="toc-text">Multi-class Classification（多类别分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Softmax"><span class="toc-number">6.1.</span> <span class="toc-text">Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么Softmax的输出可以用来估计后验概率？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么Softmax的输出可以用来估计后验概率？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义target"><span class="toc-number">6.3.</span> <span class="toc-text">定义target</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑回归的限制"><span class="toc-number">7.</span> <span class="toc-text">逻辑回归的限制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Transformation（特征转换）"><span class="toc-number">7.1.</span> <span class="toc-text">Feature Transformation（特征转换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cascading-logistic-regression-models（级联逻辑回归模型）"><span class="toc-number">7.2.</span> <span class="toc-text">Cascading logistic regression models（级联逻辑回归模型）</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
+</blockquote>
+<h1 id="Step1-逻辑回归的函数集"><a href="#Step1-逻辑回归的函数集" class="headerlink" title="Step1 逻辑回归的函数集"></a>Step1 逻辑回归的函数集</h1><p>上一篇讲到分类问题的解决方法，推导出函数集的形式为：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegtzgbqkqj20zm0lk77t.jpg" alt=""></p>
+<p>将函数集可视化：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegtzxnktpj213k0lyjuv.jpg" alt=""></p>
+<p>图中z写错了，应该是 $z = \sum<em>{i} w</em>{i} x_{i} + b$。这种函数集的分类问题叫做 <strong>Logistic Regression（逻辑回归）</strong>，将它和第二篇讲到的线性回归简单对比一下函数集：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegu0gmykvj213o094gn8.jpg" alt=""></p>
+<h1 id="Step2-定义损失函数"><a href="#Step2-定义损失函数" class="headerlink" title="Step2 定义损失函数"></a>Step2 定义损失函数</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu1tsbvxj20sm06waad.jpg" alt=""></p>
+<p>上图有一个训练集，每个对象分别对应属于哪个类型（例如 $x^{3}$ 属于 $C<em>{2}$ ）。假设这些数据都是由后验概率 $f</em>{w,b}(x) = P<em>{w, b}(C</em>{1} | x)$产生的。</p>
+<p>给定一组 w和b，就可以计算这组w，b下产生上图N个训练数据的概率，</p>
+<p>$$<br>L(w, b) = f<em>{w,b}(x^{1})f</em>{w,b}(x^{2}) \left( 1-f<em>{w,b}(x^{3}) \right) \cdots f</em>{w,b}(x^{N}) \qquad (1-1)<br>$$</p>
+<p>对于使得 $L(w, b)$最大的$w$和 $b$，记做$w^{<em>}$ 和 $b^{</em>}$ ，即：</p>
+<p>$$<br>w^{<em>},b^{</em>} = \arg \max_{w,b} L(w,b) \qquad (1-2)<br>$$</p>
+<p>将训练集数字化，并且将式1-2中求max通过取负自然对数转化为求min ：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu2bunz0j21340sctcu.jpg" alt=""></p>
+<p>然后将$-\ln L(w,b)$改写为下图中带蓝色下划线式子的样子：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu3jn47xj210u0modk3.jpg" alt=""></p>
+<p>图中蓝色下划线实际上代表的是两个伯努利分布（0-1分布，两点分布）的 <strong>cross entropy（交叉熵）</strong> </p>
+<p>假设有两个分布 p 和 q，如图中蓝色方框所示，这两个分布之间交叉熵的计算方式就是 $H(p,q)$；交叉熵代表的含义是这两个分布有多接近，如果两个分布是一模一样的话，那计算出的交叉熵就是0</p>
+<blockquote>
+<p>交叉熵的详细理论可以参考《Information Theory（信息论）》，具体哪本书我就不推荐了，由于学这门科目的时候用的是我们学校出版的教材。。。没有其他横向对比，不过这里用到的不复杂，一般教材都会讲到。</p>
+</blockquote>
+<p>下面再拿逻辑回归和线性回归作比较，这次比较损失函数：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu40e5rlj213i0ow78j.jpg" alt=""></p>
+<p>此时直观上的理解：如果把function的输出和target（真正的function $\hat{y}^{n}$）都看作是两个伯努利分布，所做的事情就是希望这两个分布越接近越好。</p>
+<h1 id="Step3-寻找最好的function"><a href="#Step3-寻找最好的function" class="headerlink" title="Step3 寻找最好的function"></a>Step3 寻找最好的function</h1><p>下面用梯度下降法求：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu5y340zj212e0nudk4.jpg" alt=""></p>
+<p>要求$-\ln L(w,b)$ 对 $w<em>{i}$的偏微分，只需要先算出$\ln f</em>{w,b}(x^{n})$ 对 $w<em>{i}$的偏微分以及 $\ln \left( 1- f</em>{w,b}(x^{n}) \right) $ 对 $w<em>{i}$的偏微分。计算$\ln f</em>{w,b}(x^{n})$ 对 $w<em>{i}$偏微分，$f</em>{w,b}(x)$可以用$\sigma (z)$表示，而$z$可以用$w_{i}$和 $b$表示，所以利用链式法则展开。</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu6e4kgqj212w0no0wo.jpg" alt=""></p>
+<p>计算 $\ln \left( 1- f<em>{w,b}(x^{n}) \right) $ 对 $w</em>{i}$ 的偏微分，同理求得结果。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegu6ulmxhj212g0o6tcn.jpg" alt=""></p>
+<p>将求得两个子项的偏微分带入，化简得到结果。</p>
+<p>现在 $w<em>{i}$ 的更新取决于学习率 $\eta$ ，$x^{n}</em>{i}$ 以及上图的紫色划线部分；紫色下划线部分直观上看就是真正的目标 $\hat{y}^{n}$ 与我们的function差距有多大。</p>
+<p>下面再拿逻辑回归和线性回归作比较，这次比较如果挑选最好的function：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu7cc2owj213q0te79e.jpg" alt=""></p>
+<p>对于逻辑回归，target $\hat{y}^{n}$ 是0或者1，输出是介于0和1之间。而线性回归的target可以是任何实数，输出也可以是任何值。</p>
+<h1 id="为什么不学线性回归用平方误差？"><a href="#为什么不学线性回归用平方误差？" class="headerlink" title="为什么不学线性回归用平方误差？"></a>为什么不学线性回归用平方误差？</h1><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu7u3y64j211o0sgtdx.jpg" alt=""></p>
+<p>考虑上图中的平方误差形式。在step3计算出了对 $w<em>[{i}$ 的偏微分。假设 $\hat{y}^{n} = 1$ ，如果 $f</em>{w,b}(x^{n}) = 1$，就是非常接近target，会导致偏微分中第一部分为0，从而偏微分为0；而 $f_{w,b}(x^{n}) = 0$，会导致第二部分为0，从而偏微分也是0。</p>
+<p>对于两个参数的变化，对总的损失函数作图：</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu8ajigbj20x60kmn7x.jpg" alt=""></p>
+<p>如果是交叉熵，距离target越远，微分值就越大，就可以做到距离target越远，更新参数越快。而平方误差在距离target很远的时候，微分值非常小，会造成移动的速度非常慢，这就是很差的效果了。</p>
+<h1 id="Discriminative（判别）v-s-Generative（生成）"><a href="#Discriminative（判别）v-s-Generative（生成）" class="headerlink" title="Discriminative（判别）v.s. Generative（生成）"></a>Discriminative（判别）v.s. Generative（生成）</h1><p>逻辑回归的方法称为<strong>Discriminative（判别）</strong> 方法；上一篇中用高斯来描述后验概率，称为 <strong>Generative（生成）</strong> 方法。它们的函数集都是一样的：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu8si932j21160pqn0v.jpg" alt=""></p>
+<p>如果是逻辑回归，就可以直接用梯度下降法找出w和b；如果是概率生成模型，像上篇那样求出 $\mu^{1}$ ， $\mu^{2}$ ，协方差矩阵的逆，然后就能算出w和b。</p>
+<p>用逻辑回归和概率生成模型找出来的w和b是不一样的。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegu98hriwj20zo0jcgpx.jpg" alt=""></p>
+<p>上图是前一篇的例子，图中画的是只考虑两个因素，如果考虑所有因素，结果是逻辑回归的效果好一些。</p>
+<h2 id="一个好玩的例子"><a href="#一个好玩的例子" class="headerlink" title="一个好玩的例子"></a>一个好玩的例子</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegu9otwf6j212a0kgju6.jpg" alt=""></p>
+<p>上图的训练集有13组数据，类别1里面两个特征都是1，剩下的(1, 0), (0, 1), (0, 0) 都认为是类别2；然后给一个测试数据(1, 1)，它是哪个类别呢？人类来判断的话，不出意外基本都认为是类别1。下面看一下朴素贝叶斯分类器（Naive Bayes）会有什么样的结果。</p>
+<p>朴素贝叶斯分类器如图中公式：$x$属于$C<em>{i}$ 的概率等于每个特征属于$C</em>{i}$ 概率的乘积。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegua47345j213a0t0n1c.jpg" alt=""></p>
+<p>计算出$P(C_{1} | x)$的结果是小于0.5的，即对于朴素贝叶斯分类器来说，测试数据 (1, 1)是属于类别2的，这和直观上的判断是相反的。其实这是合理，实际上训练集的数据量太小，但是对于 (1, 1)可能属于类别2这件事情，朴素贝叶斯分类器是有假设这种情况存在的（机器脑补这种可能性==）。所以结果和人类直观判断的结果不太一样。</p>
+<h2 id="判别（Discriminative）方法不一定比生成（Generative）方法好"><a href="#判别（Discriminative）方法不一定比生成（Generative）方法好" class="headerlink" title="判别（Discriminative）方法不一定比生成（Generative）方法好"></a>判别（Discriminative）方法不一定比生成（Generative）方法好</h2><p>生成方法的优势：</p>
+<ul>
+<li>训练集数据量很小的情况；因为判别方法没有做任何假设，就是看着训练集来计算，训练集数量越来越大的时候，error会越小。而生成方法会自己脑补，受到数据量的影响比较小。</li>
+<li>对于噪声数据有更好的鲁棒性（robust）。</li>
+<li>先验和类相关的概率可以从不同的来源估计。比如语音识别，可能直观会认为现在的语音识别大都使用神经网络来进行处理，是判别方法，但事实上整个语音识别是 Generative 的方法，DNN只是其中的一块而已；因为还是需要算一个先验概率，就是某句话被说出来的概率，而估计某句话被说出来的概率不需要声音数据，只需要爬很多的句子，就能计算某句话出现的几率。</li>
+</ul>
+<h1 id="Multi-class-Classification（多类别分类）"><a href="#Multi-class-Classification（多类别分类）" class="headerlink" title="Multi-class Classification（多类别分类）"></a>Multi-class Classification（多类别分类）</h1><h2 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h2><p>下面看一下多类别分类问题的做法，具体原理可以参考《Pattern Recognition and Machine Learning》Christopher M. Bishop 著 ，P209-210</p>
+<p>假设有3个类别，每个都有自己的weight和bias</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegual9vb4j21300p8wio.jpg" alt=""></p>
+<p>把$z<em>{1}, z</em>{2}, z<em>{3}$放到一个叫做Softmax的方程中，Softmax做的事情就是它们进行exponential（指数化），将exponential 的结果相加，再分别用 exponential 的结果除以相加的结果。原本$z</em>{1}, z<em>{2}, z</em>{3}$可以是任何值，但做完Softmax之后输出会被限制住，都介于0到1之间，并且和是1。Softmax做事情就是对最大值进行强化。</p>
+<p>把结果看成 </p>
+<p>$$<br>y<em>{i} = P(C</em>{i}|x) = \frac{\exp (z<em>{k})}{\sum^{n}</em>{j = 1}\exp (z_{j})}<br>$$</p>
+<p>比如图中数字的例子，即输入x，属于类别1的几率是0.88，属于类别2的几率是0.12，属于类别3的几率是0。</p>
+<p>Softmax的输出就是用来估计后验概率（Posterior Probability）。为什么会这样？下面进行简单的说明：</p>
+<h2 id="为什么Softmax的输出可以用来估计后验概率？"><a href="#为什么Softmax的输出可以用来估计后验概率？" class="headerlink" title="为什么Softmax的输出可以用来估计后验概率？"></a>为什么Softmax的输出可以用来估计后验概率？</h2><p>假设有3个类别，这3个类别都是高斯分布，它们也共用同一个协方差矩阵，进行类似上一篇讲述的推导，就可以得到Softmax。</p>
+<p>信息论学科中有一个 <strong>Maximum Entropy（最大熵）</strong>的概念，也可以推导出Softmax。简单说信息论中定义了一个最大熵。指数簇分布的最大熵等价于其指数形式的最大似然界。二项式的最大熵解等价于二项式指数形式(sigmoid)的最大似然，多项式分布的最大熵等价于多项式分布指数形式(softmax)的最大似然，因此为什么用sigmoid函数，那是因为指数簇分布最大熵的特性的必然性。假设分布求解最大熵，引入拉格朗日函数，求偏导数等于0，直接求出就是sigmoid函数形式。还有很多指数簇分布都有对应的最大似然界。而且，单个指数簇分布往往表达能力有限，就引入了多个指数簇分布的混合模型，比如高斯混合，引出了EM算法。想LDA就是多项式分布的混合模型。</p>
+<blockquote>
+<p>关于最大熵推导Softmax有一篇论文讲的比较好：<the equivalence="" of="" logistic="" regression="" and="" maximum="" entropymodels="">。传送门：<a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="external">http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf</a>。如果传送门失效，google一下就好。</the></p>
+</blockquote>
+<h2 id="定义target"><a href="#定义target" class="headerlink" title="定义target"></a>定义target</h2><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegub3mqjcj21280o4acs.jpg" alt=""></p>
+<p>上一篇讲到如果定义类别1 $\hat{y} = 1$，类别2 $\hat{y} = 2$，类别3 $\hat{y} = 3$，这样会人为造成类别1 和类型2有一定的关系这种问题。但可以将 $\hat{y}$定义为矩阵，这样就避免了。而且为了计算交叉熵，$\hat{y}$也需要是个概率分布才可以。</p>
+<h1 id="逻辑回归的限制"><a href="#逻辑回归的限制" class="headerlink" title="逻辑回归的限制"></a>逻辑回归的限制</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegubnf6lbj210y0n4gp1.jpg" alt=""></p>
+<p>考虑上图的例子，两个类别分布在两个对角线两端，用逻辑回归可以处理吗？</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feguc3pfwdj212a0nqwrr.jpg" alt=""></p>
+<p>这里的逻辑回归所能做的分界线就是一条直线，没有办法将红蓝色用一条直线分开。</p>
+<h2 id="Feature-Transformation（特征转换）"><a href="#Feature-Transformation（特征转换）" class="headerlink" title="Feature Transformation（特征转换）"></a>Feature Transformation（特征转换）</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegucj35y8j211w0n0diz.jpg" alt=""></p>
+<p>特征转换的方式很多，举例类别1转化为某个点到 $(0, 0)$ 点的距离，类别2转化为某个点到 $(1,1)$ 点的距离。然后问题就转化右图，此时就可以处理了。但是实际中并不是总能轻易的找到好的特征转换的方法。</p>
+<h2 id="Cascading-logistic-regression-models（级联逻辑回归模型）"><a href="#Cascading-logistic-regression-models（级联逻辑回归模型）" class="headerlink" title="Cascading logistic regression models（级联逻辑回归模型）"></a>Cascading logistic regression models（级联逻辑回归模型）</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegucxcuzzj211k0h4wgg.jpg" alt=""></p>
+<p>可以将很多的逻辑回归接到一起，就可以进行特征转换。比如上图就用两个逻辑回归 $z<em>{1}$和 $z</em>{2}$来进行特征转换，然后对于 $x<em>{1}’$ 和 $x</em>{2}’$，再用一个逻辑回归$z$来进行分类。</p>
+<p>对上述例子用这种方式处理：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fegudc72xmj213c0syqh5.jpg" alt=""></p>
+<p>右上角的图，可以调整参数使得得出这四种情况。同理右下角也是</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fegudsjc2dj21260suh0k.jpg" alt=""></p>
+<p>经过这样的转换之后，点就被处理为可以进行分类的结果。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fegue7og8mj21220rw152.jpg" alt=""></p>
+<p>一个逻辑回归的输入可以来源于其他逻辑回归的输出，这个逻辑回归的输出也可以是其他逻辑回归的输入。把每个逻辑回归称为一个  <strong>Neuron（神经元）</strong>，把这些神经元连接起来的网络，就叫做 <strong>Neural Network（神经网络）</strong>。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/AI/">AI</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/机器学习/">机器学习</a><a href="/tags/逻辑回归/">逻辑回归</a><a href="/tags/交叉熵/">交叉熵</a><a href="/tags/判别方法/">判别方法</a><a href="/tags/生成方法/">生成方法</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20170409ML06LogisticRegression/" data-title="【AI】机器学习入门系列06，Logistic Regression逻辑回归 | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20170621wwdc2017session508/" title="【iOS】iPhone摄影中的深度捕捉(WWDC2017-Session 507)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【iOS】iPhone摄影中的深度捕捉(WWDC2017-Session 507)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20170326ML04GradientDescent/"  title="【AI】机器学习入门系列04，Gradient Descent（梯度下降法）">
+ <strong>下一篇：</strong><br/> 
+ <span>【AI】机器学习入门系列04，Gradient Descent（梯度下降法）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20170409ML06LogisticRegression/" data-title="【AI】机器学习入门系列06，Logistic Regression逻辑回归" data-url="http://yoferzhang.com/post/20170409ML06LogisticRegression/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Step1-逻辑回归的函数集"><span class="toc-number">1.</span> <span class="toc-text">Step1 逻辑回归的函数集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step2-定义损失函数"><span class="toc-number">2.</span> <span class="toc-text">Step2 定义损失函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step3-寻找最好的function"><span class="toc-number">3.</span> <span class="toc-text">Step3 寻找最好的function</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么不学线性回归用平方误差？"><span class="toc-number">4.</span> <span class="toc-text">为什么不学线性回归用平方误差？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Discriminative（判别）v-s-Generative（生成）"><span class="toc-number">5.</span> <span class="toc-text">Discriminative（判别）v.s. Generative（生成）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个好玩的例子"><span class="toc-number">5.1.</span> <span class="toc-text">一个好玩的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判别（Discriminative）方法不一定比生成（Generative）方法好"><span class="toc-number">5.2.</span> <span class="toc-text">判别（Discriminative）方法不一定比生成（Generative）方法好</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-class-Classification（多类别分类）"><span class="toc-number">6.</span> <span class="toc-text">Multi-class Classification（多类别分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Softmax"><span class="toc-number">6.1.</span> <span class="toc-text">Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么Softmax的输出可以用来估计后验概率？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么Softmax的输出可以用来估计后验概率？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义target"><span class="toc-number">6.3.</span> <span class="toc-text">定义target</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑回归的限制"><span class="toc-number">7.</span> <span class="toc-text">逻辑回归的限制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Transformation（特征转换）"><span class="toc-number">7.1.</span> <span class="toc-text">Feature Transformation（特征转换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cascading-logistic-regression-models（级联逻辑回归模型）"><span class="toc-number">7.2.</span> <span class="toc-text">Cascading logistic regression models（级联逻辑回归模型）</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>51</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
