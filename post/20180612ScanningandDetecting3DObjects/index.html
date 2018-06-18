@@ -1,0 +1,646 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects | YoferZhang 的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Yofer Zhang">
+    
+
+    
+    <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+记录真实世界对象的空间特征，然后使用结果在用户环境中查找这些对象并触发AR内容。
+Overview构建令人信服的AR体验的一种方法是识别用户环境的特征并使用它们触发虚拟内容的外观。 例如，当用户将他们的设备指向显示的雕塑或工件时，博物馆应用可以添加交互式3D可视化。
+在iOS 12中，您可以通过在ARKit中启用对象检测来创建此类AR体验：您的应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects">
+<meta property="og:url" content="http://yoferzhang.com/post/20180612ScanningandDetecting3DObjects/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+记录真实世界对象的空间特征，然后使用结果在用户环境中查找这些对象并触发AR内容。
+Overview构建令人信服的AR体验的一种方法是识别用户环境的特征并使用它们触发虚拟内容的外观。 例如，当用户将他们的设备指向显示的雕塑或工件时，博物馆应用可以添加交互式3D可视化。
+在iOS 12中，您可以通过在ARKit中启用对象检测来创建此类AR体验：您的应">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs8g3b0gshj213k0czh76.jpg">
+<meta property="og:updated_time" content="2018-06-12T07:58:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+记录真实世界对象的空间特征，然后使用结果在用户环境中查找这些对象并触发AR内容。
+Overview构建令人信服的AR体验的一种方法是识别用户环境的特征并使用它们触发虚拟内容的外观。 例如，当用户将他们的设备指向显示的雕塑或工件时，博物馆应用可以添加交互式3D可视化。
+在iOS 12中，您可以通过在ARKit中启用对象检测来创建此类AR体验：您的应">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs8g3b0gshj213k0czh76.jpg">
+<meta name="twitter:creator" content="@LuciferZhangyq">
+<link rel="publisher" href="110295955443575724222">
+
+    
+    <link rel="alternative" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/faviconr.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="YoferZhang 的博客" title="YoferZhang 的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="YoferZhang 的博客">YoferZhang 的博客</a></h1>
+				<h2 class="blog-motto">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoferzhang.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/20180612ScanningandDetecting3DObjects/" title="【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects" itemprop="url">【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/110295955443575724222?rel=author" title="Yofer Zhang" target="_blank" itemprop="author">Yofer Zhang</a>
+		
+  <p class="article-time">
+    <time datetime="2018-06-12T07:57:48.000Z" itemprop="datePublished"> 发表于 2018-06-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用iOS应用程序扫描真实世界对象"><span class="toc-number">1.1.</span> <span class="toc-text">使用iOS应用程序扫描真实世界对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测AR体验中的参考对象"><span class="toc-number">1.2.</span> <span class="toc-text">检测AR体验中的参考对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在AR会话中创建参考对象"><span class="toc-number">1.3.</span> <span class="toc-text">在AR会话中创建参考对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#See-Also"><span class="toc-number">2.</span> <span class="toc-text">See Also</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#物体检测"><span class="toc-number">2.1.</span> <span class="toc-text">物体检测</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<p>记录真实世界对象的空间特征，然后使用结果在用户环境中查找这些对象并触发AR内容。</p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>构建令人信服的AR体验的一种方法是识别用户环境的特征并使用它们触发虚拟内容的外观。 例如，当用户将他们的设备指向显示的雕塑或工件时，博物馆应用可以添加交互式3D可视化。</p>
+<p>在iOS 12中，您可以通过在ARKit中启用对象检测来创建此类AR体验：您的应用程序提供参考对象，它可以对已知真实世界对象的三维空间要素进行编码，并且在AR session过程中，ARKit会告诉您的应用何时何地检测到相应的真实世界对象。</p>
+<p>This sample code project provides multiple ways to make use of object detection:</p>
+<p>此示例代码项目提供了多种方式来使用对象检测：</p>
+<ul>
+<li>运行应用程序扫描现实世界的对象并导出参考对象文件，您可以在自己的应用程序中使用该文件来检测该对象。</li>
+<li>使用此示例应用程序中演示的 <code>ARObjectScanningConfiguration</code> 和 <code>ARReferenceObject</code> 类将引用对象记录为您自己的资产生产管道的一部分。</li>
+<li>在世界跟踪AR会话中使用 <code>detectionObjects</code> 来识别参考对象并创建AR交互。</li>
+</ul>
+<h2 id="使用iOS应用程序扫描真实世界对象"><a href="#使用iOS应用程序扫描真实世界对象" class="headerlink" title="使用iOS应用程序扫描真实世界对象"></a>使用iOS应用程序扫描真实世界对象</h2><p>扫描和定义ARKit可用于检测的参考对象的编程步骤非常简单。 （请参阅下面的“在AR会话中创建参考对象”。）但是，创建的参考对象的保真度以及您在自己的应用程序中检测参考对象的成功取决于扫描时与物体的物理交互。 在您的iOS设备上构建并运行此应用程序，以便通过一系列获取高质量扫描数据的步骤，从而生成可用于在自己的应用程序中进行检测的参考对象文件。</p>
+<p><img src="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fs8g3b0gshj213k0czh76.jpg" alt=""></p>
+<ol>
+<li>准备扫描。第一次运行时，应用程序会显示一个框，粗略估计任何真实世界物体在相机视图中居中显示的大小。将要扫描的对象放置在没有其他对象的表面上（如空的桌面）。然后移动设备，使对象显示在框中居中，然后点击下一步按钮。</li>
+<li>定义边界框。在扫描之前，您需要告诉应用程序世界的哪个区域包含您要扫描的对象。拖动以3D方式移动框，或者按住框的一侧，然后拖动以调整其大小。 （或者，如果您不改变框，则可以在对象周围移动，并且应用程序将尝试自动在其周围放置一个框。）确保边界框仅包含要扫描的对象的功能（不是来自环境），然后点击扫描按钮。</li>
+<li>扫描对象。四处移动以从不同角度查看对象。该应用程序会突出显示边界框的各个部分，以指示您何时扫描足以从相应方向识别对象。请务必扫描您希望您的应用的用户能够识别该对象的各个方面。扫描完成后，应用程序自动进入下一步，或者点击“停止”按钮手动继续。</li>
+<li>调整原点。该应用程序显示x，y和z坐标轴线，显示对象的锚点或原点。拖动圆圈以将原点相对于对象移动。在这一步中，您还可以使用添加（+）按钮以USDZ格式加载3D模型。应用程序会在检测到真实世界对象时显示AR中出现的模型，并使用模型的大小来调整参照对象的比例。完成后点击测试按钮。</li>
+<li>测试和导出。该应用程序现在创建了一个 <code>ARReferenceObject</code> 并重新配置了会话以检测它。在不同的环境和光照条件下，从不同角度观察真实世界的物体，以验证ARKit能够可靠地识别其位置和方向。点击导出按钮打开分享表以保存完成的 <code>.arobject</code> 文件。例如，您可以使用AirDrop轻松将其发送到您的开发Mac，或将其发送到“文件”应用程序以将其保存到iCloud Drive。</li>
+</ol>
+<blockquote>
+<p>注意：参考对象仅包含ARKit识别现实世界对象所需的空间特征信息，并不是该对象的可显示3D重建。</p>
+</blockquote>
+<h2 id="检测AR体验中的参考对象"><a href="#检测AR体验中的参考对象" class="headerlink" title="检测AR体验中的参考对象"></a>检测AR体验中的参考对象</h2><p>您可以使用Xcode资产目录在应用程序中捆绑引用对象以用于检测：</p>
+<ol>
+<li>打开项目的资产目录，然后使用添加按钮（+）添加新的AR资源组。</li>
+<li>将.arobject文件从Finder拖到新创建的资源组中。</li>
+<li>或者，对于每个参考对象，请使用检查员为自己的使用提供一个描述性名称。</li>
+</ol>
+<blockquote>
+<p>注意：将想要在同一个会话中查找的所有对象放入资源组中，并使用单独的资源组来保存一组对象以在单独的会话中使用。 例如，博物馆应用程序可能会使用单独的会话（并因此分开资源组）来识别博物馆不同侧翼的显示。</p>
+</blockquote>
+<p>要在AR会话中启用对象检测，请将要检测的引用对象加载为 <code>ARReferenceObject</code> 实例，将这些对象提供给<code>ARWorldTrackingConfiguration</code> 的 <code>detectionObjects</code> 属性，然后使用该配置运行ARSession：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> configuration = <span class="type">ARWorldTrackingConfiguration</span>()</span><br><span class="line">configuration.detectionObjects = <span class="type">ARReferenceObject</span>.referenceObjects(inGroupNamed: <span class="string">"gallery"</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line">sceneView.session.run(configuration)</span><br></pre></td></tr></table></figure>
+<p>当ARKit检测到您的一个参考对象时，会话会自动将相应的 <code>ARObjectAnchor</code> 添加到其锚点列表中。 要响应正在识别的对象，请实施一个适当的 <code>ARSessionDelegate</code> ，<code>ARSCNViewDelegate</code> 或 <code>ARSKViewDelegate</code> 方法，以报告添加到会话的新锚点。 例如，在基于SceneKit的应用程序中，您可以实现 <code>renderer:didAddNode:forAnchor:</code> 向场景添加3D资产，自动匹配锚点的位置和方向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) &#123;</span><br><span class="line">    if let objectAnchor = anchor as? ARObjectAnchor &#123;</span><br><span class="line">        node.addChildNode(self.model)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了获得对象扫描和检测的最佳效果，请遵循以下提示：</p>
+<ul>
+<li>扫描和检测物体时，ARKit会寻找清晰，稳定的视觉细节区域。 详细的纹理物体比普通或反射物体更适合检测。</li>
+<li>对象扫描和检测针对小到足以放在桌面上的对象进行了优化。</li>
+<li>要检测的物体必须与扫描的参考物体具有相同的形状。 刚性物体比软体或弯曲，扭曲，折叠或以其他方式改变形状的物品更适合检测。</li>
+<li>当要检测的真实世界物体的照明条件与扫描原始物体的条件类似时，检测效果最佳。 一致的室内照明效果最好。</li>
+<li>高质量的对象扫描需要峰值设备性能。 使用最新的高性能iOS设备扫描的参考对象适用于在所有ARKit支持的设备上进行检测。</li>
+</ul>
+<h2 id="在AR会话中创建参考对象"><a href="#在AR会话中创建参考对象" class="headerlink" title="在AR会话中创建参考对象"></a>在AR会话中创建参考对象</h2><p>此示例应用程序提供了一种创建参考对象的方法。 您还可以在自己的应用中扫描引用对象，例如，构建资产管理工具以定义进入其他应用的AR内容。</p>
+<p>参考对象对ARKit用于跟踪设备位置和方向的内部空间映射数据进行编码。 要启用对象扫描所需的高质量数据收集，请使用<code>ARObjectScanningConfiguration</code> 运行会话：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> configuration = <span class="type">ARObjectScanningConfiguration</span>()</span><br><span class="line">configuration.planeDetection = .horizontal</span><br><span class="line">sceneView.session.run(configuration, options: .resetTracking)</span><br></pre></td></tr></table></figure>
+<p>在对象扫描AR会话期间，从各个角度扫描对象以确保收集足够的空间数据以识别它。 （如果您正在构建自己的对象扫描工具，请帮助用户完成本示例应用程序提供的相同步骤。）</p>
+<p>扫描完成后，调用<code>createReferenceObjectWithTransform:center:extent:completionHandler:</code> 从会话映射的用户环境区域生成一个<code>ARReferenceObject:</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Extract the reference object based on the position &amp; orientation of the bounding box.</span></span><br><span class="line">sceneView.session.createReferenceObject(</span><br><span class="line">    transform: boundingBox.simdWorldTransform,</span><br><span class="line">    center: float3(), extent: boundingBox.extent,</span><br><span class="line">    completionHandler: &#123; object, error <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> referenceObject = object &#123;</span><br><span class="line">            <span class="comment">// Adjust the object's origin with the user-provided transform.</span></span><br><span class="line">            <span class="keyword">self</span>.scannedReferenceObject =</span><br><span class="line">                referenceObject.applyingTransform(origin.simdTransform)</span><br><span class="line">            <span class="keyword">self</span>.scannedReferenceObject!.name = <span class="keyword">self</span>.scannedObject.scanName</span><br><span class="line">            creationFinished(<span class="keyword">self</span>.scannedReferenceObject)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"Error: Failed to create reference object. \(error!.localizedDescription)"</span>)</span><br><span class="line">            creationFinished(<span class="literal">nil</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当检测到参考对象时，ARKit根据参考对象定义的原点报告其位置。 如果要放置看起来与真实世界对象位于同一表面上的虚拟内容，请确保将参照对象的原点放置在现实世界对象所在的位置。 要在捕获 <code>ARReferenceObject</code> 之后调整原点，请使用<code>referenceObjectByApplyingTransform:</code> 方法。</p>
+<p>获取<code>ARReferenceObject</code>之后，可以立即使用它来检测（请参阅上面的“在AR Experience中检测参考对象”），或将其另存为 <code>.arobject</code> 文件，以便在稍后的会话或其他基于ARKit的应用程序中使用。 要将对象保存到文件，请使用<code>exportObjectToURL:previewImage:error:</code> 方法。 在该方法中，您可以提供Xcode的真实世界对象的图片以用作预览图像。</p>
+<h1 id="See-Also"><a href="#See-Also" class="headerlink" title="See Also"></a>See Also</h1><h2 id="物体检测"><a href="#物体检测" class="headerlink" title="物体检测"></a>物体检测</h2><ul>
+<li><a href="https://developer.apple.com/documentation/arkit/arreferenceobject?language=objc" target="_blank" rel="external">ARReferenceObject</a></li>
+<li><a href="https://developer.apple.com/documentation/arkit/arobjectanchor?language=objc" target="_blank" rel="external">ARObjectAnchor</a></li>
+<li><a href="https://developer.apple.com/documentation/arkit/arobjectscanningconfiguration?language=objc" target="_blank" rel="external">ARObjectScanningConfiguration</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AR/">AR</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoferzhang.com/post/20180612ScanningandDetecting3DObjects/" data-title="【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects | YoferZhang 的博客" data-tsina="2848249334" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/20430627booklist/" title="阅读书单">
+  <strong>上一篇：</strong><br/>
+  <span>
+  阅读书单</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/20180612whatsnewinarkit/"  title="【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience">
+ <strong>下一篇：</strong><br/> 
+ <span>【iOS-ARKit】创建多用户AR体验-Creating a Multiuser AR Experience
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/20180612ScanningandDetecting3DObjects/" data-title="【iOS-ARKit】扫描和检测3D对象-Scanning and Detecting 3D Objects" data-url="http://yoferzhang.com/post/20180612ScanningandDetecting3DObjects/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用iOS应用程序扫描真实世界对象"><span class="toc-number">1.1.</span> <span class="toc-text">使用iOS应用程序扫描真实世界对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测AR体验中的参考对象"><span class="toc-number">1.2.</span> <span class="toc-text">检测AR体验中的参考对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在AR会话中创建参考对象"><span class="toc-number">1.3.</span> <span class="toc-text">在AR会话中创建参考对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#See-Also"><span class="toc-number">2.</span> <span class="toc-text">See Also</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#物体检测"><span class="toc-number">2.1.</span> <span class="toc-text">物体检测</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="yoferzhang" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AI/" title="AI">AI<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C语言/" title="C语言">C语言<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>52</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渔/" title="渔">渔<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/艺术/" title="艺术">艺术<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/读书感悟/" title="读书感悟">读书感悟<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/" target="_blank" title="Hexo">Hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/yoferzhang" target="_blank" title="Github">Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" target="_blank" title="WeChat">WeChat</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://cn.linkedin.com/in/耀琦-张-771388117" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Yofer Zhang in Tencent. <br/>
+			This is my blog,thank you to here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2848249334" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/yoferzhang" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/yofer-zhang" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/LuciferZhangyq" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/luciferzhang" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/耀琦-张-771388117?trk=hp-identity-name" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/zyq522376829" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/yoferzhang" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		<a href="https://plus.google.com/110295955443575724222?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:522376829@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Yofer Zhang">Yofer Zhang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yoferzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//yoferzhang.github.io/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83435219-1', 'yoferzhang.com');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
