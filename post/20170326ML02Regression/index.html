@@ -157,7 +157,7 @@ CSDN博客文章地址">
 <h1 id="Regression-（回归）"><a href="#Regression-（回归）" class="headerlink" title="Regression （回归）"></a>Regression （回归）</h1><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0me8ssa8j20zc0kcn5j.jpg" alt=""></p>
 <h2 id="应用举例（预测Pokemon-Go-进化后的战斗力）"><a href="#应用举例（预测Pokemon-Go-进化后的战斗力）" class="headerlink" title="应用举例（预测Pokemon Go 进化后的战斗力）"></a>应用举例（预测Pokemon Go 进化后的战斗力）</h2><p>比如估计一只神奇宝贝进化后的 CP 值（战斗力）。<br>下面是一只妙蛙种子，可以进化为妙蛙草，现在的CP值是14，我们想估计进化后的CP值是多少；进化需要糖果，好处就是如果它进化后CP值不满意，那就不用浪费糖果来进化它了，可以选择性价比高的神奇宝贝。</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mf7rxiij20xo0hgn53.jpg" alt=""></p>
-<p>输入用了一些不同的 $x$ 来代表不同的属性，比如战斗力用 $x<em>{cp}$ 来表示，物种 $x</em>{s}$ 来表示…<br>输出就是进化后的CP值</p>
+<p>输入用了一些不同的 $x$ 来代表不同的属性，比如战斗力用 $x_{cp}$ 来表示，物种 $x_{s}$ 来表示…<br>输出就是进化后的CP值</p>
 <h3 id="三个步骤"><a href="#三个步骤" class="headerlink" title="三个步骤"></a>三个步骤</h3><p>上一篇提到了机器学习的三个步骤：<br>Step1.确定一组函数（Model）。<br>Step2.将训练集对函数集进行训练。<br>Step3.挑选出“最好”的函数 $f^{<em>}$<br>然后就可以使用 $f^{</em>}$ 来对新的测试集进行检测。</p>
 <h3 id="Step1-Model"><a href="#Step1-Model" class="headerlink" title="Step1: Model"></a>Step1: Model</h3><p>这个model 应该长什么样子呢，先写一个简单的：我们可以认为进化后的CP值 $y$ 等于进化前的CP值 $x_{cp}$ 乘以一个参数 $w$ 再加上一个参数 $b$ 。</p>
 <script type="math/tex; mode=display">
@@ -166,10 +166,10 @@ y = b + w \cdot x_{cp}   \qquad (1-1)</script><p>$w$ 和 $b$ 是参数，可以�
 <script type="math/tex; mode=display">
 f_{1}: y = 10.0 + 9.0 \cdot x_{cp}</script><script type="math/tex; mode=display">
 f_{2}: y = 9.8 + 9.2 \cdot x_{cp}</script><script type="math/tex; mode=display">
-f_{3}: y = -0.8 -1.2 \cdot x_{cp}</script><p>这个函数集中可以有无限多的 function。所以我们用 $y = b + w \cdot x<em>{cp} $ 代表这些 function 所成的集合。还有比如上面的 $f</em>{3}$ ，明显是不正确的，因为CP值有个条件都是正的，那乘以 $-1.2$ 就变成负的了，所以我们接着就要根据训练集来找到，这个 function set 里面，哪个是合理的 function。</p>
+f_{3}: y = -0.8 -1.2 \cdot x_{cp}</script><p>这个函数集中可以有无限多的 function。所以我们用 $y = b + w \cdot x_{cp} $ 代表这些 function 所成的集合。还有比如上面的 $f_{3}$ ，明显是不正确的，因为CP值有个条件都是正的，那乘以 $-1.2$ 就变成负的了，所以我们接着就要根据训练集来找到，这个 function set 里面，哪个是合理的 function。</p>
 <p>我们将式1-1 称作 Linear model， Linear model 形式为：</p>
 <script type="math/tex; mode=display">
-y = b + \sum w_{i}x_{i}</script><p>$x<em>{i}$ 就是神奇宝贝的各种不同的属性，身高、体重等等，我们将这些称之为 “feature（特征）”；$w</em>{i}$ 称为 weight（权重），b 称为 bias（偏差）。</p>
+y = b + \sum w_{i}x_{i}</script><p>$x_{i}$ 就是神奇宝贝的各种不同的属性，身高、体重等等，我们将这些称之为 “feature（特征）”；$w_{i}$ 称为 weight（权重），b 称为 bias（偏差）。</p>
 <h3 id="Step2-方程的好坏"><a href="#Step2-方程的好坏" class="headerlink" title="Step2: 方程的好坏"></a>Step2: 方程的好坏</h3><p>现在就需要搜集训练集，这里的数据集是 Supervised 的，所以需要 function 的输入和输出（数值），举例抓了一只杰尼龟，进化前的CP值为612，用 $x^{1}$ 代表这只杰尼龟进化前的CP值，即用上标标示一个完整对象的编号；进化后的CP值为 979，用 $\hat{y}^{1}$ 表示进化后的CP值，用 hat（字母头顶的上尖符号）来表示这是一个正确的值，是实际观察到function该有的输出。</p>
 <p>下面我们来看真正的数据集（来源 Source: <a href="https://www.openintro.org/stat/data/?data=pokemon" target="_blank" rel="external">https://www.openintro.org/stat/data/?data=pokemon</a>）</p>
 <p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0mfqcewwj211i0jiwhn.jpg" alt=""></p>
@@ -183,7 +183,7 @@ L(f) = L(w, b)</script><p>损失函数是由一组参数 w和b决定的，所以
 <p>这里用比较常见的定义形式：</p>
 <script type="math/tex; mode=display">
 L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)^{2} \qquad   (1-2)</script><p>将实际的数值 $\hat{y}^{n}$ 减去 估测的数值 $b + w\cdot x_{cp}^{n}$，然后再给平方，就是 Estimation error（估测误差，总偏差）；最后将估测误差加起来就是我们定义的损失函数。</p>
-<p>这里不取各个偏差的代数和$\sum<em>{n=1}^{10}\hat{y}^{n} -(b + w\cdot x</em>{cp}^{n})$ 作为总偏差，这是因为这些偏差（$\hat{y}^{i} -(b + w\cdot x_{cp}^{i})$）本身有正有负，如果简单地取它们的代数和，就可能互相抵消，这是虽然偏差的代数和很小，却不能保证各个偏差都很小。所以按照式1-2，是这些偏差的平方和最小，就可以保证每一个偏差都很小。</p>
+<p>这里不取各个偏差的代数和$\sum_{n=1}^{10}\hat{y}^{n} -(b + w\cdot x_{cp}^{n})$ 作为总偏差，这是因为这些偏差（$\hat{y}^{i} -(b + w\cdot x_{cp}^{i})$）本身有正有负，如果简单地取它们的代数和，就可能互相抵消，这是虽然偏差的代数和很小，却不能保证各个偏差都很小。所以按照式1-2，是这些偏差的平方和最小，就可以保证每一个偏差都很小。</p>
 <p>为了更加直观，来对损失函数进行作图：</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mg9bqyyj210o0o678o.jpg" alt=""></p>
 <p>图上每个点都代表一个方程，比如红色的那个点代表 $y=-180-2\cdot x_{cp}$ 。颜色代表用这个点的方程得到的损失函数有多不好，颜色越偏红色，代表数值越大，越偏蓝色蓝色，代表方程越好。最好的方程就是图中叉叉标记的点。</p>
@@ -255,13 +255,13 @@ w^{*},b^{*} = \arg \min_{w,b} L(w,b)=\arg \min_{w,b} \sum_{n=1}^{10}\left(\hat{y
 <p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0mspg7tjj213k0sgdkf.jpg" alt=""></p>
 <p>重新设计model：</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mt6esluj213c0m6788.jpg" alt=""></p>
-<p>考虑上生命值（$x<em>{hp}$）、高度（$x</em>{h}$）、重量（$x_{w}$）</p>
+<p>考虑上生命值（$x_{hp}$）、高度（$x_{h}$）、重量（$x_{w}$）</p>
 <p>这么复杂的model，理论上训练集上可以得到更好的结果，实际为1.9，确实是更低。但是测试集的结果就过拟合了。</p>
 <h2 id="Regularization（正则化）"><a href="#Regularization（正则化）" class="headerlink" title="Regularization（正则化）"></a>Regularization（正则化）</h2><p>对于上面那么多参数结果并不理想的情况，这里进行正则化处理，将之前的损失函数进行修改：</p>
 <script type="math/tex; mode=display">
 y = b + \sum w_{i}x_{i}  \qquad  (1-4)</script><script type="math/tex; mode=display">
-L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)^{2} + \lambda \sum (w_{i})^{2} \qquad   (1-5)</script><p>式1-5 中多加了一项： $\lambda \sum (w<em>{i})^{2}$ ，结论是$w</em>{i}$越小，则方程（式1-4）就越好。还可以说当 $w_{i}$ 越小，则方程越平滑。</p>
-<p>平滑的意思是当输入变化时，输出对输入的变化不敏感。比如式1-5 中输入增加了 $\Delta x<em>{i}$ 则输入就增加了 $w</em>{i}\Delta x<em>{i}$ ，可以看出当$w</em>{i}$越小，输出变化越不明显。还比如测试集的输入有一些噪音数据，越平滑的方程就会受到更小的影响。</p>
+L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)^{2} + \lambda \sum (w_{i})^{2} \qquad   (1-5)</script><p>式1-5 中多加了一项： $\lambda \sum (w_{i})^{2}$ ，结论是$w_{i}$越小，则方程（式1-4）就越好。还可以说当 $w_{i}$ 越小，则方程越平滑。</p>
+<p>平滑的意思是当输入变化时，输出对输入的变化不敏感。比如式1-5 中输入增加了 $\Delta x_{i}$ 则输入就增加了 $w_{i}\Delta x_{i}$ ，可以看出当$w_{i}$越小，输出变化越不明显。还比如测试集的输入有一些噪音数据，越平滑的方程就会受到更小的影响。</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0mtp38ryj212g0smte8.jpg" alt=""></p>
 <p>上图是对 $\lambda$进行调整得出的结果。当 $\lambda$ 越大的时候， $\lambda \sum (w_{i})^{2}$ 这一项的影响力越大，所以当$\lambda$  越大的时候，方程越平滑。</p>
 <p>训练集上得到的结果是：当 $\lambda$ 越大的时候，在训练集上得到的Error 是越大的。这是合理的现象，因为当 $\lambda$ 越大的时候，就越倾向于考虑 $w$ 本身值，减少考虑error。但是测试集上得到的error 是先减小又增大的。这里喜欢比较平滑的function，因为上面讲到对于噪音数据有很好的鲁棒性，所以开始增加 $\lambda$ 的时候性能是越来越好；但是又不喜欢太平滑的function，最平滑的function就是一条水平线了，那就相当于什么都没有做，所以太平滑的function又会得到糟糕的结果。</p>
@@ -408,7 +408,7 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 			
 		
 			
-				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>5</sup></a></li>
+				<li><a href="/tags/小说/" title="小说">小说<sup>5</sup></a></li>
 			
 		
 			
@@ -416,7 +416,7 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 			
 		
 			
-				<li><a href="/tags/小说/" title="小说">小说<sup>5</sup></a></li>
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>5</sup></a></li>
 			
 		
 			
@@ -424,23 +424,23 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 			
 		
 			
-				<li><a href="/tags/东京/" title="东京">东京<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/旅游/" title="旅游">旅游<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/悬疑/" title="悬疑">悬疑<sup>3</sup></a></li>
+				<li><a href="/tags/东京/" title="东京">东京<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/AlphaGo/" title="AlphaGo">AlphaGo<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线性回归/" title="线性回归">线性回归<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/悬疑/" title="悬疑">悬疑<sup>3</sup></a></li>
 			
 		
 			
@@ -452,15 +452,7 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 			
 		
 			
-				<li><a href="/tags/线性回归/" title="线性回归">线性回归<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AR/" title="AR">AR<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/日本/" title="日本">日本<sup>2</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>3</sup></a></li>
 			
 		
 			
@@ -469,6 +461,10 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 		
 			
 				<li><a href="/tags/神经网络/" title="神经网络">神经网络<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/日本/" title="日本">日本<sup>2</sup></a></li>
 			
 		
 			
@@ -481,6 +477,10 @@ L(f) = L(w, b) =\sum_{n=1}^{10}\left(\hat{y}^{n} -(b + w\cdot x_{cp}^{n})\right)
 		
 			
 				<li><a href="/tags/摄影/" title="摄影">摄影<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/单反/" title="单反">单反<sup>2</sup></a></li>
 			
 		
 		</ul>
