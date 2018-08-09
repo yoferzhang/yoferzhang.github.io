@@ -116,50 +116,61 @@
 
 引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
 
-先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
-
-CSDN博客文章地址">
+Classification 分类
+分类要找一个function，输入就是对象 $x$ ，输出是这个对象属于n个类别的哪一个。
+比如信">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
-<meta property="og:url" content="http://yoferzhang.com/post/20170326ML03ErrorSource/index.html">
+<meta property="og:title" content="【AI】机器学习入门系列05，Classification,Probabilistic Generative Model（分类,概率生成模型）">
+<meta property="og:url" content="http://yoferzhang.com/post/20170326ML05 Classification/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
 
 引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
 
-先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
-
-CSDN博客文章地址">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg">
-<meta property="og:updated_time" content="2018-08-09T14:12:26.000Z">
+Classification 分类
+分类要找一个function，输入就是对象 $x$ ，输出是这个对象属于n个类别的哪一个。
+比如信">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feavpzbidfj20j605qt8w.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavqj65ogj20fs054dg2.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feavr0enqmj213c0n64mn.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feavrgyqt1j213a0jo49j.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavrxbar8j210a0ao79m.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feavsddomuj211m0kon28.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavstgff2j21140g8dii.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazm3567vj21320d6mz4.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazmmufl0j20zw0mutbp.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazpzoy04j21020m8gok.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazqgcet5j212c0ksgvb.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazqxghmkj20yq0jkk1l.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazrcrzcmj210y0qan91.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazrsad29j213c0gsna5.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazsae8nsj212a0n444d.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazss6werj21340psdly.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazt9aa53j20y60fcq55.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feaztqpbiej21340l2adz.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazugug84j212g0miaeg.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazuwqfz3j213s0t6h0j.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazvdv026j212o0mwgq3.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazvtk3ygj211e0lcwhm.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazwax1qxj213q0mcdlz.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazwrcjklj211i0koq6a.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazxd86fhj20wg0huq5i.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazxverh2j21160la41u.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazybj8nkj211e0lmq6l.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazysexmwj213w0tagr6.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazz9c8vgj213u0smwj3.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazztgikej213g0rs0x2.jpg">
+<meta property="og:updated_time" content="2018-08-09T14:11:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）">
+<meta name="twitter:title" content="【AI】机器学习入门系列05，Classification,Probabilistic Generative Model（分类,概率生成模型）">
 <meta name="twitter:description" content="Gitbook传送门：https://yoferzhang.gitbooks.io/machinelearningstudy/content/
 
 引用课程：http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html
 
-先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）
-
-CSDN博客文章地址">
-<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg">
+Classification 分类
+分类要找一个function，输入就是对象 $x$ ，输出是这个对象属于n个类别的哪一个。
+比如信">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feavpzbidfj20j605qt8w.jpg">
 
 
 
@@ -168,7 +179,7 @@ CSDN博客文章地址">
 
 
 
-  <link rel="canonical" href="http://yoferzhang.com/post/20170326ML03ErrorSource/"/>
+  <link rel="canonical" href="http://yoferzhang.com/post/20170326ML05 Classification/"/>
 
 
 
@@ -178,7 +189,7 @@ CSDN博客文章地址">
   };
 </script>
 
-  <title>【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance） | YoferZhang 的博客</title>
+  <title>【AI】机器学习入门系列05，Classification,Probabilistic Generative Model（分类,概率生成模型） | YoferZhang 的博客</title>
   
 
 
@@ -354,7 +365,7 @@ CSDN博客文章地址">
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20170326ML03ErrorSource/">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20170326ML05 Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yofer Zhang">
@@ -371,7 +382,7 @@ CSDN博客文章地址">
 
         
         
-          <h1 class="post-title" itemprop="name headline">【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）
+          <h1 class="post-title" itemprop="name headline">【AI】机器学习入门系列05，Classification,Probabilistic Generative Model（分类,概率生成模型）
               
             
           </h1>
@@ -396,7 +407,7 @@ CSDN博客文章地址">
                 
               
 
-              <time title="创建时间：2017-03-27 22:58:55" itemprop="dateCreated datePublished" datetime="2017-03-27T22:58:55+08:00">2017-03-27</time>
+              <time title="创建时间：2017-04-04 22:24:55" itemprop="dateCreated datePublished" datetime="2017-04-04T22:24:55+08:00">2017-04-04</time>
             
 
             
@@ -413,7 +424,7 @@ CSDN博客文章地址">
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-09 22:12:26" itemprop="dateModified" datetime="2018-08-09T22:12:26+08:00">2018-08-09</time>
+                <time title="修改时间：2018-08-09 22:11:57" itemprop="dateModified" datetime="2018-08-09T22:11:57+08:00">2018-08-09</time>
               
             
           </span>
@@ -445,10 +456,10 @@ CSDN博客文章地址">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/post/20170326ML03ErrorSource/#comments" itemprop="discussionUrl">
+                <a href="/post/20170326ML05 Classification/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20170326ML03ErrorSource/" itemprop="commentCount"></span>
+                        data-disqus-identifier="post/20170326ML05 Classification/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,96 +491,119 @@ CSDN博客文章地址">
 <blockquote>
 <p>引用课程：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html" target="_blank" rel="external">http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML16.html</a></p>
 </blockquote>
-<p>先看这里，可能由于你正在查看这个平台行间公式不支持很多的渲染，所以最好在我的CSDN上查看，传送门：（无奈脸）</p>
+<h1 id="Classification-分类"><a href="#Classification-分类" class="headerlink" title="Classification 分类"></a>Classification 分类</h1><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feavpzbidfj20j605qt8w.jpg" alt=""></p>
+<p>分类要找一个function，输入就是对象 $x$ ，输出是这个对象属于n个类别的哪一个。</p>
+<p>比如信用评分</p>
+<ul>
+<li>输入：收入，储蓄，行业，年龄，金融史…</li>
+<li>输出：结果或者拒绝贷款</li>
+</ul>
+<p>比如医疗诊断</p>
+<ul>
+<li>输入：当前症状，年龄，性别，医疗史…</li>
+<li>输出：患了哪种疾病</li>
+</ul>
+<p>比如手写文字辨识</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavqj65ogj20fs054dg2.jpg" alt=""></p>
+<h1 id="又是神奇宝贝举例"><a href="#又是神奇宝贝举例" class="headerlink" title="又是神奇宝贝举例"></a>又是神奇宝贝举例</h1><h2 id="分类神奇宝贝"><a href="#分类神奇宝贝" class="headerlink" title="分类神奇宝贝"></a>分类神奇宝贝</h2><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feavr0enqmj213c0n64mn.jpg" alt=""></p>
+<p>神奇宝贝有很多的属性，比如电，火，水。要做的就是一个分类的问题：需要找到一个function，输入一只神奇宝贝，输出它是什么属性。</p>
+<h2 id="将神奇宝贝数值化"><a href="#将神奇宝贝数值化" class="headerlink" title="将神奇宝贝数值化"></a>将神奇宝贝数值化</h2><p>比如皮卡丘</p>
+<ul>
+<li>Total：整体强度，大概的表述神奇宝贝有多强，比如皮卡丘是320.</li>
+<li>HP：生命值，比如皮卡丘35</li>
+<li>Attack：攻击力，比如皮卡丘55</li>
+<li>Defense：防御力，比如皮卡丘40</li>
+<li>SP Atk：特殊攻击力，比如皮卡丘50</li>
+<li>SP Def：特殊防御力，比如皮卡丘50</li>
+<li>Speed：速度，比如皮卡丘90</li>
+</ul>
+<p>所以一只神奇宝贝可以用一个向量来表示，上述7个数字组成的向量。</p>
+<p>需要预测是因为在战斗的时候会有属性相克，下面给了张表，只需要知道，战斗的时候遇到对面神奇宝贝的属性己方不知道的情况，会吃亏，所以需要预测它的属性。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feavrgyqt1j213a0jo49j.jpg" alt=""></p>
+<h2 id="如何分类？"><a href="#如何分类？" class="headerlink" title="如何分类？"></a>如何分类？</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavrxbar8j210a0ao79m.jpg" alt=""></p>
+<h3 id="当作回归问题处理？"><a href="#当作回归问题处理？" class="headerlink" title="当作回归问题处理？"></a>当作回归问题处理？</h3><p>假设还不了解怎么做，但之前已经学过了regression。就把分类当作回归硬解。举一个二分类的例子：</p>
+<p>假设输入$x$ 属于类别1，或者类别2，把这个当作回归问题：类别1就当作target是1，类别2就当作target是-1。训进行训练：因为是个数值，如果数值比较接近1，就当作类别1，如果数值接近-1，就当做类别2。这样做遇到什么问题？</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feavsddomuj211m0kon28.jpg" alt=""></p>
+<p>左边绿色的线是分界线，绿色线左边红色点就是-1的，绿色线右边蓝色点就是1的。但是如果训练集有很多的距离远大于1的点，比如有图右下角所示，这样用回归的方式硬训练可能会得到紫色的这条。直观上就是将绿色的线偏移一点到紫色的时候，就能让右下角的那部分的值不是那么大了。但实际是绿色的才是比较好的，用回归硬训练并不会得到好结果。此时可以得出用回归的方式定义，对于分类问题来说是不适用的。（Penalize to the examples that are “too correct” …）</p>
+<p>还有另外一个问题：比如多分类，类别1当作target1，类别2当作target2，类别3当作target3…如果这样做的话，就会认为类别2和类别3是比较接近的，认为它们是有某种关系的；认为类别1和类别2也是有某种关系的，比较接近的。但是实际上这种关系不存在，它们之间并不存在某种特殊的关系。这样是没有办法得到好的结果。</p>
+<h3 id="Ideal-Alternatives（理想替代品）"><a href="#Ideal-Alternatives（理想替代品）" class="headerlink" title="Ideal Alternatives（理想替代品）"></a>Ideal Alternatives（理想替代品）</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feavstgff2j21140g8dii.jpg" alt=""></p>
+<p>先看二分类，将function中内嵌一个函数$g(x)$，如果大于0，就认识是类别1，否则认为是类别2。损失函数的定义就是，如果选中某个funciton $f$，在训练集上预测错误的次数。当然希望错误次数越小越好。</p>
+<p>但是这样的损失函数没办法解，这种定义没办法微分。这是有方法的，比如Perceptron（感知机），SVM，这里先不讲这些。</p>
+<h1 id="盒子抽球"><a href="#盒子抽球" class="headerlink" title="盒子抽球"></a>盒子抽球</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazm3567vj21320d6mz4.jpg" alt=""></p>
+<p>假设两个盒子，各装了5个球，还得知随机抽一个球，抽到的是盒子1的球的概率是三分之二，是盒子2的球的概率是三分之一。从盒子中蓝色球和绿色球的分配可以得到：在盒子1中随机抽一个球，是蓝色的概率为五分之四，绿的的概率为五分之一，同理得到盒子2的信息。</p>
+<p>现在求随机从两个盒子中抽一个球，抽到的是盒子1中蓝色球的概率是多少？（高中数学得：）</p>
+<script type="math/tex; mode=display">
+P(B_{1} | Blue) = \frac{P(Blue | B_{1}) P(B_{1})}{P(Blue | B_{1}) P(B_{1}) + P(Blue | B_{2}) P(B_{2})}</script><h2 id="抽球的概率和分类有什么关系？"><a href="#抽球的概率和分类有什么关系？" class="headerlink" title="抽球的概率和分类有什么关系？"></a>抽球的概率和分类有什么关系？</h2><p>将上面两个盒子换成两个类别</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazmmufl0j20zw0mutbp.jpg" alt=""></p>
+<p>同理知道红色方框的值，就可以计算出给一个x，它是属于哪个类型的，$P(C_{1} | x)$ 和 $P(C_{2} x)$ ，谁大就属于谁。接下来就需要从训练集中估测红色方框中的值。</p>
+<p>这一套想法叫做 Generative Model。因为有了这个model，就可以生成一个x，可以计算某个x出现的几率，知道了x的分布，就可以自己产生x。</p>
 <blockquote>
-<p>CSDN博客文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/66611368" target="_blank" rel="external">http://blog.csdn.net/zyq522376829/article/details/66611368</a></p>
+<p>$P(C_{1} | x)$ 是由贝叶斯（bayes）公式得到的；P(x)是由全概率公式得到的，详情见《概率论与数理统计，浙江大学，第一章》。</p>
 </blockquote>
-<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>第二篇中神奇宝贝的例子：</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofd7d2nj20vi0hsgnx.jpg" alt=""></p>
-<a id="more"></a>
-<p>可以看出越复杂的model 再测试集上的性能并不是越好</p>
-<p>这篇要讨论的就是 error 来自什么地方？</p>
-<p>error主要的来源有两个，bias（偏差） 和 variance（方差）</p>
-<h1 id="估测"><a href="#估测" class="headerlink" title="估测"></a>估测</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ofvddt0j20gi07uabz.jpg" alt=""></p>
-<p>假设上图为神奇宝贝cp值的真正方程，当然这只有Niantic（制作《Pokemon Go》的游戏公司）知道。从训练集中可以找到真实方程$\hat{f}$ 的近似方程 $f^{*}$。</p>
-<h2 id="估测bias-和-variance"><a href="#估测bias-和-variance" class="headerlink" title="估测bias 和 variance"></a>估测bias 和 variance</h2><h3 id="估测变量-x-的平均值"><a href="#估测变量-x-的平均值" class="headerlink" title="估测变量 $x$ 的平均值"></a>估测变量 $x$ 的平均值</h3><ul>
-<li>假设$x$的平均值为 $\mu$，方差为 $\sigma^{2}$</li>
-</ul>
-<p>估测平均值怎么做呢？</p>
-<ul>
-<li>首先拿到N个样品点：${x^{1}, x^{2}, \ldots, x^{N}}$</li>
-<li>计算平均值得到$m$, $m = \frac{1}{N} \sum_{n} x^{n} \neq \mu$</li>
-</ul>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg" alt=""></p>
-<p>但是如果计算很多组的m ，然后求m的期望</p>
-<script type="math/tex; mode=display">
-E[m] = E[\frac{1}{N} \sum_{n} x^{n}] = \frac{1}{N}\sum_{n}E[x^{n}] = \mu</script><p>这个估计呢是无偏估计（unbiased）。</p>
-<p>然后m分布对于 $\mu$ 的离散程度（方差）：</p>
-<script type="math/tex; mode=display">
-Var[m] = \frac{\sigma^{2}}{N}</script><p>这主要取决于N，下图可看出N越小越离散</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg" alt=""></p>
-<h3 id="估测变量-x-的方差"><a href="#估测变量-x-的方差" class="headerlink" title="估测变量 $x$ 的方差"></a>估测变量 $x$ 的方差</h3><p>首先用刚才的方法估测m，</p>
-<script type="math/tex; mode=display">
-m = \frac{1}{N} \sum_{n} x^{n} \neq \mu</script><p>然后再做下面计算：</p>
-<script type="math/tex; mode=display">
-s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}</script><p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg" alt=""></p>
-<p>这个估计是有偏估计（biased）,</p>
-<p>求 $s^{2}$的期望值：</p>
-<script type="math/tex; mode=display">
-E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说明一下bias和variance的影响</p>
-<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg" alt=""></p>
-<p>靶心为真正的方程 $\hat{f}$ ，深蓝色点为$f^{<em>}$ ，是实验求得的方程。求$f^{</em>}$的期望值$\bar{f} = E[f^{*}]$，即图中浅蓝色的点。</p>
-<p>$\bar{f}$ 和 $\hat{f}$之间的距离就是误差 bias，而$\bar{f}$ 和 $f^{*}$ 之间的距离就是误差 variance。4幅图的对比观察两个误差的影响。</p>
-<p>bias就是射击时瞄准的误差，本来应该是瞄准靶心，但bias就造成瞄准准心的误差；而variance就是虽然瞄准在 $\bar{f}$，但是射不准，总是射在 $\bar{f}$ 的周围。</p>
-<h2 id="为什么会有很多的-f"><a href="#为什么会有很多的-f" class="headerlink" title="为什么会有很多的 $f^{*}$?"></a>为什么会有很多的 $f^{*}$?</h2><p>讨论系列02中的案例：这里假设是在平行宇宙中，抓了不同的神奇宝贝</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oi5o6ruj21320ggafm.jpg" alt=""></p>
-<p>用同一个model，在不同的训练集中找到的 $f^{*}$就是不一样的</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0oikto66j21260gytbv.jpg" alt=""></p>
-<p>这就像在靶心上射击，进行了很多组（一组多次）。现在需要知道它的散布是怎样的，将100个宇宙中的model画出来</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oj04znij212k0scwqo.jpg" alt=""></p>
-<p>不同的数据集之前什么都有可能发生—||</p>
-<h3 id="考虑不同model的variance"><a href="#考虑不同model的variance" class="headerlink" title="考虑不同model的variance"></a>考虑不同model的variance</h3><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojgrieaj212s0q6qem.jpg" alt=""></p>
-<p>一次model的variance就比较小的，也就是是比较集中，离散程度较小。而5次model 的 variance就比较大，同理散布比较广，离散程度较大。</p>
-<p>所以用比较简单的model，variance是比较小的（就像射击的时候每次的时候，每次射击的设置都集中在一个比较小的区域内）。如果用了复杂的model，variance就很大，散布比较开。</p>
-<p>这也是因为简单的model受到不同训练集的影响是比较小的。</p>
-<h3 id="考虑不同model的-bias"><a href="#考虑不同model的-bias" class="headerlink" title="考虑不同model的 bias"></a>考虑不同model的 bias</h3><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ojw3h0aj210o0pytgs.jpg" alt=""></p>
-<p>这里没办法知道真正的 $\hat{f}$，所以假设图中的那条黑色曲线为真正的 $\hat{f}$</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0oknilxvj213u0tak3p.jpg" alt=""></p>
-<p>结果可视化，一次平均的 $\bar{f}$没有5次的好，虽然5次的整体结果离散程度很高。</p>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ol56hmbj21340rw4bm.jpg" alt=""></p>
-<p>一次model的bias比较大，而复杂的5次model，bias就比较小。</p>
-<p>直观的解释：简单的model函数集的space比较小，所以可能space里面就没有包含靶心，肯定射不中。而复杂的model函数集的space比较大，可能就包含的靶心，只是没有办法找到确切的靶心在哪，但足够多的，就可能得到真正的 $\bar{f}$。</p>
-<h3 id="bias-v-s-variance"><a href="#bias-v-s-variance" class="headerlink" title="bias v.s. variance"></a>bias v.s. variance</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0olkyjloj212q0q6n4k.jpg" alt=""></p>
-<p>将系列02中的误差拆分为bias何variance。简单model（左边）是bias比较大造成的error，这种情况叫做 <strong>Underfitting（欠拟合）</strong>，而复杂model（右边）是variance过大造成的error，这种情况叫做<strong>Overfitting（过拟合）</strong>。</p>
-<h1 id="怎么判断？"><a href="#怎么判断？" class="headerlink" title="怎么判断？"></a>怎么判断？</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0om3bqn7j20g00aaaax.jpg" alt=""></p>
-<ul>
-<li>如果model没有很好的fit训练集，就是bias过大，也就是Underfitting</li>
-<li>如果model很好的fit训练集，即再训练集上得到很小的error，但在测试集上得到大的error，这意味着model可能是variance比较大，就是Overfitting。</li>
-</ul>
-<p>对于Underfitting和Overfitting，是用不同的方式来处理的</p>
-<h3 id="bias大，Underfitting"><a href="#bias大，Underfitting" class="headerlink" title="bias大，Underfitting"></a>bias大，Underfitting</h3><p>此时应该重新设计model。因为之前的函数集里面可能根本没有包含$\hat{f}$。可以：</p>
-<ul>
-<li>将更多的feature加进去，比如考虑高度重量，或者HP值等等。</li>
-<li>或者考虑更多次幂、更复杂的model。</li>
-</ul>
-<p>如果此时强行再收集更多的data去训练，这是没有什么帮助的，因为设计的函数集本身就不好，再找更多的训练集也不会更好。</p>
-<h3 id="variance大，Overfitting"><a href="#variance大，Overfitting" class="headerlink" title="variance大，Overfitting"></a>variance大，Overfitting</h3><p>简单粗暴的方法：More data</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0omjdtyuj213s0n2gw2.jpg" alt=""></p>
-<p>但是很多时候不一定能做到收集更多的data。可以针对对问题的理解对数据集做调整（Regularization）。比如识别手写数字的时候，偏转角度的数据集不够，那就将正常的数据集左转15度，右转15度，类似这样的处理。</p>
-<h1 id="选择model"><a href="#选择model" class="headerlink" title="选择model"></a>选择model</h1><ul>
-<li>现在在bias和variance之间就需要一个权衡</li>
-<li>想选择的model，可以平衡bias和variance产生的error，使得总error最小</li>
-<li>但是下面这件事最好不要做：</li>
-</ul>
-<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0omyc6a1j210g0c875o.jpg" alt=""></p>
-<p>用训练集训练不同的model，然后在测试集上比较error，model3的error比较小，就认为model3好。但实际上这只是你手上的测试集，真正完整的测试集并没有。比如在已有的测试集上error是0.5，但有条件收集到更多的测试集后通常得到的error都是大于0.5的。</p>
-<h2 id="Cross-Validation（交叉验证）"><a href="#Cross-Validation（交叉验证）" class="headerlink" title="Cross Validation（交叉验证）"></a>Cross Validation（交叉验证）</h2><p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ondk0y0j21260l6q69.jpg" alt=""></p>
-<p>图中public的测试集是已有的，private是没有的，不知道的。Cross Validation 就是将训练集再分为两部分，一部分作为训练集，一部分作为验证集。用训练集训练model，然后再验证集上比较，确实出最好的model之后（比如model3），再用全部的训练集训练model3，然后再用public的测试集进行测试，此时一般得到的error都是大一些的。不过此时会比较想再回去调一下参数，调整model，让在public的测试集上更好，但不太推荐这样。（心里难受啊，大学数模的时候就回去调，来回痛苦折腾）</p>
-<p>上述方法可能会担心将训练集拆分的时候分的效果比较差怎么办，可以用下面的方法。</p>
-<h2 id="N-fold-Cross-Validation（N-折交叉验证）"><a href="#N-fold-Cross-Validation（N-折交叉验证）" class="headerlink" title="N-fold Cross Validation（N-折交叉验证）"></a>N-fold Cross Validation（N-折交叉验证）</h2><p>将训练集分成N份，比如分成3份。</p>
-<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fe0onviwy1j21200qmn08.jpg" alt=""></p>
-<p>比如在三份中训练结果Average Error是model1最好，再用全部训练集训练model1。（貌似数模也干过，当年都是莫名其妙的分，想想当年数模的时候都根本来不及看是为什么，就是一股脑上去做00oo00）</p>
+<h3 id="Prior-先验"><a href="#Prior-先验" class="headerlink" title="Prior 先验"></a>Prior 先验</h3><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazpzoy04j21020m8gok.jpg" alt=""></p>
+<p>先考虑简单的二分类，水属性或者一般属性，通过训练集的数据可以计算出 $P(C_{1})$ 和 $P(C_{2})$。</p>
+<p>下面想计算 $P(x | C_{1})$</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazqgcet5j212c0ksgvb.jpg" alt=""></p>
+<p>也就是在水系的神奇宝贝中随机选一只，是海龟的概率。下面将训练集中79个水系的神奇宝贝，属性Defense 和 SP Defense进行可视化</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazqxghmkj20yq0jkk1l.jpg" alt=""></p>
+<p>这里假设这79点是从高斯分布（Gaussian distribution）中得到的，现在需要从这79个点找出符合的那个高斯分布。</p>
+<h3 id="高斯分布"><a href="#高斯分布" class="headerlink" title="高斯分布"></a>高斯分布</h3><p>下面简单说一下高斯分布：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazrcrzcmj210y0qan91.jpg" alt=""></p>
+<p>简单点可以把高斯分布当作一个function，输入就是一个向量$x$ ，输出就是选中 $x$的概率（实际上高斯分布不等于概率，只是和概率成正比，这里简单说成概率）。function由期望 $\mu$ 和协方差矩阵 $\Sigma$ 决定。上图的例子是说同样的$\Sigma$，不同的 $\mu$ ，概率分布的最高点的位置是不同的。下图的例子是同样的  $\mu$，不同的$\Sigma$，概率分布的最高点是一样的，但是离散度是不一样的。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazrsad29j213c0gsna5.jpg" alt=""></p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazsae8nsj212a0n444d.jpg" alt=""></p>
+<p>假设通过79个点估测出了期望 $\mu$ 和协方差矩阵 $\Sigma$。期望是图中的黄色点，协方差矩阵是红色的范围。现在给一个不在79个点之内的新点，用刚才估测出的期望和协方差矩阵写出高斯分布的function $f_{\mu,\Sigma}(x)$，然后把x带进去，计算出被挑选出来的概率</p>
+<h3 id="Maximum-Likelihood（最大似然估计）"><a href="#Maximum-Likelihood（最大似然估计）" class="headerlink" title="Maximum Likelihood（最大似然估计）"></a>Maximum Likelihood（最大似然估计）</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazss6werj21340psdly.jpg" alt=""></p>
+<p>首先对于这79个点，任意期望和协方差矩阵构成的高斯分布，都可以生成这些点。当然，像图中左边的高斯分布生成这些点，比右边高斯分布生成这些点的几率要大。那给一个$\mu$ 和 $\Sigma$，它生成这79个点的概率为图中的 $L(\mu, \Sigma)$，$L(\mu, \Sigma)$也称为样本的似然函数。</p>
+<p>将使得  $L(\mu, \Sigma)$ 最大的 $(\mu, \Sigma)$ 记做 $(\mu^{<em>}, \Sigma^{</em>})$，$(\mu^{<em>}, \Sigma^{</em>})$就是所有  $(\mu, \Sigma)$ 的 <strong>Maximum Likelihood（最大似然估计）</strong></p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazt9aa53j20y60fcq55.jpg" alt=""></p>
+<p>这些解法很直接，直接对$L(\mu, \Sigma)$ 求两个偏微分，求偏微分是0的点。</p>
+<blockquote>
+<p>最大似然估计更多详情参看《概率论与数理统计，浙江大学，第七章》</p>
+</blockquote>
+<h3 id="应用最大似然估计"><a href="#应用最大似然估计" class="headerlink" title="应用最大似然估计"></a>应用最大似然估计</h3><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feaztqpbiej21340l2adz.jpg" alt=""></p>
+<p>算出之前水属性和一般属性高斯分布的期望和协方差矩阵的最大似然估计值。</p>
+<h2 id="开始分类"><a href="#开始分类" class="headerlink" title="开始分类"></a>开始分类</h2><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazugug84j212g0miaeg.jpg" alt=""></p>
+<p>上图看出我们已经得到了需要计算的值，可以进行分类了。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazuwqfz3j213s0t6h0j.jpg" alt=""></p>
+<p>左上角的图中蓝色点是水属性的神奇宝贝，红色点是一般属性的神奇宝贝，图中的颜色：越偏向红色代表是水属性的可能性越高，越偏向蓝色代表是水属性的可能性越低。</p>
+<p>右上角在训练集上进行分类的结果，红色就是 $P(C_{1} | x)$ 大于0.5的部分，是属于类别1，相对蓝色属于类别2。右下角是放在测试集上进行分类的结果。结果是测试集上正确率只有 47% 。当然这里只处理了二维（两个属性）的情况，那在7维空间计算出最大释然估计值，此时$\mu$是7维向量，$\Sigma$是7维矩阵。得到结果也只有54% 的正确率，so so。。。</p>
+<h2 id="修改model"><a href="#修改model" class="headerlink" title="修改model"></a>修改model</h2><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazvdv026j212o0mwgq3.jpg" alt=""></p>
+<p>通常来说，不会给每个高斯分布都计算出一套不同的最大似然估计，协方差矩阵是和输入feature大小的平方成正比，所以当feature很大的时候，协方差矩阵是可以增长很快的。此时考虑到model参数过多，容易Overfitting，为了有效减少参数，给描述这两个类别的高斯分布相同的协方差矩阵。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazvtk3ygj211e0lcwhm.jpg" alt=""></p>
+<p>此时修改似然函数为 $L(\mu^{1}, \mu^{2}, \Sigma)$。$\mu^{1}, \mu^{2}$ 计算方法和上面相同，分别加起来平均即可；而$\Sigma$的计算有所不同。</p>
+<blockquote>
+<p>这里详细的理论支持可以查看《Pattern Recognition and Machine Learning》Christopher M. Bishop 著，chapter4.2.2</p>
+</blockquote>
+<p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1feazwax1qxj213q0mcdlz.jpg" alt=""></p>
+<p>右图新的结果，分类的boundary是线性的，所以也将这种分类叫做 linear model。如果考虑所有的属性，发现正确率提高到了73%。</p>
+<h1 id="三大步"><a href="#三大步" class="headerlink" title="三大步"></a>三大步</h1><p>将上述问题简化为前几个系列说过的三大步：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazwrcjklj211i0koq6a.jpg" alt=""></p>
+<p>实际做的就是要找一个概率分布模型，可以最大化产生data的likelihood。</p>
+<h1 id="为什么是高斯分布？"><a href="#为什么是高斯分布？" class="headerlink" title="为什么是高斯分布？"></a>为什么是高斯分布？</h1><p>可能选择其他分布也会问同样的问题。。。</p>
+<p>有一种常见的假设</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1feazxd86fhj20wg0huq5i.jpg" alt=""></p>
+<p>假设每一个维度用概率分布模型产生出来的几率是相互独立的，所以可以将 $P(x | C_{1})$ 拆解。</p>
+<p>可以认为每个 $P(x_{k} | C_{1})$ 产生的概率都符合一维的高斯分布，也就是此时$P(x | C_{1})$ 的高斯分布的协方差是对角型的（不是对角线的地方值都是0），这样就可以减少参数的量。但是试一下这种做法会坏掉。</p>
+<p>对于二元分类来说，此时用通常不会用高斯分布，可以假设是符合 <strong>Bernoulli distribution（伯努利分布）</strong>。</p>
+<p>假设所有的feature都是相互独立产生的，这种分类叫做 <strong>Naive Bayes Classifier（朴素贝叶斯分类器）</strong></p>
+<h1 id="Posterior-Probability（后验概率）"><a href="#Posterior-Probability（后验概率）" class="headerlink" title="Posterior Probability（后验概率）"></a>Posterior Probability（后验概率）</h1><p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazxverh2j21160la41u.jpg" alt=""></p>
+<p>将 $P(C_{1} | x)$整理，得到一个 $\sigma(z)$，这叫做Sigmoid function。</p>
+<p>接下来算一下$z$ 长什么样子。</p>
+<p>数学推导：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazybj8nkj211e0lmq6l.jpg" alt=""></p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazysexmwj213w0tagr6.jpg" alt=""></p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1feazz9c8vgj213u0smwj3.jpg" alt=""></p>
+<p>求得z，然后：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1feazztgikej213g0rs0x2.jpg" alt=""></p>
+<blockquote>
+<p>这里用到简单的矩阵知识，比如转置，矩阵的逆，矩阵乘法。详情可参考《高等代数》or《线性代数》；喜欢代数的，推荐丘维声著的《高等代数》，分上下册，这本书是国内代数方面的翘楚，数学系的鄙人强烈推荐。别被抄来抄去的书害了—||</p>
+</blockquote>
+<p>化简z，x的系数记做向量$w^{T}$，后面3项结果都是标量，所以三个数字加起来记做$b$。最后$P(C_{1} | x) = \sigma(w\cdot x + b)$。从这个式子也可以看出上述当共用协方差矩阵的时候，为什么分界线是线性的。</p>
+<p>既然这里已经化简为上述的式子，直观感受就是可以估测$N_{1}, N_{2}, \mu^{1}, \mu^{2}, \Sigma$，就可以直接得到结果了。下一篇讲述另外一种方法</p>
+<blockquote>
+<p>参考：《Pattern Recognition and Machine Learning》Christopher M. Bishop 著 Chapter4.1 -4.2<br>Data:  <a href="https://www.kaggle.com/abcsds/pokemon" target="_blank" rel="external">https://www.kaggle.com/abcsds/pokemon</a></p>
+</blockquote>
 
       
     </div>
@@ -596,9 +630,7 @@ E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说
           
             <a href="/tags/分类/" rel="tag"># 分类</a>
           
-            <a href="/tags/AlphaGo/" rel="tag"># AlphaGo</a>
-          
-            <a href="/tags/线性回归/" rel="tag"># 线性回归</a>
+            <a href="/tags/概率生成模型/" rel="tag"># 概率生成模型</a>
           
         </div>
       
@@ -631,8 +663,8 @@ E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/20170326ML02Regression/" rel="next" title="【AI】机器学习入门系列02，Regression 回归：案例研究">
-                <i class="fa fa-chevron-left"></i> 【AI】机器学习入门系列02，Regression 回归：案例研究
+              <a href="/post/20170326ML04GradientDescent/" rel="next" title="【AI】机器学习入门系列04，Gradient Descent（梯度下降法）">
+                <i class="fa fa-chevron-left"></i> 【AI】机器学习入门系列04，Gradient Descent（梯度下降法）
               </a>
             
           </div>
@@ -641,8 +673,8 @@ E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/post/20170326ML04GradientDescent/" rel="prev" title="【AI】机器学习入门系列04，Gradient Descent（梯度下降法）">
-                【AI】机器学习入门系列04，Gradient Descent（梯度下降法） <i class="fa fa-chevron-right"></i>
+              <a href="/post/20170409ML06LogisticRegression/" rel="prev" title="【AI】机器学习入门系列06，Logistic Regression逻辑回归">
+                【AI】机器学习入门系列06，Logistic Regression逻辑回归 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1049,7 +1081,7 @@ E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#估测"><span class="nav-number">2.</span> <span class="nav-text">估测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#估测bias-和-variance"><span class="nav-number">2.1.</span> <span class="nav-text">估测bias 和 variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#估测变量-x-的平均值"><span class="nav-number">2.1.1.</span> <span class="nav-text">估测变量 $x$ 的平均值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#估测变量-x-的方差"><span class="nav-number">2.1.2.</span> <span class="nav-text">估测变量 $x$ 的方差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有很多的-f"><span class="nav-number">2.2.</span> <span class="nav-text">为什么会有很多的 $f^{*}$?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考虑不同model的variance"><span class="nav-number">2.2.1.</span> <span class="nav-text">考虑不同model的variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#考虑不同model的-bias"><span class="nav-number">2.2.2.</span> <span class="nav-text">考虑不同model的 bias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bias-v-s-variance"><span class="nav-number">2.2.3.</span> <span class="nav-text">bias v.s. variance</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎么判断？"><span class="nav-number">3.</span> <span class="nav-text">怎么判断？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">3.1.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bias大，Underfitting"><span class="nav-number">3.1.1.</span> <span class="nav-text">bias大，Underfitting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#variance大，Overfitting"><span class="nav-number">3.1.2.</span> <span class="nav-text">variance大，Overfitting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择model"><span class="nav-number">4.</span> <span class="nav-text">选择model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cross-Validation（交叉验证）"><span class="nav-number">4.1.</span> <span class="nav-text">Cross Validation（交叉验证）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-fold-Cross-Validation（N-折交叉验证）"><span class="nav-number">4.2.</span> <span class="nav-text">N-fold Cross Validation（N-折交叉验证）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification-分类"><span class="nav-number">1.</span> <span class="nav-text">Classification 分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#又是神奇宝贝举例"><span class="nav-number">2.</span> <span class="nav-text">又是神奇宝贝举例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类神奇宝贝"><span class="nav-number">2.1.</span> <span class="nav-text">分类神奇宝贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将神奇宝贝数值化"><span class="nav-number">2.2.</span> <span class="nav-text">将神奇宝贝数值化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何分类？"><span class="nav-number">2.3.</span> <span class="nav-text">如何分类？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当作回归问题处理？"><span class="nav-number">2.3.1.</span> <span class="nav-text">当作回归问题处理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ideal-Alternatives（理想替代品）"><span class="nav-number">2.3.2.</span> <span class="nav-text">Ideal Alternatives（理想替代品）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盒子抽球"><span class="nav-number">3.</span> <span class="nav-text">盒子抽球</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽球的概率和分类有什么关系？"><span class="nav-number">3.1.</span> <span class="nav-text">抽球的概率和分类有什么关系？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prior-先验"><span class="nav-number">3.1.1.</span> <span class="nav-text">Prior 先验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯分布"><span class="nav-number">3.1.2.</span> <span class="nav-text">高斯分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximum-Likelihood（最大似然估计）"><span class="nav-number">3.1.3.</span> <span class="nav-text">Maximum Likelihood（最大似然估计）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用最大似然估计"><span class="nav-number">3.1.4.</span> <span class="nav-text">应用最大似然估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始分类"><span class="nav-number">3.2.</span> <span class="nav-text">开始分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改model"><span class="nav-number">3.3.</span> <span class="nav-text">修改model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三大步"><span class="nav-number">4.</span> <span class="nav-text">三大步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么是高斯分布？"><span class="nav-number">5.</span> <span class="nav-text">为什么是高斯分布？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Posterior-Probability（后验概率）"><span class="nav-number">6.</span> <span class="nav-text">Posterior Probability（后验概率）</span></a></li></ol></div>
             
 
           </div>
@@ -1213,9 +1245,9 @@ E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoferzhang.com/post/20170326ML03ErrorSource/';
-        this.page.identifier = 'post/20170326ML03ErrorSource/';
-        this.page.title = '【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance）';
+        this.page.url = 'http://yoferzhang.com/post/20170326ML05 Classification/';
+        this.page.identifier = 'post/20170326ML05 Classification/';
+        this.page.title = '【AI】机器学习入门系列05，Classification,Probabilistic Generative Model（分类,概率生成模型）';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
