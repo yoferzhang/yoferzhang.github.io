@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>AVFoundation Programming Guide(官方文档翻译3)Playback - 播放 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -12,21 +12,18 @@
 
     
     <meta name="description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译3)Playback - 播放">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation03Playback/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6f9awlylkj20sh0klgmb.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:updated_time" content="2017-02-09T05:31:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译3)Playback - 播放">
 <meta name="twitter:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -40,11 +37,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -110,9 +107,9 @@
 		
 		<blockquote>
 <p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
 <p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394" target="_blank" rel="external">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>– 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>– 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>– 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
 <p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
 <p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
 </blockquote>
@@ -128,12 +125,16 @@
 <p>多个播放器层：可以从一个单独的 <code>AVPlayer</code> 实例创建许多 <code>AVPlayerLayer</code> 对象，但是只有最近被创建的那一层将会屏幕上显示视频的内容。</p>
 </blockquote>
 <p>Although ultimately you want to play an asset, you don’t provide assets directly to an AVPlayer object. Instead, you provide an instance of AVPlayerItem. A player item manages the presentation state of an asset with which it is associated. A player item contains player item tracks—instances of AVPlayerItemTrack—that correspond to the tracks in the asset. The relationship between the various objects is shown in Figure 2-1.</p>
-<p>虽然最终想要播放一个资产，但又没有直接给提供资产一个 <code>AVPlayer</code> 对象。相反，提供一个 <code>AVPlayerItem</code> 的实例。一个 <code>player item</code> 管理与它相关的资产的显示状态。一个<code>player item</code>包含了播放器项目轨道 –  <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItemTrack_Class/index.html#//apple_ref/occ/cl/AVPlayerItemTrack" target="_blank" rel="external">AVPlayerItemTrack—that</a> 的实例，对应资产内的轨道。各个对象之间的关系如图2-1所示。</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg" alt="Figure 2-1  Playing an asset"><br></center>
+<p>虽然最终想要播放一个资产，但又没有直接给提供资产一个 <code>AVPlayer</code> 对象。相反，提供一个 <code>AVPlayerItem</code> 的实例。一个 <code>player item</code> 管理与它相关的资产的显示状态。一个<code>player item</code>包含了播放器项目轨道 —  <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItemTrack_Class/index.html#//apple_ref/occ/cl/AVPlayerItemTrack" target="_blank" rel="external">AVPlayerItemTrack—that</a> 的实例，对应资产内的轨道。各个对象之间的关系如图2-1所示。</p>
+<center>
+![Figure 2-1  Playing an asset](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6f94r8pzvj20u00e0wep.jpg)
+</center>
 
 <p>This abstraction means that you can play a given asset using different players simultaneously, but rendered in different ways by each player. Figure 2-2 shows one possibility, with two different players playing the same asset, with different settings. Using the item tracks, you can, for example, disable a particular track during playback (for example, you might not want to play the sound component).</p>
 <p>这个摘要意味着可以同时使用不同的播放器播放一个给定的资产，但每个播放器都以不同的方式呈现。图2-2显示了一种可能性，同一个资产有两个不同的播放器，并且有不同的设定。可以使用不同的项目轨道，在播放期间禁用一个特定的轨道（例如，你可能不想播放这个声音组件）。</p>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6f9awlylkj20sh0klgmb.jpg" alt="Figure 2-2  Playing the same asset in different ways"><br></center>
+<center>
+![Figure 2-2  Playing the same asset in different ways](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6f9awlylkj20sh0klgmb.jpg)
+</center>
 
 <p>You can initialize a player item with an existing asset, or you can initialize a player item directly from a URL so that you can play a resource at a particular location (AVPlayerItem will then create and configure an asset for the resource). As with AVAsset, though, simply initializing a player item doesn’t necessarily mean it’s ready for immediate playback. You can observe (using key-value observing) an item’s status property to determine if and when it’s ready to play.</p>
 <p>可以用现有的资产初始化一个播放器项目，或者可以直接从一个 <code>URL</code> 初始化播放器项目，为了可以在一个特定位置播放一个资源（<code>AVPlayerItem</code> 将为资源创建和配置资产）。即使带着 <code>AVAsset</code> 简单地初始化一个播放器项目并不一定意味着它已经准备可以立即播放了。可以观察（使用 <a href="">key-value observing</a>]）一个项目的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/instm/AVPlayerItem/status" target="_blank" rel="external">status</a> 属性，以确定是否可以播放并且当已经准备好去播放。</p>
@@ -188,12 +189,12 @@
 <p>发送一个播放消息给播放器，开始播放：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)play:sender &#123;</span><br><span class="line">    [player play];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>In addition to simply playing, you can manage various aspects of the playback, such as the rate and the location of the playhead. You can also monitor the play state of the player; this is useful if you want to, for example, synchronize the user interface to the presentation state of the asset—see Monitoring Playback.</p>
-<p>除了简单的播放，可以管理播放的各个方面，如速度和播放头的位置。也可以监视播放器的播放状态；这是很有用的，例如如果你想将用户界面同步到资产的呈现状态 – 详情看：<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/02_Playback.html#//apple_ref/doc/uid/TP40010188-CH3-SW8" target="_blank" rel="external">Monitoring Playback</a>.</p>
+<p>除了简单的播放，可以管理播放的各个方面，如速度和播放头的位置。也可以监视播放器的播放状态；这是很有用的，例如如果你想将用户界面同步到资产的呈现状态 — 详情看：<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/02_Playback.html#//apple_ref/doc/uid/TP40010188-CH3-SW8" target="_blank" rel="external">Monitoring Playback</a>.</p>
 <h3 id="Changing-the-Playback-Rate-改变播放的速率"><a href="#Changing-the-Playback-Rate-改变播放的速率" class="headerlink" title="Changing the Playback Rate - 改变播放的速率"></a>Changing the Playback Rate - 改变播放的速率</h3><p>You change the rate of playback by setting the player’s rate property.</p>
 <p>通过发送播放器的 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/instp/AVPlayer/rate" target="_blank" rel="external">rate</a> 属性来改变播放速率。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aPlayer.rate = <span class="number">0.5</span>;</span><br><span class="line">aPlayer.rate = <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure>
 <p>A value of 1.0 means “play at the natural rate of the current item”. Setting the rate to 0.0 is the same as pausing playback—you can also use pause.</p>
-<p>值如果是 <code>1.0</code> 意味着“当前项目按正常速率播放”。将速率设置为 <code>0.0</code> 就和暂停播放一样了 – 也可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/instm/AVPlayer/pause" target="_blank" rel="external">pause</a></p>
+<p>值如果是 <code>1.0</code> 意味着“当前项目按正常速率播放”。将速率设置为 <code>0.0</code> 就和暂停播放一样了 — 也可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/instm/AVPlayer/pause" target="_blank" rel="external">pause</a></p>
 <p>Items that support reverse playback can use the rate property with a negative number to set the reverse playback rate. You determine the type of reverse play that is supported by using the playerItem properties canPlayReverse (supports a rate value of -1.0), canPlaySlowReverse (supports rates between 0.0 and 1.0) and canPlayFastReverse (supports rate values less than -1.0).</p>
 <p>支持逆向播放的项目可以使用带有负数 <code>rate</code> 属性，负数可以设置反向播放速率。确定反向播放的类型，通过使用 <code>playerItem</code> 属性 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/instp/AVPlayerItem/canPlayReverse" target="_blank" rel="external">canPlayReverse</a> （支持一个速率值 <code>-1.0</code>），<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/instp/AVPlayerItem/canPlaySlowReverse" target="_blank" rel="external">canPlaySlowReverse</a> （速率支持<code>0.0</code> 到 <code>1.0</code>）和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayerItem_Class/index.html#//apple_ref/occ/instp/AVPlayerItem/canPlayFastReverse" target="_blank" rel="external">canPlayFastReverse</a> （速率值可以小于 <code>-1.0</code>）。</p>
 <h3 id="Seeking—Repositioning-the-Playhead-寻找-重新定位播放头"><a href="#Seeking—Repositioning-the-Playhead-寻找-重新定位播放头" class="headerlink" title="Seeking—Repositioning the Playhead - 寻找-重新定位播放头"></a>Seeking—Repositioning the Playhead - 寻找-重新定位播放头</h3><p>To move the playhead to a particular time, you generally use seekToTime: as follows:</p>
@@ -904,7 +905,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

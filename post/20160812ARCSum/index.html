@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】Automatic Reference Counting (ARC) 总结 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -33,9 +33,6 @@ ARC特点
 @property的参数
 
 strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变量是弱指针（适用于OC对象类型）">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6r1kewd0cj21rq0om0xz.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6r26yg8cgj21n80o2n1m.jpg">
 <meta property="og:updated_time" content="2018-06-05T12:05:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】Automatic Reference Counting (ARC) 总结">
@@ -48,7 +45,6 @@ ARC特点
 @property的参数
 
 strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变量是弱指针（适用于OC对象类型）">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -62,11 +58,11 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -150,13 +146,19 @@ strong ：成员变量是强指针（适用于OC对象类型）weak ：成员变
 </ul>
 <a id="more"></a>
 <h1 id="Xcode的ARC转换"><a href="#Xcode的ARC转换" class="headerlink" title="Xcode的ARC转换"></a>Xcode的ARC转换</h1><p>将非ARC的代码转化为ARC：</p>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6r1hgz43ij214e0q84d0.jpg)
+</center>
 
 <p>如果工程是 ARC的，可以将部分代码更改为非 ARC 模式：</p>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6r1kewd0cj21rq0om0xz.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6r1kewd0cj21rq0om0xz.jpg)
+</center>
 
 <p>如果工程不是 ARC 的，可以将部分代码更改为 ARC 状态</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6r26yg8cgj21n80o2n1m.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6r26yg8cgj21n80o2n1m.jpg)
+</center>
 
 <h1 id="ARC-的循环引用"><a href="#ARC-的循环引用" class="headerlink" title="ARC 的循环引用"></a>ARC 的循环引用</h1><p>当两端循环引用的时候，解决方案：</p>
 <ul>
@@ -748,7 +750,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

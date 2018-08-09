@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【AI】机器学习入门系列03，Error的来源：偏差和方差（bias 和 variance） | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -72,11 +72,11 @@ CSDN博客文章地址">
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -166,22 +166,22 @@ CSDN博客文章地址">
 </ul>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogcmj2dj20820let9d.jpg" alt=""></p>
 <p>但是如果计算很多组的m ，然后求m的期望</p>
-<p>$$<br>E[m] = E[\frac{1}{N} \sum<em>{n} x^{n}] = \frac{1}{N}\sum</em>{n}E[x^{n}] = \mu<br>$$</p>
-<p>这个估计呢是无偏估计（unbiased）。</p>
+<script type="math/tex; mode=display">
+E[m] = E[\frac{1}{N} \sum_{n} x^{n}] = \frac{1}{N}\sum_{n}E[x^{n}] = \mu</script><p>这个估计呢是无偏估计（unbiased）。</p>
 <p>然后m分布对于 $\mu$ 的离散程度（方差）：</p>
-<p>$$<br>Var[m] = \frac{\sigma^{2}}{N}<br>$$</p>
-<p>这主要取决于N，下图可看出N越小越离散</p>
+<script type="math/tex; mode=display">
+Var[m] = \frac{\sigma^{2}}{N}</script><p>这主要取决于N，下图可看出N越小越离散</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fe0ogsfqagj20d80kswf4.jpg" alt=""></p>
 <h3 id="估测变量-x-的方差"><a href="#估测变量-x-的方差" class="headerlink" title="估测变量 $x$ 的方差"></a>估测变量 $x$ 的方差</h3><p>首先用刚才的方法估测m，</p>
-<p>$$<br>m = \frac{1}{N} \sum_{n} x^{n} \neq \mu<br>$$</p>
-<p>然后再做下面计算：</p>
-<p>$$<br>s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}<br>$$</p>
-<p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
+<script type="math/tex; mode=display">
+m = \frac{1}{N} \sum_{n} x^{n} \neq \mu</script><p>然后再做下面计算：</p>
+<script type="math/tex; mode=display">
+s^{2} = \frac{1}{N} \sum_{n}(x^{n} - m)^{2}</script><p>就可以用$s^{2}$来估测  $\sigma^{2}$</p>
 <p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fe0oh8rezxj20ea0ludgg.jpg" alt=""></p>
 <p>这个估计是有偏估计（biased）,</p>
 <p>求 $s^{2}$的期望值：</p>
-<p>$$<br>E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}<br>$$</p>
-<p>用靶心来说明一下bias和variance的影响</p>
+<script type="math/tex; mode=display">
+E[s^{2}] = \frac{N - 1}{N} \sigma^{2} \neq \sigma^{2}</script><p>用靶心来说明一下bias和variance的影响</p>
 <p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fe0ohoz0lwj20z00swnkq.jpg" alt=""></p>
 <p>靶心为真正的方程 $\hat{f}$ ，深蓝色点为$f^{<em>}$ ，是实验求得的方程。求$f^{</em>}$的期望值$\bar{f} = E[f^{*}]$，即图中浅蓝色的点。</p>
 <p>$\bar{f}$ 和 $\hat{f}$之间的距离就是误差 bias，而$\bar{f}$ 和 $f^{*}$ 之间的距离就是误差 variance。4幅图的对比观察两个误差的影响。</p>
@@ -817,7 +817,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

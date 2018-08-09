@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【AI】机器学习入门系列06，Logistic Regression逻辑回归 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -79,11 +79,11 @@ Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推�
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -159,10 +159,10 @@ Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推�
 <h1 id="Step2-定义损失函数"><a href="#Step2-定义损失函数" class="headerlink" title="Step2 定义损失函数"></a>Step2 定义损失函数</h1><p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu1tsbvxj20sm06waad.jpg" alt=""></p>
 <p>上图有一个训练集，每个对象分别对应属于哪个类型（例如 $x^{3}$ 属于 $C<em>{2}$ ）。假设这些数据都是由后验概率 $f</em>{w,b}(x) = P<em>{w, b}(C</em>{1} | x)$产生的。</p>
 <p>给定一组 w和b，就可以计算这组w，b下产生上图N个训练数据的概率，</p>
-<p>$$<br>L(w, b) = f<em>{w,b}(x^{1})f</em>{w,b}(x^{2}) \left( 1-f<em>{w,b}(x^{3}) \right) \cdots f</em>{w,b}(x^{N}) \qquad (1-1)<br>$$</p>
-<p>对于使得 $L(w, b)$最大的$w$和 $b$，记做$w^{<em>}$ 和 $b^{</em>}$ ，即：</p>
-<p>$$<br>w^{<em>},b^{</em>} = \arg \max_{w,b} L(w,b) \qquad (1-2)<br>$$</p>
-<p>将训练集数字化，并且将式1-2中求max通过取负自然对数转化为求min ：</p>
+<script type="math/tex; mode=display">
+L(w, b) = f_{w,b}(x^{1})f_{w,b}(x^{2}) \left( 1-f_{w,b}(x^{3}) \right) \cdots f_{w,b}(x^{N}) \qquad (1-1)</script><p>对于使得 $L(w, b)$最大的$w$和 $b$，记做$w^{<em>}$ 和 $b^{</em>}$ ，即：</p>
+<script type="math/tex; mode=display">
+w^{*},b^{*} = \arg \max_{w,b} L(w,b) \qquad (1-2)</script><p>将训练集数字化，并且将式1-2中求max通过取负自然对数转化为求min ：</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu2bunz0j21340sctcu.jpg" alt=""></p>
 <p>然后将$-\ln L(w,b)$改写为下图中带蓝色下划线式子的样子：</p>
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegu3jn47xj210u0modk3.jpg" alt=""></p>
@@ -212,8 +212,8 @@ Step1 逻辑回归的函数集上一篇讲到分类问题的解决方法，推�
 <p><img src="http://wx2.sinaimg.cn/mw690/a9c4d5f6gy1fegual9vb4j21300p8wio.jpg" alt=""></p>
 <p>把$z<em>{1}, z</em>{2}, z<em>{3}$放到一个叫做Softmax的方程中，Softmax做的事情就是它们进行exponential（指数化），将exponential 的结果相加，再分别用 exponential 的结果除以相加的结果。原本$z</em>{1}, z<em>{2}, z</em>{3}$可以是任何值，但做完Softmax之后输出会被限制住，都介于0到1之间，并且和是1。Softmax做事情就是对最大值进行强化。</p>
 <p>把结果看成 </p>
-<p>$$<br>y<em>{i} = P(C</em>{i}|x) = \frac{\exp (z<em>{k})}{\sum^{n}</em>{j = 1}\exp (z_{j})}<br>$$</p>
-<p>比如图中数字的例子，即输入x，属于类别1的几率是0.88，属于类别2的几率是0.12，属于类别3的几率是0。</p>
+<script type="math/tex; mode=display">
+y_{i} = P(C_{i}|x) = \frac{\exp (z_{k})}{\sum^{n}_{j = 1}\exp (z_{j})}</script><p>比如图中数字的例子，即输入x，属于类别1的几率是0.88，属于类别2的几率是0.12，属于类别3的几率是0。</p>
 <p>Softmax的输出就是用来估计后验概率（Posterior Probability）。为什么会这样？下面进行简单的说明：</p>
 <h2 id="为什么Softmax的输出可以用来估计后验概率？"><a href="#为什么Softmax的输出可以用来估计后验概率？" class="headerlink" title="为什么Softmax的输出可以用来估计后验概率？"></a>为什么Softmax的输出可以用来估计后验概率？</h2><p>假设有3个类别，这3个类别都是高斯分布，它们也共用同一个协方差矩阵，进行类似上一篇讲述的推导，就可以得到Softmax。</p>
 <p>信息论学科中有一个 <strong>Maximum Entropy（最大熵）</strong>的概念，也可以推导出Softmax。简单说信息论中定义了一个最大熵。指数簇分布的最大熵等价于其指数形式的最大似然界。二项式的最大熵解等价于二项式指数形式(sigmoid)的最大似然，多项式分布的最大熵等价于多项式分布指数形式(softmax)的最大似然，因此为什么用sigmoid函数，那是因为指数簇分布最大熵的特性的必然性。假设分布求解最大熵，引入拉格朗日函数，求偏导数等于0，直接求出就是sigmoid函数形式。还有很多指数簇分布都有对应的最大似然界。而且，单个指数簇分布往往表达能力有限，就引入了多个指数簇分布的混合模型，比如高斯混合，引出了EM算法。想LDA就是多项式分布的混合模型。</p>
@@ -820,7 +820,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

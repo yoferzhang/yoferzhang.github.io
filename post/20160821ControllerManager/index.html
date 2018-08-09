@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】iOS控制器管理,代码,xib,Storyboard,Segue | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -43,18 +43,6 @@
 指定xib文件来创建
 
 1ViewController *viewController = [[ViewC">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f71op0s7g3j219s0jsdl4.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f71okmavqkj212w0pmq4t.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gta3r14j20u20mc77i.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gwj56kmj219g0eiq76.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74jl839a5j219e0b4n0s.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f74jnm6riyj21p60bsdkj.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74jp58k7pj209i03t74k.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74jrpfs7uj20jr0adjsy.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74ju6p3s8j21ds0d440f.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74vlp24flj21760jo0yu.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f75zhdmnifj21bg0kq792.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:25:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】iOS控制器管理,代码,xib,Storyboard,Segue">
@@ -72,7 +60,6 @@
 指定xib文件来创建
 
 1ViewController *viewController = [[ViewC">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -86,11 +73,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -177,7 +164,9 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [storyboard instantiateInitialViewController];</span><br></pre></td></tr></table></figure>
 <p>通过一个标识初始化对应的控制器</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@”viewController<span class="string">"];</span></span><br></pre></td></tr></table></figure>
-<h2 id="控制器的-view"><a href="#控制器的-view" class="headerlink" title="控制器的 view"></a>控制器的 view</h2><h3 id="ViewController的view的创建"><a href="#ViewController的view的创建" class="headerlink" title="ViewController的view的创建"></a>ViewController的view的创建</h3><center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg" alt=""><br></center>
+<h2 id="控制器的-view"><a href="#控制器的-view" class="headerlink" title="控制器的 view"></a>控制器的 view</h2><h3 id="ViewController的view的创建"><a href="#ViewController的view的创建" class="headerlink" title="ViewController的view的创建"></a>ViewController的view的创建</h3><center>
+![](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f71oaendkuj223u148ni6.jpg)
+</center>
 
 <h3 id="控制器view的延迟加载"><a href="#控制器view的延迟加载" class="headerlink" title="控制器view的延迟加载"></a>控制器view的延迟加载</h3><p>控制器的view是延迟加载的：用到时再加载</p>
 <p>可以用isViewLoaded方法判断一个UIViewController的view是否已经被加载</p>
@@ -197,7 +186,9 @@
 <li>UITabBarController</li>
 </ul>
 <h2 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h2><h3 id="UINavigationController-1"><a href="#UINavigationController-1" class="headerlink" title="UINavigationController"></a>UINavigationController</h3><p>利用UINavigationController，可以轻松地管理多个控制器，轻松完成控制器之间的切换，典型例子就是系统自带的“设置”应用</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f71op0s7g3j219s0jsdl4.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f71op0s7g3j219s0jsdl4.jpg)
+</center>
 
 <p>UINavigationController的使用步骤</p>
 <ul>
@@ -222,7 +213,9 @@
 <li>回到根控制器（栈底控制器）</li>
 </ul>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (nullable <span class="built_in">NSArray</span>&lt;__kindof <span class="built_in">UIViewController</span> *&gt; *)popToRootViewControllerAnimated:(<span class="built_in">BOOL</span>)animated;</span><br><span class="line"><span class="comment">// Pops until there's only a single view controller left on the stack. Returns the popped controllers.</span></span><br></pre></td></tr></table></figure>
-<h3 id="UINavigationController的view结构"><a href="#UINavigationController的view结构" class="headerlink" title="UINavigationController的view结构"></a>UINavigationController的view结构</h3><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f71okmavqkj212w0pmq4t.jpg" alt=""><br></center>
+<h3 id="UINavigationController的view结构"><a href="#UINavigationController的view结构" class="headerlink" title="UINavigationController的view结构"></a>UINavigationController的view结构</h3><center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f71okmavqkj212w0pmq4t.jpg)
+</center>
 
 <h3 id="如何修改导航栏的内容"><a href="#如何修改导航栏的内容" class="headerlink" title="如何修改导航栏的内容"></a>如何修改导航栏的内容</h3><p>导航栏的内容由栈顶控制器的navigationItem属性决定</p>
 <p>UINavigationItem有以下属性影响着导航栏的内容</p>
@@ -247,7 +240,9 @@
 </ul>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain) <span class="built_in">UIBarButtonItem</span> *rightBarButtonItem;</span><br></pre></td></tr></table></figure>
 <h2 id="Segue"><a href="#Segue" class="headerlink" title="Segue"></a>Segue</h2><h3 id="什么是Segue"><a href="#什么是Segue" class="headerlink" title="什么是Segue"></a>什么是Segue</h3><p>Storyboard上每一根用来界面跳转的线，都是一个UIStoryboardSegue对象（简称Segue）</p>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gta3r14j20u20mc77i.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gta3r14j20u20mc77i.jpg)
+</center>
 
 <h3 id="Segue的属性"><a href="#Segue的属性" class="headerlink" title="Segue的属性"></a>Segue的属性</h3><p>每一个Segue对象，都有3个属性</p>
 <ul>
@@ -261,7 +256,9 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="keyword">id</span> destinationViewController;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gwj56kmj219g0eiq76.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f73gwj56kmj219g0eiq76.jpg)
+</center>
 
 <h3 id="Segue的类型"><a href="#Segue的类型" class="headerlink" title="Segue的类型"></a>Segue的类型</h3><p>根据Segue的执行（跳转）时刻，Segue可以分为2大类型</p>
 <ul>
@@ -269,15 +266,21 @@
 <li>手动型：需要通过写代码手动执行Segue，才能完成界面跳转</li>
 </ul>
 <h3 id="自动型Segue"><a href="#自动型Segue" class="headerlink" title="自动型Segue"></a>自动型Segue</h3><p>按住Control键，直接从控件拖线到目标控制器</p>
-<center><br><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74jl839a5j219e0b4n0s.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/large/a9c4d5f6gw1f74jl839a5j219e0b4n0s.jpg)
+</center>
 
 <p>点击“登录”按钮后，就会自动跳转到右边的控制器</p>
 <p>如果点击某个控件后，不需要做任何判断，一定要跳转到下一个界面，建议使用“自动型Segue”</p>
 <h3 id="手动型Segue"><a href="#手动型Segue" class="headerlink" title="手动型Segue"></a>手动型Segue</h3><p>按住Control键，从来源控制器拖线到目标控制器</p>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f74jnm6riyj21p60bsdkj.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f74jnm6riyj21p60bsdkj.jpg)
+</center>
 
 <p>手动型的Segue需要设置一个标识（如下图）</p>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74jp58k7pj209i03t74k.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74jp58k7pj209i03t74k.jpg)
+</center>
 
 <p>在恰当的时刻，使用perform方法执行对应的Segue</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSegueWithIdentifier:<span class="string">@"login2contacts"</span> sender:<span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// Segue必须由来源控制器来执行，也就是说，这个perform方法必须由来源控制器来调用</span></span><br></pre></td></tr></table></figure>
@@ -290,7 +293,9 @@
 <li>设置Segue对象的sourceViewController（来源控制器）</li>
 <li>新建并且设置Segue对象的destinationViewController（目标控制器）</li>
 </ul>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74jrpfs7uj20jr0adjsy.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74jrpfs7uj20jr0adjsy.jpg)
+</center>
 
 <p>2.调用sourceViewController的下面方法，做一些跳转前的准备工作并且传入创建好的Segue对象</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareForSegue:(<span class="built_in">UIStoryboardSegue</span> *)segue sender:(<span class="keyword">id</span>)sender;</span><br><span class="line"><span class="comment">// 这个sender是当初performSegueWithIdentifier:sender:中传入的sender</span></span><br></pre></td></tr></table></figure>
@@ -300,13 +305,17 @@
 <li>调用UINavigationController的push方法将destinationViewController压入栈中，完成跳转</li>
 </ul>
 <p>Sender参数的传递</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74ju6p3s8j21ds0d440f.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f74ju6p3s8j21ds0d440f.jpg)
+</center>
 
 <h3 id="控制器的数据传递"><a href="#控制器的数据传递" class="headerlink" title="控制器的数据传递"></a>控制器的数据传递</h3><p>控制器之间的数据传递主要有2种情况:顺传和逆传</p>
 <p>顺传</p>
 <p>控制器的跳转方向: A -&gt; C<br>数据的传递方向: A -&gt; C<br>数据的传递方式: 在A的prepareForSegue:sender:方法中根据segue参数取得destinationViewController, 也就是控制器C, 直接给控制器C传递数据<br>(要在C的viewDidLoad方法中取得数据,来赋值给界面上的UI控件)</p>
 <h2 id="UITabBarController"><a href="#UITabBarController" class="headerlink" title="UITabBarController"></a>UITabBarController</h2><p>跟UINavigationController类似，UITabBarController也可以轻松地管理多个控制器，轻松完成控制器之间的切换，典型例子就是QQ、微信等应用</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74vlp24flj21760jo0yu.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74vlp24flj21760jo0yu.jpg)
+</center>
 
 <h3 id="UITabBarController的简单使用"><a href="#UITabBarController的简单使用" class="headerlink" title="UITabBarController的简单使用"></a>UITabBarController的简单使用</h3><p>UITabBarController的使用步骤</p>
 <ul>
@@ -334,7 +343,9 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *badgeValue;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="App主流UI框架结构"><a href="#App主流UI框架结构" class="headerlink" title="App主流UI框架结构"></a>App主流UI框架结构</h3><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f75zhdmnifj21bg0kq792.jpg" alt=""><br></center>
+<h3 id="App主流UI框架结构"><a href="#App主流UI框架结构" class="headerlink" title="App主流UI框架结构"></a>App主流UI框架结构</h3><center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f75zhdmnifj21bg0kq792.jpg)
+</center>
 
 <h2 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h2><p>除了push之外，还有另外一种控制器的切换方式，那就是Modal</p>
 <p>任何控制器都能通过Modal的形式展示出来</p>
@@ -922,7 +933,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

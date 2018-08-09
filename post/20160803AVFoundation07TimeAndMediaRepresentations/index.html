@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -12,21 +12,18 @@
 
     
     <meta name="description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6kx28dgzuj20lc0cojri.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6kxhx9jerj20n009f0st.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:updated_time" content="2017-02-09T05:30:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示">
 <meta name="twitter:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6kx28dgzuj20lc0cojri.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -40,11 +37,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -110,9 +107,9 @@
 		
 		<blockquote>
 <p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
 <p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394" target="_blank" rel="external">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>– 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>– 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>– 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
 <p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
 <p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
 </blockquote>
@@ -120,14 +117,18 @@
 <p>基于视听资料的时间，比如一个电影文件或视频流，在<code>AV Foundation</code> 框架中是由 <code>AVAsset</code> 代表的。它的结构决定了大部分的框架工程。一些低层的数据结构（<code>AV Foundation</code> 使用来表示时间和媒体，比如样本缓冲区）来自 <code>Core Media framework</code>。</p>
 <a id="more"></a>
 <h2 id="Representation-of-Assets-资产的表示"><a href="#Representation-of-Assets-资产的表示" class="headerlink" title="Representation of Assets - 资产的表示"></a>Representation of Assets - 资产的表示</h2><p>AVAsset is the core class in the AV Foundation framework. It provides a format-independent abstraction of time-based audiovisual data, such as a movie file or a video stream. The primary relationships are shown in Figure 6-1. In many cases, you work with one of its subclasses: You use the composition subclasses when you create new assets (see Editing), and you use AVURLAsset to create a new asset instance from media at a given URL (including assets from the MPMedia framework or the Asset Library framework—see Using Assets).</p>
-<p><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAsset_Class/index.html#//apple_ref/occ/cl/AVAsset" target="_blank" rel="external">AVAsset</a> 是 <code>AV Foundation</code> 框架的核心类。它提供了一个格式 – 与基于时间的视听数据的抽象无关，比如电影文件或视频流。主要的关系如图 6-1所示。在很多情况下，你都与它的一个子类一起工作：当你创建新的资产（见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW1" target="_blank" rel="external">Editing</a>）使用组件的子类，并使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVURLAsset_Class/index.html#//apple_ref/occ/cl/AVURLAsset" target="_blank" rel="external">AVURLAsset</a> 从给定 <code>URL</code> 的媒体来创建一个新的资产实例。（包括来自 <code>MPMedia</code> 框架或者 <code>Asset Library framework</code> 的资产，见<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/01_UsingAssets.html#//apple_ref/doc/uid/TP40010188-CH7-SW1" target="_blank" rel="external">Using Assets</a>）</p>
-<center><br>    <img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6kx28dgzuj20lc0cojri.jpg" alt="Figure 6-1  AVAsset provides an abstraction of time-based audiovisual data"><br></center>
+<p><a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAsset_Class/index.html#//apple_ref/occ/cl/AVAsset" target="_blank" rel="external">AVAsset</a> 是 <code>AV Foundation</code> 框架的核心类。它提供了一个格式 — 与基于时间的视听数据的抽象无关，比如电影文件或视频流。主要的关系如图 6-1所示。在很多情况下，你都与它的一个子类一起工作：当你创建新的资产（见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW1" target="_blank" rel="external">Editing</a>）使用组件的子类，并使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVURLAsset_Class/index.html#//apple_ref/occ/cl/AVURLAsset" target="_blank" rel="external">AVURLAsset</a> 从给定 <code>URL</code> 的媒体来创建一个新的资产实例。（包括来自 <code>MPMedia</code> 框架或者 <code>Asset Library framework</code> 的资产，见<a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/01_UsingAssets.html#//apple_ref/doc/uid/TP40010188-CH7-SW1" target="_blank" rel="external">Using Assets</a>）</p>
+<center>
+    ![Figure 6-1  AVAsset provides an abstraction of time-based audiovisual data](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6kx28dgzuj20lc0cojri.jpg)
+</center>
 
 <p>An asset contains a collection of tracks that are intended to be presented or processed together, each of a uniform media type, including (but not limited to) audio, video, text, closed captions, and subtitles. The asset object provides information about whole resource, such as its duration or title, as well as hints for presentation, such as its natural size. Assets may also have metadata, represented by instances of AVMetadataItem.</p>
 <p>资产包含了一组轨道，旨在被一起呈现或一起处理，每一个统一的媒体类型，包括（但不仅限于）音频、视频、文本、隐藏式字幕，以及字幕。资产对象提供关于整个资源的信息，比如它的持续时间或标题，以及用于呈现提示的信息，例如它的自然尺寸。资产也有可能拥有元数据，通过 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataItem_Class/index.html#//apple_ref/occ/cl/AVMetadataItem" target="_blank" rel="external">AVMetadataItem</a> 的实例表示。</p>
 <p>A track is represented by an instance of AVAssetTrack, as shown in Figure 6-2. In a typical simple case, one track represents the audio component and another represents the video component; in a complex composition, there may be multiple overlapping tracks of audio and video.</p>
 <p>轨道由 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetTrack_Class/index.html#//apple_ref/occ/cl/AVAssetTrack" target="_blank" rel="external">AVAssetTrack</a> 的实例表示，如图 6-2所示。在一个典型简单的情况下，一个轨道代表代表音频组件，另一个代表视频组件；在复杂的组成中，可以存在音频和视频的多个重叠的轨道。</p>
-<center><br>    <img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6kxhx9jerj20n009f0st.jpg" alt="Figure 6-2  AVAssetTrack"><br></center>
+<center>
+    ![Figure 6-2  AVAssetTrack](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6kxhx9jerj20n009f0st.jpg)
+</center>
 
 <p>A track has a number of properties, such as its type (video or audio), visual and/or audible characteristics (as appropriate), metadata, and timeline (expressed in terms of its parent asset). A track also has an array of format descriptions. The array contains CMFormatDescription objects (see CMFormatDescriptionRef), each of which describes the format of media samples referenced by the track. A track that contains uniform media (for example, all encoded using to the same settings) will provide an array with a count of 1.</p>
 <p>轨道有许多属性，比如它的类型（视频或者音频），视觉和/或听觉特性（根据需要），元数据和时间轴（在其父资产表示）。一个轨道也有格式描述的数组。数组包含 <code>CMFormatDescription</code> 对象（见 <a href="https://developer.apple.com/library/ios/documentation/CoreMedia/Reference/CMFormatDescription/index.html#//apple_ref/c/tdef/CMFormatDescriptionRef" target="_blank" rel="external">CMFormatDescriptionRef</a>），其中每一个都描述了轨道引用的媒体样本的格式。包含了统一媒体的轨道（例如，所有使用相同设置的编码）将提供计数为 <code>1</code> 的数组。</p>
@@ -781,7 +782,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

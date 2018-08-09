@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】私人通讯录Demo | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -35,11 +35,6 @@ UITextField，UILabel，UIButton等小控件的精确控制；
 数据的本地化存储；
 UITableView 的添加删除Cell
 在系统提供样式的Cell中代码添加自定义View">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74wg7775tg20dc0o54qs.gif">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wg3rbw8g20dc0o5e82.gif">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74wg1374dg20dc0o5qv7.gif">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wfxumj5g20dc0o57wj.gif">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74tjx41xgj218y0nujv9.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:25:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】私人通讯录Demo">
@@ -53,7 +48,6 @@ UITextField，UILabel，UIButton等小控件的精确控制；
 数据的本地化存储；
 UITableView 的添加删除Cell
 在系统提供样式的Cell中代码添加自定义View">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74wg7775tg20dc0o54qs.gif">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -67,11 +61,11 @@ UITableView 的添加删除Cell
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -148,13 +142,21 @@ UITableView 的添加删除Cell
 <li>利用第三方控件模拟网络请求等待，就是转菊花</li>
 </ul>
 <a id="more"></a>
-<h3 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h3><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74wg7775tg20dc0o54qs.gif" alt=""><br></center>
+<h3 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h3><center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f74wg7775tg20dc0o54qs.gif)
+</center>
 
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wg3rbw8g20dc0o5e82.gif" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wg3rbw8g20dc0o5e82.gif)
+</center>
 
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74wg1374dg20dc0o5qv7.gif" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f74wg1374dg20dc0o5qv7.gif)
+</center>
 
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wfxumj5g20dc0o57wj.gif" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74wfxumj5g20dc0o57wj.gif)
+</center>
 
 
 <h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3><p>运行环境为 Xcode 7.3，iOS 9.3</p>
@@ -215,7 +217,9 @@ UITableView 的添加删除Cell
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 实现 AddViewControllerDelegate 代理方法</span></span><br><span class="line">- (<span class="keyword">void</span>)addViewController:(AddViewController *)addViewController addContact:(Contact *)contact</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">self</span>.contacts addObject:contact];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.tableView reloadData];</span><br><span class="line">    [<span class="keyword">self</span> archiverContactData];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 实现 editViewControllerDelegate 代理方法</span></span><br><span class="line">- (<span class="keyword">void</span>)editViewController:(EditViewController *)editViewController addContact:(Contact *)contact</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">self</span>.tableView reloadData];</span><br><span class="line">    [<span class="keyword">self</span> archiverContactData];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 归档数据</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)archiverContactData</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="built_in">NSKeyedArchiver</span> archiveRootObject:<span class="keyword">self</span>.contacts toFile:ContactsFilepath];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 启动时读取数据</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)loadContactData</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span>.contacts = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithFile:ContactsFilepath];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>语言调整为中文，虽然把模拟器设置成中文，可还要把工程中添加中文配置才可以</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74tjx41xgj218y0nujv9.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f74tjx41xgj218y0nujv9.jpg)
+</center>
 
 <p>更换一下删除操作后刷新表格的方式，不需要全部刷新，只要删掉一行就行</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView commitEditingStyle:(<span class="built_in">UITableViewCellEditingStyle</span>)editingStyle forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">if</span> (editingStyle == <span class="built_in">UITableViewCellEditingStyleDelete</span>) &#123;</span><br><span class="line">        <span class="comment">// 1.删除数据</span></span><br><span class="line">        [<span class="keyword">self</span>.contacts removeObjectAtIndex:indexPath.row];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2.刷新表格</span></span><br><span class="line"><span class="comment">//        [self.tableView reloadData];</span></span><br><span class="line">        [<span class="keyword">self</span>.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:<span class="built_in">UITableViewRowAnimationTop</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3.归档</span></span><br><span class="line">        [<span class="keyword">self</span> archiverContactData];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -797,7 +801,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

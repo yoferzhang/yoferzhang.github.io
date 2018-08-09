@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -21,17 +21,12 @@
 <meta property="og:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
 
 1 Introduction to Key-Value Observing Programming Guide - KVO编程指南介绍Key-value observing is a mechanism that allows objects to be notified of changes to specified properties">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d8p43trej20af00vq2t.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d8wwxxoij20b704bq35.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d93mqed2j20dp0773z0.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d9dlm0vyj209b04z74e.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:24:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】KVO编程指南,Key-Value Observing Programming Guide翻译">
 <meta name="twitter:description" content="版权声明：本文为博主原创翻译，如需转载请注明出处。
 
 1 Introduction to Key-Value Observing Programming Guide - KVO编程指南介绍Key-value observing is a mechanism that allows objects to be notified of changes to specified properties">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d8p43trej20af00vq2t.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -45,11 +40,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -131,11 +126,15 @@
 <p>建立属性的观察者有三步。下面提供一个清晰的KVO工作方式演示，来理解这三步。</p>
 <p>1.First, see whether you have a scenario where key-value observing could be beneficial, for example, an object that needs to be notified when any changes are made to a specific property in another object.</p>
 <p>1.首先，考虑这样的一个场景，例如当对一个A对象的特定做出任何改变的时候，B对象需要被通知。</p>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d8p43trej20af00vq2t.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d8p43trej20af00vq2t.jpg)
+</center>
 
 <p>2.The PersonObject must register as an observer of the BankObject’s accountBalance property by sending an addObserver:forKeyPath:options:context: message.</p>
 <p>2.<code>PersonObject</code>必须注册为 <code>BankObject</code> 的 <code>accountBalance</code> 属性的观察者，通过发送一个消息 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Protocols/NSKeyValueObserving_Protocol/index.html#//apple_ref/occ/instm/NSObject/addObserver:forKeyPath:options:context:" target="_blank" rel="external">addObserver:forKeyPath:options:context:</a> </p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d8wwxxoij20b704bq35.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d8wwxxoij20b704bq35.jpg)
+</center>
 
 <blockquote>
 <p>Note: The addObserver:forKeyPath:options:context: method establishes a connection between the instances of the objects that you specify. A connection is not established between the two classes, but rather between the two specified instances of the objects.</p>
@@ -143,13 +142,17 @@
 </blockquote>
 <p>3.In order to respond to change notifications, the observer must implement the observeValueForKeyPath:ofObject:change:context: method. This method implementation defines how the observer responds to change notifications. It is in this method that you can customize your response to a change in one of the observed properties.</p>
 <p>3.为了响应变化的通知，观察者必须实现方法 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Protocols/NSKeyValueObserving_Protocol/index.html#//apple_ref/occ/instm/NSObject/observeValueForKeyPath:ofObject:change:context:" target="_blank" rel="external">observeValueForKeyPath:ofObject:change:context:</a>。这个方法的实现中定义了观察者如何响应改变通知。可以在这个方法中定制被观察属性之一改变时的响应。</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d93mqed2j20dp0773z0.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7d93mqed2j20dp0773z0.jpg)
+</center>
 
 <p>Registering for Key-Value Observing describes how to register and receive observation notifications.</p>
 <p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOBasics.html#//apple_ref/doc/uid/20002252-BAJEAIEE" target="_blank" rel="external">Registering for Key-Value Observing</a>说明如何注册和接受观察的通知。</p>
 <p>4.The observeValueForKeyPath:ofObject:change:context: method is automatically invoked when the value of an observed property is changed in a KVO-compliant manner, or if a key upon which it depends is changed.</p>
 <p>4.当被观察属性的值在KVO-compliant方式中改变 或者它依赖的一个key改变的时候，<code>observeValueForKeyPath:ofObject:change:context:</code> 方法自动被调用。</p>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d9dlm0vyj209b04z74e.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7d9dlm0vyj209b04z74e.jpg)
+</center>
 
 <p>Registering Dependent Keys explains how to specify that the value of a key is dependent on the value of another key.</p>
 <p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVODependentKeys.html#//apple_ref/doc/uid/20002179-BAJEAIEE" target="_blank" rel="external">Registering Dependent Keys</a> 解释了指定一个键的值依赖于另一个键的值。</p>
@@ -887,7 +890,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

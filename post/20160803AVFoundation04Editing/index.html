@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -12,23 +12,18 @@
 
     
     <meta name="description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑">
 <meta property="og:url" content="http://yoferzhang.com/post/20160803AVFoundation04Editing/index.html">
 <meta property="og:site_name" content="YoferZhang 的博客">
 <meta property="og:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6fu4l7pu1j20wu0goaal.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6fu9qkxtjj20mo0giq3g.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6gafmhl5zj214v0lf0ti.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6galdybkvj20zc0nnab4.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta property="og:updated_time" content="2017-02-09T05:30:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation Programming Guide(官方文档翻译4)Editing - 编辑">
 <meta name="twitter:description" content="新博客：完整版 - AVFoundation Programming Guide
-分章节版：– 第1章：About AVFoundation - AVFoundation概述– 第2章：Using Assets - 使用Assets– 第3章：Playback - 播放– 第4章：Editing - 编辑– 第5章：Still and Video Media Capture - 静态视频媒体捕获">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6fu4l7pu1j20wu0goaal.jpg">
+分章节版：— 第1章：About AVFoundation - AVFoundation概述— 第2章：Using Assets - 使用Assets— 第3章：Playback - 播放— 第4章：Editing - 编辑— 第5章：Still and Video Media Capture - 静态视频媒体捕获">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -42,11 +37,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -112,28 +107,36 @@
 		
 		<blockquote>
 <p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>– 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>– 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>– 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
 <p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394" target="_blank" rel="external">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>– 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>– 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>– 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>– 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>– 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>– 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>– 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317" target="_blank" rel="external">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326" target="_blank" rel="external">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333" target="_blank" rel="external">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342" target="_blank" rel="external">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355" target="_blank" rel="external">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366" target="_blank" rel="external">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372" target="_blank" rel="external">Time and Media Representations 时间和媒体表现</a></p>
 <p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
 <p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="external">点击这里</a></p>
 </blockquote>
 <h1 id="Editing-编辑"><a href="#Editing-编辑" class="headerlink" title="Editing - 编辑"></a>Editing - 编辑</h1><p>The AVFoundation framework provides a feature-rich set of classes to facilitate the editing of audio visual assets. At the heart of AVFoundation’s editing API are compositions. A composition is simply a collection of tracks from one or more different media assets. The AVMutableComposition class provides an interface for inserting and removing tracks, as well as managing their temporal orderings. Figure 3-1 shows how a new composition is pieced together from a combination of existing assets to form a new asset. If all you want to do is merge multiple assets together sequentially into a single file, that is as much detail as you need. If you want to perform any custom audio or video processing on the tracks in your composition, you need to incorporate an audio mix or a video composition, respectively.</p>
 <p><code>AVFoundation</code> 框架提供了一个功能丰富的类集合去帮助音视频资产的编辑。 <code>AVFoundation</code><br>编辑 <code>API</code> 的核心是一些组合。一种组合物是简单的一个或者多个不同媒体资产的轨道的集合。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/cl/AVMutableComposition" target="_blank" rel="external">AVMutableComposition</a> 类提供一个可以插入和移除轨道的接口，以及管理它们的时间序列。图3-1显示了一个新的组合是怎样从一些现有的资产拼凑起来，形成新的资产。如果你想做的是将多个资产合并为一个单一的文件，这里有尽可能多的你需要掌握的细节。如果你想在你的作品中的轨道上执行任何自定义音频或视频处理，你需要分别将一个音频组合或者视频组成。</p>
-<center><br><img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6fu4l7pu1j20wu0goaal.jpg" alt="Figure 3-1  AVMutableComposition assembles assets together"><br></center>
+<center>
+![Figure 3-1  AVMutableComposition assembles assets together](http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6fu4l7pu1j20wu0goaal.jpg)
+</center>
 
 <a id="more"></a>
 <p>Using the AVMutableAudioMix class, you can perform custom audio processing on the audio tracks in your composition, as shown in Figure 3-2. Currently, you can specify a maximum volume or set a volume ramp for an audio track.</p>
 <p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableAudioMix_Class/index.html#//apple_ref/occ/cl/AVMutableAudioMix" target="_blank" rel="external">AVMutableAudioMix</a> 类，可以在你作品的音频轨道中执行自定义处理，如图3-2所示。目前，你可以指定一个最大音量或设置一个音频轨道的音量斜坡</p>
-<center><br><img src="http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6fu9qkxtjj20mo0giq3g.jpg" alt="Figure 3-2  AVMutableAudioMix performs audio mixing"><br></center>
+<center>
+![Figure 3-2  AVMutableAudioMix performs audio mixing](http://ww1.sinaimg.cn/large/a9c4d5f6gw1f6fu9qkxtjj20mo0giq3g.jpg)
+</center>
 
 <p>You can use the AVMutableVideoComposition class to work directly with the video tracks in your composition for the purposes of editing, shown in Figure 3-3. With a single video composition, you can specify the desired render size and scale, as well as the frame duration, for the output video. Through a video composition’s instructions (represented by the AVMutableVideoCompositionInstruction class), you can modify the background color of your video and apply layer instructions. These layer instructions (represented by the AVMutableVideoCompositionLayerInstruction class) can be used to apply transforms, transform ramps, opacity and opacity ramps to the video tracks within your composition. The video composition class also gives you the ability to introduce effects from the Core Animation framework into your video using the animationTool property.</p>
 <p>可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableVideoComposition_Class/index.html#//apple_ref/occ/cl/AVMutableVideoComposition" target="_blank" rel="external">AVMutableVideoComposition</a> 类直接在视频中跟踪你想编辑的部分，如图3-3所示。一个单一的视频组件，可以为输出视频指定所需的渲染大小和规模，以及帧的持续时间。通过视频组件的指令（以 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableVideoCompositionInstruction_Class/index.html#//apple_ref/occ/cl/AVMutableVideoCompositionInstruction" target="_blank" rel="external">AVMutableVideoCompositionInstruction</a> 类为代表），你可以修改视频的背景颜色和应用层的指令。这些层的指令（以 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableVideoCompositionLayerInstruction_Class/index.html#//apple_ref/occ/cl/AVMutableVideoCompositionLayerInstruction" target="_blank" rel="external">AVMutableVideoCompositionLayerInstruction</a> 类为代表）可以可应用于应用变换，变换坡道，不透明度以及不透明度的坡道到你的组件中的视频轨道。视频组件类也能让你做一些事，从核心动画框架到使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableVideoComposition_Class/index.html#//apple_ref/occ/instp/AVMutableVideoComposition/animationTool" target="_blank" rel="external">animationTool</a> 属性的视频。</p>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6gafmhl5zj214v0lf0ti.jpg" alt="Figure 3-3  AVMutableVideoComposition"><br></center>
+<center>
+![Figure 3-3  AVMutableVideoComposition](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6gafmhl5zj214v0lf0ti.jpg)
+</center>
 
 <p>To combine your composition with an audio mix and a video composition, you use an AVAssetExportSession object, as shown in Figure 3-4. You initialize the export session with your composition and then simply assign your audio mix and video composition to the audioMix and videoComposition properties respectively.</p>
 <p>将音频和视频的成分组合，可以使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/cl/AVAssetExportSession" target="_blank" rel="external">AVAssetExportSession</a> 对象，如图3-4所所示。初始化导出会话，然后简单的分别将音频部分和视频组件分配给 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/instp/AVAssetExportSession/audioMix" target="_blank" rel="external">audioMix</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/instm/AVAssetExportSession/videoComposition" target="_blank" rel="external">videoComposition</a> 属性。</p>
-<center><br>    <img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6galdybkvj20zc0nnab4.jpg" alt="Figure 3-4  Use AVAssetExportSession to combine media elements into an output file"><br></center>
+<center>
+    ![Figure 3-4  Use AVAssetExportSession to combine media elements into an output file](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6galdybkvj20zc0nnab4.jpg)
+</center>
 
 <h2 id="Creating-a-Composition-创建组件"><a href="#Creating-a-Composition-创建组件" class="headerlink" title="Creating a Composition - 创建组件"></a>Creating a Composition - 创建组件</h2><p>To create your own composition, you use the AVMutableComposition class. To add media data to your composition, you must add one or more composition tracks, represented by the AVMutableCompositionTrack class. The simplest case is creating a mutable composition with one video track and one audio track:</p>
 <p>使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableComposition_Class/index.html#//apple_ref/occ/cl/AVMutableComposition" target="_blank" rel="external">AVMutableComposition</a> 类创建自己的组件。在你的组件中添加媒体数据，必须添加一个或者多个组件轨道，以 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMutableCompositionTrack_Class/index.html#//apple_ref/occ/cl/AVMutableCompositionTrack" target="_blank" rel="external">AVMutableCompositionTrack</a> 类为代表。最简单的例子创建一个有一个音频轨道和一个视频轨道的可变组件。</p>
@@ -794,7 +797,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

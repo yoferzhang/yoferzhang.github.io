@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【渔】使用Github和Hexo搭建属于自己的博客 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -27,12 +27,6 @@
 建立博客也花了些心思，记录下这点滴
 
 　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg">
 <meta property="og:updated_time" content="2018-06-05T12:04:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【渔】使用Github和Hexo搭建属于自己的博客">
@@ -42,7 +36,6 @@
 建立博客也花了些心思，记录下这点滴
 
 　　前后也是花了一天时间才建立好博客，之前总有点惰性，但好歹下决心把博客建起来了；我之前在CSDN上的博客写过三百多篇文章，感觉并不是很舒服，最后就自己搭建了；我这里使用的是Hexo加上Github。具体这些是什么就自行谷歌吧，本文主要写整个流程和一些问题，希望能切实帮助到其他第">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -56,11 +49,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -140,7 +133,9 @@
 <p>　　Note：本文使用的环境是Window用户，至于Linux和Mac用户我暂时还没有尝试，可以<a href="https://www.google.com/" target="_blank" rel="external">Google</a>。我的系统是win8.1。</p>
 <h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>　　Node.js下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a>。可能某些同学会遇到MSI格式的文件无法安装的问题，具体情况在安装程序的时候会报错：“There is a problem with this Windows Installer package. A DLL required for this install to complete could not be run. Contact your support personnel or package vendor.”</p>
 <p>　　这是因为没有取得管理员权限，而MSI格式的文件右键也没有“以管理员身份运行”的菜单项。这时候要在管理员权限下的命令提示符运行这个软件，比如下图所示：</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f280obmv4kj20it0cbdfw.jpg)
+</center>
 
 <blockquote>
 <p>现在应该需要科学上网才能去下载，没办法做到的同学国内找资源，也是比较好找的。</p>
@@ -169,7 +164,9 @@
 <blockquote>
 <p>效果如下图：</p>
 </blockquote>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f281r3oadfj20ja01gglh.jpg)
+</center>
 
 <p>　　然后在浏览器地址栏中输入：<code>localhost:4000</code>，就可以查看最终的效果。这里我就不展示了，因为hexo原本的模板效果我已经没有了，我的博客都已经改为了Jacman模板，之后会说明。</p>
 <h3 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h3><blockquote>
@@ -179,16 +176,22 @@
 <blockquote>
 <p>接下来创建仓库(repository)。</p>
 </blockquote>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285ea61t5j20rz04kdhf.jpg)
+</center>
 
 <p>　　在自己Github主页下点击repository，然后点击new。接下来输入名字，如下图：</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6jw1f285fjm9fuj20j90ffq3w.jpg)
+</center>
 
 <blockquote>
 <p>注意这里因为我已经创建过了，所以有错误提示，第一次建立的时候没事。要用自己的用户名加<code>.github.io</code>，比如我的就是<code>yoferzhang.github.io</code>，名字千万别错。</p>
 </blockquote>
 <p>　　打开之前安装好的Github for windows客户端Github，然后点左上角的加号，选择<code>Clone</code>，下面选中刚刚新建的仓库，确定。选择自己喜欢的位置，我直接就放在了E盘根目录下(<code>E:\</code>)。这时候E盘下就会生成一个文件夹，我的是<code>E:\yoferzhang.github.io</code>。</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6jw1f285oq0tw0j20fl0e574j.jpg)
+</center>
 
 <blockquote>
 <p>把刚才Hexo生成的静态文件拷贝到Github生成的文件夹中。</p>
@@ -207,7 +210,9 @@
 </blockquote>
 <p><a href="https://www.dnspod.cn/" target="_blank" rel="external">https://www.dnspod.cn/</a></p>
 <h3 id="配置域名和DNS"><a href="#配置域名和DNS" class="headerlink" title="配置域名和DNS"></a>配置域名和DNS</h3><p>　　首先去DNOPOD上面添加自己在GoDaddy上购买的域名。</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6jw1f28x5vsg18j20j708ugmk.jpg)
+</center>
 
 <p>　　然后去GoDaddy官网，登录进入，找到自己的产品，管理域名，设置域名服务器为DNSPod的2个DNS短地址，参考官方说明：<br><a href="https://support.dnspod.cn/Kb/showarticle/tsid/42/" target="_blank" rel="external">https://support.dnspod.cn/Kb/showarticle/tsid/42/</a></p>
 <blockquote>
@@ -837,7 +842,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

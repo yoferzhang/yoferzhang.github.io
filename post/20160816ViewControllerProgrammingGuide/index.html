@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】视图控制器编程指南View Controller Programming Guide for iOS | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -25,14 +25,6 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
 官方文档地址
 OverView 简介The Role of View Controllers - 视图控制器的作用视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。
 因为他们在你">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vljhj6yvj20ts0u0t8x.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6vm04ft6bj20i30bzt8y.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vmodoektj20ov0gvmx7.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vmznbodyj20p40gb0ss.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vn7blcwdj20wd0podga.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vn9s627wj20qn0vpmxk.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vnd49ituj20u50v5t95.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:27:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】视图控制器编程指南View Controller Programming Guide for iOS">
@@ -41,7 +33,6 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
 官方文档地址
 OverView 简介The Role of View Controllers - 视图控制器的作用视图控制器是应用程序的内部结构的基础。每个应用程序都至少有一个视图控制器，并且大多数的应用程序有几个。每个视图控制器管理应用程序用户界面的一部分以及接口和底层数据之间的交互。视图控制器也便于用户界面的不同部分之间的转换。
 因为他们在你">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -55,11 +46,11 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -136,17 +127,23 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
 <li><code>Container</code> 视图控制器收集来自其他视图控制器信息（称为子视图控制器 ），并以便于导航或呈现不同视图控制器的内容的方式来呈现它。</li>
 </ul>
 <h3 id="View-Management-视图管理"><a href="#View-Management-视图管理" class="headerlink" title="View Management - 视图管理"></a>View Management - 视图管理</h3><p>视图控制器的最重要的作用是管理视图的层次。每个视图控制器有一个包含所有视图控制器的内容的单根视图。对于根视图，您可以添加你需要显示内容的 <code>views</code> 。如图1-1所示视图控制器和视图之间的内置关系。视图控制器总是有它的根视图的引用，每个视图都有其子视图强引用。</p>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg" alt="Figure 1-1Relationship between a view controller and its views"><br></center>
+<center>
+![Figure 1-1Relationship between a view controller and its views](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vkjxe3eij20qe0i774c.jpg)
+</center>
 
 <blockquote>
 <p>Note: It is common practice to use outlets to access other views in your view controller’s view hierarchy. Because a view controller manages the content of all its views, outlets let you store references to the views that you need. The outlets themselves are connected to the actual view objects automatically when the views are loaded from the storyboard.</p>
 </blockquote>
 <p>一个内容视图控制器通过自身管理所有的视图。容器视图控制器管理自己的视图以及它的一个或多个子视图控制器的根视图。容器不能管理其子女的内容。它只能管理根视图，根据容器的设计调整大小和位置。图1-2说明了一个拆分视图控制器及其子女的关系。拆分视图控制器管理的总体尺寸和其子视图的位置，但是子视图控制器管理这些视图的实际内容。</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vljhj6yvj20ts0u0t8x.jpg" alt="Figure 1-2View controllers can manage content from other view controllers"><br></center>
+<center>
+![Figure 1-2View controllers can manage content from other view controllers](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vljhj6yvj20ts0u0t8x.jpg)
+</center>
 
 <p>有关管理视图控制器的视图的信息，请参阅 <a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html#//apple_ref/doc/uid/TP40007457-CH7-SW6" target="_blank" rel="external">Managing View Layout.</a></p>
 <h3 id="Data-Marshaling-数据编排"><a href="#Data-Marshaling-数据编排" class="headerlink" title="Data Marshaling - 数据编排"></a>Data Marshaling - 数据编排</h3><p>视图控制器作为其管理的视图和您的应用程序的数据之间的中介。<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/cl/UIViewController" target="_blank" rel="external">UIViewController</a> 类的方法和属性，让你管理你的应用程序的视觉呈现。当你创建一个 <code>UIViewController</code> 的子类。您可以添加您需要在子类来管理您的数据的任何变量。添加自定义变量，创建像在图1-3的关系，在视图控制器将数据和用于提供该数据。 两者之间移动数据来回是你的责任。</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6vm04ft6bj20i30bzt8y.jpg" alt="图1-3视图控制器的数据对象和视图之间起中介作用"><br></center>
+<center>
+![图1-3视图控制器的数据对象和视图之间起中介作用](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f6vm04ft6bj20i30bzt8y.jpg)
+</center>
 
 
 <p>你应该总是你的视图控制器和数据对象内维持职责完全分离。大多数用于确保数据结构的完整性的逻辑所属的数据对象本身。 视图控制器可以验证从输入的意见来，然后打包你的数据对象要求的格式该输入，但你应该尽量减少视图控制器在管理中的实际数据的作用。</p>
@@ -157,13 +154,17 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
 <p>当可用内存不足时，UIKit的应用要求释放他们不再需要任何资源。 它这样做的一种方法是通过调用您的视图控制器的方法 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/index.html#//apple_ref/occ/instm/UIViewController/didReceiveMemoryWarning" target="_blank" rel="external">didReceiveMemoryWarning</a>。 使用该方法来消除，你不再需要或以后就能很容易重新创建对象的引用。 例如，您可以使用该方法来删除缓存数据。 你可以当内存不足情况发生时释放尽可能多的内存是非常重要的。 消耗太多内存的应用可能会直接被系统终止，恢复内存。</p>
 <h3 id="Adaptivity-适应性"><a href="#Adaptivity-适应性" class="headerlink" title="Adaptivity - 适应性"></a>Adaptivity - 适应性</h3><p>视图控制器负责的视图的展示，并适应该视图底层环境相匹配。 每一个iOS应用程序应该能够在iPad上，并在几个不同尺寸的iPhone上运行。 而不是为每个设备提供不同的视图控制器和视图层次，它更易于使用，能够适应其观点不断变化的空间需求的单一视图控制器。</p>
 <p>在iOS系统中，视图控制器需要处理粗粒度的变化和细粒度的变化。 当一个视图控制器的 <code>traits</code> 发生改变粗粒度的变化发生。 性状是描述整体环境，诸如显示刻度属性。 最重要的特征之一是两个视图控制器的水平和垂直尺寸，这表明视图控制器在给定尺寸的空间有多大。 您可以使用尺寸级别的变化而改变视图的布局， 如图1-4所示 。 当水平尺寸类是<code>regular</code> ，视图控制器利用额外的水平空间来安排内容。 当水平尺寸级别紧凑 ，视图控制器垂直排列其内容。</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vmodoektj20ov0gvmx7.jpg" alt="图1-4适应视图大小变化级"><br></center>
+<center>
+![图1-4适应视图大小变化级](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vmodoektj20ov0gvmx7.jpg)
+</center>
 
 <p>在一个给定的大小类，有可能在任何时候发生更细粒度大小的变化。当用户旋转iPhone从纵向到横向，大小类可能不会改变，但屏幕尺寸通常改变。当你使用自动布局，UIKit自动调整视图的大小和位置来匹配新的维度。根据需要视图控制器可以做出更多的调整。</p>
 <p>有关自适应的详细信息，请参阅<a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/TheAdaptiveModel.html#//apple_ref/doc/uid/TP40007457-CH19-SW1" target="_blank" rel="external">The Adaptive Model.</a></p>
 <h2 id="The-View-Controller-Hierarchy-视图控制器层次"><a href="#The-View-Controller-Hierarchy-视图控制器层次" class="headerlink" title="The View Controller Hierarchy - 视图控制器层次"></a>The View Controller Hierarchy - 视图控制器层次</h2><p>您的应用程序的视图控制器之间的关系定义每个视图控制器所需的行为。 UIKit的希望您能在规定的方式使用视图控制器。 保持适当的视图控制器的关系，确保自动行为传递到正确的视图控制器在需要的时候。 如果你违反了规定的遏制和演示的关系，你的应用程序的某些部分停止的行为预期。</p>
 <h3 id="根视图控制器"><a href="#根视图控制器" class="headerlink" title="根视图控制器"></a>根视图控制器</h3><p>根视图控制器是视图控制器层次结构的锚。 每个窗口都只有其内容填充该窗口一个根视图控制器。 根视图控制器定义了用户看到的初始内容。 如图2-1所示根视图控制器和窗口之间的关系。 因为窗口有没有自己的可视内容，视图控制器的视图提供的所有内容。</p>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vmznbodyj20p40gb0ss.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vmznbodyj20p40gb0ss.jpg)
+</center>
 
 <p>编程设置一个根视图是UITableView的app</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HomePageViewController</span> : <span class="title">UITableViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
@@ -171,11 +172,17 @@ OverView 简介The Role of View Controllers - 视图控制器的作用视图控�
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UITableViewController</span> *homePageController = [[HomePageViewController alloc] init];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[<span class="built_in">UIScreen</span> mainScreen] bounds]];</span><br><span class="line">    <span class="keyword">self</span>.window.rootViewController = homePageController;</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <h3 id="Container-View-Controllers-容器视图控制器"><a href="#Container-View-Controllers-容器视图控制器" class="headerlink" title="Container View Controllers - 容器视图控制器"></a>Container View Controllers - 容器视图控制器</h3><p>UIKit 有3个容器视图控制器UINavigationController, UISplitViewController, and UIPageViewController.</p>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vn7blcwdj20wd0podga.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f6vn7blcwdj20wd0podga.jpg)
+</center>
 
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vn9s627wj20qn0vpmxk.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f6vn9s627wj20qn0vpmxk.jpg)
+</center>
 
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vnd49ituj20u50v5t95.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f6vnd49ituj20u50v5t95.jpg)
+</center>
 
 <h2 id="Design-Tips-设计技巧"><a href="#Design-Tips-设计技巧" class="headerlink" title="Design Tips - 设计技巧"></a>Design Tips - 设计技巧</h2><h3 id="Use-System-Supplied-View-Controllers-Whenever-Possible-尽可能使用系统提供的视图控制器"><a href="#Use-System-Supplied-View-Controllers-Whenever-Possible-尽可能使用系统提供的视图控制器" class="headerlink" title="Use System-Supplied View Controllers Whenever Possible - 尽可能使用系统提供的视图控制器"></a>Use System-Supplied View Controllers Whenever Possible - 尽可能使用系统提供的视图控制器</h3><p>UIImagePickerController UIKit中类显示捕获的图片和视频，并访问用户的相机胶卷的标准接口。</p>
 <p>你创建自己的自定义视图控制器之前，看一下现有的框架，看是否有视图控制器已经存在，您要执行的任务。</p>
@@ -790,7 +797,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

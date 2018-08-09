@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】About HTTP Live Streaming官方文档翻译 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -25,8 +25,6 @@ About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
 苹果源文档地址 - 点击这里
 
 About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6oz8i4ekrj21ug0pmtft.jpg">
 <meta property="og:updated_time" content="2018-06-06T02:33:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】About HTTP Live Streaming官方文档翻译">
@@ -35,7 +33,6 @@ About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
 苹果源文档地址 - 点击这里
 
 About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -49,11 +46,11 @@ About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -158,7 +155,9 @@ About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#EXTM3U</span></span><br><span class="line"><span class="meta">#EXT-X-VERSION:6</span></span><br><span class="line"><span class="meta">#EXT-X-TARGETDURATION:10</span></span><br><span class="line"><span class="meta">#EXT-X-MEDIA-SEQUENCE:0</span></span><br><span class="line"><span class="meta">#EXT-X-PLAYLIST-TYPE:VOD</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment0.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment1.ts</span></span><br><span class="line"><span class="meta">#EXTINF:9.9001,</span></span><br><span class="line">http:<span class="comment">//media.example.com/wifi/segment2.ts</span></span><br><span class="line"><span class="meta">#EXT-X-ENDLIST</span></span><br></pre></td></tr></table></figure>
 <h2 id="Master-Playlists-主播放列表"><a href="#Master-Playlists-主播放列表" class="headerlink" title="Master Playlists - 主播放列表"></a>Master Playlists - 主播放列表</h2><p>The master playlist provides an address for each individual media playlist in the stream. Figure 1 shows this relationship. The master playlist also provides important details such as bandwidth, resolution, and codec. The player uses that information to decide the most appropriate variant for the device and the currently measured, available bandwidth.</p>
 <p>主播放列表为每个单独的媒体播放列表提供了一个地址流。 图1显示了这种关系。主播放列表也提供了重要的细节，如带宽，分辨率和编解码器。 播放器使用该信息来决定设备的最合适的变体和当前测量的，可用的带宽。</p>
-<center><br>    <img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg" alt="图1播放列表的关系"><br></center>
+<center>
+    ![图1播放列表的关系](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6ow0h9lltj20th0pogmb.jpg)
+</center>
 
 <p>The sample master playlist in Listing 4 shows four variants. The order of the media playlists in the master playlists does not matter, except when you start the stream. The player begins downloading the first variant it can play. If conditions warrant, the player switches to another media playlist midstream.</p>
 <p>清单4中的样本主播放列表显示四个变种。  媒体播放列表在主播放列表的顺序并不重要，当你启动流时除外。 播放器在开始下载第一个变种，它就可以播放了。如果条件允许，播放器切换到另一个媒体播放列表的中游。</p>
@@ -225,7 +224,9 @@ About HTTP Live Streaming - HTTP实时流HTTP Live Streaming (HLS) is A">
 <p>要开始使用自己的HLS流，<code>HTTP Live Streaming Content Guide</code> 提供基本流创建的一个简单演练。该指南还说明了复杂的HLS的概念，如何实现先进的功能，并要求分流到iOS设备。</p>
 <p>Read the HTTP Live Streaming specification for current and definitive technical information.</p>
 <p>阅读 <a href="http://tools.ietf.org/html/draft-pantos-http-live-streaming" target="_blank" rel="external">HTTP Live Streaming specification</a> 这是当前权威的技术资料。</p>
-<h2 id="HLS-Feature-Release-History-HLS功能发布历史"><a href="#HLS-Feature-Release-History-HLS功能发布历史" class="headerlink" title="HLS Feature Release History - HLS功能发布历史"></a>HLS Feature Release History - HLS功能发布历史</h2><center><br>    <img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6oz8i4ekrj21ug0pmtft.jpg" alt=""><br></center>
+<h2 id="HLS-Feature-Release-History-HLS功能发布历史"><a href="#HLS-Feature-Release-History-HLS功能发布历史" class="headerlink" title="HLS Feature Release History - HLS功能发布历史"></a>HLS Feature Release History - HLS功能发布历史</h2><center>
+    ![](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6oz8i4ekrj21ug0pmtft.jpg)
+</center>
 
 
 
@@ -809,7 +810,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

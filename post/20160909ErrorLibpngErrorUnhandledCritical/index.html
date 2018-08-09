@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk` | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -27,7 +27,6 @@ XCode 8 GM 版本编译 cocos2dx的代码，在加载 sprite 时，比如
 1sprite-&amp;gt;setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 会弹出错误：
 123libpng error: CgBI: unha">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7n2v6sjblj21nm0em0vj.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:22:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】cocos2dx在xcode8 GM版下的错误`libpng error:CgBI:unhandled critical chunk`">
@@ -37,7 +36,6 @@ XCode 8 GM 版本编译 cocos2dx的代码，在加载 sprite 时，比如
 1sprite-&amp;gt;setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 会弹出错误：
 123libpng error: CgBI: unha">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7n2v6sjblj21nm0em0vj.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -51,11 +49,11 @@ XCode 8 GM 版本编译 cocos2dx的代码，在加载 sprite 时，比如
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -128,7 +126,9 @@ XCode 8 GM 版本编译 cocos2dx的代码，在加载 sprite 时，比如
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">libpng error: CgBI: unhandled critical chunk</span><br><span class="line">libpng error: CgBI: unhandled critical chunk</span><br><span class="line">libpng error: CgBI: unhandled critical chunk</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>网上看了一下，xcode7.3 刚出来，升级上来的时候也会出现这个问题，最后彻底解决需要修改两个参数：</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7n2v6sjblj21nm0em0vj.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7n2v6sjblj21nm0em0vj.jpg)
+</center>
 
 <p>就是把下面两个都设置为 NO 即可</p>
 <ul>
@@ -716,7 +716,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

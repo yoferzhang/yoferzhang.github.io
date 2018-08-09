@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】Cocos2dx封装为view方便做3D动画效果 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -60,11 +60,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -156,6 +156,7 @@
 <h2 id="释放cocos单例"><a href="#释放cocos单例" class="headerlink" title="释放cocos单例"></a>释放cocos单例</h2><h3 id="检查单例"><a href="#检查单例" class="headerlink" title="检查单例"></a>检查单例</h3><p>这里先对所有的cocos2dx中的单例进行检查，主要是想用Director销毁其他的单例，经过检查的结果也证明了王哲说的：用Director来管理项目中的单例，具体释放在上面的 <code>destroyCocosView</code> 方法中。即为：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)destroyCocosView</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//    cocos2d::Director::getInstance()-&gt;getTextureCache()</span></span><br><span class="line">    cocos2d::PoolManager::destroyInstance();</span><br><span class="line">    cocos2d::Director::getInstance()-&gt;purgeCachedData();</span><br><span class="line">    cocos2d::Director::getInstance()-&gt;purgeDirector();</span><br><span class="line">    </span><br><span class="line">    [CCDirectorCaller destroy];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>下面为检查结果表格：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -481,6 +482,7 @@
 </tr>
 </tbody>
 </table>
+</div>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -1059,7 +1061,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

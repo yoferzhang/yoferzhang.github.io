@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【AI】数据科学工具 Jupyter Notebook教程 in Python | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -61,11 +61,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -205,7 +205,7 @@
 <p>完整实例地址：<a href="https://plot.ly/~chelsea_lyn/14069" target="_blank" rel="external">https://plot.ly/~chelsea_lyn/14069</a></p>
 <h1 id="附加嵌入功能"><a href="#附加嵌入功能" class="headerlink" title="附加嵌入功能"></a>附加嵌入功能</h1><p>IPython.display可以嵌入其他功能，如视频。 例如，从YouTube：</p>
 <p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fj9q9380irj212m0pm4jl.jpg" alt=""></p>
-<h1 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h1><p>可以通过将数学内容用$$包住，来将LaTeX嵌入notebook中，然后将该单元格作为Markdown cell 运行。 例如，下面的 cell 是 <code>$ c = \ sqrt {a ^ 2 + b ^ 2} $</code>，(左右应该是双dollar符号，但这里打双dollar，km就出错无法保存文章了==)但Notebook会呈现表达式。</p>
+<h1 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h1><p>可以通过将数学内容用<script type="math/tex">包住，来将LaTeX嵌入notebook中，然后将该单元格作为Markdown cell 运行。 例如，下面的 cell 是</script> c = \ sqrt {a ^ 2 + b ^ 2} $$，(左右应该是双dollar符号，但这里打双dollar，km就出错无法保存文章了==)但Notebook会呈现表达式。</p>
 <p><img src="http://wx1.sinaimg.cn/mw690/a9c4d5f6gy1fj9q9q1ap1j20ac02emx7.jpg" alt=""></p>
 <p>或者可以在python的输出中展示，请参阅：<a href="http://stackoverflow.com/questions/13208286/how-to-write-latex-in-ipython-notebook" target="_blank" rel="external">here</a></p>
 <p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fj9qabewpuj21ba07ajvs.jpg" alt=""></p>
@@ -804,7 +804,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

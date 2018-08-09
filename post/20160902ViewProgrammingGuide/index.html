@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】View Programming Guide for iOS 视图编程指南 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -27,16 +27,6 @@
 1.1 添加额外的 Window一般在有外界显示设备的时候才需要添加额外的 window
 下面的代码举了一个例子，这里假定对象实现了方法 externalWindow，externalWindow 存储一个 window 的引用
 123456789">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7fc1paxz3j20i40armz9.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7fcs0ioclj20hw07vmxu.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g5ydwc9uj20c90jpwil.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g67e6e1rj20az0cajtq.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7g6qvtlhxj206808nq3d.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7hj771kufj20f008ldhz.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7hku953fkj20fy08amyj.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7ht5urbqlj20i40gpgmx.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7htf2df7dj20f9060jsc.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7huakdcxsj20pp0eldhs.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:24:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】View Programming Guide for iOS 视图编程指南">
@@ -46,7 +36,6 @@
 1.1 添加额外的 Window一般在有外界显示设备的时候才需要添加额外的 window
 下面的代码举了一个例子，这里假定对象实现了方法 externalWindow，externalWindow 存储一个 window 的引用
 123456789">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7fc1paxz3j20i40armz9.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -60,11 +49,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -138,13 +127,17 @@
 <a id="more"></a>
 <h1 id="2-View-和-Window-层级"><a href="#2-View-和-Window-层级" class="headerlink" title="2 View 和 Window 层级"></a>2 View 和 Window 层级</h1><h2 id="2-1-View-层级原理"><a href="#2-1-View-层级原理" class="headerlink" title="2.1 View 层级原理"></a>2.1 View 层级原理</h2><p>UIKit中的每个 view，底层都拥有一个 layer 对象，通常都是CALayer。大多数情况下都直接通过 UIView 操作；当需要更多控制的时候可以通过 layer 执行操作。</p>
 <p>注意：bar button item 不是 view，所以不能直接访问它的 layer。实际上 bar button item 是直接继承自 NSObject，而 layer 是 UIView 中定义的，所以bar button item没有。</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7fc1paxz3j20i40armz9.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7fc1paxz3j20i40armz9.jpg)
+</center>
 
 <p>核心动画层会对 view对象绘制代码的内容进行缓存重用，尤其是在有动画的情况下，重用比重新创建一个新的内容资源消耗小很多。</p>
 <h3 id="2-1-1-视图层级和子视图管理"><a href="#2-1-1-视图层级和子视图管理" class="headerlink" title="2.1.1 视图层级和子视图管理"></a>2.1.1 视图层级和子视图管理</h3><p>如果子视图是完全不透明的话，会遮盖父视图的内容。父视图将子视图存放在一个有序的数组中，所以后添加的（子视图数组最后的）会在最上面显示。</p>
 <p>父视图改变大小会引起子视图的大小随之变化，可以自定义这种变化。还有父视图被隐藏、改变父视图的透明度（alpha），或者对父视图的坐标系统应用数学转换等，都会影响到子视图。</p>
 <p>UIResponder 和它的子类可以响应事件，并处理事件，UIView就是继承自 UIResponder。</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7fcs0ioclj20hw07vmxu.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7fcs0ioclj20hw07vmxu.jpg)
+</center>
 
 <p>点击事件的响应是从上到下一层一层判断的，如果最后没有任何对象做出响应，通常就丢弃了。</p>
 <h3 id="2-1-2-视图绘图周期"><a href="#2-1-2-视图绘图周期" class="headerlink" title="2.1.2 视图绘图周期"></a>2.1.2 视图绘图周期</h3><p>第一次绘图的时候系统保存一个绘图内容的快拍（snapshot），如果之后再没有对内容改动，那么不会再调用绘图代码，都直接使用这个快拍；如果有了改动，就重新生成一个快拍，周而复始。</p>
@@ -160,11 +153,15 @@
 </ul>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>)                 <span class="built_in">UIViewContentMode</span> contentMode;                <span class="comment">// default is UIViewContentModeScaleToFill</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">UIViewContentMode</span>) &#123;</span><br><span class="line">    <span class="built_in">UIViewContentModeScaleToFill</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeScaleAspectFit</span>,      <span class="comment">// contents scaled to fit with fixed aspect. remainder is transparent</span></span><br><span class="line">    <span class="built_in">UIViewContentModeScaleAspectFill</span>,     <span class="comment">// contents scaled to fill with fixed aspect. some portion of content may be clipped.</span></span><br><span class="line">    <span class="built_in">UIViewContentModeRedraw</span>,              <span class="comment">// redraw on bounds change (calls -setNeedsDisplay)</span></span><br><span class="line">    <span class="built_in">UIViewContentModeCenter</span>,              <span class="comment">// contents remain same size. positioned adjusted.</span></span><br><span class="line">    <span class="built_in">UIViewContentModeTop</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeBottom</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeLeft</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeRight</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeTopLeft</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeTopRight</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeBottomLeft</span>,</span><br><span class="line">    <span class="built_in">UIViewContentModeBottomRight</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g5ydwc9uj20c90jpwil.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g5ydwc9uj20c90jpwil.jpg)
+</center>
 
 <p>UIViewContentModeRedraw 通常都不需要使用这个值，尤其在标准系统视图中不要使用。</p>
 <h3 id="2-1-4-可伸缩的视图"><a href="#2-1-4-可伸缩的视图" class="headerlink" title="2.1.4 可伸缩的视图"></a>2.1.4 可伸缩的视图</h3><p>可以指定一个区域为可伸缩的，可以沿着一个轴或者两个轴伸缩。下图显示了视图自身显示的失真</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g67e6e1rj20az0cajtq.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7g67e6e1rj20az0cajtq.jpg)
+</center>
 
 <p><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/contentStretch" target="_blank" rel="external">contentStretch</a> 属性用来指定可伸缩的区域。但是这个属性iOS6之后被废弃了，通常这个属性都是用在 view 的背景 UIImage 对象，所以现在用 [UIImage resizableImageWithCapInsets:] 达到相同效果。</p>
 <h3 id="2-1-5-内嵌动画的支持"><a href="#2-1-5-内嵌动画的支持" class="headerlink" title="2.1.5 内嵌动画的支持"></a>2.1.5 内嵌动画的支持</h3><p>执行动画需要做两件事：</p>
@@ -183,7 +180,9 @@
 </ul>
 <p>比如通常可以用导航栏控制器控制两个视图的转换动画，这是提供的标准动画，当觉得达不到想要效果，就可以自定义。</p>
 <p>还可以直接使用 Core Animation layers创建动画。</p>
-<h2 id="2-2-视图的几何（Geometry）和坐标（Coordinate）系统"><a href="#2-2-视图的几何（Geometry）和坐标（Coordinate）系统" class="headerlink" title="2.2 视图的几何（Geometry）和坐标（Coordinate）系统"></a>2.2 视图的几何（Geometry）和坐标（Coordinate）系统</h2><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7g6qvtlhxj206808nq3d.jpg" alt=""><br></center>
+<h2 id="2-2-视图的几何（Geometry）和坐标（Coordinate）系统"><a href="#2-2-视图的几何（Geometry）和坐标（Coordinate）系统" class="headerlink" title="2.2 视图的几何（Geometry）和坐标（Coordinate）系统"></a>2.2 视图的几何（Geometry）和坐标（Coordinate）系统</h2><center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7g6qvtlhxj206808nq3d.jpg)
+</center>
 
 <p>每个视图和窗口都定义了自己的局部坐标系统。</p>
 <h3 id="2-2-1-Frame，Bounds-和-Center-属性的关系"><a href="#2-2-1-Frame，Bounds-和-Center-属性的关系" class="headerlink" title="2.2.1 Frame，Bounds 和 Center 属性的关系"></a>2.2.1 Frame，Bounds 和 Center 属性的关系</h3><ul>
@@ -191,7 +190,9 @@
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/bounds" target="_blank" rel="external">bounds</a> 属性包含了矩形边界，指定了在视图自己局部的坐标系中视图的大小（以及内容的边界）</li>
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/center" target="_blank" rel="external">center</a> 属性包含了父视图坐标系中视图的中点</li>
 </ul>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7hj771kufj20f008ldhz.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7hj771kufj20f008ldhz.jpg)
+</center>
 
 <p>下面3种情况，改变会有连锁反应：</p>
 <ul>
@@ -203,7 +204,9 @@
 <p><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/transform" target="_blank" rel="external">transform</a> 属性可以修改变换方式，并且有动画。</p>
 <h3 id="2-2-3-点像素"><a href="#2-2-3-点像素" class="headerlink" title="2.2.3 点像素"></a>2.2.3 点像素</h3><p>One point does not necessarily correspond to one pixel on the screen.</p>
 <p>一个 point 并不一定和 一个像素相等，千万不要有相等的假设。</p>
-<h3 id="2-2-4-视图的运行交互模式"><a href="#2-2-4-视图的运行交互模式" class="headerlink" title="2.2.4 视图的运行交互模式"></a>2.2.4 视图的运行交互模式</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7hku953fkj20fy08amyj.jpg" alt=""><br></center>
+<h3 id="2-2-4-视图的运行交互模式"><a href="#2-2-4-视图的运行交互模式" class="headerlink" title="2.2.4 视图的运行交互模式"></a>2.2.4 视图的运行交互模式</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7hku953fkj20fy08amyj.jpg)
+</center>
 
 <p>考虑下面几种情况：</p>
 <p>1.用户触摸屏幕</p>
@@ -262,6 +265,7 @@
 <h2 id="4-1-创建和配置视图对象"><a href="#4-1-创建和配置视图对象" class="headerlink" title="4.1 创建和配置视图对象"></a>4.1 创建和配置视图对象</h2><h3 id="4-1-1-使用IB创建视图对象"><a href="#4-1-1-使用IB创建视图对象" class="headerlink" title="4.1.1 使用IB创建视图对象"></a>4.1.1 使用IB创建视图对象</h3><p>可以查看 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" target="_blank" rel="external">Resource Programming Guide</a></p>
 <h3 id="4-1-2-代码创建view对象"><a href="#4-1-2-代码创建view对象" class="headerlink" title="4.1.2 代码创建view对象"></a>4.1.2 代码创建view对象</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CGRect</span>  viewRect = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="built_in">UIView</span>* myView = [[<span class="built_in">UIView</span> alloc] initWithFrame:viewRect];</span><br></pre></td></tr></table></figure>
 <h3 id="4-1-3-设置view-的属性"><a href="#4-1-3-设置view-的属性" class="headerlink" title="4.1.3 设置view 的属性"></a>4.1.3 设置view 的属性</h3><p>view 的一些关键属性的用法</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -296,6 +300,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="4-1-4-为以后的验证标记-view"><a href="#4-1-4-为以后的验证标记-view" class="headerlink" title="4.1.4 为以后的验证标记 view"></a>4.1.4 为以后的验证标记 view</h3><p><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/tag" target="_blank" rel="external">tag</a> 可以用一个整数值来标记特定的 view。默认这个属性为 0。</p>
 <p>找到标记的view，可以使用 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instm/UIView/viewWithTag:" target="_blank" rel="external">viewWithTag:</a> 方法。</p>
 <h2 id="4-2-创建和管理-view-层级"><a href="#4-2-创建和管理-view-层级" class="headerlink" title="4.2 创建和管理 view 层级"></a>4.2 创建和管理 view 层级</h2><h3 id="4-2-1-添加和移除子视图"><a href="#4-2-1-添加和移除子视图" class="headerlink" title="4.2.1 添加和移除子视图"></a>4.2.1 添加和移除子视图</h3><p><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instm/UIView/addSubview:" target="_blank" rel="external">addSubview:</a> 方法直接添加到最上面。</p>
@@ -308,7 +313,9 @@
 <li>给 view 的 tag 属性赋值，但数字要独一无二；然后用 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instm/UIView/viewWithTag:" target="_blank" rel="external">viewWithTag:</a> 方法拿到</li>
 </ul>
 <h3 id="4-2-4-转变，伸缩，旋转-view"><a href="#4-2-4-转变，伸缩，旋转-view" class="headerlink" title="4.2.4 转变，伸缩，旋转 view"></a>4.2.4 转变，伸缩，旋转 view</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// M_PI/4.0 is one quarter of a half circle, or 45 degrees.</span></span><br><span class="line"><span class="built_in">CGAffineTransform</span> xform = <span class="built_in">CGAffineTransformMakeRotation</span>(M_PI/<span class="number">4.0</span>);</span><br><span class="line"><span class="keyword">self</span>.view.transform = xform;</span><br></pre></td></tr></table></figure>
-<center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7ht5urbqlj20i40gpgmx.jpg" alt=""><br></center>
+<center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7ht5urbqlj20i40gpgmx.jpg)
+</center>
 
 <h3 id="4-2-5-在视图层级中转换坐标"><a href="#4-2-5-在视图层级中转换坐标" class="headerlink" title="4.2.5 在视图层级中转换坐标"></a>4.2.5 在视图层级中转换坐标</h3><p>UIView 定义了下面几种方法在view 的局部坐标系中转换坐标</p>
 <ul>
@@ -324,7 +331,9 @@
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWindow_Class/index.html#//apple_ref/occ/instm/UIWindow/convertPoint:toWindow:" target="_blank" rel="external">convertPoint:toWindow:</a></li>
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWindow_Class/index.html#//apple_ref/occ/instm/UIWindow/convertRect:toWindow:" target="_blank" rel="external">convertRect:toWindow:</a></li>
 </ul>
-<center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7htf2df7dj20f9060jsc.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7htf2df7dj20f9060jsc.jpg)
+</center>
 
 <h2 id="4-3-在运行时调整-view-的大小和位置"><a href="#4-3-在运行时调整-view-的大小和位置" class="headerlink" title="4.3 在运行时调整 view 的大小和位置"></a>4.3 在运行时调整 view 的大小和位置</h2><p>UIView 支持自动和手动布局</p>
 <h3 id="4-3-1-为布局改变做准备"><a href="#4-3-1-为布局改变做准备" class="headerlink" title="4.3.1 为布局改变做准备"></a>4.3.1 为布局改变做准备</h3><p>当 view 中有下面几种事件发生的时候，布局需要改变：</p>
@@ -336,6 +345,7 @@
 <li>调用view的 layer对象的 <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/index.html#//apple_ref/occ/instm/CALayer/setNeedsLayout" target="_blank" rel="external">setNeedsLayout</a> 方法，让应用强制布局</li>
 </ul>
 <h3 id="4-3-2-使用自动调整大小规则让布局自动变化"><a href="#4-3-2-使用自动调整大小规则让布局自动变化" class="headerlink" title="4.3.2 使用自动调整大小规则让布局自动变化"></a>4.3.2 使用自动调整大小规则让布局自动变化</h3><p>设置父视图 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/autoresizesSubviews" target="_blank" rel="external">autoresizesSubviews</a> 属性来决定子视图是否需要调整大小。如果这个属性为 YES，每个子视图的 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instp/UIView/autoresizingMask" target="_blank" rel="external">autoresizingMask</a> 属性决定如何变化。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -374,7 +384,10 @@
 </tr>
 </tbody>
 </table>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7huakdcxsj20pp0eldhs.jpg" alt=""><br></center>
+</div>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7huakdcxsj20pp0eldhs.jpg)
+</center>
 
 <h3 id="4-3-3-手动调整视图布局"><a href="#4-3-3-手动调整视图布局" class="headerlink" title="4.3.3 手动调整视图布局"></a>4.3.3 手动调整视图布局</h3><p>在自定义 view 中，如果自动布局行为没有达到期望要求，可以实现 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/instm/UIView/layoutSubviews" target="_blank" rel="external">layoutSubviews</a> ，可以下面几件事：</p>
 <ul>
@@ -1074,7 +1087,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

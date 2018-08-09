@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】Table View Programming Guide for iOS | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -52,11 +52,11 @@ A table view configured as a selection list">
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -130,7 +130,8 @@ A table view configured as a selection list">
 <p><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f9mq7cwbwkj207m0bc74z.jpg" alt=""></p>
 <p>Header and footer of a section</p>
 <p><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f9mq88td6fj208a09ejso.jpg" alt=""></p>
-<h2 id="Standard-Styles-for-Table-View-Cells"><a href="#Standard-Styles-for-Table-View-Cells" class="headerlink" title="Standard Styles for Table View Cells"></a>Standard Styles for Table View Cells</h2><table>
+<h2 id="Standard-Styles-for-Table-View-Cells"><a href="#Standard-Styles-for-Table-View-Cells" class="headerlink" title="Standard Styles for Table View Cells"></a>Standard Styles for Table View Cells</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:center">Style</th>
@@ -156,6 +157,7 @@ A table view configured as a selection list">
 </tr>
 </tbody>
 </table>
+</div>
 <h1 id="Overview-of-the-Table-View-API"><a href="#Overview-of-the-Table-View-API" class="headerlink" title="Overview of the Table View API"></a>Overview of the Table View API</h1><h2 id="Table-View"><a href="#Table-View" class="headerlink" title="Table View"></a>Table View</h2><p>UITableView 继承自 <a href="https://developer.apple.com/reference/uikit/uiscrollview" target="_blank" rel="external">UIScrollView</a>，但是重新定义了 scrolling behavior ，只允许竖直方向的滚动。</p>
 <h2 id="Data-Source-and-Delegate"><a href="#Data-Source-and-Delegate" class="headerlink" title="Data Source and Delegate"></a>Data Source and Delegate</h2><p><a href="https://developer.apple.com/reference/uikit/uitableviewdatasource" target="_blank" rel="external">UITableViewDataSource</a>有两个required methods，<a href="https://developer.apple.com/reference/uikit/uitableviewdatasource/1614931-tableview" target="_blank" rel="external">tableView:numberOfRowsInSection:</a> 和 <a href="https://developer.apple.com/reference/uikit/uitableviewdatasource/1614861-tableview" target="_blank" rel="external">tableView:cellForRowAtIndexPath:</a>。<a href="https://developer.apple.com/reference/uikit/uitableviewdelegate" target="_blank" rel="external">UITableViewDelegate</a> 协议就没有required methods。It declares methods that allow the delegate to modify visible aspects of the table view, manage selections, support an accessory view, and support editing of individual rows in a table.</p>
 <h1 id="Navigating-a-Data-Hierarchy-with-Table-Views"><a href="#Navigating-a-Data-Hierarchy-with-Table-Views" class="headerlink" title="Navigating a Data Hierarchy with Table Views"></a>Navigating a Data Hierarchy with Table Views</h1><p>可以使用<a href="https://developer.apple.com/reference/uikit/uitableviewcontroller/1614754-init" target="_blank" rel="external">initWithStyle:</a>方法来创建一个table view，传递参数 <a href="https://developer.apple.com/reference/uikit/uitableviewstyle/1614968-plain" target="_blank" rel="external">UITableViewStylePlain</a> 或 <a href="https://developer.apple.com/reference/uikit/uitableviewstyle/1614942-grouped" target="_blank" rel="external">UITableViewStyleGrouped</a> 。</p>
@@ -739,7 +741,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】Stanford iOS7 Assignment - Matchismo | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -33,9 +33,6 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 更新时间：2016.04.22
 
 简单牌面翻转修改Main.storyboard：设置背景色">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f42z3e6qj1j20pf0h4gnx.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f42zdon6t4j20ae0ijmyr.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f4tezo3lz6j20af0iiq4r.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:33:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】Stanford iOS7 Assignment - Matchismo">
@@ -48,7 +45,6 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 更新时间：2016.04.22
 
 简单牌面翻转修改Main.storyboard：设置背景色">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f42z3e6qj1j20pf0h4gnx.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -62,11 +58,11 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -184,13 +180,17 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 <p>更新时间：2016.05.06</p>
 </blockquote>
 <p>现在需要做一个可以进行匹配的游戏，在界面上需要放置12个<code>Button</code>，每行4个，3行，共12个。我这里用AutoLayout，从左边的Container Margin到右边的Container Margin长度为560。每行放置4张牌，如果没有间隔，每张牌的宽度为140，但是为了每张牌中间留出一个小间隙，需要3个间隙，就找到3和4的最小公倍数12。这样设计最后每张牌的宽度即为137，牌与牌之间的间隔都是4，然后加上Constraints。如下图所示：</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6jw1f42z3e6qj1j20pf0h4gnx.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/large/a9c4d5f6jw1f42z3e6qj1j20pf0h4gnx.jpg)
+</center>
 
 <p>在iPhone6s上的测试结果如下图所示：</p>
 <blockquote>
 <p>我更改了PlayingCard.m文件中的validSiuts函数，就是将里面的生成牌Suit的字符换成了彩色的字符，之前全都是黑色的。</p>
 </blockquote>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f42zdon6t4j20ae0ijmyr.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/large/a9c4d5f6jw1f42zdon6t4j20ae0ijmyr.jpg)
+</center>
 
 <blockquote>
 <p>更新时间：2016.06.13</p>
@@ -216,7 +216,9 @@ Use Xcode 7.3 AND OS X EI Captian 10.11.4
 <p>然后添加一个<code>Label</code>显示分数：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *scoreLabel;</span><br></pre></td></tr></table></figure>
 <p>效果如图：</p>
-<center><br><img src="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f4tezo3lz6j20af0iiq4r.jpg" alt=""><br></center>
+<center>
+![](http://ww3.sinaimg.cn/large/a9c4d5f6jw1f4tezo3lz6j20af0iiq4r.jpg)
+</center>
 
 
 
@@ -803,7 +805,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

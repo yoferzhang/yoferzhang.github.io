@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -43,17 +43,6 @@
 可以将耗时的执行路径(如：网络请求)放在其他线程中执行
 
 创建线程的目的就是为了开启一条新的执行路径，运行指定的代码，与主线程中的代码实现同时">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7bzfmbtm6j210d09eq7t.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c0wop4esj20ro0efwhy.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c1snqhqcj223817mb29.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7c2280muvj223m15ab29.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c242thitj220614mb29.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c26453v8j2210188hdt.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2dj8c6cj21110lbjvb.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2mzokvvj21sq15u7wh.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2oiph4xj21110lb11g.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c2r17clmj20x80ihmz8.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2rpwk1fj21040m6ju3.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:24:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】iOS并发编程对比总结,NSThread,NSOperation,GCD">
@@ -71,7 +60,6 @@
 可以将耗时的执行路径(如：网络请求)放在其他线程中执行
 
 创建线程的目的就是为了开启一条新的执行路径，运行指定的代码，与主线程中的代码实现同时">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7bzfmbtm6j210d09eq7t.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -85,11 +73,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -168,10 +156,14 @@
 <li>可以将耗时的执行路径(如：网络请求)放在其他线程中执行</li>
 </ul>
 <p>创建线程的目的就是为了开启一条新的执行路径，运行指定的代码，与主线程中的代码实现同时运行</p>
-<center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7bzfmbtm6j210d09eq7t.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7bzfmbtm6j210d09eq7t.jpg)
+</center>
 
 <a id="more"></a>
-<h3 id="1-1-多任务系统调度示意图"><a href="#1-1-多任务系统调度示意图" class="headerlink" title="1.1 多任务系统调度示意图"></a>1.1 多任务系统调度示意图</h3><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c0wop4esj20ro0efwhy.jpg" alt=""><br></center>
+<h3 id="1-1-多任务系统调度示意图"><a href="#1-1-多任务系统调度示意图" class="headerlink" title="1.1 多任务系统调度示意图"></a>1.1 多任务系统调度示意图</h3><center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c0wop4esj20ro0efwhy.jpg)
+</center>
 
 <p>说明：每个应用程序由操作系统分配的短暂的时间片(Timeslice)轮流使用CPU，由于CPU对每个时间片的处理速度非常快，因此，用户看来好像这些任务在同时执行的</p>
 <p>并发：指两个或多个任务在同一时间间隔内发生，但是，在任意一个时刻点上，CPU只会处理一个任务</p>
@@ -234,16 +226,24 @@
 <li>队列就是负责调度的!谁空闲，就把任务给谁！</li>
 <li>多线程技术的目的，就是为了在一个CPU上实现快速切换！</li>
 </ul>
-<h3 id="2-2-串行队列"><a href="#2-2-串行队列" class="headerlink" title="2.2 串行队列"></a>2.2 串行队列</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c1snqhqcj223817mb29.jpg" alt=""><br></center>
+<h3 id="2-2-串行队列"><a href="#2-2-串行队列" class="headerlink" title="2.2 串行队列"></a>2.2 串行队列</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c1snqhqcj223817mb29.jpg)
+</center>
 
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 串行（一个接一个，排队跑步，保持队形）队列</span></span><br><span class="line">- (<span class="keyword">void</span>)gcdDemo1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 将操作放在队列中</span></span><br><span class="line">    <span class="comment">// 在C语言函数中，定义类型，绝大多数的结尾是_t或者ref</span></span><br><span class="line">    <span class="comment">// 使用串行队列，的异步任务非常非常非常有用！新建子线程是有开销的，不能无休止新建线程</span></span><br><span class="line">    <span class="comment">// 即可以保证效率（新建一个子线程），用能够实现并发</span></span><br><span class="line">    <span class="comment">// 应用案例：</span></span><br><span class="line">    <span class="comment">// 1&gt; 从网络上上下载图片</span></span><br><span class="line">    <span class="comment">// 2&gt; 滤镜（高光，红眼...）</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> q = dispatch_queue_create(<span class="string">"com.yoferzhang.gcddemo"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 非ARC开发时，千万别忘记release</span></span><br><span class="line"><span class="comment">//    dispatch_release(q);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 串行行队列的同步任务，同样会在主线程上运行</span></span><br><span class="line">    <span class="comment">// 提示：在开发中极少用d</span></span><br><span class="line">    <span class="comment">// 面试中有可能会问！</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 同步任务顺序执行</span></span><br><span class="line">        <span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 异步任务，并发执行，但是如果在串行队列中，仍然会依次顺序执行</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(q, ^&#123;</span><br><span class="line">            <span class="comment">// [NSThread currentThread] 可以在开发中，跟踪当前线程</span></span><br><span class="line">            <span class="comment">// num = 1，表示主线程</span></span><br><span class="line">            <span class="comment">// num = 2，表示第2个子线程。。。</span></span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-3-并行队列"><a href="#2-3-并行队列" class="headerlink" title="2.3 并行队列"></a>2.3 并行队列</h3><center><br><img src="http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7c2280muvj223m15ab29.jpg" alt=""><br></center>
+<h3 id="2-3-并行队列"><a href="#2-3-并行队列" class="headerlink" title="2.3 并行队列"></a>2.3 并行队列</h3><center>
+![](http://ww3.sinaimg.cn/mw690/a9c4d5f6gw1f7c2280muvj223m15ab29.jpg)
+</center>
 
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 并行（并排跑，类似于赛跑）</span></span><br><span class="line">- (<span class="keyword">void</span>)gcdDemo2</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 特点：没有队形，执行顺序程序员不能控制！</span></span><br><span class="line">    <span class="comment">// 应用场景：并发执行任务，没有先后顺序关系</span></span><br><span class="line">    <span class="comment">// 并行队列容易出错！并行队列不能控制新建线程的数量！</span></span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> q = dispatch_queue_create(<span class="string">"com.yoferzhang.gcd2"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    for (int i = 0; i &lt; 10; ++i) &#123;</span></span><br><span class="line"><span class="comment">//        // 异步任务</span></span><br><span class="line"><span class="comment">//        dispatch_async(q, ^&#123;</span></span><br><span class="line"><span class="comment">//            // [NSThread currentThread] 可以在开发中，跟踪当前线程</span></span><br><span class="line"><span class="comment">//            // num = 1，表示主线程</span></span><br><span class="line"><span class="comment">//            // num = 2，表示第2个子线程。。。</span></span><br><span class="line"><span class="comment">//            NSLog(@"%@ %d", [NSThread currentThread], i);</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 同步任务顺序执行</span></span><br><span class="line">        <span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-4-全局队列"><a href="#2-4-全局队列" class="headerlink" title="2.4 全局队列"></a>2.4 全局队列</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c242thitj220614mb29.jpg" alt=""><br></center>
+<h3 id="2-4-全局队列"><a href="#2-4-全局队列" class="headerlink" title="2.4 全局队列"></a>2.4 全局队列</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c242thitj220614mb29.jpg)
+</center>
 
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 全局队列（苹果为了方便多线程的设计，提供一个全局队列，供所有的APP共同使用）</span></span><br><span class="line">- (<span class="keyword">void</span>)gcdDemo3</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 全局队列与并行队列的区别</span></span><br><span class="line">    <span class="comment">// 1&gt; 不需要创建，直接GET就能用</span></span><br><span class="line">    <span class="comment">// 2&gt; 两个队列的执行效果相同</span></span><br><span class="line">    <span class="comment">// 3&gt; 全局队列没有名称，调试时，无法确认准确队列</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记住：在开发中永远用DISPATCH_QUEUE_PRIORITY_DEFAULT</span></span><br><span class="line">    <span class="comment">// 多线程的优先级反转！低优先级的线程阻塞了高优先级的线程！</span></span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> q =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 同步任务顺序执行</span></span><br><span class="line">        <span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="comment">// 异步任务，并发执行，但是如果在穿行队列中，仍然会依次顺序执行</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(q, ^&#123;</span><br><span class="line">            <span class="comment">// [NSThread currentThread] 可以在开发中，跟踪当前线程</span></span><br><span class="line">            <span class="comment">// num = 1，表示主线程</span></span><br><span class="line">            <span class="comment">// num = 2，表示第2个子线程。。。</span></span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-5-主队列"><a href="#2-5-主队列" class="headerlink" title="2.5 主队列"></a>2.5 主队列</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c26453v8j2210188hdt.jpg" alt=""><br></center>
+<h3 id="2-5-主队列"><a href="#2-5-主队列" class="headerlink" title="2.5 主队列"></a>2.5 主队列</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c26453v8j2210188hdt.jpg)
+</center>
 
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 主(线程)队列，保证操作在主线程上执行</span></span><br><span class="line">- (<span class="keyword">void</span>)gcdDemo4</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 每一个应用程序都只有一个主线程</span></span><br><span class="line">    <span class="comment">// 为什么需要在主线程上工作呢？</span></span><br><span class="line">    <span class="comment">// 在iOS开发中，所有UI的更新工作，都必须在主线程上执行！</span></span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> q = dispatch_get_main_queue();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 主线程是由工作的，而且除非将程序杀掉，否则主线程的工作永远不会结束！</span></span><br><span class="line">    <span class="comment">// 阻塞了！！！</span></span><br><span class="line">    <span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"come here baby!"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 异步任务，在主线程上运行，同时是保持队形的</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">dispatch_async</span>(q, ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ - %d"</span>, [<span class="built_in">NSThread</span> currentThread], i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-6-不同队列中嵌套dispatch-sync的结果"><a href="#2-6-不同队列中嵌套dispatch-sync的结果" class="headerlink" title="2.6 不同队列中嵌套dispatch_sync的结果"></a>2.6 不同队列中嵌套dispatch_sync的结果</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局队列，都在主线程上执行，不会死锁</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 并行队列，都在主线程上执行，不会死锁</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> q = dispatch_queue_create(<span class="string">"com.yoferzhang.gcddemo"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"><span class="comment">// 串行队列，会死锁，但是会执行嵌套同步操作之前的代码</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> q = dispatch_queue_create(<span class="string">"com.yoferzhang.gcddemo"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"><span class="comment">// 直接死锁</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> q = dispatch_get_main_queue();</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"同步任务 %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(q, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"同步任务 %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -275,7 +275,9 @@
 <li>自定义队列：串行和并行队列。自定义队列非常强大，建议在开发中使用。在自定义队列中被调度的所有Block最终都将被放入到系统的全局队列中和线程池中</li>
 <li>提示：不建议使用不同优先级的队列，因为如果设计不当，可能会出现优先级反转，即低优先级的操作阻塞高优先级的操作</li>
 </ul>
-<h3 id="2-10-GCD队列示意图"><a href="#2-10-GCD队列示意图" class="headerlink" title="2.10 GCD队列示意图"></a>2.10 GCD队列示意图</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2dj8c6cj21110lbjvb.jpg" alt=""><br></center>
+<h3 id="2-10-GCD队列示意图"><a href="#2-10-GCD队列示意图" class="headerlink" title="2.10 GCD队列示意图"></a>2.10 GCD队列示意图</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2dj8c6cj21110lbjvb.jpg)
+</center>
 
 <h2 id="3-NSOperation"><a href="#3-NSOperation" class="headerlink" title="3 NSOperation"></a>3 NSOperation</h2><h3 id="3-1-NSOperation-amp-NSOperationQueue"><a href="#3-1-NSOperation-amp-NSOperationQueue" class="headerlink" title="3.1 NSOperation &amp; NSOperationQueue"></a>3.1 NSOperation &amp; NSOperationQueue</h3><p>简介</p>
 <ul>
@@ -327,18 +329,26 @@
 <p>iOS程序的主线程默认已经配置好了Run Loop</p>
 <p>其他线程默认情况下没有设置Run Loop</p>
 <p>一般在开发中很少会主动创建RunLoop，而通常会把事件添加到RunLoop中</p>
-<h3 id="4-1-RunLoop示意图"><a href="#4-1-RunLoop示意图" class="headerlink" title="4.1 RunLoop示意图"></a>4.1 RunLoop示意图</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2mzokvvj21sq15u7wh.jpg" alt=""><br></center>
+<h3 id="4-1-RunLoop示意图"><a href="#4-1-RunLoop示意图" class="headerlink" title="4.1 RunLoop示意图"></a>4.1 RunLoop示意图</h3><center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2mzokvvj21sq15u7wh.jpg)
+</center>
 
-<h3 id="4-2-UIApplication中的Run-Loop"><a href="#4-2-UIApplication中的Run-Loop" class="headerlink" title="4.2 UIApplication中的Run Loop"></a>4.2 UIApplication中的Run Loop</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2oiph4xj21110lb11g.jpg" alt=""><br></center>
+<h3 id="4-2-UIApplication中的Run-Loop"><a href="#4-2-UIApplication中的Run-Loop" class="headerlink" title="4.2 UIApplication中的Run Loop"></a>4.2 UIApplication中的Run Loop</h3><center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f7c2oiph4xj21110lb11g.jpg)
+</center>
 
 <h3 id="4-3-多线程中的循环引用"><a href="#4-3-多线程中的循环引用" class="headerlink" title="4.3 多线程中的循环引用"></a>4.3 多线程中的循环引用</h3><p>如果self对象持有操作对象的引用，同时操作对象当中又直接访问了self时，才会造成循环引用</p>
 <p>单纯在操作对象中使用self不会造成循环引用</p>
 <p>注意：此时不能使用(weakSelf)</p>
 <h2 id="5-资源共享"><a href="#5-资源共享" class="headerlink" title="5 资源共享"></a>5 资源共享</h2><h3 id="5-1-多线程中的资源共享"><a href="#5-1-多线程中的资源共享" class="headerlink" title="5.1 多线程中的资源共享"></a>5.1 多线程中的资源共享</h3><p>并发编程中许多问题的根源就是在多线程中访问共享资源。资源可以是一个属性、一个对象、网络设备或者一个文件等</p>
 <p>在多线程中任何一个共享的资源都可能是一个潜在的冲突点，必须精心设计以防止这种冲突的发生</p>
-<h3 id="5-2-资源共享示例"><a href="#5-2-资源共享示例" class="headerlink" title="5.2 资源共享示例"></a>5.2 资源共享示例</h3><center><br><img src="http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c2r17clmj20x80ihmz8.jpg" alt=""><br></center>
+<h3 id="5-2-资源共享示例"><a href="#5-2-资源共享示例" class="headerlink" title="5.2 资源共享示例"></a>5.2 资源共享示例</h3><center>
+![](http://ww1.sinaimg.cn/mw690/a9c4d5f6gw1f7c2r17clmj20x80ihmz8.jpg)
+</center>
 
-<h3 id="5-3-互斥锁-synchronized"><a href="#5-3-互斥锁-synchronized" class="headerlink" title="5.3 互斥锁(@synchronized)"></a>5.3 互斥锁(@synchronized)</h3><center><br><img src="http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2rpwk1fj21040m6ju3.jpg" alt=""><br></center>
+<h3 id="5-3-互斥锁-synchronized"><a href="#5-3-互斥锁-synchronized" class="headerlink" title="5.3 互斥锁(@synchronized)"></a>5.3 互斥锁(@synchronized)</h3><center>
+![](http://ww2.sinaimg.cn/mw690/a9c4d5f6gw1f7c2rpwk1fj21040m6ju3.jpg)
+</center>
 
 <h3 id="5-4-共享资源小结"><a href="#5-4-共享资源小结" class="headerlink" title="5.4 共享资源小结"></a>5.4 共享资源小结</h3><ul>
 <li>为了保证性能，atomic仅针对属性的setter方法做了保护</li>
@@ -975,7 +985,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

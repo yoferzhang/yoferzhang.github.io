@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】description 方法 和 SEL | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -25,7 +25,6 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调用对象的 -description 方法，并拿到返回值进行输出
 +description 方法使用 NSLog 和 %@ 输出某个对象时，会调用类对象 +description 方法，并拿到返回值进行输出
 123Class c = [Person">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6s6z6ry28j21ic212qgc.jpg">
 <meta property="og:updated_time" content="2018-06-06T02:36:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】description 方法 和 SEL">
@@ -34,7 +33,6 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调用对象的 -description 方法，并拿到返回值进行输出
 +description 方法使用 NSLog 和 %@ 输出某个对象时，会调用类对象 +description 方法，并拿到返回值进行输出
 123Class c = [Person">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6s6z6ry28j21ic212qgc.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -48,11 +46,11 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -141,7 +139,9 @@ description-description 方法使用 NSLog 和 %@ 输出某个对象时，会调
 </ul>
 <h2 id="输出注意"><a href="#输出注意" class="headerlink" title="输出注意"></a>输出注意</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Person *p = [[Person alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针变量的地址</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%p"</span>, &amp;p);</span><br><span class="line"><span class="comment">// 对象的地址</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%p"</span>, p);</span><br><span class="line"><span class="comment">// &lt;类名：对象地址&gt;</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, p);</span><br></pre></td></tr></table></figure>
 <p>给一下官方文档的说明截图</p>
-<center><br><img src="http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6s6z6ry28j21ic212qgc.jpg" alt=""><br></center>
+<center>
+![](http://ww2.sinaimg.cn/large/a9c4d5f6gw1f6s6z6ry28j21ic212qgc.jpg)
+</center>
 
 
 <h1 id="SEL"><a href="#SEL" class="headerlink" title="SEL"></a>SEL</h1><h2 id="方法的存储位置"><a href="#方法的存储位置" class="headerlink" title="方法的存储位置"></a>方法的存储位置</h2><ul>
@@ -737,7 +737,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

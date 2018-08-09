@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译) | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -23,8 +23,6 @@
 
 版权声明：本文为博主原创翻译，如需转载请注明出处。
 新博客文章地址：Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)CSDN文章地址：Advanced Memory Management">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6pt6mxxf6j212p0mugpd.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6q04aqj54j20ek0mk0v2.jpg">
 <meta property="og:updated_time" content="2018-06-06T02:34:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)">
@@ -32,7 +30,6 @@
 
 版权声明：本文为博主原创翻译，如需转载请注明出处。
 新博客文章地址：Advanced Memory Management Programming Guide 高级内存管理编程指南(官方文档翻译)CSDN文章地址：Advanced Memory Management">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6pt6mxxf6j212p0mugpd.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -46,11 +43,11 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -125,7 +122,9 @@
 <a id="more"></a>
 <p>Although memory management is typically considered at the level of an individual object, your goal is actually to manage object graphs. You want to make sure that you have no more objects in memory than you actually need.</p>
 <p>虽然内存管理通常被认为是在单独对象的水平，你的目标其实是管理 <a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectGraph.html#//apple_ref/doc/uid/TP40008195-CH54" target="_blank" rel="external">object graphs</a>，你要确保你在内存中没有比实际需要 更多的对象。</p>
-<center><br>    <img src="http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6pt6mxxf6j212p0mugpd.jpg" alt=""><br></center>
+<center>
+    ![](http://ww4.sinaimg.cn/large/a9c4d5f6gw1f6pt6mxxf6j212p0mugpd.jpg)
+</center>
 
 <h2 id="At-a-Glance-简单了解"><a href="#At-a-Glance-简单了解" class="headerlink" title="At a Glance - 简单了解"></a>At a Glance - 简单了解</h2><p>Objective-C provides two methods of application memory management.</p>
 <ul>
@@ -295,7 +294,9 @@
 <p>Retain 一个对象,实际是对一个对象的强引用(strong reference)。一个对象在所有的强引用都解除之前,是不能被 dealloc 的，这导致一个被称为“环形持有”的问题:两个对象相互强引用 (可能是直接引用,也可能是通过其他对象间接地引用。)</p>
 <p>The object relationships shown in Figure 1 illustrate a potential retain cycle. The Document object has a Page object for each page in the document. Each Page object has a property that keeps track of which document it is in. If the Document object has a strong reference to the Page object and the Page object has a strong reference to the Document object, neither object can ever be deallocated. The Document’s reference count cannot become zero until the Page object is released, and the Page object won’t be released until the Document object is deallocated.</p>
 <p>下图所示的对象关系就构成了一个环形持有。Document 对象持有多个 Page 对象，每个 Page 对象又具有一个 Document 引用来指示它归属的文档。全部 Page 对象都 release 之前,Document 对象的引用数永远不会为 0;而如果 Document 对象存在,Page 对象也无法被 release。</p>
-<center><br>    <img src="http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6q04aqj54j20ek0mk0v2.jpg" alt="Figure 1  An illustration of cyclical references"><br></center>
+<center>
+    ![Figure 1  An illustration of cyclical references](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f6q04aqj54j20ek0mk0v2.jpg)
+</center>
 
 <p>The solution to the problem of retain cycles is to use weak references. A weak reference is a non-owning relationship where the source object does not retain the object to which it has a reference.</p>
 <p>环形持有问题的解决方案是使用弱引用。弱引用是一个非持有关系，已经被引用的对象不对它的拥有者进行持有。</p>
@@ -1016,7 +1017,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>

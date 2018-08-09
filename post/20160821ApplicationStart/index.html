@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面 | YoferZhang 的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
@@ -25,9 +25,6 @@ Info.plist常见属性(红色部分是">
 项目中常见文件Info.plist常见的设置建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除
 项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”
 Info.plist常见属性(红色部分是">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71mriihs2j21a40mu11j.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71nh0t4mpj217m0meacp.jpg">
 <meta property="og:updated_time" content="2017-02-09T05:26:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】iOS程序启动过程,原理,UIApplication,代码启动界面">
@@ -36,7 +33,6 @@ Info.plist常见属性(红色部分是">
 项目中常见文件Info.plist常见的设置建立一个工程后，会在Supporting files文件夹下看到一个“Info.plist”的文件，该文件对工程做一些运行期的配置，非常重要，不能删除
 项目中其他Plist文件不能带有“Info”这个字眼，不然会被错认为是传说中非常重要的“Info.plist”
 Info.plist常见属性(红色部分是">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg">
 <meta name="twitter:creator" content="@LuciferZhangyq">
 <link rel="publisher" href="110295955443575724222">
 
@@ -50,11 +46,11 @@ Info.plist常见属性(红色部分是">
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       
 <div>
 		
@@ -168,7 +164,9 @@ Info.plist常见属性(红色部分是">
 <p>状态栏的可见性</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)prefersStatusBarHidden;</span><br></pre></td></tr></table></figure>
 <h3 id="利用UIApplication来管理状态栏"><a href="#利用UIApplication来管理状态栏" class="headerlink" title="利用UIApplication来管理状态栏"></a>利用UIApplication来管理状态栏</h3><p>如果想利用UIApplication来管理状态栏，首先得修改Info.plist的设置</p>
-<center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg" alt=""><br></center>
+<center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71lxzemg3j20sn04raby.jpg)
+</center>
 
 <h3 id="openURL"><a href="#openURL" class="headerlink" title="openURL:"></a>openURL:</h3><p>UIApplication有个功能十分强大的openURL:方法</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)openURL:(<span class="built_in">NSURL</span>*)url;</span><br></pre></td></tr></table></figure>
@@ -200,7 +198,9 @@ Info.plist常见属性(红色部分是">
 <p>每次新建完项目，都有个带有“AppDelegate”字眼的类，它就是UIApplication的代理</p>
 <p>AppDelegate默认已经遵守了UIApplicationDelegate协议，已经是UIApplication的代理</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> *  app进入后台的时候调用</span><br><span class="line"> *</span><br><span class="line"> *  一般在这里保存应用的数据(游戏数据,比如暂停游戏)</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span></span><br><span class="line">    <span class="comment">// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  清除不需要再使用的内存</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span></span><br><span class="line">    <span class="comment">// Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="程序启动过程"><a href="#程序启动过程" class="headerlink" title="程序启动过程"></a>程序启动过程</h2><h3 id="iOS程序的启动过程"><a href="#iOS程序的启动过程" class="headerlink" title="iOS程序的启动过程"></a>iOS程序的启动过程</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71mriihs2j21a40mu11j.jpg" alt=""><br></center>
+<h2 id="程序启动过程"><a href="#程序启动过程" class="headerlink" title="程序启动过程"></a>程序启动过程</h2><h3 id="iOS程序的启动过程"><a href="#iOS程序的启动过程" class="headerlink" title="iOS程序的启动过程"></a>iOS程序的启动过程</h3><center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71mriihs2j21a40mu11j.jpg)
+</center>
 
 <h3 id="UIApplicationMain"><a href="#UIApplicationMain" class="headerlink" title="UIApplicationMain"></a>UIApplicationMain</h3><p>main函数中执行了一个UIApplicationMain这个函数</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">UIApplicationMain</span>(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[], <span class="built_in">NSString</span> * __nullable principalClassName, <span class="built_in">NSString</span> * __nullable delegateClassName);</span><br></pre></td></tr></table></figure>
@@ -229,7 +229,9 @@ Info.plist常见属性(红色部分是">
 <p>用来接收键盘以及非触摸类的消息事件的UIWindow，而且程序中每个时刻只能有一个UIWindow是keyWindow。如果某个UIWindow内部的文本框不能输入文字，可能是因为这个UIWindow不是keyWindow</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.window</span><br></pre></td></tr></table></figure>
 <p>获得某个UIView所在的UIWindow</p>
-<h3 id="四大对象关系图"><a href="#四大对象关系图" class="headerlink" title="四大对象关系图"></a>四大对象关系图</h3><center><br><img src="http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71nh0t4mpj217m0meacp.jpg" alt=""><br></center>
+<h3 id="四大对象关系图"><a href="#四大对象关系图" class="headerlink" title="四大对象关系图"></a>四大对象关系图</h3><center>
+![](http://ww4.sinaimg.cn/mw690/a9c4d5f6gw1f71nh0t4mpj217m0meacp.jpg)
+</center>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>程序启动的完整过程</p>
 <p>1.main函数</p>
@@ -832,7 +834,24 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
+<!-- Tiny_search End --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>
