@@ -332,6 +332,569 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813NatureOfClass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160813NatureOfClass/" itemprop="url">
+                  【iOS】Class 类的本质
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-13 10:52:57" itemprop="dateCreated datePublished" datetime="2016-08-13T10:52:57+08:00">2016-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-06 10:36:43" itemprop="dateModified" datetime="2018-06-06T10:36:43+08:00">2018-06-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160813NatureOfClass/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160813NatureOfClass/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="1-类也是个对象"><a href="#1-类也是个对象" class="headerlink" title="1 类也是个对象"></a>1 类也是个对象</h2><ul>
+<li>其实类也是一个对象，是 Class 类型的对象，简称 “类对象”</li>
+<li>Class 类型的定义</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#if !OBJC_TYPES_DEFINED</span></span><br><span class="line"><span class="comment">/// An opaque type that represents an Objective-C class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_class *Class;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Represents an instance of a class.</span></span><br><span class="line"><span class="keyword">struct</span> objc_object &#123;</span><br><span class="line">    Class isa  OBJC_ISA_<span class="built_in">AVAILABILITY</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// A pointer to an instance of a class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_object *<span class="keyword">id</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813NatureOfClass/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813CategorySum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160813CategorySum/" itemprop="url">
+                  【iOS】Category 分类、类别 总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-13 10:23:41" itemprop="dateCreated datePublished" datetime="2016-08-13T10:23:41+08:00">2016-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-06 10:36:11" itemprop="dateModified" datetime="2018-06-06T10:36:11+08:00">2018-06-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160813CategorySum/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160813CategorySum/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="分类作用"><a href="#分类作用" class="headerlink" title="分类作用"></a>分类作用</h2><p>分类：可以给某一个类扩充一些方法（不修改原来类的代码）</p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> (分类名称)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span> (分类名称)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul>
+<li>一个庞大的类可以分模块开发</li>
+<li>一个庞大的类可以由多个人来编写，更有利于团队合作</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813CategorySum/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160813ProtocolSum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160813ProtocolSum/" itemprop="url">
+                  【iOS】Protocol 协议总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-13 09:48:15" itemprop="dateCreated datePublished" datetime="2016-08-13T09:48:15+08:00">2016-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-06 10:37:11" itemprop="dateModified" datetime="2018-06-06T10:37:11+08:00">2018-06-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160813ProtocolSum/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160813ProtocolSum/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><h2 id="1-基本用途"><a href="#1-基本用途" class="headerlink" title="1 基本用途"></a>1 基本用途</h2><ul>
+<li>可以用来声明一大堆方法（不能声明成员变量）</li>
+<li>只要某个类遵守了这个协议，就相当于拥有了这个协议中的所有方法声明</li>
+<li>只要父类遵守了某个协议，就相当于子类也遵守了</li>
+</ul>
+<h2 id="2-格式"><a href="#2-格式" class="headerlink" title="2 格式"></a>2 格式</h2><ul>
+<li>协议的编写</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> 协议名称 &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"> <span class="comment">// 方法声明列表....</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160813ProtocolSum/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160812BlockSum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2667,594 +3230,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160724AVFoundation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160724AVFoundation/" itemprop="url">
-                  AVFoundation Programming Guide(官方文档翻译)完整版中英对照
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-07-24 10:57:30" itemprop="dateCreated datePublished" datetime="2016-07-24T10:57:30+08:00">2016-07-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-02-09 13:33:08" itemprop="dateModified" datetime="2017-02-09T13:33:08+08:00">2017-02-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160724AVFoundation/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160724AVFoundation/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
-<p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394">AVFoundation Programming Guide</a></p>
-<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372">Time and Media Representations 时间和媒体表现</a></p>
-<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
-<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3">点击这里</a></p>
-</blockquote>
-<h1 id="About-AVFoundation-AVFoundation概述"><a href="#About-AVFoundation-AVFoundation概述" class="headerlink" title="About AVFoundation - AVFoundation概述"></a>About AVFoundation - AVFoundation概述</h1><p>AVFoundation is one of several frameworks that you can use to play and create time-based audiovisual media. It provides an Objective-C interface you use to work on a detailed level with time-based audiovisual data. For example, you can use it to examine, create, edit, or reencode media files. You can also get input streams from devices and manipulate video during realtime capture and playback. Figure I-1 shows the architecture on iOS.</p>
-<p><code>AVFoundation</code> 是可以用它来播放和创建基于时间的视听媒体的几个框架之一。它提供了基于时间的视听数据的详细级别上的Objective-C接口。例如，你可以用它来检查，创建，编辑或重新编码媒体文件。您也可以从设备得到输入流和在实时捕捉回放过程中操控视频。图I-1显示了iOS上的架构。</p>
-<center>
-    ![Figure I-1  AVFoundation stack on iOS](http://ww3.sinaimg.cn/large/a9c4d5f6gw1f650lssb7bj20l80d5jsa.jpg)
-</center>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160724AVFoundation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160426Matchismo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160426Matchismo/" itemprop="url">
-                  【iOS】Stanford iOS7 Assignment - Matchismo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-26 19:00:23" itemprop="dateCreated datePublished" datetime="2016-04-26T19:00:23+08:00">2016-04-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-02-09 13:33:21" itemprop="dateModified" datetime="2017-02-09T13:33:21+08:00">2017-02-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160426Matchismo/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160426Matchismo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-<p>Github地址：<a href="https://github.com/yoferzhang/Matchismo">https://github.com/yoferzhang/Matchismo</a></p>
-</blockquote>
-<h2 id="Matchismo"><a href="#Matchismo" class="headerlink" title="Matchismo"></a>Matchismo</h2><p>Stanford iOS7 Assignment</p>
-<p>Use Xcode 7.3 AND OS X EI Captian 10.11.4</p>
-<blockquote>
-<p>更新时间：2016.04.22</p>
-</blockquote>
-<h2 id="简单牌面翻转"><a href="#简单牌面翻转" class="headerlink" title="简单牌面翻转"></a>简单牌面翻转</h2><p>修改<code>Main.storyboard</code>：设置背景色，添加一个<code>Button</code>，添加背景图和前景图。设置<code>Title</code>为<code>A♣︎</code>。并在<code>ViewController.m</code>中添加一个方法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)touchCardButton:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="keyword">if</span> ([sender.currentTitle length]) &#123;</span><br><span class="line">        [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardBack"</span>]</span><br><span class="line">                          forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        [sender setTitle:<span class="string">@""</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        [sender setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"CardFront"</span>]</span><br><span class="line">                          forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">        [sender setTitle:<span class="string">@"A♣︎"</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// update flipCount in there</span></span><br><span class="line">    <span class="comment">// because every time touch the button, this method will be call</span></span><br><span class="line">    <span class="keyword">self</span>.flipCount++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160426Matchismo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160420ObjectiveCProgrammingNote/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160420ObjectiveCProgrammingNote/" itemprop="url">
-                  【iOS】Objective C Programming The Big Nerd Ranch Guide 2nd Edition - Note
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-20 14:41:27" itemprop="dateCreated datePublished" datetime="2016-04-20T14:41:27+08:00">2016-04-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-02-16 16:39:50" itemprop="dateModified" datetime="2017-02-16T16:39:50+08:00">2017-02-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160420ObjectiveCProgrammingNote/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160420ObjectiveCProgrammingNote/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>版权声明：本文为博主原创文章，如需转载请注明出处。</p>
-</blockquote>
-<p>直接上图，只为记录，复习oc知识，看的也蛮快的</p>
-<ul>
-<li>若图太大，无法加载，直接给笔记原地址 - <a href="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f337y2z8b6j21k6q5sqv9.jpg" target="_blank">点此进入</a></li>
-<li>这本书记录的词汇 - <a href="http://ww1.sinaimg.cn/large/a9c4d5f6jw1f3382qyrqlj216x61vhdd.jpg" target="_blank">点此进入</a></li>
-<li>Xmind存放地址 - <a href="https://github.com/yoferzhang/ReadingNotes" target="_blank">点此进入</a></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160420ObjectiveCProgrammingNote/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3306,7 +3281,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3538,7 +3513,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">96</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

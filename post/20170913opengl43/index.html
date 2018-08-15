@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.jpg?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.jpg?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.jpg?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo1.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+计算着色器是一个完全用于计算任意信息的 着色器阶段(Stage) 。虽然它可以渲染，但它通常用于与绘制三角形和像素无关的任务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【iOS】OpenGL4-3新特性,计算着色器 Compute Shader">
+<meta property="og:url" content="http://yoferzhang.com/post/20170913opengl43/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+计算着色器是一个完全用于计算任意信息的 着色器阶段(Stage) 。虽然它可以渲染，但它通常用于与绘制三角形和像素无关的任务。">
+<meta property="og:updated_time" content="2018-08-15T12:43:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【iOS】OpenGL4-3新特性,计算着色器 Compute Shader">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+计算着色器是一个完全用于计算任意信息的 着色器阶段(Stage) 。虽然它可以渲染，但它通常用于与绘制三角形和像素无关的任务。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoferzhang.com/post/20170913opengl43/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【iOS】OpenGL4-3新特性,计算着色器 Compute Shader | YoferZhang 的博客</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83435219-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83435219-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YoferZhang 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-索引-|-index">
+    <a href="/index/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />索引 | Index</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于-|-about">
+    <a href="/about" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于 | About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签-|-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签 | tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-分类-|-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类 | categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档-|-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档 | Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20170913opengl43/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【iOS】OpenGL4-3新特性,计算着色器 Compute Shader
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-13 20:21:48" itemprop="dateCreated datePublished" datetime="2017-09-13T20:21:48+08:00">2017-09-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-15 20:43:43" itemprop="dateModified" datetime="2018-08-15T20:43:43+08:00">2018-08-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20170913opengl43/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20170913opengl43/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<p>计算着色器是一个完全用于计算任意信息的 <a href="https://www.khronos.org/opengl/wiki/Shader#Stages" target="_blank" rel="external">着色器阶段(Stage)</a> 。虽然它可以渲染，但它通常用于与绘制三角形和像素无关的任务。</p>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>计算着色器与其他着色器阶段的操作不同。 所有其他着色器阶段都有一组明确的输入值，一些是内置的，一些是用户定义的。 着色器阶段执行的频率由该阶段的性质指定; 例如顶点着色器对每个输入顶点执行一次（尽管有些执行可以通过缓存进行跳过）。 片段着色器执行是由从光栅化过程生成的片段定义。</p>
+<p>计算着色器的工作方式截然不同。 计算着色器操作的“空间”主要是抽象的; 每个计算着色器都可以决定这个空间是什么意思。 计算着色器执行的数量是由用于执行计算操作的函数定义。 最重要的是，计算着色器没有用户定义的输入，并且完全没有输出。 内置输入仅定义执行特定计算着色器调用的“空格”位置。</p>
+<p>因此，如果计算着色器想要将某些值作为输入，则由着色器本身通过<a href="https://www.khronos.org/opengl/wiki/Sampler_(GLSL" target="_blank" rel="external">纹理访问</a> ， <a href="https://www.khronos.org/opengl/wiki/Image_Load_Store" target="_blank" rel="external">任意图像加载</a> ， <a href="https://www.khronos.org/opengl/wiki/Shader_Storage_Buffer_Object" target="_blank" rel="external">着色器存储块</a> 或其他形式的接口来获取该数据。 类似地，如果计算着色器要实际计算任何东西，它必须明确地写入图像或着色器存储块。</p>
+<h2 id="计算空间"><a href="#计算空间" class="headerlink" title="计算空间"></a>计算空间</h2><p>计算着色器操作的空间是抽象的。 有一个工作组的概念; 这是用户可以执行的最小的计算操作量。 或者换句话说，用户可以执行一些工作组。</p>
+<p>执行计算操作的工作组的数量由用户调用计算操作时定义。 这些组的空间是三维的，所以它有多个“X”，“Y”和“Z”组。 任何这些可以是1，所以可以执行二维或一维计算操作，不用执行三维。 这对于处理粒子系统的图像数据或线性阵列或其他任何东西都是有用的。</p>
+<p>当系统实际计算工作组时，可以按任何顺序执行。 所以如果给出一个工作组（3, 1, 2），可以先执行组（0, 0, 0），然后跳到组（1, 0, 1），然后跳到（2, 0, 0）等等。因此，计算着色器不应该依赖于处理单个组的顺序。</p>
+<p>不要认为单个工作组与单个计算着色器调用相同; 有一个原因叫做“组”。 在单个工作组中，可能会有许多计算着色器调用。 计算着色器本身定义了多少，而不是执行它的调用。 这被称为工作组的局部大小 。</p>
+<p>每个计算着色器都具有三维局部大小（同样，尺寸可以为1，以允许2D或1D局部处理）。 这定义了将在每个工作组中进行的着色器的调用次数。</p>
+<p>因此，如果计算着色器的局部大小为（128, 1, 1），然后使用数量为（16, 8, 64）的工作组执行，那么您将获得1,048,576个单独的着色器调用。 每个调用都将有一组唯一标识该特定调用的输入。</p>
+<p>这种区别对于进行各种形式的图像压缩或解压是有用的; 局部大小将是图像数据块（例如8×8）的大小，而组计数将是图像大小除以块大小。 每个块都作为单个工作组进行处理。</p>
+<p>工作组中的个人调用将并行执行。 区分工作组数和局部大小的主要目的是工作组中不同的计算着色器调用可以通过一组共享变量和特殊函数进行通信。 不同工作组中的调用（在同一计算着色器调度中）无法有效地进行通信。 不是没有潜在的死锁系统。</p>
+<h1 id="调度-Dispatch"><a href="#调度-Dispatch" class="headerlink" title="调度 Dispatch"></a>调度 Dispatch</h1><p>计算着色器不是常规<a href="https://www.khronos.org/opengl/wiki/Rendering_Pipeline_Overview" target="_blank" rel="external">渲染管道</a>的一部分。 因此，当执行<a href="https://www.khronos.org/opengl/wiki/Drawing_Command" target="_blank" rel="external">绘图命令</a>时 ，不涉及连接到当前程序或管道的计算着色器。</p>
+<p>初始化计算操作有两个函数。 它们将使用当前活动的计算着色器（通过<a href="https://www.khronos.org/opengl/wiki/GLAPI/glBindProgramPipeline" target="_blank" rel="external">glBindProgramPipeline</a>或<a href="https://www.khronos.org/opengl/wiki/GLAPI/glUseProgram" target="_blank" rel="external">glUseProgram</a> ，遵循用于确定阶段的活动程序的通常规则）。 虽然它们不是“ <a href="https://www.khronos.org/opengl/wiki/Drawing_Command" target="_blank" rel="external">绘图命令</a>” ，但它们是“ <a href="https://www.khronos.org/opengl/wiki/Rendering_Command" target="_blank" rel="external">渲染命令</a>” ，因此可以<a href="https://www.khronos.org/opengl/wiki/Conditional_Rendering" target="_blank" rel="external">有条件地执行</a>它们。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glDispatchCompute</span><span class="params">(GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><code>num_groups_ *</code>参数在三维中定义了工作组计数。 这些数字不能为零。 对可调度工作组的数量有<a href="https://www.khronos.org/opengl/wiki/Compute_Shader#Limitations" target="_blank" rel="external">限制</a> 。</p>
+<p>对于来自存储在<a href="https://www.khronos.org/opengl/wiki/Buffer_Object" target="_blank" rel="external">缓冲区</a>对象信息的工作组计数，可以执行调度操作。这与<a href="https://www.khronos.org/opengl/wiki/Indirect_Drawing" target="_blank" rel="external">顶点数据的间接绘图</a>类似：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glDispatchComputeIndirect</span><span class="params">(GLintptr indirect)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><code>indirect</code>参数是当前绑定到 <code>GL_DISPATCH_INDIRECT_BUFFER</code> 目标的缓冲区的字节偏移量。请注意， <a href="https://www.khronos.org/opengl/wiki/Compute_Shader#Limitations" target="_blank" rel="external">对工作组计数的相同限制</a>仍然适用; 然而，间接调度绕过了OpenGL的常见错误检查。 因此，尝试使用超出范围的工作组大小进行调度可能会导致崩溃甚至GPU硬锁，因此在生成此数据时要小心。</p>
+<h1 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h1><p>计算着色器不能有任何用户定义的输入变量。</p>
+<p>计算着色器具有以下内置输入变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">in uvec3 gl_NumWorkGroups;</span><br><span class="line">in uvec3 gl_WorkGroupID;</span><br><span class="line">in uvec3 gl_LocalInvocationID;</span><br><span class="line">in uvec3 gl_GlobalInvocationID;</span><br><span class="line">in uint  gl_LocalInvocationIndex;</span><br></pre></td></tr></table></figure>
+<p><code>gl_NumWorkGroups</code> : 该变量包含传递给调度函数的工作组数。</p>
+<p><code>gl_WorkGroupID</code> : 这是此着色器调用的当前工作组。 每个XYZ组件将在半开放范围[0，gl_NumWorkGroups.XYZ]上。</p>
+<p><code>gl_LocalInvocationID</code> : 这是工作组中着色器的当前调用。 每个XYZ组件都将在半开放范围[0， gl_WorkGroupSize.XYZ ]上。</p>
+<p><code>gl_GlobalInvocationID</code> : 该值在这个计算调度调用的所有调用中唯一标识计算着色器的此特定调用。 这是数学计算的一个简单的手段：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl_WorkGroupID * gl_WorkGroupSize + gl_LocalInvocationID;</span><br></pre></td></tr></table></figure>
+<p><code>gl_LocalInvocationIndex</code> : 这是gl_LocalInvocationID的1D版本。 它在工作组内识别此调用的索引。 这个数学计算很简单：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gl_LocalInvocationIndex =</span><br><span class="line">        gl_LocalInvocationID 。  z * gl_WorkGroupSize 。  x * gl_WorkGroupSize 。  y +</span><br><span class="line">        gl_LocalInvocationID 。  y * gl_WorkGroupSize 。  x + </span><br><span class="line">        gl_LocalInvocationID 。  x ;</span><br></pre></td></tr></table></figure>
+<h2 id="局部大小"><a href="#局部大小" class="headerlink" title="局部大小"></a>局部大小</h2><p>计算着色器的局部大小在着色器中定义，使用特殊的布局输入声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layout（local_size_x = X， local_size_y = Y， local_size_z = Z） in;</span><br></pre></td></tr></table></figure>
+<p>默认情况下，局部大小为1，因此如果只需要一维或二维工作组空间，则只能指定X或 X和 Y组件。 它们必须是大于0的积分常数表达式。它们的值必须遵守以下<a href="https://www.khronos.org/opengl/wiki/Compute_Shader#Limitations" target="_blank" rel="external">限制</a> ; 如果没有，编译器或链接器错误发生。</p>
+<p>局部大小作为编译时常量变量可用于着色器，因此您不需要自己定义它：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> uvec3 gl_WorkGroupSize ;</span><br></pre></td></tr></table></figure>
+<h1 id="共享变量"><a href="#共享变量" class="headerlink" title="共享变量"></a>共享变量</h1><p>计算着色器中的全局变量可以使用共享存储限定符声明。 这些变量的值在工作组中的所有调用之间共享。 不能将任何不透明类型声明为共享，但聚合（数组和结构）都可以。</p>
+<p>在工作组开始时，这些值未初始化。 此外，变量声明不能具有初始化器，因此这是非法的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shared uint foo = <span class="number">0</span>; <span class="comment">//没有共享变量的初始化器。</span></span><br></pre></td></tr></table></figure>
+<p>如果要将共享变量初始化为特定值，则其中一个调用必须将变量显式设置为该值。 由于以下原因， 只有一个调用必须这样做。</p>
+<h2 id="共享内存一致性"><a href="#共享内存一致性" class="headerlink" title="共享内存一致性"></a>共享内存一致性</h2><blockquote>
+<p>主要文章： <a href="https://www.khronos.org/opengl/wiki/Memory_Model#Incoherent_memory_access" target="_blank" rel="external">内存模型＃不相干的内存访问</a></p>
+</blockquote>
+<p>共享变量访问使用非相干内存访问的规则。 这意味着用户必须执行某些同步才能确保共享变量可见。</p>
+<p>共享变量都被隐式声明为相关的 ，所以不需要（而且不能使用）限定符。 但是，仍然需要提供适当的内存障碍。</p>
+<p><a href="https://www.khronos.org/opengl/wiki/Incoherent_Memory_Visibility" target="_blank" rel="external">通常的内存障碍集</a>可用于计算着色器，但它们也可以访问<code>memoryBarrierShared()</code>; 这个障碍专门用于共享变量排序。<code>groupMemoryBarrier()</code>的作用就像<code>memoryBarrier()</code>，为各种变量排序内存写入，但它只为当前工作组排序 读/写。</p>
+<p>虽然工作组中的所有调用都被称为“并行”执行，但这并不意味着可以假设所有这些调用都是以锁步执行的。 如果需要确保调用已经写入某个变量，以便可以读取它，则需要同步带有这个调用的执行，而不仅仅是发出内存障碍（您仍然需要内存屏障）。</p>
+<p>要在工作组内的调用之间同步读取和写入操作，您必须使用 <code>barrier()</code> 函数。 这将强制在工作组中的所有调用之间进行显式同步。 在所有其他调用达到这一障碍之前，工作组内的执行将不会运行。 一旦执行完 <code>barrier()</code> ，以前在组内所有调用中写入的所有共享变量都将可见。</p>
+<p>对于如何调用<code>barrier()</code> 有一些限制。 然而，计算着色器在使用此函数时并不像<a href="https://www.khronos.org/opengl/wiki/Tessellation_Control_Shader" target="_blank" rel="external">Tessellation Control Shaders</a>那样受限。 <code>barrier()</code> 可以从流控制调用，但只能从均匀流控制中调用。 导致对<code>barrier()</code>进行评估的所有表达式必须是<a href="https://www.khronos.org/opengl/wiki/Dynamically_Uniform_Expression" target="_blank" rel="external">动态均匀的</a> 。</p>
+<p>简而言之，如果执行相同的计算着色器，无论它们获取的数据有多么不同，每次执行都必须以完全相同的顺序命中完全相同的barrier（）调用集。 否则可能会发生严重错误。</p>
+<h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><blockquote>
+<p>主要文章： <a href="https://www.khronos.org/opengl/wiki/Shader_Storage_Buffer_Object#Atomic_operations" target="_blank" rel="external">着色器存储缓冲区对象＃原子操作</a></p>
+</blockquote>
+<p>可以对整数类型的共享变量（还有向量/数组/结构体）执行多个原子操作。 这些函数与<a href="https://www.khronos.org/opengl/wiki/Shader_Storage_Buffer_Object" target="_blank" rel="external">着色器存储缓冲区对象</a>原子共享。</p>
+<p>所有原子函数返回原始值。 术语“ <code>nint</code> ”可以是int或uint 。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicAdd</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>将data添加到 mem。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicMin</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>mem的值不低于data。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicMax</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>mem的值不大于data。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n <span class="keyword">int</span> atomicAnd（inout n <span class="keyword">int</span> mem， n <span class="keyword">int</span> data）</span><br></pre></td></tr></table></figure>
+<p>mem 和 data 按位进行与运算</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicOr</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>mem 和 data 按位进行或运算</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicXor</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>mem 和 data 按位进行异或运算</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">nint <span class="title">atomicExchange</span><span class="params">(inout nint mem, nint data)</span></span></span><br></pre></td></tr></table></figure>
+<p>将mem的值设置为data。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n <span class="keyword">int</span> atomicCompSwap（inout n <span class="keyword">int</span> mem， n <span class="keyword">int</span> compare， n <span class="keyword">int</span> data）</span><br></pre></td></tr></table></figure>
+<p>如果mem的当前值等于compare，则将mem设置为data。 否则保持不变。</p>
+<h1 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h1><p>可以在单个调度调用中调度的工作组数由 <code>GL_MAX_COMPUTE_WORK_GROUP_COUNT</code> 定义。 必须使用<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGet" target="_blank" rel="external">glGetIntegeri_v</a>进行查询，索引处于闭合范围[0,2]，表示最大工作组计数的X，Y和Z分量。 尝试使用超出此范围的值调用<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute" target="_blank" rel="external">glDispatchCompute</a>是一个错误。 尝试调用<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchComputeIndirect" target="_blank" rel="external">glDispatchComputeIndirect</a>更糟糕; 它可能导致程序终止或其他坏结果。</p>
+<p>请注意，所有三个轴的最小值必须为65535。 所以你可能有很多的工作空间。</p>
+<p>局部大小也有限制; 有两套限制。 对于局部尺寸维度有一般限制，以与上述相同的方式查询<code>GL_MAX_COMPUTE_WORK_GROUP_SIZE</code> 。 请注意，这里的最小要求要小得多：X和Y为1024，Z为64。</p>
+<p>还有一个限制：工作组中的调用总数。 也就是说，局部大小的X，Y和Z组件的乘积必须小于<code>GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS</code> 。 这里的最小值是1024。</p>
+<p>计算着色器中所有共享变量的总存储大小也存在限制。 是<code>GL_MAX_COMPUTE_SHARED_MEMORY_SIZE</code> ，以字节为单位。 OpenGL所需的最小值为32KB。 OpenGL没有指定GL类型和共享变量存储之间的精确映射，尽管您可以使用std140布局规则和UBO / SSBO大小作为一般准则。</p>
+<blockquote>
+<p>后记：可惜opengl es 3.1才支持这个新特性，而iPhone还只支持到3.0。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/opengl/" rel="tag"># opengl</a>
+          
+            <a href="/tags/computeshader/" rel="tag"># computeshader</a>
+          
+            <a href="/tags/cs/" rel="tag"># cs</a>
+          
+            <a href="/tags/着色器/" rel="tag"># 着色器</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/20170906JupyterNotebookTutorialInPython/" rel="next" title="【AI】数据科学工具 Jupyter Notebook教程 in Python">
+                <i class="fa fa-chevron-left"></i> 【AI】数据科学工具 Jupyter Notebook教程 in Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/20171123CocoaDesignPatterns/" rel="prev" title="【iOS】Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns">
+                【iOS】Cocoa设计模式(iOS常用设计模式) Cocoa Design Patterns <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yofer Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yofer Zhang</p>
+              <p class="site-description motion-element" itemprop="description">接下来自己能够坚持写博客，记录是一个好习惯</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yoferzhang" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yoferzhang@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/yoferzhang" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/yoferzhang" target="_blank" title="StackOverflow"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/yoferzhang" target="_blank" title="Instagram"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" title="WeChat" target="_blank">WeChat</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cn.linkedin.com/in/耀琦-张-771388117" title="LinkedIn" target="_blank">LinkedIn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算空间"><span class="nav-number">1.1.</span> <span class="nav-text">计算空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调度-Dispatch"><span class="nav-number">2.</span> <span class="nav-text">调度 Dispatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入"><span class="nav-number">3.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#局部大小"><span class="nav-number">3.1.</span> <span class="nav-text">局部大小</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#共享变量"><span class="nav-number">4.</span> <span class="nav-text">共享变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#共享内存一致性"><span class="nav-number">4.1.</span> <span class="nav-text">共享内存一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子操作"><span class="nav-number">4.2.</span> <span class="nav-text">原子操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#限制"><span class="nav-number">5.</span> <span class="nav-text">限制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-yoferzhang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yofer Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://yoferzhang.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoferzhang.com/post/20170913opengl43/';
+        this.page.identifier = 'post/20170913opengl43/';
+        this.page.title = '【iOS】OpenGL4-3新特性,计算着色器 Compute Shader';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yoferzhang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
