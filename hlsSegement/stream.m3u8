@@ -1,7 +1,0 @@
-#EXTM3U
-#EXT-X-TARGETDURATION:10
-#EXT-X-MEDIA-SEQUENCE:1
-#EXTINF:10,
-http://10.67.55.108:80/stream/stream-1.ts
-#EXTINF:10,
-http://10.67.55.108:80/stream/stream-2.ts
