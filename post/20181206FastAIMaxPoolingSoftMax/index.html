@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.jpg?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.jpg?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.jpg?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo1.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+卷积
+什么是卷积？
+MNIST数据集，55000个28x28灰度图像的手写数字与已知标签的集合。 一个灰度图像可以简单地被认为是一个矩阵，每个元素代表相应的像素在灰度上的位置（白色越高，越暗）。
+
+过滤器观察下面的3x3矩阵，
+
+可视化：
+
+现在想象一下，将这个3x3矩阵放在图像的3x3区域上，然后让每个重叠值相乘。 把这些乘积加起来，并用这个新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【AI】卷积层，池化，Softmax，欠拟合和过拟合">
+<meta property="og:url" content="http://yoferzhang.com/post/20181206FastAIMaxPoolingSoftMax/index.html">
+<meta property="og:site_name" content="YoferZhang 的博客">
+<meta property="og:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+卷积
+什么是卷积？
+MNIST数据集，55000个28x28灰度图像的手写数字与已知标签的集合。 一个灰度图像可以简单地被认为是一个矩阵，每个元素代表相应的像素在灰度上的位置（白色越高，越暗）。
+
+过滤器观察下面的3x3矩阵，
+
+可视化：
+
+现在想象一下，将这个3x3矩阵放在图像的3x3区域上，然后让每个重叠值相乘。 把这些乘积加起来，并用这个新">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fxwsb7ujg8j212y08sabg.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsc00r23j203q02mglg.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fxwscqsetmj20zw0bidhv.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fxwsd9c8rwj203w02gwed.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsdyx3ncj209g09aglj.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fxwsegyftnj213i09wt9a.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsf3wi1gj21400a6aaq.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsfmx03kj212w05o0uj.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsg8jt8zj213q05q3zm.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsgqw4xhj20jq0a4q3u.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwshbsgnkj21jg0kie81.jpg">
+<meta property="og:updated_time" content="2018-12-06T03:37:45.312Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【AI】卷积层，池化，Softmax，欠拟合和过拟合">
+<meta name="twitter:description" content="版权声明：本文为博主原创，如需转载请注明出处。
+
+卷积
+什么是卷积？
+MNIST数据集，55000个28x28灰度图像的手写数字与已知标签的集合。 一个灰度图像可以简单地被认为是一个矩阵，每个元素代表相应的像素在灰度上的位置（白色越高，越暗）。
+
+过滤器观察下面的3x3矩阵，
+
+可视化：
+
+现在想象一下，将这个3x3矩阵放在图像的3x3区域上，然后让每个重叠值相乘。 把这些乘积加起来，并用这个新">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fxwsb7ujg8j212y08sabg.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YoferZhang 的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoferzhang.com/post/20181206FastAIMaxPoolingSoftMax/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【AI】卷积层，池化，Softmax，欠拟合和过拟合 | YoferZhang 的博客</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83435219-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83435219-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a6dda28cb6f26de955e11a3716d6ce9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YoferZhang 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">数学出身，功底扎实，热爱编程，虽然编程起步晚，但是冲劲十足。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-索引-|-index">
+    <a href="/index/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />索引 | Index</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于-|-about">
+    <a href="/about" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于 | About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签-|-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签 | tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-分类-|-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类 | categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档-|-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档 | Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20181206FastAIMaxPoolingSoftMax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【AI】卷积层，池化，Softmax，欠拟合和过拟合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-06 09:57:27 / 修改时间：11:37:45" itemprop="dateCreated datePublished" datetime="2018-12-06T09:57:27+08:00">2018-12-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20181206FastAIMaxPoolingSoftMax/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20181206FastAIMaxPoolingSoftMax/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1><p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fxwsb7ujg8j212y08sabg.jpg" alt=""></p>
+<h2 id="什么是卷积？"><a href="#什么是卷积？" class="headerlink" title="什么是卷积？"></a>什么是卷积？</h2><p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsc00r23j203q02mglg.jpg" alt=""></p>
+<p>MNIST数据集，55000个28x28灰度图像的手写数字与已知标签的集合。 一个灰度图像可以简单地被认为是一个矩阵，每个元素代表相应的像素在灰度上的位置（白色越高，越暗）。</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/a9c4d5f6gy1fxwscqsetmj20zw0bidhv.jpg" alt=""></p>
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>观察下面的3x3矩阵，</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a9c4d5f6gy1fxwsd9c8rwj203w02gwed.jpg" alt=""></p>
+<p>可视化：</p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsdyx3ncj209g09aglj.jpg" alt=""></p>
+<p>现在想象一下，将这个3x3矩阵放在图像的3x3区域上，然后让每个重叠值相乘。 把这些乘积加起来，并用这个新值替换中心像素。 如果在整个图像上滑动这个3x3矩阵，可以用刚刚描述的相同方式替换每个像素来构建新的图像。</p>
+<p>这个新图像是什么样的？ 考虑3x3矩阵中的值。 最上面的行全是-1，中间的行全是1，最下面的0。 然后我们可以想象，这个新图像中最明亮的像素是3x3区域中的最亮像素，其中上面的行全部是0（黑色），而中间的行全是1（白色）。 这对应于顶部边缘，我们可以看到，当我们在整个图像上应用这种矩阵运算时，确实会突出显示顶部边缘。</p>
+<p>我们应用于图像的3x3矩阵就是所谓的滤波器 。 几十年来创造出来的各种滤波器，来检测不同的事物。 如果旋转我们的顶部边缘滤波器，我们可以自然地检测不同方向的不同类型的边缘。 当然有很多种不同的滤波器，<a href="http://setosa.io/ev/image-kernels/" target="_blank" rel="external">点这里</a>可以体验不同的滤波器。</p>
+<p>这些滤波器…  </p>
+<p><img src="http://wx3.sinaimg.cn/large/a9c4d5f6gy1fxwsegyftnj213i09wt9a.jpg" alt=""></p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsf3wi1gj21400a6aaq.jpg" alt=""></p>
+<p>…导致这些输出：</p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsfmx03kj212w05o0uj.jpg" alt=""></p>
+<p>现在来看看如何将这些想法应用于神经网络。</p>
+<h2 id="CNN中的滤波器"><a href="#CNN中的滤波器" class="headerlink" title="CNN中的滤波器"></a>CNN中的滤波器</h2><p>现在我们明白滤波器可以用来识别图像的特定视觉“元素”，很容易看出为什么它们用于图像识别的深度学习。 但是，我们如何确定哪种滤波器最有效？ 具体来说，哪些滤波器最适合从我们的图像中捕获必要的细节以进行分类？ 我们可以通过反复尝试，利用许多不同的，并且看看哪个滤波器工作得最好。 但是，这些滤波器只是我们应用于输入的矩阵，以实现所需的输出…因此，给定标记的输入时，我们不需要手动确定哪些滤波器在分类图像时最有效，我们可以简单地训练一个模型这样做，使用这些滤波器作为权值！</p>
+<p>例如，我们可以从8个随机生成的滤波器开始; 那就是8个3x3矩阵和随机元素。 给定已标记的输入，然后我们可以使用随机梯度下降来确定这些滤波器的最佳值，因此我们允许神经网络学习在分类图像时检测哪些事情是最重要的。</p>
+<h2 id="位置不变性"><a href="#位置不变性" class="headerlink" title="位置不变性"></a>位置不变性</h2><p>这些卷积滤波器的一个特别强大的特性是它们的位置不变性。 鉴于这些滤波器对输入图像进行本地处理，他们将在图像中的任何位置识别出“顶边”。 这是非常重要的，因为它可以让我们避免对图像的位置或格式做任何假设; 有了一个训练很好的CNN，我们可以找到一个脸是否在图像的中心或在一个角落。</p>
+<h2 id="零填充-Zero-Padding"><a href="#零填充-Zero-Padding" class="headerlink" title="零填充(Zero-Padding)"></a>零填充(Zero-Padding)</h2><p>我们忽略的一件事，如何在边缘和角落像素上运行这些滤波器，假设滤波器必须在有8个周围像素的前提下运行。 处理这些边缘/边角的情况有很多种方法，但是最常用的方法之一，也是我们使用最多的方法之一，就是零填充 。 所有零填充都是在通过滤镜之前在图像周围添加零像素的额外边框，以便滤镜的输出形状与输入形状相同。</p>
+<h1 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h1><p>我们现在已经足够了解卷积层是什么，以及它与完全连接的层有什么不同。</p>
+<h2 id="权重矩阵"><a href="#权重矩阵" class="headerlink" title="权重矩阵"></a>权重矩阵</h2><p>回想一下，全连接层由一个权重矩阵组成，矩阵乘以一个输入，并产生一个输出向量，受到一定的bias影响，然后通过某种非线性（我们的激活层）操作。</p>
+<p>在全连接层中，我们的权重是矩阵的元素，并且这个矩阵用于将输入向量转换成输出向量。 通过训练，神经网络学习什么样的权重产生最符合我们预期的输出。</p>
+<p>在卷积层中，我们的权重仍然是矩阵的元素，但是他们不再通过矩阵乘法对整个输入进行变换。 相反，我们的权值属于一组称为滤波器的矩阵，通过执行上面描述的“重叠”局部元素方式的乘法运算来处理输入。 当这个滤波器被应用到整个图像时，它实质上已经创建了原始图像的一个新的表示。</p>
+<p>卷积层的输出仅仅是原始图像的k个表示，其中k是滤波器的数量，并且每个第k个“表示”仅仅是第k个滤波器所作用的原始图像。</p>
+<h2 id="端到端"><a href="#端到端" class="headerlink" title="端到端"></a>端到端</h2><p>作为一个例子，让我们通过一个具有12个滤波器的卷积层的前向遍历来获得28×28的灰度图像。</p>
+<p>我们假设每个滤镜是3x3，我们将每个滤镜应用到图像中的每个适用像素。 为了返回与我们的输入大小相同的图像，我们希望零填充我们的灰度图像以产生30x30的图像。 这是零像素边界相同的图像。</p>
+<p>我们现在可以将我们的30x30图像传递到卷积层。 在这一点上，每个滤波器将通过图像，并产生一个新的图像。 由于有12个滤波器，将会有12个新的图像，而我们的输出现在是一个28×28×12’张量(tensor)’（它只是指一个2维以上的矩阵）。 最终尺寸代表每个滤镜对原始图像的影响。</p>
+<p>这个新的28x28x12“图像”现在可以通过一个新的卷积层再次传递，以找到更复杂的图像结构。</p>
+<p>多数情况下，我们的输入图像是彩色的，因此输入图像可能实际上是尺寸为224x224x3的东西，在这种情况下，我们的滤镜本身实际上有三层（在这种情况下，我们称它们为“3d张量”，而不叫“矩阵”）。 有许多不同的因素和选择可以用来理解卷积层背后的确切代数，以及它们输出的维度，强烈建议在<a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">这里</a>进一步探索。</p>
+<h2 id="特征学习"><a href="#特征学习" class="headerlink" title="特征学习"></a>特征学习</h2><p>一种概念化卷积层输出的方法是根据特征。 与传统的机器学习技术相比，神经网络的一个关键优势是我们可以避免特征工程的原始输入，即从我们认为重要的原始数据构建预定特征。 例如，前面我们谈到了预先设计的滤波器，这些滤波器是为了识别像顶边的东西。 当我们将这些滤波器应用于图像时，我们可以将其视为从原始输入创建特征，特征是“顶边”。</p>
+<p>如果我们选择这些预先设计的滤波器中的12个并将它们应用于图像，那么将这些特征传递给机器学习算法，通过先验地确定哪些特征是最重要的，我们大大地降低了我们算法的潜在预测能力，并丢弃所有其他原始数据。</p>
+<p>在训练卷积神经网络时，我们允许随机梯度下降根据原始数据本身找到滤波器权值的最优值，这样我们就可以让我们的网络从给定的原始数据标记输出中“学习”最好的特征是什么。 这是非常强大的，它消除了手动设计功能的繁重任务。</p>
+<p>当我们把多个卷积层叠在一起时，我们可以考虑这个任务是迭代的; 具体来说，考虑到从第一层创建的特征，从这些“输入”特征创建哪些新的“输出”特征是最佳选择？ 这就是神经网络如何学习“概念”。 例如，我们可以将第一层视为识别诸如边缘，渐变等的东西。现在，给定边缘和渐变等特征作为输入，然后第二层可以识别角和轮廓等事物。 这个过程一直持续到我们已经到达了可以识别复杂概念（如毛发或文本）的滤波器层。</p>
+<h2 id="可视化卷积层"><a href="#可视化卷积层" class="headerlink" title="可视化卷积层"></a>可视化卷积层</h2><p>允许神经网络创建自己的最佳滤波器的一个问题是，我们常常不知道这些滤波器实际上检测到的是什么，因为它们不符合可识别的预先构建的滤波器（然而具有讽刺意味的是，神经网络创建无法识别的滤波器，我们不能手动构想是什么使他们如此强大）。</p>
+<p>幸运的是，我们从Matthew Zeiler的“ <a href="https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf" target="_blank" rel="external">可视化和理解卷积网络</a>”及相关着作中获得了一些见解。</p>
+<p>在Zeiler的论文中，我们可以看到卷积图层中每个滤波器的图像特征类型，例如边缘，梯度，拐角等。 <a href="https://www.youtube.com/watch?v=AgkfIQ4IGaM" target="_blank" rel="external">深度可视化工具箱</a>是一个很棒的工具，可以让我们用不同的图像，并查看哪些图像功能激活某些滤波器。 我们甚至可以看到什么imagenet图像激活某些滤波器。 我们推荐使用这个工具箱，注意更深层次的滤波器的复杂性。 在进行实验时，请记住，这些滤波器中的每一个都是神经网络学习的重要内容。 这是非常强大的。</p>
+<h1 id="最大池化-Max-Pooling"><a href="#最大池化-Max-Pooling" class="headerlink" title="最大池化(Max-Pooling)"></a>最大池化(Max-Pooling)</h1><p>CNN的一个常见操作是最大池化。 简而言之，最大池化层通过减少图像中的像素数来降低图像（分辨率）的维数。 这是通过用该区域中的最大像素值替换输入图像的整个N×N区域来实现的。 例如，给定4×4的图像，在图像的2×2分部上的最大池化将输出2×2图像，其中每个像素是原始图像的4个2×2区域中的每一个中的最大像素。</p>
+<p>我们希望这样做的一个原因是“强制”我们的神经网络一次查看图像的更大区域。 例如，我们不想识别毛皮和鼻子，而是想让网络开始识别猫和狗。 为了弥补集中丢失的信息，我们通常会增加后续卷积层中的滤波器数量。</p>
+<p>我们利用池化的另一个原因是简单地减少参数和计算量。 这也有助于控制过度拟合。</p>
+<p>作为一个例子，我们可以从上面看到我们的过滤七项的最大池化版本：</p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsg8jt8zj213q05q3zm.jpg" alt=""></p>
+<h1 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h1><p>我们了解到，神经网络只是一系列线性层（如完全连接层或卷积层），它们通过激活层连接，激活层通过传递非线性函数在中间输出上运行。 我们已经谈到了ReLu（整流线性单元）函数，这通常用于中间层。 下面讨论softmax，它通常被用作我们的最终激活层作为输出。</p>
+<p>softmax函数定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp(x)/sum(exp(x))</span><br></pre></td></tr></table></figure>
+<p>其中x是激活数组。</p>
+<p>我们要求这些完全连接的输出被解释为一个概率。 因此，我们将每个输出转换为总和的一部分。 但是，我们并不是简单地按照标准比例来运用这个非线性指数函数， 即我们希望尽可能使我们的最高输出接近1，我们的低输出接近于零。 您可以将softmax函数想象为将真正的线性比例逼近1或0.为什么我们要这样做呢？ 回想一下，我们为训练提供的标签输出是一种one-hot编码。 当然，我们希望我们的神经网络输出尽可能地模拟这些输出，softmax函数通过将最大比例推到1，其余部分推到零来实现这一点。</p>
+<p>我们不使用标准比例的另一个原因是，因为最终连接层的输出可能是负的。 尽管可以用绝对值来构造概率，但是在比较原始值时会丢失信息，而指数本质上会考虑这一点。</p>
+<p>也许理解这个函数行为的最好方法就是在电子表格中使用它：</p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwsgqw4xhj20jq0a4q3u.jpg" alt=""></p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>我们现在从通用逼近定理可以知道 ，任何足够大的神经网络都可以近似任意复杂的函数。 我们也知道存在随机梯度下降的方法来计算这些神经网络参数的估计。 那么看来，给定任何架构，我们应该能够解决任何问题。 那么为什么我们有兴趣学习不同的架构呢？</p>
+<p>虽然任何架构都可以在足够的时间内解决任何问题，但是其中一些架构可以通过少得多的参数来学习解决这些问题，而且比其他架构更快地解决这些问题。 这就是为什么我们关心理解像卷积神经网络这样的体系结构，而不是试图用深度全连接的神经网络来解决每一个问题。</p>
+<h1 id="VGG16架构"><a href="#VGG16架构" class="headerlink" title="VGG16架构"></a>VGG16架构</h1><p>我们可以使用Keras对Vgg16模型中的内容进行总结</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.applications.vgg16 <span class="keyword">import</span> VGG16</span><br><span class="line">vgg = VGG16()</span><br><span class="line">vgg.summary()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">____________________________________________________________________________________________________</span><br><span class="line">Layer (type)                     Output Shape          Param #     Connected to                     </span><br><span class="line">====================================================================================================</span><br><span class="line">input_1 (InputLayer)             (None, 3, 224, 224)   0                                            </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block1_conv1 (Convolution2D)     (None, 64, 224, 224)  1792        input_1[0][0]                    </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block1_conv2 (Convolution2D)     (None, 64, 224, 224)  36928       block1_conv1[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block1_pool (MaxPooling2D)       (None, 64, 112, 112)  0           block1_conv2[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block2_conv1 (Convolution2D)     (None, 128, 112, 112) 73856       block1_pool[0][0]                </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block2_conv2 (Convolution2D)     (None, 128, 112, 112) 147584      block2_conv1[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block2_pool (MaxPooling2D)       (None, 128, 56, 56)   0           block2_conv2[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block3_conv1 (Convolution2D)     (None, 256, 56, 56)   295168      block2_pool[0][0]                </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block3_conv2 (Convolution2D)     (None, 256, 56, 56)   590080      block3_conv1[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block3_conv3 (Convolution2D)     (None, 256, 56, 56)   590080      block3_conv2[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block3_pool (MaxPooling2D)       (None, 256, 28, 28)   0           block3_conv3[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block4_conv1 (Convolution2D)     (None, 512, 28, 28)   1180160     block3_pool[0][0]                </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block4_conv2 (Convolution2D)     (None, 512, 28, 28)   2359808     block4_conv1[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block4_conv3 (Convolution2D)     (None, 512, 28, 28)   2359808     block4_conv2[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block4_pool (MaxPooling2D)       (None, 512, 14, 14)   0           block4_conv3[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block5_conv1 (Convolution2D)     (None, 512, 14, 14)   2359808     block4_pool[0][0]                </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block5_conv2 (Convolution2D)     (None, 512, 14, 14)   2359808     block5_conv1[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block5_conv3 (Convolution2D)     (None, 512, 14, 14)   2359808     block5_conv2[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">block5_pool (MaxPooling2D)       (None, 512, 7, 7)     0           block5_conv3[0][0]               </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">flatten (Flatten)                (None, 25088)         0           block5_pool[0][0]                </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">fc1 (Dense)                      (None, 4096)          102764544   flatten[0][0]                    </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">fc2 (Dense)                      (None, 4096)          16781312    fc1[0][0]                        </span><br><span class="line">____________________________________________________________________________________________________</span><br><span class="line">predictions (Dense)              (None, 1000)          4097000     fc2[0][0]                        </span><br><span class="line">====================================================================================================</span><br><span class="line">Total params: 138,357,544</span><br><span class="line">Trainable params: 138,357,544</span><br><span class="line">Non-trainable params: 0</span><br></pre></td></tr></table></figure>
+<h1 id="深入-Finetuning"><a href="#深入-Finetuning" class="headerlink" title="深入 Finetuning"></a>深入 Finetuning</h1><p>上篇，我们讨论了在Imagenet上建立的Vgg16模型，对Cats和Dogs进行分类，其中包括删除最后一个全连接层，并将其替换为一个给定两个输出的层。 然后，我们再训练最后一层找到最佳参数。</p>
+<p>我们这样做的理念是，Vgg16已经从imagenet的高层学到了如何识别与猫和狗分类有关的事情，而我们只是取代了最后一个全连接层，因为我们想把这个知识应用到这个新的分类任务。</p>
+<p>在对Statefarm等分类任务进行微调时，我们可能需要进一步深入。 Statefarm数据集可以帮助您识别分心的驾驶员可能参与的不同活动。这与原始图像网络挑战并不相似，因此，重新培训更完整的连接图层可能是一个聪明的想法。 这里的想法是，imagenet已经学会识别对分类驾驶员行为无用的事情，我们希望进一步培训他们以找到有用的东西。</p>
+<p>我们通常不会触及卷积图层，因为我们发现滤波器通常对于几乎所有使用标准照片的分类任务都很好。 然而，使用线条艺术，医学成像或与标准照片非常不同的其他领域的视觉任务可能需要再训练卷积层。</p>
+<h1 id="训练更好的模型"><a href="#训练更好的模型" class="headerlink" title="训练更好的模型"></a>训练更好的模型</h1><p>现在我们已经开发了理解CNN所需的基本知识。 现在我们来看看构建模型的一些常见问题，以及一些提高模型性能的方法。</p>
+<p>我们将首先定义两个重要的概念：</p>
+<ul>
+<li>欠拟合 ：这描述了一个模型，它缺乏复杂性来准确地捕捉你试图解决的问题所固有的复杂性。 当训练集和验证集的错误太高时，我们可以认识到这一点。</li>
+<li>过度拟合 ：这个描述了一个使用太多参数并且训练时间过长的模型。 具体来说，它已经学会了如何将你的确切的训练图像匹配到类别，但已经变得过分具体，以至于无法推广到类似的图像。 当你的训练集的准确度远远高于你的验证集时，这就是过拟合了。</li>
+</ul>
+<h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><p>在观察我们的指标时，您会注意到，在训练Cat和Dog的Vgg模型时，我们的训练精度通常低于我们的验证。 这指的是欠拟合，这个在Vgg中的来源是相对简单的。</p>
+<p>如果您观察Keras中的Vgg图层，您会注意到一个名为Dropout的图层。 Dropout（仅在训练期间发生）在激活层之后发生，并随机地将激活设置为零。 我们为什么要随机删除部分神经网络？ 事实证明，这使我们能够防止过度配合。 当我们一直抛弃一路上学到的信息时，我们无法精确地适应我们的训练数据。 这使我们的神经网络学习普遍化。</p>
+<p>在Vgg的情况下，dropout rate被设置为0.5。 这似乎相当大，鉴于Imagenet分类的复杂性，想要使我们的dropout rate这么高似乎是合理的。 然而，对于像猫和狗这样简单的事情，我们可以看到不适合，而且我们可能会通过保留更多的信息，降低我们的dropout rate和再培训，从而获得更多的成功。</p>
+<h3 id="另外：预先计算卷积层输出"><a href="#另外：预先计算卷积层输出" class="headerlink" title="另外：预先计算卷积层输出"></a>另外：预先计算卷积层输出</h3><p>之前提过，当我们在全连接层中调整和修改元素时，您会发现可以通过预先计算来自卷积层的输出节省大量时间。 在keras中，当你fit整个模型时，即使我们没有在反向传播中更新它们，每一个正向遍历都必然通过卷积层。 因此，当我们只训练全连接层时，我们可以通过将它作为仅由全连接层组成的网络的训练集来计算卷积层输出并节省大量时间。 一旦我们对结果满意，我们可以简单地将这些权重加载回原来的完整网络。 </p>
+<p>一般的经验法则是，我们大部分的计算时间在卷积层，而我们的内存开销在于我们的dense layers。</p>
+<h3 id="更新权重和Dropout"><a href="#更新权重和Dropout" class="headerlink" title="更新权重和Dropout"></a>更新权重和Dropout</h3><p>Dropout是正规化的技术。 像其他任何这样的方法一样，它会交换你的模型的一些能力来适应训练数据，希望它学到的东西可能会更好地概括它没有看到的数据。 除此之外，Dropout还有一些非常好的独特的属性。</p>
+<p>典型的Dropout是通过在训练期间随机忽略层中的一些节点子集来实现的。 不参与产生预测并且随后不参与计算梯度的节点被随机地选择并且将随着一个示例的训练而变化。 在测试期间，我们要利用我们网络的全部预测能力，因此所有节点都是活跃的。 实质上我们在做的是我们正在平均所有节点的贡献。 如果在训练过程中，我们将节点设置为不活跃，概率为p = 0.5，那么我们现在必须将训练中的权重减小两倍。 这背后的直觉是非常简单的 - 如果在训练期间，我们正在教我们的网络在随后的层中只用50％的权重来预测“1”，现在它拥有所有的权重，每个权重的贡献需要只有一半大！</p>
+<p>这是经典的Dropout。 keras做的略有不同 - 它有一些可以被称为反向Dropout。 在训练过程中权重被重新调整，以便在测试过程中不需要进行重新缩放。 有这个不错的属性，你可以移动权重来调用一个图层上的<code>get_weights</code>和<code>set_weights</code>，而且不需要对权重进行任何操作。</p>
+<p>总而言之，不管是否将dropout应用于图层，在keras中，权重总是具有正确的比例。这里认为keras会以典型的方式应用dropout。 本课中的所有内容仍然适用，如果我们应用典型的dropout，但是通过keras的内部运作，权重的重新调整仍然是100％准确的，这一步可以忽略不计（如果您进行重新调整，最终的重量也会是太小或者太大！）</p>
+<h1 id="过度拟合"><a href="#过度拟合" class="headerlink" title="过度拟合"></a>过度拟合</h1><p>一般来说，一旦我们到达了一个过度拟合的模型，我们应该采取五个步骤来减少它：</p>
+<ul>
+<li>添加更多数据</li>
+<li>使用数据集增广</li>
+<li>使用一般化的体系结构</li>
+<li>添加正则化</li>
+<li>降低架构的复杂性。</li>
+</ul>
+<p>我们将在本课中讨论一些这些步骤。</p>
+<h2 id="数据集增广-Data-Augmentation"><a href="#数据集增广-Data-Augmentation" class="headerlink" title="数据集增广(Data Augmentation)"></a>数据集增广(Data Augmentation)</h2><p>之前我们曾经提到，过度拟合是我们的网络学习了太多训练集的细节的结果。 换句话说，我们已经创建了一个模型，过分依赖于我们的训练集的特定特征，并且不能推广和预测类似的图像。</p>
+<p>数据集增广是解决这个问题的一种方法。 简而言之，数据集增广只是改变了我们每一批图像。 它通过翻转，略微改变色调，拉伸，剪切，旋转等来实现这一点，而且这样做是有道理的。 我们的意思是，为了一般化目的而垂直翻转狗的图像是没有意义的，因为人们很少会颠倒狗的图像。 扭曲也可以这样说。 你不想过多地画出一幅远远超出任何猫或狗的合理形象的形象。</p>
+<p><img src="http://wx4.sinaimg.cn/large/a9c4d5f6gy1fxwshbsgnkj21jg0kie81.jpg" alt=""></p>
+<p>Keras允许您通过创建数据增量批生成器来很容易地实现数据集增广。 构建这个发生器时，在选择失真参数上你有很多的选择。 不幸的是，没有快速而简单的方法来确定数据集增广的最佳参数：最好的办法就是简单的实验。</p>
+<p>一般来说，数据集增广总是减少过度拟合的好主意。</p>
+<h2 id="批量归一化-Batch-Normalization"><a href="#批量归一化-Batch-Normalization" class="headerlink" title="批量归一化(Batch Normalization)"></a>批量归一化(Batch Normalization)</h2><p>批量归一化是减少过度拟合的另一个好的标准方法。</p>
+<p>一般来说，神经网络的输入应该总是被标准化。 标准化是一个给定一组数据的过程，您从每个元素中减去该数据集的平均值，并将其除以数据集的标准偏差。 通过这样做，我们把输入值放在同一个“比例尺”上，所有的值都被归一化为“从标准差中求平均值”的单位。</p>
+<p>我们希望把输入放在同一个尺度的原因是，因为具有大范围幅度的不平衡输入通常会导致神经网络的不稳定。 一个非常大的输入通常可以层层叠叠。 通常这种不平衡造成的梯度也是非常不平衡的，这使得优化过程很难防止激增等事情。 它也会造成不平衡的权重。 归一化输入可以避免这个问题。</p>
+<p>通常情况下，用图像，我们不用担心除以标准偏差，而只是减去平均值。</p>
+<p>偶尔，这些不稳定性可能会在训练中出现。 想象一下，在训练过程中的某个时刻，我们会得到一个非常大的权重。 这个非常大的权重会对输出矢量的某个元素产生一个非常大的输出值，这个不平衡将再次通过神经网络并使其不稳定。</p>
+<p>一个想法是归一化激活输出。 不幸的是，这不会阻止SGD在下一次反向传播期间再次尝试创建不平衡的权重，尝试用这种方法解决问题只会导致SGD不断尝试撤消激活层归一化。 批量归一化扩展了这个想法，增加了两个：</p>
+<ul>
+<li>在对激活层进行归一化之后，让我们将输出乘以任意设置的参数，并将该值加上一个附加参数，从而设置一个新的标准偏差和平均值</li>
+<li>使所有这四个值（归一化的均值和标准偏差，以及两个新的参数设置归一化后的任意平均值和标准差） 可训练 。</li>
+</ul>
+<p>这确保权重不倾向于推高或非常低（因为归一化包括在梯度计算中，所以更新知道归一化）。 但是它也确保了如果一个图层需要改变整体均值或标准偏差以匹配输出比例，它就可以这样做。</p>
+<p>默认情况下，应该始终包含批量归一化，所有现代神经网络都这样做，因为：</p>
+<ul>
+<li>将批量归一化添加到模型中可以使训练速度提高10倍或更多</li>
+<li>由于归一化大大降低了少数边际输入的能力，从而过度影响训练，所以也趋于减少过度训练。</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/卷积层/" rel="tag"># 卷积层</a>
+          
+            <a href="/tags/池化/" rel="tag"># 池化</a>
+          
+            <a href="/tags/Softmax/" rel="tag"># Softmax</a>
+          
+            <a href="/tags/欠拟合和过拟合/" rel="tag"># 欠拟合和过拟合</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/20181026FirstTasteofSwiftwithPlaygrounds/" rel="next" title="【iOS】First Taste of Swift with Playgrounds">
+                <i class="fa fa-chevron-left"></i> 【iOS】First Taste of Swift with Playgrounds
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/20430627booklist/" rel="prev" title="阅读书单">
+                阅读书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yofer Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Yofer Zhang</p>
+              <p class="site-description motion-element" itemprop="description">接下来自己能够坚持写博客，记录是一个好习惯</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">107</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yoferzhang" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yoferzhang@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/yoferzhang" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/yoferzhang" target="_blank" title="StackOverflow"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/yoferzhang" target="_blank" title="Instagram"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ww3.sinaimg.cn/large/a9c4d5f6jw1f2cbilh1uyj2076076t97.jpg" title="WeChat" target="_blank">WeChat</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cn.linkedin.com/in/耀琦-张-771388117" title="LinkedIn" target="_blank">LinkedIn</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积"><span class="nav-number">1.</span> <span class="nav-text">卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是卷积？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是卷积？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器"><span class="nav-number">1.2.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN中的滤波器"><span class="nav-number">1.3.</span> <span class="nav-text">CNN中的滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置不变性"><span class="nav-number">1.4.</span> <span class="nav-text">位置不变性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零填充-Zero-Padding"><span class="nav-number">1.5.</span> <span class="nav-text">零填充(Zero-Padding)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积层"><span class="nav-number">2.</span> <span class="nav-text">卷积层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#权重矩阵"><span class="nav-number">2.1.</span> <span class="nav-text">权重矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端到端"><span class="nav-number">2.2.</span> <span class="nav-text">端到端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征学习"><span class="nav-number">2.3.</span> <span class="nav-text">特征学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化卷积层"><span class="nav-number">2.4.</span> <span class="nav-text">可视化卷积层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最大池化-Max-Pooling"><span class="nav-number">3.</span> <span class="nav-text">最大池化(Max-Pooling)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax"><span class="nav-number">4.</span> <span class="nav-text">Softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#架构"><span class="nav-number">5.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VGG16架构"><span class="nav-number">6.</span> <span class="nav-text">VGG16架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入-Finetuning"><span class="nav-number">7.</span> <span class="nav-text">深入 Finetuning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练更好的模型"><span class="nav-number">8.</span> <span class="nav-text">训练更好的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">8.1.</span> <span class="nav-text">Dropout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#另外：预先计算卷积层输出"><span class="nav-number">8.1.1.</span> <span class="nav-text">另外：预先计算卷积层输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新权重和Dropout"><span class="nav-number">8.1.2.</span> <span class="nav-text">更新权重和Dropout</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过度拟合"><span class="nav-number">9.</span> <span class="nav-text">过度拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集增广-Data-Augmentation"><span class="nav-number">9.1.</span> <span class="nav-text">数据集增广(Data Augmentation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量归一化-Batch-Normalization"><span class="nav-number">9.2.</span> <span class="nav-text">批量归一化(Batch Normalization)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-yoferzhang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yofer Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://yoferzhang.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoferzhang.com/post/20181206FastAIMaxPoolingSoftMax/';
+        this.page.identifier = 'post/20181206FastAIMaxPoolingSoftMax/';
+        this.page.title = '【AI】卷积层，池化，Softmax，欠拟合和过拟合';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yoferzhang.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
