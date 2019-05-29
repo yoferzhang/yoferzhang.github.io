@@ -332,6 +332,396 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/" itemprop="url">
+                  AVFoundation Programming Guide(官方文档翻译7)Time and Media Representations 时间和媒体表示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-03 15:07:26" itemprop="dateCreated datePublished" datetime="2016-08-03T15:07:26+08:00">2016-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-02-09 13:30:44" itemprop="dateModified" datetime="2017-02-09T13:30:44+08:00">2017-02-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160803AVFoundation07TimeAndMediaRepresentations/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160803AVFoundation07TimeAndMediaRepresentations/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372">Time and Media Representations 时间和媒体表现</a></p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3">点击这里</a></p>
+</blockquote>
+<h1 id="Time-and-Media-Representations-时间和媒体表现"><a href="#Time-and-Media-Representations-时间和媒体表现" class="headerlink" title="Time and Media Representations - 时间和媒体表现"></a>Time and Media Representations - 时间和媒体表现</h1><p>Time-based audiovisual data, such as a movie file or a video stream, is represented in the AV Foundation framework by AVAsset. Its structure dictates much of the framework works. Several low-level data structures that AV Foundation uses to represent time and media such as sample buffers come from the Core Media framework.</p>
+<p>基于视听资料的时间，比如一个电影文件或视频流，在<code>AV Foundation</code> 框架中是由 <code>AVAsset</code> 代表的。它的结构决定了大部分的框架工程。一些低层的数据结构（<code>AV Foundation</code> 使用来表示时间和媒体，比如样本缓冲区）来自 <code>Core Media framework</code>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160803AVFoundation07TimeAndMediaRepresentations/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160803AVFoundation06Export/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160803AVFoundation06Export/" itemprop="url">
+                  AVFoundation Programming Guide(官方文档翻译6)Export - 输出
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-03 15:07:05" itemprop="dateCreated datePublished" datetime="2016-08-03T15:07:05+08:00">2016-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-02-09 13:30:37" itemprop="dateModified" datetime="2017-02-09T13:30:37+08:00">2017-02-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160803AVFoundation06Export/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160803AVFoundation06Export/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>新博客：<br>完整版 - <a href="http://yoferzhang.com/post/20160724AVFoundation/">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://yoferzhang.com/post/20160803AVFoundation01Introduction/">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://yoferzhang.com/post/20160803AVFoundation02UsingAssets/">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://yoferzhang.com/post/20160803AVFoundation03Playback/">Playback - 播放</a><br>— 第4章：<a href="http://yoferzhang.com/post/20160803AVFoundation04Editing/">Editing - 编辑</a><br>— 第5章：<a href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://yoferzhang.com/post/20160803AVFoundation06Export/">Export - 输出</a><br>— 第7章：<a href="http://yoferzhang.com/post/20160803AVFoundation07TimeAndMediaRepresentations/">Time and Media Representations 时间和媒体表现</a></p>
+<p>CSDN博客：<br>完整版 - <a href="http://blog.csdn.net/zyq522376829/article/details/52144394">AVFoundation Programming Guide</a></p>
+<p>分章节版：<br>— 第1章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144317">About AVFoundation - AVFoundation概述</a><br>— 第2章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144326">Using Assets - 使用Assets</a><br>— 第3章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144333">Playback - 播放</a><br>— 第4章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144342">Editing - 编辑</a><br>— 第5章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144355">Still and Video Media Capture - 静态视频媒体捕获</a><br>— 第6章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144366">Export - 输出</a><br>— 第7章：<a href="http://blog.csdn.net/zyq522376829/article/details/52144372">Time and Media Representations 时间和媒体表现</a></p>
+<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
+<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3">点击这里</a></p>
+</blockquote>
+<h1 id="Export-输出"><a href="#Export-输出" class="headerlink" title="Export - 输出"></a>Export - 输出</h1><p>To read and write audiovisual assets, you must use the export APIs provided by the AVFoundation framework. The AVAssetExportSession class provides an interface for simple exporting needs, such as modifying the file format or trimming the length of an asset (see Trimming and Transcoding a Movie). For more in-depth exporting needs, use the AVAssetReader and AVAssetWriter classes.</p>
+<p>必须使用 <code>AVFoundation</code> 框架提供的导出 <code>APIs</code> 去读写音视频资产。<a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetExportSession_Class/index.html#//apple_ref/occ/cl/AVAssetExportSession">AVAssetExportSession</a> 类为简单输出需要，提供了一个接口，例如修改文件格式或者削减资产的长度（见 <a href="https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/01_UsingAssets.html#//apple_ref/doc/uid/TP40010188-CH7-SW8">Trimming and Transcoding a Movie</a>）。为了更深入的导出需求，使用 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetReader_Class/index.html#//apple_ref/occ/cl/AVAssetReader">AVAssetReader</a> 和 <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAssetWriter_Class/index.html#//apple_ref/occ/cl/AVAssetWriter">AVAssetWriter</a> 类。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160803AVFoundation06Export/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160803AVFoundation05StillAndVideoMediaCapture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2853,392 +3243,6 @@ calloc1void *
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160414KobeLeave/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160414KobeLeave/" itemprop="url">
-                  【随笔】2016年4月14日 Kobe Bryant完美谢幕
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-14 18:17:26" itemprop="dateCreated datePublished" datetime="2016-04-14T18:17:26+08:00">2016-04-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-02-16 16:39:02" itemprop="dateModified" datetime="2017-02-16T16:39:02+08:00">2017-02-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160414KobeLeave/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160414KobeLeave/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-版权声明：本文为博主原创文章，如需转载请注明出处。
-
-前言　　今天早晨科比的最后一场比赛，完美谢幕：最后三分半落后十几分的时候可能大多数人都在想，这场又要铁了，科比也累了，打不动了。但是科比用完美的进攻让所有人看到黑曼巴的力量，60分的数据加上力挽狂澜的赢球，此时属于科比。库里400+的三分、73
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160414KobeLeave/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160408FirstHackintosh/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160408FirstHackintosh/" itemprop="url">
-                  【渔】联想Y430P - 成功完美黑苹果上身，同时有win8.1做备用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-04-08 17:57:18" itemprop="dateCreated datePublished" datetime="2016-04-08T17:57:18+08:00">2016-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-02-16 16:38:56" itemprop="dateModified" datetime="2017-02-16T16:38:56+08:00">2017-02-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/渔/" itemprop="url" rel="index"><span itemprop="name">渔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160408FirstHackintosh/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160408FirstHackintosh/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-版权声明：本文为博主原创文章，如需转载请注明出处。
-
-背景
-本来虚拟机跑得好好的，可是看着显卡只有128M就非常的不舒服；
-虽然电脑配置还可以，但是开虚拟机还是不顺畅，毕竟没办法把我所有的硬件都跑出来；
-这里只是记录一下Y430P可以用到的一些网站，不过其他机型有借鉴意义；
-具体配置可以去看Y43
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160408FirstHackintosh/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3290,7 +3294,7 @@ calloc1void *
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-count">112</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3570,7 +3574,13 @@ calloc1void *
                     
                       
                     
-                    <span class="site-state-item-count">120</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">123</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
