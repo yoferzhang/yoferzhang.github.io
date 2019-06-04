@@ -332,6 +332,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSFoundationTran/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yofer Zhang">
+      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoferZhang 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/20160814NSFoundationTran/" itemprop="url">
+                  【iOS】集合间相互转换,浅谈相关内存管理,使用NSData处理数据,使用NSDate
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-14 15:18:20" itemprop="dateCreated datePublished" datetime="2016-08-14T15:18:20+08:00">2016-08-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-06 10:37:37" itemprop="dateModified" datetime="2018-06-06T10:37:37+08:00">2018-06-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/post/20160814NSFoundationTran/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="post/20160814NSFoundationTran/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>版权声明：本文为博主原创，如需转载请注明出处。</p>
+</blockquote>
+<h2 id="NSArray-转换成-NSMutableArray"><a href="#NSArray-转换成-NSMutableArray" class="headerlink" title="NSArray 转换成 NSMutableArray"></a>NSArray 转换成 NSMutableArray</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</span><br><span class="line"><span class="built_in">NSMutableArray</span> * muArray = [<span class="built_in">NSMutableArray</span> arrayWithArray:array];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"muarray %@"</span>,muArray);</span><br></pre></td></tr></table></figure>
+<h2 id="NSDictonary-转换成-NSMutableDictionary"><a href="#NSDictonary-转换成-NSMutableDictionary" class="headerlink" title="NSDictonary 转换成 NSMutableDictionary"></a>NSDictonary 转换成 NSMutableDictionary</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</span><br><span class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [<span class="built_in">NSMutableDictionary</span> dictionaryWithDictionary:dic];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"mudic %@ "</span>,muDic);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/20160814NSFoundationTran/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160814NSSetSum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3022,198 +3212,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yofer Zhang">
-      <meta itemprop="description" content="接下来自己能够坚持写博客，记录是一个好习惯">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoferZhang 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/post/20160810AboutHTTPLiveStream/" itemprop="url">
-                  【iOS】About HTTP Live Streaming官方文档翻译
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-08-10 15:55:15" itemprop="dateCreated datePublished" datetime="2016-08-10T15:55:15+08:00">2016-08-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-06-06 10:33:30" itemprop="dateModified" datetime="2018-06-06T10:33:30+08:00">2018-06-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/20160810AboutHTTPLiveStream/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/20160810AboutHTTPLiveStream/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>新博客文章地址：<a href="http://yoferzhang.com/post/20160810AboutHTTPLiveStream/">About HTTP Live Streaming官方文档翻译 [iOS]</a><br>CSDN文章地址：<a href="http://blog.csdn.net/zyq522376829/article/details/52176681">About HTTP Live Streaming官方文档翻译 [iOS]</a></p>
-<p>版权声明：本文为博主原创翻译，如需转载请注明出处。</p>
-<p>苹果源文档地址 - <a href="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/AboutHTTPLiveStreaming/about/about.html#//apple_ref/doc/uid/TP40013978">点击这里</a></p>
-</blockquote>
-<h1 id="About-HTTP-Live-Streaming-HTTP实时流"><a href="#About-HTTP-Live-Streaming-HTTP实时流" class="headerlink" title="About HTTP Live Streaming - HTTP实时流"></a>About HTTP Live Streaming - HTTP实时流</h1><p>HTTP Live Streaming (HLS) is Apple’s technology for streaming live and on-demand audio/video content to iPhone, iPad, iPod touch, Apple TV, and Mac. Central to HLS is the delivery of content using the HTTP protocol—the same protocol that powers the web. HTTP lets you easily deploy media content in streams using commonplace web servers rather than specialized streaming servers. HLS streams behave like regular web traffic. They work with preexisting caching infrastructure, such as Content Delivery Networks (CDNs), and reliably pass through typical firewalls and routers. HLS adapts to variable network conditions, dynamically adjusting playback to match the available speed of wired and wireless connections.</p>
-<p>HTTP Live Streaming (HLS) 是苹果公司的技术，有关流媒体直播和点播音频/视频内容，支持iPhone, iPad, iPod touch, Apple TV, 和 Mac。内部 对 HLS 内容的传递 使用与HTTP协议相同的协议来处理网络服务。 HTTP可以轻松地使用普通的Web服务器，而不是专门的流媒体服务器 来部署流媒体内容。HLS流行为像常规的网络流量。工作方式为预先缓存基础结构，比如内容分发网络（CDN），以及可靠地通过典型的防火墙和路由器。HLS适应可变的网络状况，动态地调整播放以匹配有线和无线连接的可用速度。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/post/20160810AboutHTTPLiveStream/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3265,7 +3263,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-count">113</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3551,7 +3549,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">123</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">127</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
